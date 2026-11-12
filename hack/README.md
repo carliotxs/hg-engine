@@ -15,9 +15,9 @@ ROM base (HeartGold U, IPKE, nunca vai para o git)
    ├─ data/scr_seq/*.s           scripts (comuns agora; história na Fase 2)
    │
    ▼
-hack/scripts/release.sh  =  build.sh  →  verify.py  →  package.sh
-   │                          make        arranque no     .zip + .xdelta
-   │                                      DeSmuME
+hack/scripts/release.sh  =  build.sh  →  verify.py  →  newgame.py  →  package.sh
+   │                          make        arranque no     jogo novo até   .zip + .xdelta
+   │                                      DeSmuME         ao inicial
    ▼
 hack/out/HeartGold-hack-<versão>.zip / .xdelta
 ```
@@ -29,6 +29,7 @@ hack/out/HeartGold-hack-<versão>.zip / .xdelta
 hack/scripts/release.sh ~/ROMs/HeartGold_US.nds fase1   # pipeline completo
 hack/scripts/build.sh                                   # só compilar (usa o rom.nds já copiado)
 .venv/bin/python hack/scripts/verify.py                 # só o teste de arranque
+.venv/bin/python hack/scripts/newgame.py                # jogo novo: intro, New Bark, laboratório e escolha do inicial
 hack/scripts/package.sh fase1                           # só empacotar
 hack/scripts/test.sh                                    # testes em jogo (ROM de debug, ver abaixo)
 hack/scripts/test.sh exp_share_on shop                  # só alguns cenários
@@ -64,6 +65,10 @@ Como funciona: o runner escreve o número do cenário num endereço de memória;
 | `shiny_charm` | estatístico: 3 tentativas com o charm, em selvagens e ofertas (a ROM de teste usa odds 1/32) |
 | `bike` | usar a Bicicleta na mochila e pedalar: acelera e chega a 2 frames por mosaico |
 | `day_care` | estatístico: rotina de passos da Day Care com compatibilidade 50; Oval Charm sobe os ovos para 80% e o Shiny Charm aplica-se aos ovos |
+
+`hack/scripts/newgame.py` é um teste à parte, na ROM normal: reproduz uma gravação de botões desde o ecrã de título até receber o inicial e falha se o jogo bloquear pelo caminho. As capturas em `hack/out/newgame/` mostram os três iniciais e a mensagem de receção. Se os scripts ou mapas de abertura mudarem, a gravação tem de ser refeita.
+
+Duas armadilhas já conhecidas: o ecrã de escolha do inicial bloqueia se for aberto fora do laboratório (por isso não há cenário `HACK_TEST` para ele), e uma ROM normal compilada logo a seguir a uma de teste não arranca se a base não for reextraída (o `test.sh` trata disso ao tocar em `rom.nds`).
 
 Uma feature nova deve trazer o seu cenário: um `HACK_TEST_*` em `include/hack_test.h`, o estado em `HackTest_Setup` e a função `test_*` no runner. Nada disto entra nas ROMs normais: está tudo dentro de `#ifdef HACK_TEST`.
 

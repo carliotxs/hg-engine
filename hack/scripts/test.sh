@@ -6,9 +6,11 @@
 set -euo pipefail
 cd "$(dirname "$0")/../.."
 
-# files whose output depends on HACK_TEST: everything that includes config.h, and common script 2073
+# files whose output depends on HACK_TEST: everything that includes config.h, and common script 2073.
+# rom.nds is touched too so that the next build extracts base/ again: the debug build patches
+# base/arm9.bin (automatic continue), and a normal ROM built on top of that does not boot without a save
 touch_flag_dependent() {
-    touch include/config.h data/scr_seq/scr_seq_00003_commonscript.s
+    touch include/config.h data/scr_seq/scr_seq_00003_commonscript.s rom.nds
 }
 
 # any save that continues in the overworld works; by default the public hg-engine test save is used

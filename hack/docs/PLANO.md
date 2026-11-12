@@ -23,7 +23,7 @@ Legenda: ✅ feito · 🔨 em curso · ⏳ por fazer · 🔬 precisa de investig
 ## Fase 2: Pokédex e mundo
 
 - ⏳ Encontros Gen 1 a 9 em Johto e Kanto (`data/Encounters.c`), por zona e por hora do dia, com a distribuição por tipos coerente com cada rota
-- ⏳ Iniciais alternativos (`src/starters.c`)
+- ✅ Iniciais alternativos: Dratini, Beldum e Larvitar (`HACK_ALT_STARTERS`). O rival fica com o seguinte na ordem (Beldum, Larvitar, Dratini) e as equipas dele seguem a linha evolutiva por nível. Testado com `newgame.py` até receber o inicial; falta jogar o primeiro combate com o rival
 - ✅ História em texto no git: scripts, eventos e textos despejados com `make dump_scripts` e compilados com `BUILD_DUMPED_SCR_SEQ` e `BUILD_DUMPED_EVENTDATA`. Verificado byte a byte contra a ROM original
 - 🔬 Encontros visíveis no overworld. Caminho realista: Pokémon estáticos visíveis em pontos fixos (eventos do mapa), com respawn diário. Spawns dinâmicos como no SwSh obrigariam a um sistema novo de overworld e são um projeto à parte
 
