@@ -16,6 +16,7 @@
 #define HACK_TEST_BIKE             11 // no script, the Bicycle is used from the bag and ridden
 #define HACK_TEST_CAPTURE_PROMPT   13 // wild battle with a full party and Master Balls
 #define HACK_TEST_CAPTURE_PROMPT_NO 14 // same, answering no to the prompt
+#define HACK_TEST_CAPTURE_PROMPT_MAIL 15 // same, the first party member holds Mail
 #define HACK_TEST_STATIC_MON       12 // no script, the visible static Pokémon of Cherrygrove City
 
 #ifndef __ASSEMBLER__

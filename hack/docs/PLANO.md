@@ -18,7 +18,7 @@ Legenda: ✅ feito · 🔨 em curso · ⏳ por fazer · 🔬 precisa de investig
 | Shiny Charm funcional | ✅ testado | +2 tentativas em selvagens, ofertas e ovos da Day Care (acumula com o método Masuda) |
 | Oval Charm funcional | ✅ testado | Probabilidade de ovo a cada 256 passos: 20/50/70% passam a 40/80/88%, como na Gen 5+. `src/hack_daycare.c` |
 | Bicicleta mais rápida | ✅ testado | Velocidade máxima a dobrar (2 frames por mosaico em vez de 4), com a mesma aceleração inicial. A rotina está no arm9 (0205D658), não no overlay; são 2 bytes em `bytereplacement`. Falta ver em jogo real as transições entre mapas a esta velocidade |
-| Adicionar à equipa depois de apanhar | ✅ testado | Com a equipa cheia, o Pokémon vai para o PC como sempre e, de volta ao campo, aparece a pergunta; com "Sim" escolhe-se o membro da equipa que troca de lugar com ele. Feito fora da batalha (`src/hack_capture.c` e script comum 2076), sem mexer na sequência de captura. Limitações: se o trocado for o primeiro da equipa, o Pokémon que segue o jogador só atualiza ao mudar de mapa; não se aplica a ofertas enviadas para o PC |
+| Adicionar à equipa depois de apanhar | ✅ testado | Com a equipa cheia, o Pokémon vai para o PC como sempre e, de volta ao campo, aparece a pergunta; com "Sim" escolhe-se o membro da equipa que troca de lugar com ele, e o Pokémon seguidor é atualizado. Um Pokémon com Mail não pode sair (como no PC). Não aparece no Safari, no Bug-Catching Contest nem no Pal Park. As ofertas não precisam: no HeartGold exigem sempre espaço na equipa. `src/hack_capture.c` e script comum 2076 |
 
 ## Fase 2: Pokédex e mundo
 
@@ -29,13 +29,23 @@ Legenda: ✅ feito · 🔨 em curso · ⏳ por fazer · 🔬 precisa de investig
 
 ## Fase 3: história e batalhas
 
-- ⏳ **Arco de Kalos/Megas**: Key Stone a meio do jogo (depois de Olivine) e Mega Pedras escondidas pelo mapa ou dadas em side quests
-- ⏳ **Equipa Rocket reforçada**: admins e Giovanni com equipas novas e mais confrontos (Radio Tower, Lago da Fúria, Mahogany)
-- ⏳ **Outras equipas na história**: por exemplo, a Equipa Galactic atrás das Ruínas de Sinjoh e do Unown, e a Equipa Plasma a roubar Pokémon em Ilex
-- ⏳ **Líderes**: todos mantêm os tipos originais, incluindo a Whitney (Normal). Os tipos alternativos pensados (Fada, Sombrio, Água, etc.) ficam para os treinadores especiais
-- ⏳ **Rival extra**: 2 a 3 confrontos novos com o Silver entre o 4.º e o 8.º ginásio
-- ⏳ **Treinadores secretos**: opcionais, difíceis, com recompensas raras
-- ⏳ **Bosses de história**: batalhas duplas e equipas com IVs/EVs
+Decisões de design fechadas:
+
+- **Dificuldade**: equipas melhores e coerentes (espécies, golpes, itens) e +2 a 4 níveis em relação ao original, para compensar a Exp Share e a EXP da Gen 5. Sem level cap
+- **Líderes**: todos mantêm os tipos originais, incluindo a Whitney (Normal). Os tipos alternativos ficam para os treinadores secretos
+- **Arco de Kalos/Megas**: a Korrina aparece no topo do Farol de Olivine depois de curares a Amphy, desafia-te e entrega a Key Stone e a Ampharosite. As outras Mega Pedras ficam escondidas pelo mapa ou em side quests
+- **Rival extra**: 3 confrontos novos: entrada do Farol de Olivine, Lago da Fúria depois do Gyarados vermelho e saída do Ice Path
+- **Treinadores secretos**: 8 especialistas de tipo que os ginásios de Johto não cobrem (Fada, Sombrio, Água, Fogo, Erva, Elétrico, Psíquico, Terra), com equipas de 6, escondidos em sítios opcionais de Johto e Kanto. São a "Liga das Sombras" da Fase 4
+
+Trabalho, por ordem:
+
+1. ⏳ Líderes de Johto, Elite Four e Lance: equipas novas e níveis (`data/Trainers.c`)
+2. ⏳ Equipa Rocket reforçada: grunts, admins e Giovanni com equipas novas e mais confrontos (Radio Tower, Lago da Fúria, Mahogany)
+3. ⏳ Korrina no Farol: personagem, combate, Key Stone e Ampharosite; ativar a Mega Evolução (flag 2518)
+4. ⏳ Rival: os 3 confrontos novos e equipas a condizer
+5. ⏳ Outras equipas na história: Equipa Galactic nas Ruínas de Alph e de Sinjoh, Equipa Plasma em Ilex
+6. ⏳ Treinadores secretos: os 8 especialistas, colocação e recompensas
+7. ⏳ Bosses de história em batalhas duplas, com IVs e EVs
 
 ## Fase 4: side quests
 
@@ -43,6 +53,17 @@ Legenda: ✅ feito · 🔨 em curso · ⏳ por fazer · 🔬 precisa de investig
 - ⏳ **Oval Charm** (sem ligação à Pokédex): o casal da Day Care dá-o depois de chocares um número de ovos (ex.: 10)
 - ⏳ Caça às Mega Pedras, com pistas por chamadas do Pokégear
 - ⏳ Tutores de golpes modernos e loja de BP com Ability Patch / Ability Capsule
+
+### Especialistas de espécie ("mirror match")
+
+Pedido de design: existe um especialista para cada Pokémon de evolução final e para cada Pokémon de fase única, espalhados pelo mapa. Só se consegue desafiar um especialista levando o mesmo Pokémon que ele, e o combate é um mirror match de 1 contra 1.
+
+Decisões fechadas:
+
+- **Colocação**: um NPC físico por espécie, gerado por script e colocado em mosaicos livres (como os estáticos), só em zonas onde a família dessa espécie aparece em estado selvagem. Espécies sem zona (lendários e afins) não têm especialista por agora
+- **Nível**: relativo à zona onde o especialista está
+- **Regra**: só luta se tiveres a mesma espécie na equipa; o combate é 1 contra 1, só com esse Pokémon
+- **Recompensa**: um item útil para a espécie (a Mega Pedra, se existir; senão um item competitivo) e um contador com prémios por marcos
 
 ## Outras sugestões
 

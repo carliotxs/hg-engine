@@ -10,5 +10,6 @@ struct PokemonStorageSystem;
 void LONG_CALL HackCapture_MarkCaught(void);
 void LONG_CALL HackCapture_OnStored(struct PokemonStorageSystem *storage, u32 box, u32 slot);
 void LONG_CALL HackCapture_FieldTick(void);
+BOOL LONG_CALL HackCapture_Swap(u32 partySlot);
 
 #endif // HACK_CAPTURE_H

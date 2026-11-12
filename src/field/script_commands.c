@@ -13,6 +13,7 @@
 #include "constants/weather_numbers.h"
 
 #include "bag.h"
+#include "hack_capture.h"
 #include "battle.h"
 #include "message.h"
 #include "pokemon.h"
@@ -142,6 +143,15 @@ BOOL ScrCmd_DaycareSanitizeMon(SCRIPTCONTEXT *ctx)
     u16 *ret_ptr = ScriptGetVarPointer(ctx);
     void *party = SaveData_GetPlayerPartyPtr(fieldSystem->savedata);
     partyMon = Party_GetMonByIndex(party, party_slot);
+
+#ifdef HACK_CAPTURE_PARTY_PROMPT
+    // hack: the capture prompt script reuses this command (the result var holds a magic value on entry)
+    // to swap a party member with the Pokémon that was just caught, see src/hack_capture.c
+    if (*ret_ptr == HACK_SCRCMD_CAPTURE_SWAP) {
+        *ret_ptr = HackCapture_Swap(party_slot) ? 0 : 0xFF;
+        return FALSE;
+    }
+#endif // HACK_CAPTURE_PARTY_PROMPT
 
     *ret_ptr = 0;
 
