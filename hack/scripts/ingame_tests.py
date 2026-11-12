@@ -24,7 +24,9 @@ os.environ.setdefault("SDL_AUDIODRIVER", "dummy")
 HOLE = 0x02FFF81C
 REQUEST_MAGIC = 0xC0DE0000
 REPORT_MAGIC = 0x53544B48
-REPORT_SIZE = 28 + 6 * 16
+REPORT_SIZE = 28 + 6 * 16 + 24
+SHINY_SAMPLES = 1500
+SHINY_TEST_ODDS = 2049 / 65536  # HACK_TEST builds use SHINY_ODDS 2048, see include/config.h
 
 SCENARIOS = {
     "exp_share_on": 1,
@@ -35,6 +37,7 @@ SCENARIOS = {
     "exp_share_toggle": 6,
     "exp_share_switch": 7,
     "switch_no_share": 8,
+    "shiny_charm": 9,
 }
 
 # base experience and growth data used by the expectations
@@ -104,7 +107,9 @@ class Game:
             species, level, is_egg, exp, hp = struct.unpack_from("<HBBIH", raw, 28 + i * 16)
             ivs = list(raw[28 + i * 16 + 10:28 + i * 16 + 16])
             mons.append({"species": species, "level": level, "egg": is_egg, "exp": exp, "hp": hp, "ivs": ivs})
+        shiny = struct.unpack_from("<6I", raw, 28 + 6 * 16)
         return {
+            "shiny_total": shiny[:3], "shiny_hits": shiny[3:],
             "ticks": ticks, "scenario": scenario, "level_cap": level_cap, "money": money, "badges": badges,
             "exp_share_owned": owned, "exp_share_disabled": disabled, "bottle_caps": caps,
             "gold_bottle_caps": gold_caps, "mints": mints, "mons": mons,
@@ -346,6 +351,23 @@ def test_switch_no_share(game, c):
     c.check("benched mon gets nothing", gain[2] == 0, f"{gain[2]}")
 
 
+def test_shiny_charm(game, c):
+    """statistical: 1500 mons per phase with the raised odds of the test build, 3 rolls with the charm"""
+    for _ in range(4000):
+        report = game.report()
+        if min(report["shiny_total"]) >= SHINY_SAMPLES:
+            break
+        game.run(30)
+    total, hits = report["shiny_total"], report["shiny_hits"]
+    base = SHINY_SAMPLES * SHINY_TEST_ODDS
+    charm = SHINY_SAMPLES * (1 - (1 - SHINY_TEST_ODDS) ** 3)
+    print(f"  generated {total}, shiny {hits}; expected about {base:.0f} without the charm and {charm:.0f} with it")
+    c.check("all mons were generated", min(total) >= SHINY_SAMPLES, f"{total}")
+    c.check("wild mons without the charm: base odds", 25 <= hits[0] <= 72, f"{hits[0]}")
+    c.check("wild mons with the charm: 3 rolls", 100 <= hits[1] <= 175, f"{hits[1]}")
+    c.check("gift mons with the charm: 3 rolls", 100 <= hits[2] <= 175, f"{hits[2]}")
+
+
 TESTS = {
     "exp_share_on": test_exp_share_on,
     "exp_share_off": test_exp_share_off,
@@ -355,6 +377,7 @@ TESTS = {
     "exp_share_toggle": test_exp_share_toggle,
     "exp_share_switch": test_exp_share_switch,
     "switch_no_share": test_switch_no_share,
+    "shiny_charm": test_shiny_charm,
 }
 
 

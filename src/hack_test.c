@@ -53,7 +53,14 @@ struct HackTestReport {
     u16 mints; // adamant mints, bought in the shop scenario
     u16 padding2;
     struct HackTestMonReport mons[6];
+    // shiny charm scenario: 0 = wild mons without the charm, 1 = wild mons with it, 2 = gift mons with it
+    u32 shinyTotal[3];
+    u32 shinyHits[3];
 };
+
+// creating a mon is slow (it reads the learnsets), so HACK_TEST builds raise SHINY_ODDS in config.h
+#define HACK_TEST_SHINY_SAMPLES   1500
+#define HACK_TEST_SHINY_PER_TICK  10
 
 struct HackTestReport ALIGN4 gHackTestReport = { .magic = 0x53544B48 };
 static u32 sHackTestWait = 0;
@@ -216,6 +223,49 @@ static void HackTest_UpdateReport(void)
 }
 
 /**
+ *  @brief generate a batch of mons the way wild encounters (phases 0 and 1) and gifts (phase 2) do
+ *         and count the shiny ones.  the Shiny Charm is added to the bag after phase 0
+ */
+static void HackTest_ShinyTick(void)
+{
+    static struct PartyPokemon ALIGN4 sMon;
+    void *save = SaveBlock2_get();
+    struct Party *party = SaveData_GetPlayerPartyPtr(save);
+    struct PlayerProfile *profile = Sav2_PlayerData_GetProfileAddr(save);
+    BAG_DATA *bag = Sav2_Bag_get(save);
+    struct HackTestReport *report = &gHackTestReport;
+    u32 phase;
+
+    for (phase = 0; phase < 3; phase++) {
+        if (report->shinyTotal[phase] < HACK_TEST_SHINY_SAMPLES) {
+            break;
+        }
+    }
+    if (phase == 3) {
+        return;
+    }
+    if (phase != 0) {
+        bag->keyItems[1].id = ITEM_SHINY_CHARM;
+        bag->keyItems[1].quantity = 1;
+    }
+    for (u32 i = 0; i < HACK_TEST_SHINY_PER_TICK; i++) {
+        BOOL shiny;
+        if (phase == 2) {
+            PokeParty_Init(party, 6);
+            GiveMon(HEAPID_WORLD, save, SPECIES_RATTATA, 5, 0, 0, 0, 0, 0);
+            shiny = MonIsShiny(Party_GetMonByIndex(party, 0));
+        } else {
+            PokeParaSet(&sMon, SPECIES_RATTATA, 5, 32, FALSE, 0, ID_SET, profile->id);
+            shiny = MonIsShiny(&sMon);
+        }
+        report->shinyTotal[phase]++;
+        if (shiny) {
+            report->shinyHits[phase]++;
+        }
+    }
+}
+
+/**
  *  @brief called once per frame while the player can move in the overworld
  */
 void HackTest_FieldTick(void)
@@ -234,11 +284,15 @@ void HackTest_FieldTick(void)
             break;
         case HACK_TEST_BOTTLE_CAPS:
         case HACK_TEST_EXP_SHARE_TOGGLE:
+        case HACK_TEST_SHINY_CHARM:
             break; // driven from the menu by the python side
         default:
             EventSet_Script(gFieldSysPtr, 2073, NULL);
             break;
         }
+    }
+    if (gHackTestReport.scenario == HACK_TEST_SHINY_CHARM) {
+        HackTest_ShinyTick();
     }
     HackTest_UpdateReport();
     *HACK_TEST_HOLE = (u32)&gHackTestReport;
