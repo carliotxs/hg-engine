@@ -32,6 +32,7 @@ scrdef scr_seq_D27R0107_001
 scrdef scr_seq_D27R0107_002
 scrdef scr_seq_D27R0107_003
 scrdef scr_seq_D27R0107_004
+scrdef scr_seq_D27R0107_005
 scrdef_end
 
 scr_seq_D27R0107_003:
@@ -39,6 +40,9 @@ scr_seq_D27R0107_003:
 	end
 
 scr_seq_D27R0107_004:
+	goto_if_set FLAG_UNK_1D7, scr_seq_D27R0107_004_original // hack: Korrina only appears after Amphy is cured
+	hide_person obj_D27R0107_hack_korrina
+scr_seq_D27R0107_004_original:
 	goto_if_set FLAG_UNK_1D8, _002D
 	make_object_visible obj_D27R0107_stop
 _002D:
@@ -234,5 +238,47 @@ _0274:
 	end
 
 scr_seq_D27R0107_002:
+	end
+// hack: Korrina, Kalos arc (hack/scripts/gen_korrina.py)
+scr_seq_D27R0107_005:
+	play_se SEQ_SE_DP_SELECT
+	lockall
+	faceplayer
+	goto_if_set 2594, scr_seq_D27R0107_005_done
+	npc_msg 13
+	closemsg
+	setflag FLAG_MEGA_EVOLUTION_ENABLED
+	trainer_battle TRAINER_HACK_744, 0, 0, 0
+	check_battle_won VAR_SPECIAL_RESULT
+	compare VAR_SPECIAL_RESULT, 0
+	goto_if_eq scr_seq_D27R0107_005_lost
+	npc_msg 14
+	giveitem ITEM_KEY_STONE, 1, VAR_SPECIAL_RESULT
+	play_fanfare SEQ_ME_KEYITEM
+	npc_msg 15
+	wait_fanfare
+	npc_msg 16
+	giveitem ITEM_AMPHAROSITE, 1, VAR_SPECIAL_RESULT
+	play_fanfare SEQ_ME_ITEM
+	npc_msg 17
+	wait_fanfare
+	setflag 2594
+	npc_msg 18
+	wait_button_or_walk_away
+	closemsg
+	releaseall
+	end
+
+scr_seq_D27R0107_005_done:
+	npc_msg 19
+	wait_button_or_walk_away
+	closemsg
+	releaseall
+	end
+
+scr_seq_D27R0107_005_lost:
+	clearflag FLAG_MEGA_EVOLUTION_ENABLED
+	white_out
+	releaseall
 	end
 	.balign 4

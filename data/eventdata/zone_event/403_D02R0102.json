@@ -59,8 +59,8 @@
       "param2": 0,
       "movement_range_x": 0,
       "movement_range_z": 0,
-      "x": 5,
-      "z": 17,
+      "x": 3,
+      "z": 22,
       "y": 0
     },
     {
@@ -76,8 +76,8 @@
       "param2": 0,
       "movement_range_x": 0,
       "movement_range_z": 0,
-      "x": 2,
-      "z": 17,
+      "x": 3,
+      "z": 24,
       "y": 0
     },
     {
@@ -93,8 +93,8 @@
       "param2": 0,
       "movement_range_x": 0,
       "movement_range_z": 0,
-      "x": 5,
-      "z": 14,
+      "x": 7,
+      "z": 23,
       "y": 0
     },
     {
@@ -110,8 +110,8 @@
       "param2": 0,
       "movement_range_x": 0,
       "movement_range_z": 0,
-      "x": 8,
-      "z": 17,
+      "x": 7,
+      "z": 5,
       "y": 0
     }
   ]
