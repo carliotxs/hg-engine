@@ -4,6 +4,12 @@
 set -euo pipefail
 cd "$(dirname "$0")/../.."
 
+# toolchains installed without sudo (see hack/README.md): ARM GNU toolchain and rustup from Homebrew
+for dir in "$HOME/.local/opt/arm-gnu-toolchain/bin" /opt/homebrew/opt/rustup/bin "$HOME/.cargo/bin"; do
+    [ -d "$dir" ] && PATH="$dir:$PATH"
+done
+export PATH
+
 BASE_ROM="${1:-${HG_BASE_ROM:-}}"
 if [ -n "$BASE_ROM" ]; then
     cp "$BASE_ROM" rom.nds
@@ -21,5 +27,5 @@ if [ "$code" != "IPKE" ]; then
 fi
 
 JOBS="${JOBS:-$(nproc 2>/dev/null || sysctl -n hw.ncpu)}"
-make -j"$JOBS"
+make -j"$JOBS" ${HACK_TEST:+HACK_TEST=$HACK_TEST}
 echo "built: $(pwd)/test.nds"

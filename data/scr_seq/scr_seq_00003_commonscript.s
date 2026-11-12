@@ -18,6 +18,7 @@
 #include "constants/item.h"
 #include "constants/moves.h"
 #include "constants/species.h"
+#include "hack_test.h"
 
 
 // text archive to grab from: 040.txt
@@ -1744,6 +1745,27 @@ scr_seq_0003_064:
     releaseall
     end
 
+#ifdef HACK_TEST
+// hack: automated in-game tests, the scenario comes from src/hack_test.c in VAR_SPECIAL_x8004
+scr_seq_0003_073_autobattle_testing:
+    lockall
+    compare VAR_SPECIAL_x8004, HACK_TEST_SHOP
+    goto_if_eq scr_seq_0003_073_hack_test_shop
+    compare VAR_SPECIAL_x8004, HACK_TEST_BOTTLE_CAPS
+    goto_if_eq scr_seq_0003_073_hack_test_end
+    compare VAR_SPECIAL_x8004, HACK_TEST_EXP_SHARE_TOGGLE
+    goto_if_eq scr_seq_0003_073_hack_test_end
+    wild_battle SPECIES_RATTATA, 20, 0
+    goto scr_seq_0003_073_hack_test_end
+
+scr_seq_0003_073_hack_test_shop:
+    special_mart_buy 6 // Goldenrod Dept. Store 4F
+    goto scr_seq_0003_073_hack_test_end
+
+scr_seq_0003_073_hack_test_end:
+    releaseall
+    end
+#else
 scr_seq_0003_073_autobattle_testing:
     play_se SEQ_SE_DP_SELECT
     lockall
@@ -1754,6 +1776,7 @@ scr_seq_0003_073_autobattle_testing:
     //WildBattleSp 785 | (1 << 11), 50, 0
     releaseall
     end
+#endif // HACK_TEST
 
 // hack: Kalos Exp. Share toggle, run from the bag (SCRIPT_EXP_SHARE_TOGGLE = 2074)
 // flag 2602 (FLAG_EXP_SHARE_DISABLED) stores the OFF state, so the Exp. Share starts on

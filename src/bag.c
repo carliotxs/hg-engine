@@ -13,6 +13,9 @@
 #ifdef DEBUG_BATTLE_SCENARIOS
 #include "../include/test_battle.h"
 #endif // DEBUG_BATTLE_SCENARIOS
+#ifdef HACK_TEST
+#include "../include/hack_test.h"
+#endif // HACK_TEST
 
 // file is directly from pokeheartgold but without the bag_cursor stuff + sPocketCounts right here
 
@@ -611,6 +614,9 @@ BOOL IsPlayerOnLadder(void)
     }
     u32 collision = GetMetatileBehaviorAt(gFieldSysPtr, gFieldSysPtr->location->x, gFieldSysPtr->location->z);
     u32 mapId = gFieldSysPtr->location->mapId;
+#ifdef HACK_TEST
+    HackTest_FieldTick();
+#endif // HACK_TEST
 #if defined(DEBUG_AUTO_QUEUE_SCRIPT)
     queueUpAutoBattleScript++;
     if (queueUpAutoBattleScript == 30) {
