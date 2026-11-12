@@ -20,9 +20,12 @@
 #define HACK_BADGE_LEVEL_CAPS
 
 // Shiny Charm: extra shiny rolls for Pokémon created with the player's trainer id
-// (wild encounters, gifts, eggs). Gen 5+ behaviour is 2 extra rolls.
+// (wild encounters, gifts, Day Care eggs). Gen 5+ behaviour is 2 extra rolls.
 #define HACK_SHINY_CHARM
 #define SHINY_CHARM_EXTRA_ROLLS 2
+
+// Oval Charm: better egg chance at the Day Care every 256 steps (20/50/70% become 40/80/88%).
+#define HACK_OVAL_CHARM
 
 // Bottle Cap / Gold Bottle Cap usable from the bag.
 // Gold Bottle Cap: all IVs to 31. Bottle Cap: the lowest IV goes to 31.

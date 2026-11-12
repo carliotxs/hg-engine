@@ -12,6 +12,7 @@
 #define HACK_TEST_EXP_SHARE_SWITCH 7 // wild battle, two mons fight
 #define HACK_TEST_SWITCH_NO_SHARE   8 // same with the Exp. Share switched off
 #define HACK_TEST_SHINY_CHARM       9 // no script, generates many mons and counts the shiny ones
+#define HACK_TEST_DAY_CARE         10 // no script, runs the Day Care egg roll many times
 
 #ifndef __ASSEMBLER__
 void HackTest_FieldTick(void);

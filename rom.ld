@@ -80,6 +80,12 @@ PokePersonalParaGet = 0x0206FBE8 |1;
 BoxMonInit = 0x0206DD0C |1;
 PokeLevelExpGet = 0x0206FD00 |1;
 Daycare_GetBoxMonI = 0x0206BDB0 |1;
+/* hack: Day Care routines used by src/hack_daycare.c and src/hack_test.c */
+Daycare_GetEverstoneParent = 0x0206C1E4 | 1;
+Daycare_CalcCompatibilityInternal = 0x0206CBB8 | 1;
+HandleDaycareStep = 0x0206CD1C | 1;
+Save_Daycare_SetEggPID = 0x02029334 | 1;
+gf_mtRand = 0x0201FDB8 | 1;
 SetMonPersonality = 0x0207235C | 1;
 GetNatureFromPersonality = 0x0206FE2C |1;
 PokeParaLevelExpGet = 0x0206FCDC | 1;

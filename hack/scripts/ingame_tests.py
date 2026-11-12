@@ -24,7 +24,8 @@ os.environ.setdefault("SDL_AUDIODRIVER", "dummy")
 HOLE = 0x02FFF81C
 REQUEST_MAGIC = 0xC0DE0000
 REPORT_MAGIC = 0x53544B48
-REPORT_SIZE = 28 + 6 * 16 + 24
+REPORT_SIZE = 28 + 6 * 16 + 24 + 24
+EGG_ROLLS = 1000
 SHINY_SAMPLES = 1500
 SHINY_TEST_ODDS = 2049 / 65536  # HACK_TEST builds use SHINY_ODDS 2048, see include/config.h
 
@@ -38,6 +39,7 @@ SCENARIOS = {
     "exp_share_switch": 7,
     "switch_no_share": 8,
     "shiny_charm": 9,
+    "day_care": 10,
 }
 
 # base experience and growth data used by the expectations
@@ -99,7 +101,7 @@ class Game:
 
     def report(self):
         raw = bytes(self.emu.memory.unsigned[self.report_addr:self.report_addr + REPORT_SIZE])
-        magic, ticks, scenario, party_count, level_cap, money, badges, owned, disabled, _, caps, gold_caps, mints, _ = struct.unpack_from(
+        magic, ticks, scenario, party_count, level_cap, money, badges, owned, disabled, _, caps, gold_caps, mints, compat = struct.unpack_from(
             "<IIHBBIBBBBHHHH", raw, 0
         )
         mons = []
@@ -108,7 +110,9 @@ class Game:
             ivs = list(raw[28 + i * 16 + 10:28 + i * 16 + 16])
             mons.append({"species": species, "level": level, "egg": is_egg, "exp": exp, "hp": hp, "ivs": ivs})
         shiny = struct.unpack_from("<6I", raw, 28 + 6 * 16)
+        eggs = struct.unpack_from("<6I", raw, 28 + 6 * 16 + 24)
         return {
+            "compatibility": compat, "egg_rolls": eggs[0:2], "eggs": eggs[2:4], "shiny_eggs": eggs[4:6],
             "shiny_total": shiny[:3], "shiny_hits": shiny[3:],
             "ticks": ticks, "scenario": scenario, "level_cap": level_cap, "money": money, "badges": badges,
             "exp_share_owned": owned, "exp_share_disabled": disabled, "bottle_caps": caps,
@@ -368,6 +372,25 @@ def test_shiny_charm(game, c):
     c.check("gift mons with the charm: 3 rolls", 100 <= hits[2] <= 175, f"{hits[2]}")
 
 
+def test_day_care(game, c):
+    """statistical: 1000 egg rolls with compatibility 50, then 1000 with the Oval and Shiny Charms"""
+    for _ in range(2000):
+        report = game.report()
+        if min(report["egg_rolls"]) >= EGG_ROLLS:
+            break
+        game.run(30)
+    rolls, eggs, shiny = report["egg_rolls"], report["eggs"], report["shiny_eggs"]
+    rates = [s / e if e else 0 for s, e in zip(shiny, eggs)]
+    charm_rate = 1 - (1 - SHINY_TEST_ODDS) ** 3
+    print(f"  compatibility {report['compatibility']}, rolls {rolls}, eggs {eggs}, shiny eggs {shiny}")
+    print(f"  shiny rates {rates[0]:.3f} / {rates[1]:.3f}; expected about {SHINY_TEST_ODDS:.3f} / {charm_rate:.3f}")
+    c.check("all rolls done", min(rolls) >= EGG_ROLLS, f"{rolls}")
+    c.check("no charm: about 50% eggs", 430 <= eggs[0] <= 570, f"{eggs[0]}")
+    c.check("Oval Charm: about 80% eggs", 740 <= eggs[1] <= 860, f"{eggs[1]}")
+    c.check("no charm: base shiny odds on eggs", rates[0] <= 0.065, f"{rates[0]:.3f}")
+    c.check("Shiny Charm: 3 rolls on eggs", 0.06 <= rates[1] <= 0.13, f"{rates[1]:.3f}")
+
+
 TESTS = {
     "exp_share_on": test_exp_share_on,
     "exp_share_off": test_exp_share_off,
@@ -378,6 +401,7 @@ TESTS = {
     "exp_share_switch": test_exp_share_switch,
     "switch_no_share": test_switch_no_share,
     "shiny_charm": test_shiny_charm,
+    "day_care": test_day_care,
 }
 
 

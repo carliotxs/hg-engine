@@ -54,6 +54,7 @@ Como funciona: o runner escreve o número do cenário num endereço de memória;
 | `bottle_caps` | Bottle Cap (IV mais baixo), Gold Bottle Cap (todos), sem efeito abaixo do nível 50 |
 | `exp_share_toggle` | usar a Exp Share na mochila liga e desliga a flag 2602 |
 | `shiny_charm` | estatístico: 3 tentativas com o charm, em selvagens e ofertas (a ROM de teste usa odds 1/32) |
+| `day_care` | estatístico: rotina de passos da Day Care com compatibilidade 50; Oval Charm sobe os ovos para 80% e o Shiny Charm aplica-se aos ovos |
 
 Uma feature nova deve trazer o seu cenário: um `HACK_TEST_*` em `include/hack_test.h`, o estado em `HackTest_Setup` e a função `test_*` no runner. Nada disto entra nas ROMs normais: está tudo dentro de `#ifdef HACK_TEST`.
 
@@ -77,3 +78,5 @@ Uma feature nova deve trazer o seu cenário: um `HACK_TEST_*` em `include/hack_t
 | Texto 830 | 217 | descrição da Exp Share (item-chave) |
 | Texto 300 | 226 | mensagem dos Bottle Caps |
 | Field use func | 36 | `ItemMenuUseFunc_ExpShare` |
+| Hook arm9 | 0206CCC4 | `Daycare_GetCompatibility_Hack` (Oval Charm) |
+| Hook arm9 | 0206C274 | `Daycare_SetPendingEgg_Hack` (Shiny Charm em ovos) |
