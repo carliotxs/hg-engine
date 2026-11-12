@@ -33,6 +33,7 @@ hack/scripts/build.sh                                   # só compilar (usa o ro
 hack/scripts/package.sh fase1                           # só empacotar
 hack/scripts/test.sh                                    # testes em jogo (ROM de debug, ver abaixo)
 hack/scripts/test.sh exp_share_on shop                  # só alguns cenários
+hack/scripts/test.sh --window capture_prompt            # ver o tester a jogar numa janela (--speed 1 = tempo real)
 ```
 
 Define `HG_BASE_ROM` com o caminho da ROM para não o passares em cada comando. O `build.sh` acrescenta ao `PATH` o toolchain ARM em `~/.local/opt/arm-gnu-toolchain` e o rustup do Homebrew, para quem instalou sem sudo (o cask `gcc-arm-embedded` pede palavra-passe; em alternativa extrai-se o `.pkg` com `pkgutil --expand-full` para essa pasta).
@@ -93,7 +94,7 @@ Como funciona: o runner escreve o número do cenário num endereço de memória;
 | `bottle_caps` | Bottle Cap (IV mais baixo), Gold Bottle Cap (todos), sem efeito abaixo do nível 50 |
 | `exp_share_toggle` | usar a Exp Share na mochila liga e desliga a flag 2602 |
 | `shiny_charm` | estatístico: 3 tentativas com o charm, em selvagens e ofertas (a ROM de teste usa odds 1/32) |
-| `capture_prompt`, `capture_prompt_no` | apanhar com a equipa cheia: o Pokémon vai para o PC, o prompt aparece no campo; com "Sim" troca com o membro escolhido (equipa e PC verificados), com "Não" fica tudo igual |
+| `capture_prompt` e variantes `_no`, `_cancel`, `_mail` | apanhar com a equipa cheia: o Pokémon vai para o PC e o prompt aparece no campo. "Sim" troca com o membro escolhido (equipa, PC e Pokémon seguidor verificados); "Não" e cancelar deixam tudo igual; um Pokémon com Mail é recusado com mensagem |
 | `static_mon` | o Yamper de Cherrygrove: vê-se no mapa, bloqueia o mosaico, a batalha começa, a flag diária fica marcada e ele desaparece |
 | `bike` | usar a Bicicleta na mochila e pedalar: acelera e chega a 2 frames por mosaico |
 | `day_care` | estatístico: rotina de passos da Day Care com compatibilidade 50; Oval Charm sobe os ovos para 80% e o Shiny Charm aplica-se aos ovos |
@@ -121,9 +122,9 @@ Uma feature nova deve trazer o seu cenário: um `HACK_TEST_*` em `include/hack_t
 | Script comum | 2074 | liga/desliga a Exp Share |
 | Script comum | 2075 | só faz algo em `HACK_TEST` (loja do 4.º andar de Goldenrod); na ROM normal é um script vazio, para a numeração ser igual |
 | Script comum | 2076 | prompt "adicionar à equipa" depois de apanhar com a equipa cheia (o próximo livre é o 2077) |
-| Var | 0x416F | `HACK_VAR_PARTY_SWAP`: slot da equipa (+1) escolhido no prompt, até a troca ser feita |
+| Comando de script | 690 (`day_care_sanitize_mon`) | com a var de resultado a 0x4843 à entrada, faz a troca do prompt pós-captura (`HACK_SCRCMD_CAPTURE_SWAP`) |
 | Texto 040 | 121, 122 | mensagens da Exp Share |
-| Texto 040 | 123, 124 | prompt pós-captura |
+| Texto 040 | 123 a 125 | prompt pós-captura (pergunta, troca feita, recusa por Mail) |
 | Texto 830 | 217 | descrição da Exp Share (item-chave) |
 | Texto 300 | 226 | mensagem dos Bottle Caps |
 | Field use func | 36 | `ItemMenuUseFunc_ExpShare` |

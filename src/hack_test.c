@@ -181,9 +181,14 @@ static void HackTest_Setup(u16 scenario)
 
     case HACK_TEST_CAPTURE_PROMPT:
     case HACK_TEST_CAPTURE_PROMPT_NO:
+    case HACK_TEST_CAPTURE_PROMPT_MAIL:
         // full party: the caught Rattata goes to the PC and the prompt offers to swap it in
         pp = HackTest_AddMon(SPECIES_GARCHOMP, 40);
         HackTest_SetMove(pp, MOVE_EARTHQUAKE, 10);
+        if (scenario == HACK_TEST_CAPTURE_PROMPT_MAIL) {
+            value = ITEM_GRASS_MAIL;
+            SetMonData(pp, MON_DATA_HELD_ITEM, &value);
+        }
         HackTest_AddMon(SPECIES_PIDGEY, 20);
         HackTest_AddMon(SPECIES_MAGIKARP, 10);
         HackTest_AddMon(SPECIES_ZUBAT, 15);
@@ -254,7 +259,7 @@ static void HackTest_UpdateReport(void)
     report->expShareOwned = PlayerHasKeyItem(ITEM_EXP_SHARE);
     report->expShareDisabledFlag = CheckScriptFlag(FLAG_EXP_SHARE_DISABLED);
     report->padding = CheckScriptFlag(HACK_TEST_STATIC_MON_FLAG);
-    if (report->scenario == HACK_TEST_CAPTURE_PROMPT || report->scenario == HACK_TEST_CAPTURE_PROMPT_NO) {
+    if (report->scenario >= HACK_TEST_CAPTURE_PROMPT && report->scenario <= HACK_TEST_CAPTURE_PROMPT_MAIL) {
         report->padding2 = HackCapture_TestStoredSpecies(); // reuses the debug field of the day care scenario
     }
     report->bottleCaps = Bag_GetQuantity(bag, ITEM_BOTTLE_CAP, HEAPID_WORLD);

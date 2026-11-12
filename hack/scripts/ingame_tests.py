@@ -5,7 +5,10 @@ Needs a ROM built with `make HACK_TEST=Y` (hack/scripts/test.sh does everything)
 that continues in the overworld (the hg-engine test save works).
 
 Usage: .venv/bin/python hack/scripts/ingame_tests.py [--rom test.nds] [--sav test.sav]
-                                                     [--out hack/out/tests] [scenario ...]
+                                                     [--out hack/out/tests] [--window [--speed 2]]
+                                                     [scenario ...]
+
+--window opens the DeSmuME window so that the run can be watched (--speed 1 is real time).
 
 Every scenario runs in its own process: src/hack_test.c builds a known party/bag state, common
 script 2073 starts a battle or a shop, this script presses the buttons and then checks the report
@@ -17,9 +20,18 @@ import os
 import struct
 import subprocess
 import sys
+import time
 
-os.environ.setdefault("SDL_VIDEODRIVER", "dummy")
+# headless unless --window is given: then DeSmuME opens a window and the run can be watched
+WINDOW = "--window" in sys.argv
+if not WINDOW:
+    os.environ.setdefault("SDL_VIDEODRIVER", "dummy")
 os.environ.setdefault("SDL_AUDIODRIVER", "dummy")
+
+SPEED = 2.0  # --speed: emulation speed of the window mode, 0 = as fast as possible
+for index, argument in enumerate(sys.argv):
+    if argument == "--speed" and index + 1 < len(sys.argv):
+        SPEED = float(sys.argv[index + 1])
 
 HOLE = 0x02FFF81C
 REQUEST_MAGIC = 0xC0DE0000
@@ -44,6 +56,8 @@ SCENARIOS = {
     "static_mon": 12,
     "capture_prompt": 13,
     "capture_prompt_no": 14,
+    "capture_prompt_cancel": 14,
+    "capture_prompt_mail": 15,
 }
 
 # base experience and growth data used by the expectations
@@ -61,6 +75,9 @@ class Game:
         self.emu = DeSmuME()
         self.emu.open(rom)
         self.emu.backup.import_file(sav)
+        self.window = self.emu.create_sdl_window() if WINDOW else None
+        self.frame_time = 1 / (60 * SPEED) if SPEED > 0 else 0
+        self.next_frame = time.monotonic()
         self.out = out
         self.shot_index = 0
         self.report_addr = None
@@ -70,6 +87,15 @@ class Game:
     def run(self, frames=1):
         for _ in range(frames):
             self.emu.cycle(False)
+            if self.window is not None:
+                self.window.draw()
+                # keep the chosen speed (1 = real time) so that the run can be followed
+                self.next_frame += self.frame_time
+                delay = self.next_frame - time.monotonic()
+                if delay > 0:
+                    time.sleep(delay)
+                else:
+                    self.next_frame = time.monotonic()
 
     def press(self, key, hold=4, wait=20):
         self.emu.input.keypad_add_key(self.keymask(key))
@@ -522,13 +548,7 @@ def test_capture_prompt(game, c):
     """full party: the caught Rattata goes to the PC, the prompt swaps it with the chosen party member"""
     before = catch_with_full_party(game, c)
     c.check("the caught Pokémon went to the PC", game.report()["compatibility"] == RATTATA, f"{game.report()['compatibility']}")
-    # A: rest of the question, YES, first party member, final message
-    for step in range(12):
-        game.press(game.Keys.KEY_A, wait=150)
-        if step in (1, 2, 3, 4):
-            game.shot(f"answer{step}")
-        if game.report()["mons"][0]["species"] == RATTATA:
-            break
+    answer_yes_and_pick_first(game, lambda report: report["mons"][0]["species"] == RATTATA)
     game.shot("switched")
     game.press(game.Keys.KEY_A, wait=150)
     c.check("back in the overworld", game.back_to_field())
@@ -540,6 +560,43 @@ def test_capture_prompt(game, c):
             f"level {after['mons'][0]['level']}, hp {after['mons'][0]['hp']}")
     c.check("the rest of the party is unchanged", species[1:] == [m["species"] for m in before["mons"]][1:])
     c.check("the party member is in the PC slot now", after["compatibility"] == GARCHOMP, f"{after['compatibility']}")
+    ride(game, game.Keys.KEY_LEFT, 30)
+    game.shot("follower")  # the Pokémon behind the player should be the Rattata now
+
+
+def answer_yes_and_pick_first(game, done):
+    """A: rest of the question, YES, first party member, final message.  stops when done(report) is true"""
+    for step in range(12):
+        game.press(game.Keys.KEY_A, wait=150)
+        if step in (1, 2, 3, 4, 5):
+            game.shot(f"answer{step}")
+        if done(game.report()):
+            break
+
+
+def test_capture_prompt_cancel(game, c):
+    """answering yes and then cancelling on the party screen changes nothing"""
+    before = catch_with_full_party(game, c)
+    game.press(game.Keys.KEY_A, wait=150)
+    game.press(game.Keys.KEY_A, wait=300)  # YES: the party screen opens
+    game.shot("party_screen")
+    game.press(game.Keys.KEY_B, wait=300)  # cancel
+    game.shot("cancelled")
+    c.check("back in the overworld", game.back_to_field())
+    after = game.report()
+    c.check("party unchanged", [m["species"] for m in after["mons"]] == [m["species"] for m in before["mons"]])
+    c.check("the caught Pokémon stays in the PC", after["compatibility"] == RATTATA, f"{after['compatibility']}")
+
+
+def test_capture_prompt_mail(game, c):
+    """the chosen party member holds Mail: like the PC, the swap is refused with a message"""
+    before = catch_with_full_party(game, c)
+    answer_yes_and_pick_first(game, lambda report: False)
+    game.shot("refused")
+    c.check("back in the overworld", game.back_to_field())
+    after = game.report()
+    c.check("party unchanged", [m["species"] for m in after["mons"]] == [m["species"] for m in before["mons"]])
+    c.check("the caught Pokémon stays in the PC", after["compatibility"] == RATTATA, f"{after['compatibility']}")
 
 
 def test_capture_prompt_no(game, c):
@@ -568,6 +625,8 @@ TESTS = {
     "static_mon": test_static_mon,
     "capture_prompt": test_capture_prompt,
     "capture_prompt_no": test_capture_prompt_no,
+    "capture_prompt_cancel": test_capture_prompt_cancel,
+    "capture_prompt_mail": test_capture_prompt_mail,
 }
 
 
@@ -587,6 +646,8 @@ def main():
     parser.add_argument("--sav", default="test.sav")
     parser.add_argument("--out", default="hack/out/tests")
     parser.add_argument("--single", action="store_true", help="internal: run one scenario in this process")
+    parser.add_argument("--window", action="store_true", help="open the emulator window to watch the run")
+    parser.add_argument("--speed", type=float, default=2.0, help="speed of the window mode (1 = real time, 0 = unlimited)")
     parser.add_argument("scenarios", nargs="*", default=[])
     args = parser.parse_args()
     names = args.scenarios or list(TESTS)
@@ -596,7 +657,10 @@ def main():
 
     failed = []
     for name in names:
-        result = subprocess.run([sys.executable, __file__, "--rom", args.rom, "--sav", args.sav, "--out", args.out, "--single", name])
+        command = [sys.executable, __file__, "--rom", args.rom, "--sav", args.sav, "--out", args.out, "--single", name]
+        if args.window:
+            command += ["--window", "--speed", str(args.speed)]
+        result = subprocess.run(command)
         if result.returncode != 0:
             failed.append(name)
     print(f"\n{len(names) - len(failed)}/{len(names)} scenarios passed" + (f"; FAILED: {', '.join(failed)}" if failed else ""))

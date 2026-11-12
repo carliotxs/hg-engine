@@ -1799,7 +1799,8 @@ scr_seq_0003_075_hack_test_shop:
 #endif
 
 // hack: "add to party?" after a capture with a full party (SCRIPT_CAPTURE_PROMPT = 2076).
-// queued by src/hack_capture.c, which also does the swap once var 0x416F holds the party slot + 1
+// queued by src/hack_capture.c.  the swap runs before restore_overworld, like the Day Care deposit,
+// so that the Pokémon following the player is rebuilt from the new party
 scr_seq_0003_076_capture_prompt:
     lockall
     npc_msg 123
@@ -1810,16 +1811,28 @@ scr_seq_0003_076_capture_prompt:
     fade_screen 6, 1, 0, RGB_BLACK
     wait_fade
     party_select_ui
-    get_party_selection VAR_SPECIAL_RESULT
+    get_party_selection VAR_SPECIAL_x8005
+    setvar VAR_SPECIAL_RESULT, 1
+    compare VAR_SPECIAL_x8005, 255
+    goto_if_eq scr_seq_0003_076_restore
+    setvar VAR_SPECIAL_RESULT, 0x4843 // HACK_SCRCMD_CAPTURE_SWAP: the command below does the swap
+    day_care_sanitize_mon VAR_SPECIAL_x8005, VAR_SPECIAL_RESULT
+
+scr_seq_0003_076_restore:
     restore_overworld
     fade_screen 6, 1, 1, RGB_BLACK
     wait_fade
-    compare VAR_SPECIAL_RESULT, 255
+    compare VAR_SPECIAL_RESULT, 1 // cancelled on the party screen
     goto_if_eq scr_seq_0003_076_end
-    addvar VAR_SPECIAL_RESULT, 1
-    setorcopyvar 0x416F, VAR_SPECIAL_RESULT
-    wait 4, VAR_SPECIAL_RESULT
+    compare VAR_SPECIAL_RESULT, 0
+    goto_if_ne scr_seq_0003_076_refused
     npc_msg 124
+    wait_button_or_walk_away
+    closemsg
+    goto scr_seq_0003_076_end
+
+scr_seq_0003_076_refused:
+    npc_msg 125
     wait_button_or_walk_away
     closemsg
 

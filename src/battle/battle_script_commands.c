@@ -1632,7 +1632,11 @@ BOOL Task_DistributeExp_capture_experience(void *arg0, void *work, u32 get_clien
     struct EXP_CALCULATOR *expcalc = work;
 
 #ifdef HACK_CAPTURE_PARTY_PROMPT
-    HackCapture_MarkCaught(); // a wild Pokémon is being caught: if it ends up in the PC, ask about it afterwards
+    // a wild Pokémon is being caught: if it ends up in the PC, ask about it afterwards.
+    // not in the Safari Zone, the Bug-Catching Contest or the Pal Park, which have their own flow after a capture
+    if (!(BattleTypeGet(expcalc->bw) & (BATTLE_TYPE_SAFARI | BATTLE_TYPE_BUG_CONTEST | BATTLE_TYPE_PAL_PARK))) {
+        HackCapture_MarkCaught();
+    }
 #endif
 
     if (BattleTypeGet(expcalc->bw) & BATTLE_TYPE_NO_EXPERIENCE) {
