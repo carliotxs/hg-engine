@@ -1760,7 +1760,6 @@ void LONG_CALL ClearMonMoves(struct PartyPokemon *pokemon);
  *  @return level cap from LEVEL_CAP_VARIABLE script variable
  */
 u32 LONG_CALL GetLevelCap(void);
-u32 LONG_CALL GetBadgeLevelCap(void);
 BOOL LONG_CALL PlayerHasKeyItem(u16 itemId);
 
 /**

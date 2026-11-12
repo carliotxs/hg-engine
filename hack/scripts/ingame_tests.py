@@ -32,7 +32,7 @@ SHINY_TEST_ODDS = 2049 / 65536  # HACK_TEST builds use SHINY_ODDS 2048, see incl
 SCENARIOS = {
     "exp_share_on": 1,
     "exp_share_off": 2,
-    "level_cap": 3,
+    "no_level_cap": 3,
     "shop": 4,
     "bottle_caps": 5,
     "exp_share_toggle": 6,
@@ -206,7 +206,6 @@ def test_exp_share_on(game, c):
     levels = [m["level"] for m in before["mons"]]
     expected = [scaled_exp(RATTATA_BASE_EXP, WILD_LEVEL, level) for level in levels]
     print(f"  levels {levels} gains {gain} full formula values {expected}")
-    c.check("level cap is 50 with 8 badges", before["level_cap"] == 50, f"cap {before['level_cap']}")
     c.check("fighter gets the full Gen 5 experience", gain[0] == expected[0], f"{gain[0]} vs {expected[0]}")
     c.check("benched level 20 gets 50%", gain[1] == max(1, expected[1] // 2), f"{gain[1]} vs {expected[1] // 2}")
     c.check("benched level 10 gets 50%", gain[2] == max(1, expected[2] // 2), f"{gain[2]} vs {expected[2] // 2}")
@@ -224,19 +223,22 @@ def test_exp_share_off(game, c):
     c.check("nobody else gets experience", gain[1:] == [0, 0, 0], f"{gain[1:]}")
 
 
-def test_level_cap(game, c):
+def test_no_level_cap(game, c):
+    """the hack has no level cap: with 0 badges a level 13 lead and its bench still gain experience"""
     before = game.report()
-    c.check("level cap is 13 with 0 badges", before["level_cap"] == 13, f"cap {before['level_cap']}")
+    c.check("no badges", before["badges"] == 0, f"{before['badges']}")
+    c.check("no level cap", before["level_cap"] == 100, f"cap {before['level_cap']}")
     c.check("battle finished", battle(game))
     after = game.report()
     gain = gains(before, after)
+    levels = [m["level"] for m in before["mons"]]
+    expected = [scaled_exp(RATTATA_BASE_EXP, WILD_LEVEL, level) for level in levels]
     print(f"  before {[(m['level'], m['exp']) for m in before['mons']]}")
     print(f"  after  {[(m['level'], m['exp']) for m in after['mons']]}")
-    c.check("mon at the cap gains no experience", gain[0] == 0 and after["mons"][0]["level"] == 13, f"gain {gain[0]}")
-    c.check("mon below the cap stops at the cap", after["mons"][1]["level"] == 13 and gain[1] == 1,
-            f"level {after['mons'][1]['level']}, gain {gain[1]}")
-    c.check("low level mon still gains experience", gain[2] > 0 and after["mons"][2]["level"] <= 13,
-            f"gain {gain[2]}, level {after['mons'][2]['level']}")
+    c.check("fighter gains the full experience", gain[0] == expected[0], f"{gain[0]} vs {expected[0]}")
+    c.check("benched mon gains 50% and levels up", gain[1] == expected[1] // 2 and after["mons"][1]["level"] == 13,
+            f"gain {gain[1]} vs {expected[1] // 2}, level {after['mons'][1]['level']}")
+    c.check("low level mon gains 50%", gain[2] == expected[2] // 2, f"{gain[2]} vs {expected[2] // 2}")
 
 
 def test_shop(game, c):
@@ -437,7 +439,7 @@ def test_bike(game, c):
 TESTS = {
     "exp_share_on": test_exp_share_on,
     "exp_share_off": test_exp_share_off,
-    "level_cap": test_level_cap,
+    "no_level_cap": test_no_level_cap,
     "shop": test_shop,
     "bottle_caps": test_bottle_caps,
     "exp_share_toggle": test_exp_share_toggle,

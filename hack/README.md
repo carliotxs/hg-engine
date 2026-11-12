@@ -8,7 +8,7 @@ Fork do [hg-engine](https://github.com/BluRosie/hg-engine). Todo o trabalho do h
 ROM base (HeartGold U, IPKE, nunca vai para o git)
    │
    ├─ include/hack_config.h      toggles de todas as features do hack (HACK_*)
-   ├─ include/config.h           opções do engine (EXP, shinies, level cap, HMs...)
+   ├─ include/config.h           opções do engine (EXP, shinies, HMs...)
    ├─ src/                       mecânicas em C (cada alteração dentro de #ifdef HACK_*)
    ├─ data/*.c                   Pokémon, encontros, treinadores, itens, lojas
    ├─ data/text/*.txt            textos
@@ -68,7 +68,7 @@ Como funciona: o runner escreve o número do cenário num endereço de memória;
 | `exp_share_on` | quem luta recebe a EXP da Gen 5 completa, o banco recebe 50%, desmaiados 0 |
 | `exp_share_off` | com a Exp Share desligada só quem luta recebe EXP |
 | `exp_share_switch`, `switch_no_share` | dois lutadores (Baton Pass) dividem a EXP; o banco recebe 50% ou nada |
-| `level_cap` | 0 insígnias: cap 13, quem está no cap não ganha EXP, quem está abaixo para no cap |
+| `no_level_cap` | não há level cap: com 0 insígnias todos ganham EXP e sobem de nível |
 | `shop` | 4.º andar de Goldenrod: compra de Bottle Cap e Adamant Mint a 20 000 |
 | `bottle_caps` | Bottle Cap (IV mais baixo), Gold Bottle Cap (todos), sem efeito abaixo do nível 50 |
 | `exp_share_toggle` | usar a Exp Share na mochila liga e desliga a flag 2602 |
@@ -94,7 +94,6 @@ Uma feature nova deve trazer o seu cenário: um `HACK_TEST_*` em `include/hack_t
 |---|---|---|
 | Flag | 2600, 2601 | engine: hidden abilities |
 | Flag | 2602 | `FLAG_EXP_SHARE_DISABLED` (Exp Share de Kalos desligada) |
-| Var | 0x416F | `LEVEL_CAP_VARIABLE`: se for diferente de 0, substitui o cap por insígnias |
 | Script comum | 2073 | engine: script de debug; em `HACK_TEST` lança a batalha de teste |
 | Script comum | 2074 | liga/desliga a Exp Share |
 | Script comum | 2075 | só em `HACK_TEST`: loja do 4.º andar de Goldenrod (o próximo script do hack é o 2076) |

@@ -10,7 +10,7 @@ Legenda: ✅ feito · 🔨 em curso · ⏳ por fazer · 🔬 precisa de investig
 |---|---|---|
 | Curva de EXP da Gen 5 | ✅ | `EXPERIENCE_FORMULA_GEN 5`, com escala pela diferença de níveis |
 | Exp Share de Kalos | ✅ testado | Item-chave; usar na mochila liga ou desliga. Começa ligada. Quem luta divide a EXP como na Gen 5; o resto da equipa ganha 50%. Recebe-se do Mr. Pokémon, como no original |
-| Level caps por insígnias | ✅ testado (0 e 8 insígnias) | Tabela `sBadgeLevelCaps` em `src/pokemon.c`, a afinar com os treinadores novos. A var 0x416F substitui-a se for preciso |
+| Level caps por insígnias | ❌ removido | Decisão de design: o hack não tem level cap. O sistema do engine (`IMPLEMENT_LEVEL_CAP`) fica desligado |
 | TMs reutilizáveis | ✅ | Já vinha ligado no engine |
 | HMs apagáveis | ✅ | `DELETABLE_HMS` |
 | Mints e Bottle Caps em Goldenrod (4.º andar) | ✅ testado | 21 Mints (20 000₽), Bottle Cap (20 000₽), Gold Bottle Cap (60 000₽). Bottle Caps só a partir do nível 50, como o hyper training |
@@ -32,7 +32,7 @@ Legenda: ✅ feito · 🔨 em curso · ⏳ por fazer · 🔬 precisa de investig
 - ⏳ **Arco de Kalos/Megas**: Key Stone a meio do jogo (depois de Olivine) e Mega Pedras escondidas pelo mapa ou dadas em side quests
 - ⏳ **Equipa Rocket reforçada**: admins e Giovanni com equipas novas e mais confrontos (Radio Tower, Lago da Fúria, Mahogany)
 - ⏳ **Outras equipas na história**: por exemplo, a Equipa Galactic atrás das Ruínas de Sinjoh e do Unown, e a Equipa Plasma a roubar Pokémon em Ilex
-- ⏳ **Líderes com novos tipos**: proposta Whitney → Fairy; restantes a decidir
+- ⏳ **Líderes**: mantêm os tipos originais (sem trocas). Os tipos alternativos pensados (Sombrio, Água, etc.) ficam para os treinadores especiais
 - ⏳ **Rival extra**: 2 a 3 confrontos novos com o Silver entre o 4.º e o 8.º ginásio
 - ⏳ **Treinadores secretos**: opcionais, difíceis, com recompensas raras
 - ⏳ **Bosses de história**: batalhas duplas e equipas com IVs/EVs
@@ -57,7 +57,7 @@ Legenda: ✅ feito · 🔨 em curso · ⏳ por fazer · 🔬 precisa de investig
 ## Testes
 
 - Automático: `verify.py` confirma que a ROM arranca
-- Automático em jogo: `hack/scripts/test.sh` corre os cenários descritos em `hack/README.md` numa ROM de debug (Exp Share, level caps, loja, Bottle Caps, Shiny Charm). Cada feature nova traz o seu cenário
+- Automático em jogo: `hack/scripts/test.sh` corre os cenários descritos em `hack/README.md` numa ROM de debug (Exp Share, loja, Bottle Caps, Shiny Charm). Cada feature nova traz o seu cenário
 - Manual por fase: jogar um save real em pontos-chave (antes do 1.º ginásio, Goldenrod, Olivine) para ver o que os cenários não cobrem: ritmo de EXP, texto, a loja no mapa real
 
-Por testar na Fase 1: curva de EXP e caps ao longo de um jogo real; HMs apagáveis e TMs reutilizáveis (opções do engine, sem cenário próprio); a loja aberta pelo balconista real do 4.º andar (o cenário abre a mesma tabela por script).
+Por testar na Fase 1: curva de EXP ao longo de um jogo real; HMs apagáveis e TMs reutilizáveis (opções do engine, sem cenário próprio); a loja aberta pelo balconista real do 4.º andar (o cenário abre a mesma tabela por script).

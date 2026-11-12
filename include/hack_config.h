@@ -15,10 +15,6 @@
 #define SCRIPT_EXP_SHARE_TOGGLE 2074 // common script scr_seq_0003_074_expshare
 #define ITEM_FIELD_USE_EXP_SHARE 36  // NUM_VANILLA_FIELD_USE_FUNCS + index in sNewItemFieldUseFuncs
 
-// Level cap derived from the number of badges (see sBadgeLevelCaps in src/pokemon.c).
-// A non-zero value in LEVEL_CAP_VARIABLE still overrides the table from scripts.
-#define HACK_BADGE_LEVEL_CAPS
-
 // Shiny Charm: extra shiny rolls for Pokémon created with the player's trainer id
 // (wild encounters, gifts, Day Care eggs). Gen 5+ behaviour is 2 extra rolls.
 #define HACK_SHINY_CHARM

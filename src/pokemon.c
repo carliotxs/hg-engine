@@ -1762,47 +1762,6 @@ BOOL LONG_CALL PlayerHasKeyItem(u16 itemId)
     return FALSE;
 }
 
-#ifdef HACK_BADGE_LEVEL_CAPS
-/**
- *  @brief level cap indexed by the number of badges the player owns.
- *         value = level of the ace of the next big fight. tune together with trainer data.
- */
-static const u8 sBadgeLevelCaps[17] = {
-    13, // 0 badges: Falkner
-    17, // 1: Bugsy
-    19, // 2: Whitney
-    25, // 3: Morty
-    31, // 4: Chuck
-    35, // 5: Jasmine
-    35, // 6: Pryce
-    41, // 7: Clair
-    50, // 8: Elite Four and Lance
-    55, // 9: Kanto leaders
-    56, // 10
-    57, // 11
-    58, // 12
-    59, // 13
-    60, // 14
-    60, // 15: Blue
-    88, // 16: Red
-};
-
-/**
- *  @brief count the player's badges and return the matching level cap
- */
-u32 LONG_CALL GetBadgeLevelCap(void)
-{
-    struct PlayerProfile *profile = Sav2_PlayerData_GetProfileAddr(SaveBlock2_get());
-    u32 badges = 0;
-    for (s32 i = 0; i < 16; i++) {
-        if (PlayerProfile_TestBadgeFlag(profile, i) == TRUE) {
-            badges++;
-        }
-    }
-    return sBadgeLevelCaps[badges];
-}
-#endif // HACK_BADGE_LEVEL_CAPS
-
 /**
  *  @brief get level cap from the script variable defined by LEVEL_CAP_VARIABLE
  *
@@ -1815,11 +1774,6 @@ u32 LONG_CALL GetLevelCap(void)
 #else
 #ifdef IMPLEMENT_LEVEL_CAP
     u32 levelCap = GetScriptVar(LEVEL_CAP_VARIABLE);
-#ifdef HACK_BADGE_LEVEL_CAPS
-    if (levelCap == 0) {
-        levelCap = GetBadgeLevelCap();
-    }
-#endif // HACK_BADGE_LEVEL_CAPS
     if (levelCap > 100 || levelCap == 0) {
         levelCap = 100;
     }
