@@ -264,6 +264,23 @@
       "x": 452,
       "z": 181,
       "y": 0
+    },
+    {
+      "id": "obj_R42_hack_static",
+      "graphics_id": "2500 + 754",
+      "movement_type": 0,
+      "trainer_type": 0,
+      "hidden_flag": "FLAG_UNK_B5A",
+      "script": "_EV_scr_seq_R42_006 + 1",
+      "initial_dir": 1,
+      "param0": 0,
+      "param1": 0,
+      "param2": 0,
+      "movement_range_x": 0,
+      "movement_range_z": 0,
+      "x": 467,
+      "z": 177,
+      "y": 0
     }
   ],
   "warp_events": [

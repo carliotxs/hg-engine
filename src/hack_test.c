@@ -27,6 +27,7 @@
 
 #define HACK_TEST_HOLE ((volatile u32 *)0x02FFF81C)
 #define HACK_TEST_REQUEST_MAGIC 0xC0DE
+#define HACK_TEST_STATIC_MON_FLAG 2910 // daily flag of the static Pokémon of Cherrygrove City
 
 struct HackTestMonReport {
     u16 species;
@@ -177,6 +178,12 @@ static void HackTest_Setup(u16 scenario)
         HackTest_AddMon(SPECIES_GARCHOMP, 40);
         break;
 
+    case HACK_TEST_STATIC_MON:
+        pp = HackTest_AddMon(SPECIES_GARCHOMP, 40);
+        HackTest_SetMove(pp, MOVE_EARTHQUAKE, 10);
+        ClearScriptFlag(HACK_TEST_STATIC_MON_FLAG);
+        break;
+
     case HACK_TEST_BIKE:
         HackTest_AddMon(SPECIES_GARCHOMP, 40);
         bag->keyItems[1].id = ITEM_BIKE;
@@ -227,6 +234,7 @@ static void HackTest_UpdateReport(void)
     }
     report->expShareOwned = PlayerHasKeyItem(ITEM_EXP_SHARE);
     report->expShareDisabledFlag = CheckScriptFlag(FLAG_EXP_SHARE_DISABLED);
+    report->padding = CheckScriptFlag(HACK_TEST_STATIC_MON_FLAG);
     report->bottleCaps = Bag_GetQuantity(bag, ITEM_BOTTLE_CAP, HEAPID_WORLD);
     report->goldBottleCaps = Bag_GetQuantity(bag, ITEM_GOLD_BOTTLE_CAP, HEAPID_WORLD);
     report->mints = Bag_GetQuantity(bag, ITEM_ADAMANT_MINT, HEAPID_WORLD);
@@ -368,6 +376,7 @@ void HackTest_FieldTick(void)
         case HACK_TEST_SHINY_CHARM:
         case HACK_TEST_DAY_CARE:
         case HACK_TEST_BIKE:
+        case HACK_TEST_STATIC_MON:
             break; // driven from the menu by the python side
         default:
             EventSet_Script(gFieldSysPtr, 2073, NULL);

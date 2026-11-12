@@ -43,7 +43,8 @@ Para partilhar o hack, usa só o `.xdelta` (aplica-se com Delta Patcher ou xdelt
 
 Os scripts de campo (`data/scr_seq/scr_seq_NNNN*.s`), os eventos de cada mapa (`data/eventdata/zone_event/`) e os textos (`data/text/custom/`) foram despejados da ROM original com `make dump_scripts DUMP_ROM=rom.nds` e são compilados para a ROM (`BUILD_DUMPED_SCR_SEQ` e `BUILD_DUMPED_EVENTDATA` em `include/config.h`). A história edita-se nesses ficheiros, com diffs normais no git; não se usa o DSPRE para scripts, eventos ou texto, porque o build passaria por cima.
 
-- O despejo foi verificado: compilado sem alterações, dá arquivos byte a byte iguais aos da ROM original
+- O despejo foi verificado: na ROM compilada, os únicos arquivos de scripts e eventos diferentes dos originais são os que o hack editou
+- As duas linhas `#define BUILD_DUMPED_*` não podem ter comentários à frente: o Makefile só reconhece o `#define` sozinho na linha (com comentário, a história volta a vir da ROM original sem qualquer aviso)
 - O `dump_scripts` reescreve `data/text/keys.csv` sem as chaves dos arquivos do engine (829 a 853); se o voltares a correr, repõe esse ficheiro com `git checkout data/text/keys.csv`
 - Os scripts comuns e de treinadores do engine continuam nos ficheiros de cinco dígitos (`scr_seq_00003_commonscript.s`)
 
@@ -55,6 +56,26 @@ Os scripts de campo (`data/scr_seq/scr_seq_NNNN*.s`), os eventos de cada mapa (`
 - Surf, canas e Rock Smash: os slots mais comuns ficam originais, os restantes são novos, com espécies de mar ou de água doce conforme a zona
 - A fase evolutiva acompanha o nível do slot; nenhuma espécie original deixa de existir no jogo (o gerador devolve slots quando é preciso)
 - Lendários, míticos, Ultra Beasts e paradoxos ficam de fora, reservados para encontros estáticos
+
+## Pokémon estáticos visíveis
+
+`hack/scripts/gen_static_mons.py` acrescenta aos mapas despejados Pokémon visíveis em pontos fixos: um objeto com o sprite de overworld da espécie (etiqueta 2500 + número da espécie), um script que inicia a batalha e uma flag diária que o esconde até ao dia seguinte. A posição é calculada a partir dos dados de colisão da ROM: o centro de um bloco 3x3 de chão livre, longe dos outros eventos, para nunca tapar um caminho. O script é idempotente; para acrescentar mais, junta-se uma linha a `STATIC_MONS` e corre-se outra vez.
+
+| Mapa | Pokémon | Nível | Flag diária |
+|---|---|---|---|
+| Cherrygrove City | Yamper | 4 | 2910 |
+| Route 31 | Rockruff | 6 | 2900 |
+| Route 32 | Riolu | 8 | 2901 |
+| Route 33 | Zorua | 10 | 2902 |
+| Route 34 | Eevee | 12 | 2903 |
+| Route 36 | Absol | 16 | 2904 |
+| Route 38 | Mimikyu | 18 | 2905 |
+| Route 42 | Goomy | 20 | 2906 |
+| Route 44 | Axew | 25 | 2907 |
+| Route 45 | Gible | 27 | 2908 |
+| Route 47 | Drampa | 32 | 2909 |
+
+Os objetos de um mapa vêm do save enquanto o jogador não sai e volta a entrar nesse mapa, por isso num save antigo um estático novo só aparece depois de recarregar o mapa.
 
 ## Testes em jogo
 
@@ -72,6 +93,7 @@ Como funciona: o runner escreve o número do cenário num endereço de memória;
 | `bottle_caps` | Bottle Cap (IV mais baixo), Gold Bottle Cap (todos), sem efeito abaixo do nível 50 |
 | `exp_share_toggle` | usar a Exp Share na mochila liga e desliga a flag 2602 |
 | `shiny_charm` | estatístico: 3 tentativas com o charm, em selvagens e ofertas (a ROM de teste usa odds 1/32) |
+| `static_mon` | o Yamper de Cherrygrove: vê-se no mapa, bloqueia o mosaico, a batalha começa, a flag diária fica marcada e ele desaparece |
 | `bike` | usar a Bicicleta na mochila e pedalar: acelera e chega a 2 frames por mosaico |
 | `day_care` | estatístico: rotina de passos da Day Care com compatibilidade 50; Oval Charm sobe os ovos para 80% e o Shiny Charm aplica-se aos ovos |
 
@@ -93,6 +115,7 @@ Uma feature nova deve trazer o seu cenário: um `HACK_TEST_*` em `include/hack_t
 |---|---|---|
 | Flag | 2600, 2601 | engine: hidden abilities |
 | Flag | 2602 | `FLAG_EXP_SHARE_DISABLED` (Exp Share de Kalos desligada) |
+| Flag diária | 2900 a 2910 | Pokémon estáticos visíveis (2911 livre); são repostas à meia-noite com as outras flags diárias |
 | Script comum | 2073 | engine: script de debug; em `HACK_TEST` lança a batalha de teste |
 | Script comum | 2074 | liga/desliga a Exp Share |
 | Script comum | 2075 | só em `HACK_TEST`: loja do 4.º andar de Goldenrod (o próximo script do hack é o 2076) |

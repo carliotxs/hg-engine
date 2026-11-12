@@ -163,6 +163,23 @@
       "x": 297,
       "z": 186,
       "y": 0
+    },
+    {
+      "id": "obj_R38_hack_static",
+      "graphics_id": "2500 + 828",
+      "movement_type": 0,
+      "trainer_type": 0,
+      "hidden_flag": "FLAG_UNK_B59",
+      "script": "_EV_scr_seq_R38_003 + 1",
+      "initial_dir": 1,
+      "param0": 0,
+      "param1": 0,
+      "param2": 0,
+      "movement_range_x": 0,
+      "movement_range_z": 0,
+      "x": 323,
+      "z": 172,
+      "y": 0
     }
   ],
   "warp_events": [

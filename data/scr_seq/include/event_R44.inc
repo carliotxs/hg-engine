@@ -4,6 +4,7 @@
 .equ _EV_scr_seq_R44_000, 0
 .equ _EV_scr_seq_R44_001, 1
 .equ _EV_scr_seq_R44_002, 2
+.equ _EV_scr_seq_R44_003, 3
 
 .equ obj_R44_mystery_2, 0
 .equ obj_R44_fishing_2, 1
@@ -17,5 +18,6 @@
 .equ obj_R44_monstarball_2, 9
 .equ obj_R44_monstarball_3, 10
 .equ obj_R44_gsmiddleman1, 0
+.equ obj_R44_hack_static, 12
 
 .endif //SCR_SEQ_R44_H_

@@ -14,6 +14,7 @@
 #define HACK_TEST_SHINY_CHARM       9 // no script, generates many mons and counts the shiny ones
 #define HACK_TEST_DAY_CARE         10 // no script, runs the Day Care egg roll many times
 #define HACK_TEST_BIKE             11 // no script, the Bicycle is used from the bag and ridden
+#define HACK_TEST_STATIC_MON       12 // no script, the visible static Pokémon of Cherrygrove City
 
 #ifndef __ASSEMBLER__
 void HackTest_FieldTick(void);

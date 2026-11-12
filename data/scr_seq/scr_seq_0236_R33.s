@@ -29,6 +29,7 @@
 
 scrdef scr_seq_R33_000
 scrdef scr_seq_R33_001
+scrdef scr_seq_R33_002
 scrdef_end
 
 scr_seq_R33_000:
@@ -41,5 +42,27 @@ scr_seq_R33_001:
 	scrcmd_058
 	scrcmd_060 VAR_SPECIAL_RESULT
 	callstd std_signpost
+	end
+// hack: visible static Pokémon with daily respawn (hack/scripts/gen_static_mons.py)
+scr_seq_R33_002:
+	play_se SEQ_SE_DP_SELECT
+	lockall
+	faceplayer
+	play_cry SPECIES_ZORUA, 0
+	wait_cry
+	setflag FLAG_ENGAGING_STATIC_POKEMON
+	wild_battle SPECIES_ZORUA, 10, 0
+	clearflag FLAG_ENGAGING_STATIC_POKEMON
+	check_battle_won VAR_SPECIAL_RESULT
+	compare VAR_SPECIAL_RESULT, 0
+	goto_if_eq scr_seq_R33_002_lost
+	setflag FLAG_UNK_B56
+	hide_person obj_R33_hack_static
+	releaseall
+	end
+
+scr_seq_R33_002_lost:
+	white_out
+	releaseall
 	end
 	.balign 4
