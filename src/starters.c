@@ -1,3 +1,4 @@
+#include "../include/config.h"
 #include "../include/constants/species.h"
 #include "../include/pokemon.h"
 #include "../include/types.h"
@@ -17,9 +18,17 @@ void LONG_CALL GetMonSpriteCharAndPlttNarcIdsEx(MON_PIC *picdata, u16 mons_no, u
 // sequence. To update that text, modify text archive 190 in
 // DSPRE.
 static const u16 sStarterChoices[3] = {
+#ifdef HACK_ALT_STARTERS
+    // the rival takes the next one in this order (see the "Silver" parties in data/Trainers.c),
+    // the selection text is in data/text/custom/190.txt
+    SPECIES_DRATINI,
+    SPECIES_BELDUM,
+    SPECIES_LARVITAR,
+#else
     SPECIES_CHIKORITA,
     SPECIES_CYNDAQUIL,
     SPECIES_TOTODILE,
+#endif // HACK_ALT_STARTERS
 };
 
 /**

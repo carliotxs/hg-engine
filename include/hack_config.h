@@ -27,6 +27,10 @@
 // Oval Charm: better egg chance at the Day Care every 256 steps (20/50/70% become 40/80/88%).
 #define HACK_OVAL_CHARM
 
+// Starters: Dratini, Beldum and Larvitar instead of the Johto trio (src/starters.c).
+// The rival's parties in data/Trainers.c and the texts are edited directly, not behind this define.
+#define HACK_ALT_STARTERS
+
 // Bicycle with twice the vanilla top speed (2 frames per tile), see bytereplacement.
 #define HACK_FAST_BIKE
 
