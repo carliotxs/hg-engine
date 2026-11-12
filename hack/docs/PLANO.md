@@ -58,7 +58,12 @@ Trabalho, por ordem:
 
 Pedido de design: existe um especialista para cada Pokémon de evolução final e para cada Pokémon de fase única, espalhados pelo mapa. Só se consegue desafiar um especialista levando o mesmo Pokémon que ele, e o combate é um mirror match de 1 contra 1.
 
-- ⏳ Por desenhar antes de implementar: são várias centenas de espécies, por isso os treinadores e as equipas têm de ser gerados por script (como os encontros), e é preciso decidir como aparecem no mapa (um NPC por espécie não cabe nos limites de objetos de cada mapa), o nível do combate, como se escolhe o Pokémon do jogador e a recompensa
+Decisões fechadas:
+
+- **Colocação**: um NPC físico por espécie, gerado por script e colocado em mosaicos livres (como os estáticos), só em zonas onde a família dessa espécie aparece em estado selvagem. Espécies sem zona (lendários e afins) não têm especialista por agora
+- **Nível**: relativo à zona onde o especialista está
+- **Regra**: só luta se tiveres a mesma espécie na equipa; o combate é 1 contra 1, só com esse Pokémon
+- **Recompensa**: um item útil para a espécie (a Mega Pedra, se existir; senão um item competitivo) e um contador com prémios por marcos
 
 ## Outras sugestões
 

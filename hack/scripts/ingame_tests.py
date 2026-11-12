@@ -15,6 +15,7 @@ script 2073 starts a battle or a shop, this script presses the buttons and then 
 that the game keeps in memory.  Screenshots of every step go to the output folder.
 """
 import argparse
+import ctypes
 import math
 import os
 import struct
@@ -75,7 +76,16 @@ class Game:
         self.emu = DeSmuME()
         self.emu.open(rom)
         self.emu.backup.import_file(sav)
-        self.window = self.emu.create_sdl_window() if WINDOW else None
+        self.window = None
+        self.pump_events = None
+        if WINDOW:
+            self.window = self.emu.create_sdl_window(auto_pause=False)
+            # macOS only shows an SDL window once its events are pumped.  the window's own input
+            # handling is not used: it would overwrite the buttons and touches of the test
+            try:
+                self.pump_events = ctypes.CDLL(None).SDL_PumpEvents
+            except (AttributeError, OSError):
+                self.pump_events = None
         self.frame_time = 1 / (60 * SPEED) if SPEED > 0 else 0
         self.next_frame = time.monotonic()
         self.out = out
@@ -88,6 +98,8 @@ class Game:
         for _ in range(frames):
             self.emu.cycle(False)
             if self.window is not None:
+                if self.pump_events is not None:
+                    self.pump_events()
                 self.window.draw()
                 # keep the chosen speed (1 = real time) so that the run can be followed
                 self.next_frame += self.frame_time
