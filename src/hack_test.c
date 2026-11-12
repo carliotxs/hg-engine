@@ -10,7 +10,7 @@
  * hack/scripts/ingame_tests.py boots the ROM with a save, writes 0xC0DE0000 | scenario into the
  * emulator communication address and this file then:
  *   1. builds a known party / bag / badge state for that scenario
- *   2. queues common script 2073, which starts a battle or opens a shop depending on VAR 0x8004
+ *   2. queues common script 2073 (wild battle) or 2075 (Goldenrod 4F shop) when the scenario needs one
  *   3. keeps a plain (unencrypted) report of the state in gHackTestReport, whose address is written
  *      back to the communication address so that the python side can read the results.
  */
@@ -115,7 +115,6 @@ static void HackTest_Setup(u16 scenario)
         SetScriptFlag(FLAG_EXP_SHARE_DISABLED);
         FALLTHROUGH;
     case HACK_TEST_EXP_SHARE_ON:
-    case HACK_TEST_EXP_SHARE_SWITCH:
         // 8 badges: cap 50. fighter, two benched mons and a fainted one
         pp = HackTest_AddMon(SPECIES_GARCHOMP, 40);
         HackTest_SetMove(pp, MOVE_EARTHQUAKE, 10);
@@ -124,6 +123,18 @@ static void HackTest_Setup(u16 scenario)
         pp = HackTest_AddMon(SPECIES_ZUBAT, 15);
         value = 0;
         SetMonData(pp, MON_DATA_HP, &value);
+        break;
+
+    case HACK_TEST_SWITCH_NO_SHARE:
+        SetScriptFlag(FLAG_EXP_SHARE_DISABLED);
+        FALLTHROUGH;
+    case HACK_TEST_EXP_SHARE_SWITCH:
+        // the lead uses Baton Pass, so two mons take part in the battle and split the experience
+        pp = HackTest_AddMon(SPECIES_GARCHOMP, 40);
+        HackTest_SetMove(pp, MOVE_BATON_PASS, 40);
+        pp = HackTest_AddMon(SPECIES_GARCHOMP, 40);
+        HackTest_SetMove(pp, MOVE_EARTHQUAKE, 10);
+        HackTest_AddMon(SPECIES_RATTATA, 10);
         break;
 
     case HACK_TEST_LEVEL_CAP:
@@ -163,16 +174,6 @@ static void HackTest_Setup(u16 scenario)
     }
 }
 
-static u16 HackTest_ItemCount(const ITEM_SLOT *slots, u32 count, u16 item)
-{
-    for (u32 i = 0; i < count; i++) {
-        if (slots[i].id == item) {
-            return slots[i].quantity;
-        }
-    }
-    return 0;
-}
-
 static void HackTest_UpdateReport(void)
 {
     void *save = SaveBlock2_get();
@@ -193,9 +194,9 @@ static void HackTest_UpdateReport(void)
     }
     report->expShareOwned = PlayerHasKeyItem(ITEM_EXP_SHARE);
     report->expShareDisabledFlag = CheckScriptFlag(FLAG_EXP_SHARE_DISABLED);
-    report->bottleCaps = HackTest_ItemCount(bag->items, NUM_BAG_ITEMS, ITEM_BOTTLE_CAP);
-    report->goldBottleCaps = HackTest_ItemCount(bag->items, NUM_BAG_ITEMS, ITEM_GOLD_BOTTLE_CAP);
-    report->mints = HackTest_ItemCount(bag->items, NUM_BAG_ITEMS, ITEM_ADAMANT_MINT);
+    report->bottleCaps = Bag_GetQuantity(bag, ITEM_BOTTLE_CAP, HEAPID_WORLD);
+    report->goldBottleCaps = Bag_GetQuantity(bag, ITEM_GOLD_BOTTLE_CAP, HEAPID_WORLD);
+    report->mints = Bag_GetQuantity(bag, ITEM_ADAMANT_MINT, HEAPID_WORLD);
     for (s32 i = 0; i < 6; i++) {
         struct HackTestMonReport *mon = &report->mons[i];
         if (i >= party->count) {
@@ -227,8 +228,17 @@ void HackTest_FieldTick(void)
         sHackTestStarted = TRUE;
         gHackTestReport.scenario = request & 0xFFFF;
         HackTest_Setup(gHackTestReport.scenario);
-        SetScriptVar(0x8004, gHackTestReport.scenario);
-        EventSet_Script(gFieldSysPtr, 2073, NULL);
+        switch (gHackTestReport.scenario) {
+        case HACK_TEST_SHOP:
+            EventSet_Script(gFieldSysPtr, 2075, NULL);
+            break;
+        case HACK_TEST_BOTTLE_CAPS:
+        case HACK_TEST_EXP_SHARE_TOGGLE:
+            break; // driven from the menu by the python side
+        default:
+            EventSet_Script(gFieldSysPtr, 2073, NULL);
+            break;
+        }
     }
     HackTest_UpdateReport();
     *HACK_TEST_HOLE = (u32)&gHackTestReport;

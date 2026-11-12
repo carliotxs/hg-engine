@@ -18,7 +18,6 @@
 #include "constants/item.h"
 #include "constants/moves.h"
 #include "constants/species.h"
-#include "hack_test.h"
 
 
 // text archive to grab from: 040.txt
@@ -101,6 +100,9 @@ scrdef scr_seq_0003_071
 scrdef scr_seq_0003_072_repels
 scrdef scr_seq_0003_073_autobattle_testing
 scrdef scr_seq_0003_074_expshare
+#ifdef HACK_TEST
+scrdef scr_seq_0003_075_hack_test_shop
+#endif
 scrdef_end
 
 scr_seq_0003_002:
@@ -1746,23 +1748,16 @@ scr_seq_0003_064:
     end
 
 #ifdef HACK_TEST
-// hack: automated in-game tests, the scenario comes from src/hack_test.c in VAR_SPECIAL_x8004
+// hack: automated in-game tests (make HACK_TEST=Y), queued by src/hack_test.c
 scr_seq_0003_073_autobattle_testing:
     lockall
-    compare VAR_SPECIAL_x8004, HACK_TEST_SHOP
-    goto_if_eq scr_seq_0003_073_hack_test_shop
-    compare VAR_SPECIAL_x8004, HACK_TEST_BOTTLE_CAPS
-    goto_if_eq scr_seq_0003_073_hack_test_end
-    compare VAR_SPECIAL_x8004, HACK_TEST_EXP_SHARE_TOGGLE
-    goto_if_eq scr_seq_0003_073_hack_test_end
     wild_battle SPECIES_RATTATA, 20, 0
-    goto scr_seq_0003_073_hack_test_end
+    releaseall
+    end
 
-scr_seq_0003_073_hack_test_shop:
+scr_seq_0003_075_hack_test_shop:
+    lockall
     special_mart_buy 6 // Goldenrod Dept. Store 4F
-    goto scr_seq_0003_073_hack_test_end
-
-scr_seq_0003_073_hack_test_end:
     releaseall
     end
 #else

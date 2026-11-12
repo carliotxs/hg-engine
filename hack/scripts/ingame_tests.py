@@ -34,6 +34,7 @@ SCENARIOS = {
     "bottle_caps": 5,
     "exp_share_toggle": 6,
     "exp_share_switch": 7,
+    "switch_no_share": 8,
 }
 
 # base experience and growth data used by the expectations
@@ -113,12 +114,22 @@ class Game:
         """the report tick counter only advances while the player can move in the overworld"""
         before = self.report()["ticks"]
         self.run(frames)
-        return self.report()["ticks"] - before >= frames // 2
+        # the counter stands still in battles and full screen menus; in the overworld it can advance
+        # slower than once per frame, so any clear progress counts
+        return self.report()["ticks"] - before > frames // 8
 
     def wait_field(self, timeout=1800):
         for _ in range(timeout // 40):
             if self.field_is_running():
                 return True
+        return False
+
+    def back_to_field(self, timeout=1500):
+        """press B until the menus are closed and the player can move again"""
+        for _ in range(timeout // 60):
+            if self.field_is_running(30):
+                return True
+            self.press(self.Keys.KEY_B, wait=26)
         return False
 
     def mash_until_field(self, key, timeout=12000, shots=()):
@@ -130,12 +141,15 @@ class Game:
             self.press(key, hold=4, wait=26)
             frames += 30
             moved = self.report()["ticks"] - before
-            if moved < 10:
+            if moved < 4:
                 left_field = True
             elif left_field and self.field_is_running(60):
                 return True
             if frames in shots:
                 self.shot(f"frame{frames}")
+            if os.environ.get("HACK_TEST_DEBUG") and frames % 300 == 0:
+                print(f"  debug: frame {frames} ticks moved {moved} left_field {left_field}")
+                self.shot(f"debug{frames}")
         return False
 
 
@@ -214,25 +228,122 @@ def test_level_cap(game, c):
 
 
 def test_shop(game, c):
+    """Goldenrod Dept. Store 4F: buy a Bottle Cap and an Adamant Mint from the second page"""
+    before = game.report()
     game.run(300)
-    game.shot("shop")
-    c.check("not implemented yet", False)
+    game.shot("page1")
+    game.touch(60, 176, wait=60)  # next page arrow
+    game.shot("page2")
+    for _ in range(6):  # Bottle Cap is the first item of page 2: select, quantity 1, confirm
+        game.press(game.Keys.KEY_A, wait=150)
+    game.shot("bought_bottle_cap")
+    game.press(game.Keys.KEY_DOWN, wait=30)
+    game.press(game.Keys.KEY_RIGHT, wait=30)  # Adamant Mint
+    game.shot("adamant_mint")
+    for _ in range(6):
+        game.press(game.Keys.KEY_A, wait=150)
+    game.shot("bought_mint")
+    c.check("back in the overworld", game.back_to_field())
+    after = game.report()
+    c.check("one Bottle Cap bought", after["bottle_caps"] == 1, f"{after['bottle_caps']}")
+    c.check("one Adamant Mint bought", after["mints"] == 1, f"{after['mints']}")
+    c.check("20 000 each were paid", before["money"] - after["money"] == 40000, f"paid {before['money'] - after['money']}")
+
+
+def open_bag(game):
+    game.press(game.Keys.KEY_X, wait=40)
+    game.touch(43, 118, wait=150)  # BAG icon of the touch menu
+
+
+def use_selected_item_on(game, slot_moves):
+    """bag cursor is on the item: USE, move to the party slot, confirm and wait for the message"""
+    game.press(game.Keys.KEY_A, wait=60)
+    game.press(game.Keys.KEY_A, wait=150)
+    for key in slot_moves:
+        game.press(key, wait=30)
+    game.press(game.Keys.KEY_A, wait=90)
+    path = game.shot("item_used")
+    game.run(240)
+    return path
 
 
 def test_bottle_caps(game, c):
-    game.run(120)
-    game.shot("field")
-    c.check("not implemented yet", False)
+    keys = game.Keys
+    before = game.report()
+    c.check("setup IVs", before["mons"][0]["ivs"] == [5, 10, 31, 20, 31, 31], f"{before['mons'][0]['ivs']}")
+    open_bag(game)
+    game.shot("bag")
+    use_selected_item_on(game, [])  # Bottle Cap on the level 50 Garchomp
+    game.shot("after_bottle_cap")
+    game.press(keys.KEY_RIGHT, wait=30)  # Gold Bottle Cap
+    use_selected_item_on(game, [keys.KEY_RIGHT])  # on the level 50 Pidgeot
+    game.shot("after_gold_bottle_cap")
+    game.press(keys.KEY_LEFT, wait=30)  # Bottle Cap again
+    use_selected_item_on(game, [keys.KEY_DOWN])  # on the level 49 Raticate: no effect
+    c.check("back in the overworld", game.back_to_field())
+    after = game.report()
+    print(f"  IVs after: {[m['ivs'] for m in after['mons']]}, caps {after['bottle_caps']}, gold {after['gold_bottle_caps']}")
+    c.check("Bottle Cap maxes only the lowest IV", after["mons"][0]["ivs"] == [31, 10, 31, 20, 31, 31])
+    c.check("Gold Bottle Cap maxes every IV", after["mons"][1]["ivs"] == [31] * 6)
+    c.check("no effect below level 50", after["mons"][2]["ivs"] == [0] * 6)
+    c.check("one Bottle Cap used", after["bottle_caps"] == 2, f"{after['bottle_caps']} left")
+    c.check("one Gold Bottle Cap used", after["gold_bottle_caps"] == 2, f"{after['gold_bottle_caps']} left")
+
+
+def toggle_exp_share(game):
+    open_bag(game)
+    game.touch(240, 16, wait=60)  # key items pocket
+    game.shot("key_items")
+    game.press(game.Keys.KEY_A, wait=60)
+    game.press(game.Keys.KEY_A, wait=300)  # USE: the bag closes and the common script runs
+    game.shot("message1")
+    game.press(game.Keys.KEY_A, wait=150)
+    game.shot("message2")
+    game.press(game.Keys.KEY_A, wait=150)
+    game.press(game.Keys.KEY_B, wait=90)
+    return game.back_to_field()
 
 
 def test_exp_share_toggle(game, c):
-    game.run(120)
-    game.shot("field")
-    c.check("not implemented yet", False)
+    c.check("starts switched on", game.report()["exp_share_disabled"] == 0)
+    c.check("first use returns to the overworld", toggle_exp_share(game))
+    c.check("first use switches it off", game.report()["exp_share_disabled"] == 1)
+    c.check("second use returns to the overworld", toggle_exp_share(game))
+    c.check("second use switches it on again", game.report()["exp_share_disabled"] == 0)
+    c.check("still owned", game.report()["exp_share_owned"] == 1)
+
+
+def baton_pass_battle(game, c):
+    """the lead uses Baton Pass into the second mon, which then wins the battle"""
+    before = game.report()
+    game.run(900)  # battle intro, until the FIGHT menu is up
+    for _ in range(3):  # cursor, FIGHT, Baton Pass
+        game.press(game.Keys.KEY_A, wait=60)
+    game.run(600)  # Baton Pass animation, until the party screen is up
+    game.shot("choose_mon")
+    game.touch(192, 24, wait=90)  # second party slot
+    game.shot("shift_menu")
+    game.touch(128, 70, wait=90)  # SHIFT
+    game.shot("shifted")
+    c.check("battle finished", game.mash_until_field(game.Keys.KEY_A))
+    game.shot("battle_end")
+    gain = gains(before, game.report())
+    full = scaled_exp(RATTATA_BASE_EXP, WILD_LEVEL, 40)
+    bench = scaled_exp(RATTATA_BASE_EXP, WILD_LEVEL, 10)
+    print(f"  gains {gain}, full value for level 40: {full}, for level 10: {bench}")
+    c.check("first fighter gets half", gain[0] == full // 2, f"{gain[0]} vs {full // 2}")
+    c.check("second fighter gets half", gain[1] == full // 2, f"{gain[1]} vs {full // 2}")
+    return gain, bench
 
 
 def test_exp_share_switch(game, c):
-    c.check("not implemented yet", False)
+    gain, bench = baton_pass_battle(game, c)
+    c.check("benched mon gets 50% of its own value", gain[2] == bench // 2, f"{gain[2]} vs {bench // 2}")
+
+
+def test_switch_no_share(game, c):
+    gain, _ = baton_pass_battle(game, c)
+    c.check("benched mon gets nothing", gain[2] == 0, f"{gain[2]}")
 
 
 TESTS = {
@@ -243,6 +354,7 @@ TESTS = {
     "bottle_caps": test_bottle_caps,
     "exp_share_toggle": test_exp_share_toggle,
     "exp_share_switch": test_exp_share_switch,
+    "switch_no_share": test_switch_no_share,
 }
 
 
