@@ -100,6 +100,9 @@ scrdef scr_seq_0003_071
 scrdef scr_seq_0003_072_repels
 scrdef scr_seq_0003_073_autobattle_testing
 scrdef scr_seq_0003_074_expshare
+#ifdef HACK_TEST
+scrdef scr_seq_0003_075_hack_test_shop
+#endif
 scrdef_end
 
 scr_seq_0003_002:
@@ -1744,6 +1747,20 @@ scr_seq_0003_064:
     releaseall
     end
 
+#ifdef HACK_TEST
+// hack: automated in-game tests (make HACK_TEST=Y), queued by src/hack_test.c
+scr_seq_0003_073_autobattle_testing:
+    lockall
+    wild_battle SPECIES_RATTATA, 20, 0
+    releaseall
+    end
+
+scr_seq_0003_075_hack_test_shop:
+    lockall
+    special_mart_buy 6 // Goldenrod Dept. Store 4F
+    releaseall
+    end
+#else
 scr_seq_0003_073_autobattle_testing:
     play_se SEQ_SE_DP_SELECT
     lockall
@@ -1754,6 +1771,7 @@ scr_seq_0003_073_autobattle_testing:
     //WildBattleSp 785 | (1 << 11), 50, 0
     releaseall
     end
+#endif // HACK_TEST
 
 // hack: Kalos Exp. Share toggle, run from the bag (SCRIPT_EXP_SHARE_TOGGLE = 2074)
 // flag 2602 (FLAG_EXP_SHARE_DISABLED) stores the OFF state, so the Exp. Share starts on

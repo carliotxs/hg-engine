@@ -1220,7 +1220,13 @@ BOOL LONG_CALL GiveMon(int heapId, void *saveData, int species, int level, int f
 
     pokemon = AllocMonZeroed(heapId);
     ZeroMonData(pokemon);
+#ifdef HACK_SHINY_CHARM
+    // create the gift with the player's id from the start (it is set again below anyway),
+    // so that the Shiny Charm rolls in CreateBoxMonData also apply to gift Pokémon
+    PokeParaSet(pokemon, species, level, 32, FALSE, 0, ID_SET, ((struct PlayerProfile *)profile)->id);
+#else
     PokeParaSet(pokemon, species, level, 32, FALSE, 0, 0, 0); // CreateMon
+#endif // HACK_SHINY_CHARM
     sub_020720FC(pokemon, profile, ITEM_POKE_BALL, ball, encounterType, heapId);
     sp1C = heldItem;
     SetMonData(pokemon, MON_DATA_HELD_ITEM, &sp1C);

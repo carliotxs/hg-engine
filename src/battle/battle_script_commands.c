@@ -1393,7 +1393,7 @@ void Task_DistributeExp_Extend(void *arg0, void *work)
     // the participation mask is widened only for the duration of this call and restored at the end,
     // so the vanilla bookkeeping of who fought is never permanently changed
     u32 kalosOrigMask = sp->obtained_exp_right_flag[client_no];
-    BOOL kalosShare = (expcalc->seq_no < 37) && IsKalosExpShareOn();
+    BOOL kalosShare = IsKalosExpShareOn();
     BOOL kalosFirstMon = sKalosShareFirstMonPending && expcalc->seq_no == 0;
     if (expcalc->seq_no == 0) {
         sKalosShareFirstMonPending = FALSE;

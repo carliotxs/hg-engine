@@ -128,6 +128,12 @@ ifeq ($(AUTO_TEST),Y)
     ARMIPS_FLAGS = -equ DEBUG_BATTLE_SCENARIOS 1
 endif
 
+# hack: automated in-game tests of the hack features, see src/hack_test.c and hack/scripts/ingame_tests.py
+ifeq ($(HACK_TEST),Y)
+    CFLAGS += -DHACK_TEST -DDEBUG_AUTO_CONTINUE_GAME
+    ASFLAGS += -DHACK_TEST
+endif
+
 ####################### Output #######################
 C_SUBDIR = src
 ASM_SUBDIR = asm
