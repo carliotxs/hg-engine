@@ -32,7 +32,7 @@ Legenda: ✅ feito · 🔨 em curso · ⏳ por fazer · 🔬 precisa de investig
 - ⏳ **Arco de Kalos/Megas**: Key Stone a meio do jogo (depois de Olivine) e Mega Pedras escondidas pelo mapa ou dadas em side quests
 - ⏳ **Equipa Rocket reforçada**: admins e Giovanni com equipas novas e mais confrontos (Radio Tower, Lago da Fúria, Mahogany)
 - ⏳ **Outras equipas na história**: por exemplo, a Equipa Galactic atrás das Ruínas de Sinjoh e do Unown, e a Equipa Plasma a roubar Pokémon em Ilex
-- ⏳ **Líderes**: mantêm os tipos originais (sem trocas). Os tipos alternativos pensados (Sombrio, Água, etc.) ficam para os treinadores especiais
+- ⏳ **Líderes**: todos mantêm os tipos originais, incluindo a Whitney (Normal). Os tipos alternativos pensados (Fada, Sombrio, Água, etc.) ficam para os treinadores especiais
 - ⏳ **Rival extra**: 2 a 3 confrontos novos com o Silver entre o 4.º e o 8.º ginásio
 - ⏳ **Treinadores secretos**: opcionais, difíceis, com recompensas raras
 - ⏳ **Bosses de história**: batalhas duplas e equipas com IVs/EVs
