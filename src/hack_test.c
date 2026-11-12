@@ -131,7 +131,6 @@ static void HackTest_Setup(u16 scenario)
     bag->keyItems[0].id = ITEM_EXP_SHARE;
     bag->keyItems[0].quantity = 1;
     ClearScriptFlag(FLAG_EXP_SHARE_DISABLED);
-    SetScriptVar(LEVEL_CAP_VARIABLE, 0);
     profile->johtoBadges = 0xFF;
     profile->kantoBadges = 0;
     profile->money = 500000;
@@ -163,8 +162,8 @@ static void HackTest_Setup(u16 scenario)
         HackTest_AddMon(SPECIES_RATTATA, 10);
         break;
 
-    case HACK_TEST_LEVEL_CAP:
-        // 0 badges: cap 13. lead is at the cap, second mon is 1 exp away from the cap, third is far from it
+    case HACK_TEST_NO_LEVEL_CAP:
+        // 0 badges and low levels: there is no level cap, so everybody gains experience and can level up
         profile->johtoBadges = 0;
         pp = HackTest_AddMon(SPECIES_GARCHOMP, 13);
         HackTest_SetMove(pp, MOVE_EARTHQUAKE, 10);
