@@ -15,6 +15,7 @@
 #include "bag.h"
 #include "hack_capture.h"
 #include "hack_mirror.h"
+#include "hack_test.h"
 #include "battle.h"
 #include "message.h"
 #include "pokemon.h"
@@ -152,6 +153,12 @@ BOOL ScrCmd_DaycareSanitizeMon(SCRIPTCONTEXT *ctx)
         return FALSE;
     }
 #endif // HACK_CAPTURE_PARTY_PROMPT
+#ifdef HACK_TEST
+    if (*ret_ptr == HACK_TEST_OP_CHAPTER) { // debug ROM only, see src/hack_test.c
+        *ret_ptr = HackTest_ChapterId();
+        return FALSE;
+    }
+#endif // HACK_TEST
 #ifdef HACK_MIRROR_SPECIALISTS
     if ((*ret_ptr & HACK_MIRROR_OP_MASK) == HACK_MIRROR_OP_BASE) { // see src/hack_mirror.c
         *ret_ptr = HackMirror_ScriptOp(*ret_ptr, party_slot);

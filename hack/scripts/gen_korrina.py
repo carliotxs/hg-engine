@@ -26,7 +26,7 @@ LINES = [
     "You received the Key Stone!",
     "And this one is for the Pokémon.\\nAmphy wanted you to have it.",
     "You received the Ampharosite!",
-    "Have an Ampharos hold it and you’ll\\nsee for yourself in battle.\\rThere are more Mega Stones hidden\\nall over Johto and Kanto.\\rGo find them!",
+    "Let an Ampharos hold it and\\nyou’ll see for yourself in battle.\\rThere are more Mega Stones hidden\\nall over Johto and Kanto.\\rGo find them!",
     "Mega Evolution is all about the bond\\nbetween a Trainer and a Pokémon.\\rI’ll watch the sea with Amphy\\na little longer.",
 ]
 

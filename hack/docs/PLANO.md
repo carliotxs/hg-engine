@@ -40,8 +40,8 @@ Decisões de design fechadas:
 Trabalho, por ordem:
 
 1. ✅ Líderes de Johto, Elite Four e Lance: equipas novas com golpes e itens, tipos originais, ás 2 a 4 níveis acima do original (`hack/scripts/gen_trainer_teams.py`). Testado em jogo o Falkner; faltam os líderes de Kanto, o Blue, o Red e as desforras
-2. ✅ Equipa Rocket reforçada: executivos e Giovanni com equipas completas (+3 níveis), 38 recrutas melhorados automaticamente e 5 recrutas novos (Route 43, Lago da Fúria, Mahogany e 2 em Goldenrod durante a tomada da Radio Tower). Por testar em jogo: os recrutas novos só aparecem a meio da história. Falta um confronto novo com um executivo no Lago da Fúria, se se quiser mais do que recrutas
-3. ✅ (por testar em jogo) Korrina no Farol: aparece na sala da luz depois de a Jasmine voltar ao ginásio, luta (Mienfoo, Hawlucha e Lucario com Lucarionite), liga a Mega Evolução (flag 2518) e dá a Key Stone e a Ampharosite (`hack/scripts/gen_korrina.py`). Usa o sprite e a classe de uma treinadora existente (Battle Girl). Falta espalhar as outras Mega Pedras
+2. ✅ Equipa Rocket reforçada: executivos e Giovanni com equipas completas (+3 níveis), 38 recrutas melhorados automaticamente e 5 recrutas novos (Route 43, Lago da Fúria, Mahogany e 2 em Goldenrod durante a tomada da Radio Tower). Testados em jogo, por capítulos, 4 dos 5 recrutas novos; os executivos e o Giovanni continuam por jogar. Falta um confronto novo com um executivo no Lago da Fúria, se se quiser mais do que recrutas
+3. ✅ testado Korrina no Farol: aparece na sala da luz depois de a Jasmine voltar ao ginásio, luta (Mienfoo, Hawlucha e Lucario com Lucarionite), liga a Mega Evolução (flag 2518) e dá a Key Stone e a Ampharosite (`hack/scripts/gen_korrina.py`). Usa o sprite e a classe de uma treinadora existente (Battle Girl). Falta espalhar as outras Mega Pedras
 4. ⏳ Rival: os 3 confrontos novos e equipas a condizer
 5. ⏳ Outras equipas na história: Equipa Galactic nas Ruínas de Alph e de Sinjoh, Equipa Plasma em Ilex
 6. ⏳ Treinadores secretos: os 8 especialistas, colocação e recompensas
@@ -77,6 +77,7 @@ Um especialista por cada Pokémon de evolução final ou de fase única, só des
 ## Testes
 
 - Automático: `verify.py` confirma que a ROM arranca
+- Por partes: a ROM de debug arranca em capítulos (pontos da história com flags, insígnias e equipa), tanto para os testes automáticos como para jogar à mão com `hack/scripts/play.sh <capítulo>`. Cada parte nova da história deve trazer o seu capítulo
 - Automático em jogo: `hack/scripts/test.sh` corre os cenários descritos em `hack/README.md` numa ROM de debug (Exp Share, loja, Bottle Caps, Shiny Charm). Cada feature nova traz o seu cenário
 - Manual por fase: jogar um save real em pontos-chave (antes do 1.º ginásio, Goldenrod, Olivine) para ver o que os cenários não cobrem: ritmo de EXP, texto, a loja no mapa real
 

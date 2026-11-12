@@ -24,8 +24,14 @@ import subprocess
 import sys
 import time
 
-# the DeSmuME window is on by default so that the run can be watched; --headless switches it off
+# the DeSmuME window is on by default so that the run can be watched; --headless switches it off.
+# while somebody is playing a chapter (play.sh), tests run without a window: a window that opens on
+# top of the game steals the keyboard focus and leaves keys stuck
 WINDOW = "--headless" not in sys.argv
+if WINDOW and "--play" not in sys.argv:
+    playing = subprocess.run(["pgrep", "-f", "ingame_tests.py.*--play"], capture_output=True).stdout.split()
+    if any(int(pid) != os.getpid() for pid in playing):
+        WINDOW = False
 if not WINDOW:
     os.environ.setdefault("SDL_VIDEODRIVER", "dummy")
 os.environ.setdefault("SDL_AUDIODRIVER", "dummy")
@@ -38,7 +44,7 @@ for index, argument in enumerate(sys.argv):
 HOLE = 0x02FFF81C
 REQUEST_MAGIC = 0xC0DE0000
 REPORT_MAGIC = 0x53544B48
-REPORT_SIZE = 28 + 6 * 16 + 24 + 24 + 4
+REPORT_SIZE = 28 + 6 * 16 + 24 + 24 + 4 + 8
 EGG_ROLLS = 1000
 SHINY_SAMPLES = 1500
 SHINY_TEST_ODDS = 2049 / 65536  # HACK_TEST builds use SHINY_ODDS 2048, see include/config.h
@@ -157,9 +163,9 @@ class Game:
             mons.append({"species": species, "level": level, "egg": is_egg, "exp": exp, "hp": hp, "ivs": ivs})
         shiny = struct.unpack_from("<6I", raw, 28 + 6 * 16)
         eggs = struct.unpack_from("<6I", raw, 28 + 6 * 16 + 24)
-        x, z = struct.unpack_from("<hh", raw, 28 + 6 * 16 + 48)
+        x, z, key_stone, ampharosite, mega_enabled = struct.unpack_from("<hhHHH", raw, 28 + 6 * 16 + 48)
         return {
-            "x": x, "z": z, "static_flag": static_flag,
+            "x": x, "z": z, "key_stone": key_stone, "ampharosite": ampharosite, "mega_enabled": mega_enabled, "static_flag": static_flag,
             "compatibility": compat, "egg_rolls": eggs[0:2], "eggs": eggs[2:4], "shiny_eggs": eggs[4:6],
             "shiny_total": shiny[:3], "shiny_hits": shiny[3:],
             "ticks": ticks, "scenario": scenario, "level_cap": level_cap, "money": money, "badges": badges,
@@ -507,7 +513,8 @@ def test_bike(game, c):
     game.shot("after_ride")
     print(f"  bike: {len(changes)} tiles, frames between tiles while accelerating: {gaps}")
     c.check("the bike accelerates over the first tiles", len(gaps) >= 5 and gaps[0] > gaps[-1], f"{gaps}")
-    c.check("top speed is 2 frames per tile (vanilla: 4)", gaps[-2:] == [2, 2], f"{gaps[-2:]}")
+    # the position is sampled once per frame, so two tiles in four frames can read as 2+2 or 1+3
+    c.check("top speed is 2 frames per tile (vanilla: 4)", sum(gaps[-2:]) == 4, f"{gaps[-2:]}")
 
 
 def test_static_mon(game, c):
@@ -713,6 +720,85 @@ def test_leader(game, c):
     c.check("money received", after["money"] > before["money"], f"{after['money'] - before['money']}")
 
 
+def test_chapter_view(game, c):
+    """only opens the chapter: the screenshot shows where the player stands"""
+    report = game.report()
+    print(f"  player at ({report['x']}, {report['z']}), badges {report['badges']}, party {[m['species'] for m in report['mons']]}")
+    c.check("the chapter loaded", len(report["mons"]) > 0)
+
+
+def test_korrina(game, c):
+    """top of the Olivine Lighthouse after Amphy is cured: Korrina battles and gives the Key Stone"""
+    before = game.report()
+    place = (before["x"], before["z"])
+    c.check("no Key Stone and no Mega Evolution yet", before["key_stone"] == 0 and before["mega_enabled"] == 0)
+    game.press(game.Keys.KEY_A, wait=150)
+    game.shot("korrina_intro")
+    for step in range(8):
+        game.press(game.Keys.KEY_A, wait=120)
+    game.run(400)
+    game.shot("korrina_battle")
+    c.check("battle finished", game.mash_until_field(game.Keys.KEY_A, timeout=15000, shots=(300, 1200, 2400, 3600, 4800)))
+    for step in range(16):
+        game.press(game.Keys.KEY_A, wait=150)
+        if step in (0, 2, 4, 6, 8):
+            game.shot(f"korrina_after{step}")
+    c.check("back in the overworld", game.back_to_field())
+    after = game.report()
+    print(f"  experience gained {after['mons'][0]['exp'] - before['mons'][0]['exp']}, Key Stone {after['key_stone']}, "
+          f"Ampharosite {after['ampharosite']}, Mega Evolution flag {after['mega_enabled']}")
+    c.check("the battle was won (still in the light room)", (after["x"], after["z"]) == place, f"({after['x']}, {after['z']})")
+    c.check("Key Stone received", after["key_stone"] == 1)
+    c.check("Ampharosite received", after["ampharosite"] == 1)
+    c.check("Mega Evolution enabled", after["mega_enabled"] == 1)
+    game.press(game.Keys.KEY_A, wait=200)
+    game.shot("korrina_again")
+    for _ in range(4):
+        game.press(game.Keys.KEY_A, wait=150)
+    again = game.report() if game.back_to_field() else None
+    c.check("no second battle and no second Key Stone", again is not None and again["key_stone"] == 1
+            and again["mons"][0]["exp"] == after["mons"][0]["exp"])
+
+
+def test_rocket_grunt(game, c):
+    """an extra Team Rocket grunt: battles when talked to, once"""
+    before = game.report()
+    place = (before["x"], before["z"])
+    game.shot("grunt")
+    game.press(game.Keys.KEY_A, wait=200)
+    game.shot("grunt_intro")
+    game.press(game.Keys.KEY_A, wait=200)
+    game.press(game.Keys.KEY_A, wait=500)
+    c.check("battle finished", game.mash_until_field(game.Keys.KEY_A, timeout=12000, shots=(300, 1500)))
+    for step in range(5):
+        game.press(game.Keys.KEY_A, wait=150)
+    c.check("back in the overworld", game.back_to_field())
+    after = game.report()
+    gain = after["mons"][0]["exp"] - before["mons"][0]["exp"]
+    print(f"  experience gained {gain}, money {after['money'] - before['money']}")
+    c.check("the battle was won", gain > 0 and (after["x"], after["z"]) == place and after["money"] > before["money"])
+    game.press(game.Keys.KEY_A, wait=250)
+    game.shot("grunt_again")
+    for _ in range(3):
+        game.press(game.Keys.KEY_A, wait=150)
+    again = game.report() if game.back_to_field() else None
+    c.check("no second battle", again is not None and again["mons"][0]["exp"] == after["mons"][0]["exp"])
+
+
+# tests that start in a chapter: name -> (chapter, function)
+CHAPTER_TESTS = {
+    # one "view" test per chapter: opens it and takes a screenshot
+    **{f"view_{name}": (name, test_chapter_view) for name in (
+        "lighthouse_korrina", "mahogany_rocket", "lake_rocket", "route43_rocket", "goldenrod_takeover",
+        "union_cave_specialist", "route31_static")},
+    "korrina": ("lighthouse_korrina", test_korrina),
+    "rocket_mahogany": ("mahogany_rocket", test_rocket_grunt),
+    "rocket_lake": ("lake_rocket", test_rocket_grunt),
+    "rocket_route43": ("route43_rocket", test_rocket_grunt),
+    "rocket_goldenrod": ("goldenrod_takeover", test_rocket_grunt),
+}
+
+
 TESTS = {
     "exp_share_on": test_exp_share_on,
     "exp_share_off": test_exp_share_off,
@@ -736,10 +822,92 @@ TESTS = {
 }
 
 
+CHAPTER_BASE = 100  # scenario number of chapter 0, see hack/scripts/gen_chapters.py
+
+
+def chapter_number(name):
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from gen_chapters import CHAPTERS
+    return [chapter["name"] for chapter in CHAPTERS].index(name)
+
+
+def start_chapter(game, name):
+    """ask the debug ROM for a chapter and wait until the player stands there"""
+    game.start_scenario(CHAPTER_BASE + chapter_number(name))
+    start = (game.report()["x"], game.report()["z"])
+    for _ in range(60):  # fade out, warp, fade in: wait until the player is somewhere else
+        game.run(30)
+        report = game.report()
+        if (report["x"], report["z"]) != start:
+            break
+    game.run(240)
+    game.shot(f"chapter_{name}")
+
+
+# play mode keyboard: SDL scancode -> DS key.  the key handling that ships with the DeSmuME window is
+# not used: its fixed mapping is wrong on macOS (an arrow key ends up closing the DS lid)
+PLAY_KEYS = {
+    79: "KEY_RIGHT", 80: "KEY_LEFT", 81: "KEY_DOWN", 82: "KEY_UP",  # arrows
+    27: "KEY_A", 29: "KEY_B", 22: "KEY_X", 4: "KEY_Y",              # X, Z, S, A
+    20: "KEY_L", 26: "KEY_R", 40: "KEY_START", 229: "KEY_SELECT",   # Q, W, Enter, right Shift
+}
+SDL_QUIT = 0x100
+
+
+def play(args):
+    """open a chapter and hand the game over to the keyboard and mouse until the window is closed"""
+    game = Game(args.rom, args.sav, os.path.join(args.out, "play"))
+    if game.window is None:
+        sys.exit("--play needs the window: do not combine it with --headless")
+    start_chapter(game, args.play)
+    game.frame_time = 1 / 60  # real time from here on
+    sdl = ctypes.CDLL(None)
+    sdl.SDL_GetKeyboardState.restype = ctypes.POINTER(ctypes.c_uint8)
+    sdl.SDL_GetKeyboardFocus.restype = ctypes.c_void_p
+    sdl.SDL_GetWindowSize.argtypes = [ctypes.c_void_p, ctypes.POINTER(ctypes.c_int), ctypes.POINTER(ctypes.c_int)]
+    masks = {scancode: game.keymask(getattr(game.Keys, name)) for scancode, name in PLAY_KEYS.items()}
+    print(f"chapter {args.play}: arrows move, X is A, Z is B, S is X, A is Y, Q and W are L and R, Enter is START, "
+          "right Shift is SELECT; click on the lower screen to touch it.  Close the window to stop.", flush=True)
+    touching = False
+    while True:
+        sdl.SDL_PumpEvents()
+        if sdl.SDL_HasEvent(SDL_QUIT):
+            break
+        sdl.SDL_FlushEvents(0, 0xFFFF)
+        keys = sdl.SDL_GetKeyboardState(None)
+        game.emu.input.keypad_update(sum(mask for scancode, mask in masks.items() if keys[scancode]))
+        # the mouse on the lower half of the window is the stylus
+        x, y, width, height = ctypes.c_int(), ctypes.c_int(), ctypes.c_int(256), ctypes.c_int(384)
+        buttons = sdl.SDL_GetMouseState(ctypes.byref(x), ctypes.byref(y))
+        window = sdl.SDL_GetKeyboardFocus()
+        if window:
+            sdl.SDL_GetWindowSize(window, ctypes.byref(width), ctypes.byref(height))
+        touch_x = x.value * 256 // max(width.value, 1)
+        touch_y = y.value * 384 // max(height.value, 1) - 192
+        if buttons & 1 and window and 0 <= touch_x < 256 and 0 <= touch_y < 192:
+            game.emu.input.touch_set_pos(touch_x, touch_y)
+            touching = True
+        elif touching:
+            game.emu.input.touch_release()
+            touching = False
+        game.emu.cycle(False)
+        game.window.draw()
+        game.next_frame += game.frame_time
+        delay = game.next_frame - time.monotonic()
+        if delay > 0:
+            time.sleep(delay)
+        else:
+            game.next_frame = time.monotonic()
+
+
 def run_one(args, name):
     game = Game(args.rom, args.sav, os.path.join(args.out, name))
     checker = Checker()
     print(f"{name}:")
+    if name in CHAPTER_TESTS:
+        start_chapter(game, CHAPTER_TESTS[name][0])
+        CHAPTER_TESTS[name][1](game, checker)
+        return checker.failures
     game.start_scenario(SCENARIOS[name])
     game.run(30)
     TESTS[name](game, checker)
@@ -755,9 +923,22 @@ def main():
     parser.add_argument("--headless", action="store_true", help="do not open the emulator window")
     parser.add_argument("--window", action="store_true", help="kept for compatibility: the window is the default")
     parser.add_argument("--speed", type=float, default=6.0, help="speed of the window mode (1 = real time, 0 = unlimited)")
+    parser.add_argument("--play", metavar="CHAPTER", help="open a chapter and play it with the keyboard")
+    parser.add_argument("--list", action="store_true", help="list scenarios and chapters")
     parser.add_argument("scenarios", nargs="*", default=[])
     args = parser.parse_args()
-    names = args.scenarios or list(TESTS)
+    if args.list:
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        from gen_chapters import CHAPTERS
+        print("scenarios:", " ".join(list(TESTS) + list(CHAPTER_TESTS)))
+        print("chapters (for --play):")
+        for chapter in CHAPTERS:
+            print(f"  {chapter['name']}: {chapter['about']}")
+        return
+    if args.play:
+        play(args)
+        return
+    names = args.scenarios or list(TESTS) + list(CHAPTER_TESTS)
 
     if args.single:
         sys.exit(1 if run_one(args, names[0]) else 0)

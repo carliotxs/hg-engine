@@ -15,11 +15,15 @@
  *      back to the communication address so that the python side can read the results.
  */
 
+#include <stddef.h>
+
 #include "../include/bag.h"
 #include "../include/constants/file.h"
 #include "../include/constants/item.h"
 #include "../include/constants/moves.h"
 #include "../include/constants/species.h"
+#define HACK_CHAPTER_TABLE
+#include "../include/hack_chapters.h"
 #include "../include/hack_test.h"
 #include "../include/pokemon.h"
 #include "../include/save.h"
@@ -65,6 +69,10 @@ struct HackTestReport {
     u32 shinyEggs[2];
     s16 playerX;
     s16 playerZ;
+    u16 keyStone;      // Kalos arc: what Korrina gives
+    u16 ampharosite;
+    u16 megaEnabled;
+    u16 padding3;
 };
 
 u32 LONG_CALL PlayerAvatar_GetXCoord(FIELD_PLAYER_AVATAR *playerAvatar);
@@ -139,6 +147,28 @@ static void HackTest_Setup(u16 scenario)
     profile->johtoBadges = 0xFF;
     profile->kantoBadges = 0;
     profile->money = 500000;
+
+    if (scenario >= HACK_TEST_CHAPTER_BASE && scenario < HACK_TEST_CHAPTER_BASE + HACK_CHAPTER_COUNT) {
+        // a chapter: story state from the generated table, then common script 2073 warps the player
+        const struct HackChapter *chapter = &sHackChapters[scenario - HACK_TEST_CHAPTER_BASE];
+        profile->johtoBadges = (1 << chapter->badges) - 1;
+        for (u32 i = 0; i < HACK_CHAPTER_MAX_FLAGS; i++) {
+            if (chapter->flagsSet[i] != 0) {
+                SetScriptFlag(chapter->flagsSet[i]);
+            }
+            if (chapter->flagsClear[i] != 0) {
+                ClearScriptFlag(chapter->flagsClear[i]);
+            }
+        }
+        for (u32 i = 0; i < HACK_CHAPTER_MAX_VARS && chapter->vars[i][0] != 0; i++) {
+            SetScriptVar(chapter->vars[i][0], chapter->vars[i][1]);
+        }
+        for (u32 i = 0; i < HACK_CHAPTER_MAX_PARTY && chapter->party[i].species != 0; i++) {
+            pp = HackTest_AddMon(chapter->party[i].species, chapter->party[i].level);
+            HackTest_SetMove(pp, chapter->party[i].move, 10);
+        }
+        return;
+    }
 
     switch (scenario) {
     case HACK_TEST_EXP_SHARE_OFF:
@@ -256,6 +286,36 @@ static void HackTest_Setup(u16 scenario)
     }
 }
 
+/**
+ *  @brief quantity of an item, looking at every pocket directly.  the report is refreshed every frame,
+ *         also while a script is changing maps, so it must never allocate memory (Bag_GetQuantity does)
+ */
+static u16 HackTest_CountItem(BAG_DATA *bag, u16 item)
+{
+    static const struct {
+        u16 offset;
+        u16 count;
+    } pockets[] = {
+        { offsetof(BAG_DATA, items), NUM_BAG_ITEMS },
+        { offsetof(BAG_DATA, keyItems), NUM_BAG_KEY_ITEMS },
+        { offsetof(BAG_DATA, TMsHMs), NUM_BAG_TMS_HMS },
+        { offsetof(BAG_DATA, mail), NUM_BAG_MAIL },
+        { offsetof(BAG_DATA, medicine), NUM_BAG_MEDICINE },
+        { offsetof(BAG_DATA, berries), NUM_BAG_BERRIES },
+        { offsetof(BAG_DATA, balls), NUM_BAG_BALLS },
+        { offsetof(BAG_DATA, battleItems), NUM_BAG_BATTLE_ITEMS },
+    };
+    for (u32 pocket = 0; pocket < NELEMS(pockets); pocket++) {
+        const ITEM_SLOT *slots = (const ITEM_SLOT *)((const u8 *)bag + pockets[pocket].offset);
+        for (u32 i = 0; i < pockets[pocket].count; i++) {
+            if (slots[i].id == item) {
+                return slots[i].quantity;
+            }
+        }
+    }
+    return 0;
+}
+
 static void HackTest_UpdateReport(void)
 {
     void *save = SaveBlock2_get();
@@ -282,12 +342,15 @@ static void HackTest_UpdateReport(void)
     if (report->scenario >= HACK_TEST_CAPTURE_PROMPT && report->scenario <= HACK_TEST_CAPTURE_PROMPT_MAIL) {
         report->padding2 = HackCapture_TestStoredSpecies(); // reuses the debug field of the day care scenario
     }
-    report->bottleCaps = Bag_GetQuantity(bag, ITEM_BOTTLE_CAP, HEAPID_WORLD);
-    report->goldBottleCaps = Bag_GetQuantity(bag, ITEM_GOLD_BOTTLE_CAP, HEAPID_WORLD);
-    report->mints = Bag_GetQuantity(bag, ITEM_ADAMANT_MINT, HEAPID_WORLD);
+    report->bottleCaps = HackTest_CountItem(bag, ITEM_BOTTLE_CAP);
+    report->goldBottleCaps = HackTest_CountItem(bag, ITEM_GOLD_BOTTLE_CAP);
+    report->mints = HackTest_CountItem(bag, ITEM_ADAMANT_MINT);
+    report->keyStone = HackTest_CountItem(bag, ITEM_KEY_STONE);
+    report->ampharosite = HackTest_CountItem(bag, ITEM_AMPHAROSITE);
+    report->megaEnabled = CheckScriptFlag(FLAG_MEGA_EVOLUTION_ENABLED);
     if (report->scenario == HACK_TEST_MIRROR || report->scenario == HACK_TEST_MIRROR_NO_MON) {
         // reuses two fields: reward of the Mantine specialist and number of specialists beaten
-        report->mints = Bag_GetQuantity(bag, HACK_TEST_MIRROR_REWARD, HEAPID_WORLD);
+        report->mints = HackTest_CountItem(bag, HACK_TEST_MIRROR_REWARD);
         report->padding2 = GetScriptVar(HACK_VAR_MIRROR_WINS);
     }
     for (s32 i = 0; i < 6; i++) {
@@ -407,13 +470,28 @@ static void HackTest_DayCareTick(void)
 }
 
 /**
+ *  @brief number of the chapter that was requested, 0xFFFF if this run is not a chapter
+ */
+u32 LONG_CALL HackTest_ChapterId(void)
+{
+    u32 scenario = gHackTestReport.scenario;
+    if (scenario >= HACK_TEST_CHAPTER_BASE && scenario < HACK_TEST_CHAPTER_BASE + HACK_CHAPTER_COUNT) {
+        return scenario - HACK_TEST_CHAPTER_BASE;
+    }
+    return 0xFFFF;
+}
+
+/**
  *  @brief called once per frame while the player can move in the overworld
  */
 void HackTest_FieldTick(void)
 {
     if (!sHackTestStarted) {
         u32 request = *HACK_TEST_HOLE;
-        if ((request >> 16) != HACK_TEST_REQUEST_MAGIC || ++sHackTestWait < 30) {
+        // chapters warp the player: wait until the map name banner of the loaded save is gone,
+        // a warp while it is still on screen runs out of memory for the backgrounds
+        u32 wait = ((request & 0xFFFF) >= HACK_TEST_CHAPTER_BASE) ? 300 : 30;
+        if ((request >> 16) != HACK_TEST_REQUEST_MAGIC || ++sHackTestWait < wait) {
             return;
         }
         sHackTestStarted = TRUE;
