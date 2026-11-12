@@ -1,6 +1,7 @@
 #include "include/config.h"
 #include "include/debug.h"
 #include "include/constants/save.h"
+#include "include/hack_config.h"
 
 #updating old moves
 
@@ -569,3 +570,11 @@ arm9 020701AC 08 E0
 
 # sub_02070854 always call GetMonPicHeightBySpeciesGenderForm
 arm9 020708B0 06 E0
+
+# hack: faster bicycle.  the routine at 0205D658 picks the movement action by acceleration stage:
+# 4C (slow start), 10 (8 frames per tile), 50, 14 (4 frames per tile, vanilla top speed).
+# the last two stages become 14 and 54 (2 frames per tile)
+#ifdef HACK_FAST_BIKE
+arm9 0205D674 14 24
+arm9 0205D678 54 24
+#endif

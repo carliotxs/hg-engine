@@ -1,5 +1,6 @@
 #include "include/config.h"
 #include "include/debug.h"
+#include "include/hack_config.h"
 
 #overlay 1 is loaded in at 021E5900
 #overlay 2 is loaded in at 02245B80
@@ -665,3 +666,11 @@ arm9 ScrCmd_CreateRoamer 02045264 1
 0012 PlayerTrainerVictoryBGM_hook 0224DA9E 3
 
 arm9 FieldSystem_RestoreMapObjectsFromSave 0203B9F4 1
+
+# hack: Oval Charm (egg chance) and Shiny Charm for eggs, see src/hack_daycare.c
+#ifdef HACK_OVAL_CHARM
+arm9 Daycare_GetCompatibility_Hack 0806CCC4 1
+#endif
+#ifdef HACK_SHINY_CHARM
+arm9 Daycare_SetPendingEgg_Hack 0806C274 1
+#endif
