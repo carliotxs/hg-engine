@@ -47,6 +47,15 @@ Os scripts de campo (`data/scr_seq/scr_seq_NNNN*.s`), os eventos de cada mapa (`
 - O `dump_scripts` reescreve `data/text/keys.csv` sem as chaves dos arquivos do engine (829 a 853); se o voltares a correr, repõe esse ficheiro com `git checkout data/text/keys.csv`
 - Os scripts comuns e de treinadores do engine continuam nos ficheiros de cinco dígitos (`scr_seq_00003_commonscript.s`)
 
+## Encontros selvagens
+
+`data/Encounters.c` é gerado por `python3 hack/scripts/gen_encounters.py` a partir das tabelas originais (`hack/data/Encounters.vanilla.c`) e das listas de espécies por habitat que estão no topo do script. Não se edita o `.c` à mão: muda-se as listas ou as regras e volta-se a gerar (é determinístico e imprime um relatório).
+
+- Erva: os 4 slots mais comuns (60%) ficam originais, incluindo as espécies de manhã/dia/noite de Johto; os slots 4 e 5 (10% cada) mudam com a hora do dia; os slots 6 a 9 seguem o habitat da zona; os slots 10 e 11 (1% cada) são raros (iniciais de todas as gerações, pseudo-lendários, fósseis nas Ruínas de Alph), a partir do nível 8
+- Surf, canas e Rock Smash: os slots mais comuns ficam originais, os restantes são novos, com espécies de mar ou de água doce conforme a zona
+- A fase evolutiva acompanha o nível do slot; nenhuma espécie original deixa de existir no jogo (o gerador devolve slots quando é preciso)
+- Lendários, míticos, Ultra Beasts e paradoxos ficam de fora, reservados para encontros estáticos
+
 ## Testes em jogo
 
 `hack/scripts/test.sh` compila uma ROM de debug (`make HACK_TEST=Y`, guardada em `hack/out/test-debug.nds`) e corre `hack/scripts/ingame_tests.py` no DeSmuME sem janela. A ROM de debug continua o save automaticamente (por omissão o save de testes público do hg-engine, descarregado para `hack/out/test.sav`; `HG_TEST_SAV` aponta para outro).
