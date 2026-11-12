@@ -45,6 +45,10 @@ scrdef scr_seq_T20_014
 scrdef scr_seq_T20_015
 scrdef scr_seq_T20_016
 scrdef scr_seq_T20_017
+scrdef scr_seq_T20_018
+scrdef scr_seq_T20_019
+scrdef scr_seq_T20_020
+scrdef scr_seq_T20_021
 scrdef_end
 
 scr_seq_T20_006:
@@ -1861,5 +1865,37 @@ scr_seq_T20_014:
 scr_seq_T20_015:
 	buffer_players_name 0
 	simple_npc_msg 12
+	end
+// hack: PELIPPER specialist (hack/scripts/gen_specialists.py)
+scr_seq_T20_018:
+	setvar VAR_SPECIAL_x8004, SPECIES_PELIPPER
+	setvar VAR_SPECIAL_x8005, 28
+	setvar VAR_SPECIAL_x8006, ITEM_SITRUS_BERRY
+	setvar VAR_SPECIAL_x8007, 2393
+	callstd 2077
+	end
+// hack: LUVDISC specialist (hack/scripts/gen_specialists.py)
+scr_seq_T20_019:
+	setvar VAR_SPECIAL_x8004, SPECIES_LUVDISC
+	setvar VAR_SPECIAL_x8005, 23
+	setvar VAR_SPECIAL_x8006, ITEM_EXPERT_BELT
+	setvar VAR_SPECIAL_x8007, 2640
+	callstd 2077
+	end
+// hack: LUMINEON specialist (hack/scripts/gen_specialists.py)
+scr_seq_T20_020:
+	setvar VAR_SPECIAL_x8004, SPECIES_LUMINEON
+	setvar VAR_SPECIAL_x8005, 31
+	setvar VAR_SPECIAL_x8006, ITEM_WEAKNESS_POLICY
+	setvar VAR_SPECIAL_x8007, 2662
+	callstd 2077
+	end
+// hack: DRAGALGE specialist (hack/scripts/gen_specialists.py)
+scr_seq_T20_021:
+	setvar VAR_SPECIAL_x8004, SPECIES_DRAGALGE
+	setvar VAR_SPECIAL_x8005, 48
+	setvar VAR_SPECIAL_x8006, ITEM_DRAGALGITE
+	setvar VAR_SPECIAL_x8007, 2674
+	callstd 2077
 	end
 	.balign 4

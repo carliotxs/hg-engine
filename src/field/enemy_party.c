@@ -1,4 +1,5 @@
 #include "config.h"
+#include "../../include/hack_mirror.h"
 #include "debug.h"
 #include "types.h"
 
@@ -148,6 +149,20 @@ void MakeTrainerPokemonParty(struct BATTLE_PARAM *bp, int num, int heapID)
         species = buf[offset] | (buf[offset + 1] << 8);
         offset += 2;
         form_no = (species & 0xF800) >> 11;
+
+#ifdef HACK_MIRROR_SPECIALISTS
+        // the specialist of a mirror match uses the species and level that the script asked for, with top IVs
+        if (bp->trainer_id[num] == HACK_TRAINER_MIRROR) {
+            u16 mirrorSpecies, mirrorLevel;
+            if (HackMirror_GetOverride(&mirrorSpecies, &mirrorLevel)) {
+                species = mirrorSpecies;
+                level = mirrorLevel;
+                form_no = 0;
+                pow = 255;
+                gLastPokemonLevelForMoneyCalc = level;
+            }
+        }
+#endif // HACK_MIRROR_SPECIALISTS
         species &= 0x07FF;
 
         // item field - conditional

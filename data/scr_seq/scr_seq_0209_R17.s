@@ -29,6 +29,9 @@
 
 scrdef scr_seq_R17_000
 scrdef scr_seq_R17_001
+scrdef scr_seq_R17_002
+scrdef scr_seq_R17_003
+scrdef scr_seq_R17_004
 scrdef_end
 
 scr_seq_R17_000:
@@ -37,5 +40,29 @@ scr_seq_R17_000:
 
 scr_seq_R17_001:
 	scrcmd_186 1
+	end
+// hack: INDEEDEE specialist (hack/scripts/gen_specialists.py)
+scr_seq_R17_002:
+	setvar VAR_SPECIAL_x8004, SPECIES_INDEEDEE
+	setvar VAR_SPECIAL_x8005, 33
+	setvar VAR_SPECIAL_x8006, ITEM_CHOICE_BAND
+	setvar VAR_SPECIAL_x8007, 2144
+	callstd 2077
+	end
+// hack: MORPEKO specialist (hack/scripts/gen_specialists.py)
+scr_seq_R17_003:
+	setvar VAR_SPECIAL_x8004, SPECIES_MORPEKO
+	setvar VAR_SPECIAL_x8005, 33
+	setvar VAR_SPECIAL_x8006, ITEM_CHOICE_SPECS
+	setvar VAR_SPECIAL_x8007, 2145
+	callstd 2077
+	end
+// hack: MAGCARGO specialist (hack/scripts/gen_specialists.py)
+scr_seq_R17_004:
+	setvar VAR_SPECIAL_x8004, SPECIES_MAGCARGO
+	setvar VAR_SPECIAL_x8005, 38
+	setvar VAR_SPECIAL_x8006, ITEM_RARE_CANDY
+	setvar VAR_SPECIAL_x8007, 2201
+	callstd 2077
 	end
 	.balign 4

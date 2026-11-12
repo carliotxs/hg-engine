@@ -33,6 +33,9 @@ scrdef scr_seq_D44R0102_002
 scrdef scr_seq_D44R0102_003
 scrdef scr_seq_D44R0102_004
 scrdef scr_seq_D44R0102_005
+scrdef scr_seq_D44R0102_006
+scrdef scr_seq_D44R0102_007
+scrdef scr_seq_D44R0102_008
 scrdef_end
 
 scr_seq_D44R0102_002:
@@ -622,5 +625,29 @@ scr_seq_D44R0102_005:
 	scrcmd_058
 	trainer_tips 6, VAR_SPECIAL_RESULT
 	callstd std_signpost
+	end
+// hack: DRAGONITE specialist (hack/scripts/gen_specialists.py)
+scr_seq_D44R0102_006:
+	setvar VAR_SPECIAL_x8004, SPECIES_DRAGONITE
+	setvar VAR_SPECIAL_x8005, 55
+	setvar VAR_SPECIAL_x8006, ITEM_WEAKNESS_POLICY
+	setvar VAR_SPECIAL_x8007, 2637
+	callstd 2077
+	end
+// hack: MILOTIC specialist (hack/scripts/gen_specialists.py)
+scr_seq_D44R0102_007:
+	setvar VAR_SPECIAL_x8004, SPECIES_MILOTIC
+	setvar VAR_SPECIAL_x8005, 43
+	setvar VAR_SPECIAL_x8006, ITEM_SCOPE_LENS
+	setvar VAR_SPECIAL_x8007, 2685
+	callstd 2077
+	end
+// hack: GYARADOS specialist (hack/scripts/gen_specialists.py)
+scr_seq_D44R0102_008:
+	setvar VAR_SPECIAL_x8004, SPECIES_GYARADOS
+	setvar VAR_SPECIAL_x8005, 43
+	setvar VAR_SPECIAL_x8006, ITEM_GYARADOSITE
+	setvar VAR_SPECIAL_x8007, 2691
+	callstd 2077
 	end
 	.balign 4

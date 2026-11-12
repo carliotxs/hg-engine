@@ -32,6 +32,7 @@ scrdef scr_seq_R24_001
 scrdef scr_seq_R24_002
 scrdef scr_seq_R24_003
 scrdef scr_seq_R24_004
+scrdef scr_seq_R24_005
 scrdef_end
 
 scr_seq_R24_004:
@@ -219,5 +220,13 @@ _0232:
 	wait_button
 	closemsg
 	releaseall
+	end
+// hack: SUNFLORA specialist (hack/scripts/gen_specialists.py)
+scr_seq_R24_005:
+	setvar VAR_SPECIAL_x8004, SPECIES_SUNFLORA
+	setvar VAR_SPECIAL_x8005, 13
+	setvar VAR_SPECIAL_x8006, ITEM_BOTTLE_CAP
+	setvar VAR_SPECIAL_x8007, 2108
+	callstd 2077
 	end
 	.balign 4

@@ -38,6 +38,10 @@ scrdef scr_seq_R32_007
 scrdef scr_seq_R32_008
 scrdef scr_seq_R32_009
 scrdef scr_seq_R32_010
+scrdef scr_seq_R32_011
+scrdef scr_seq_R32_012
+scrdef scr_seq_R32_013
+scrdef scr_seq_R32_014
 scrdef_end
 
 scr_seq_R32_004:
@@ -601,5 +605,37 @@ scr_seq_R32_010:
 scr_seq_R32_010_lost:
 	white_out
 	releaseall
+	end
+// hack: MANECTRIC specialist (hack/scripts/gen_specialists.py)
+scr_seq_R32_011:
+	setvar VAR_SPECIAL_x8004, SPECIES_MANECTRIC
+	setvar VAR_SPECIAL_x8005, 26
+	setvar VAR_SPECIAL_x8006, ITEM_CHOICE_BAND
+	setvar VAR_SPECIAL_x8007, 2296
+	callstd 2077
+	end
+// hack: RIBOMBEE specialist (hack/scripts/gen_specialists.py)
+scr_seq_R32_012:
+	setvar VAR_SPECIAL_x8004, SPECIES_RIBOMBEE
+	setvar VAR_SPECIAL_x8005, 25
+	setvar VAR_SPECIAL_x8006, ITEM_WEAKNESS_POLICY
+	setvar VAR_SPECIAL_x8007, 2336
+	callstd 2077
+	end
+// hack: VICTREEBEL specialist (hack/scripts/gen_specialists.py)
+scr_seq_R32_013:
+	setvar VAR_SPECIAL_x8004, SPECIES_VICTREEBEL
+	setvar VAR_SPECIAL_x8005, 21
+	setvar VAR_SPECIAL_x8006, ITEM_VICTREEBELITE
+	setvar VAR_SPECIAL_x8007, 2350
+	callstd 2077
+	end
+// hack: AZUMARILL specialist (hack/scripts/gen_specialists.py)
+scr_seq_R32_014:
+	setvar VAR_SPECIAL_x8004, SPECIES_AZUMARILL
+	setvar VAR_SPECIAL_x8005, 28
+	setvar VAR_SPECIAL_x8006, ITEM_QUICK_CLAW
+	setvar VAR_SPECIAL_x8007, 2665
+	callstd 2077
 	end
 	.balign 4

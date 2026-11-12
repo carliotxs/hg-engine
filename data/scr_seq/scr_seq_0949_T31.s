@@ -30,6 +30,12 @@
 scrdef scr_seq_T31_000
 scrdef scr_seq_T31_001
 scrdef scr_seq_T31_002
+scrdef scr_seq_T31_003
+scrdef scr_seq_T31_004
+scrdef scr_seq_T31_005
+scrdef scr_seq_T31_006
+scrdef scr_seq_T31_007
+scrdef scr_seq_T31_008
 scrdef_end
 
 scr_seq_T31_001:
@@ -186,5 +192,53 @@ scr_seq_T31_002:
 	scrcmd_058
 	trainer_tips 0, VAR_SPECIAL_RESULT
 	callstd std_signpost
+	end
+// hack: PASSIMIAN specialist (hack/scripts/gen_specialists.py)
+scr_seq_T31_003:
+	setvar VAR_SPECIAL_x8004, SPECIES_PASSIMIAN
+	setvar VAR_SPECIAL_x8005, 47
+	setvar VAR_SPECIAL_x8006, ITEM_CHOICE_SCARF
+	setvar VAR_SPECIAL_x8007, 2139
+	callstd 2077
+	end
+// hack: KOMALA specialist (hack/scripts/gen_specialists.py)
+scr_seq_T31_004:
+	setvar VAR_SPECIAL_x8004, SPECIES_KOMALA
+	setvar VAR_SPECIAL_x8005, 44
+	setvar VAR_SPECIAL_x8006, ITEM_WISE_GLASSES
+	setvar VAR_SPECIAL_x8007, 2141
+	callstd 2077
+	end
+// hack: DRAMPA specialist (hack/scripts/gen_specialists.py)
+scr_seq_T31_005:
+	setvar VAR_SPECIAL_x8004, SPECIES_DRAMPA
+	setvar VAR_SPECIAL_x8005, 47
+	setvar VAR_SPECIAL_x8006, ITEM_DRAMPANITE
+	setvar VAR_SPECIAL_x8007, 2142
+	callstd 2077
+	end
+// hack: FLAMIGO specialist (hack/scripts/gen_specialists.py)
+scr_seq_T31_006:
+	setvar VAR_SPECIAL_x8004, SPECIES_FLAMIGO
+	setvar VAR_SPECIAL_x8005, 44
+	setvar VAR_SPECIAL_x8006, ITEM_BRIGHT_POWDER
+	setvar VAR_SPECIAL_x8007, 2238
+	callstd 2077
+	end
+// hack: THIEVUL specialist (hack/scripts/gen_specialists.py)
+scr_seq_T31_007:
+	setvar VAR_SPECIAL_x8004, SPECIES_THIEVUL
+	setvar VAR_SPECIAL_x8005, 45
+	setvar VAR_SPECIAL_x8006, ITEM_EVIOLITE
+	setvar VAR_SPECIAL_x8007, 2267
+	callstd 2077
+	end
+// hack: CHERRIM specialist (hack/scripts/gen_specialists.py)
+scr_seq_T31_008:
+	setvar VAR_SPECIAL_x8004, SPECIES_CHERRIM
+	setvar VAR_SPECIAL_x8005, 45
+	setvar VAR_SPECIAL_x8006, ITEM_LIFE_ORB
+	setvar VAR_SPECIAL_x8007, 2306
+	callstd 2077
 	end
 	.balign 4

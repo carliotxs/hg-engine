@@ -11,6 +11,7 @@
 .equ _EV_scr_seq_D24R0205_007, 7
 .equ _EV_scr_seq_D24R0205_008, 8
 .equ _EV_scr_seq_D24R0205_009, 9
+.equ _EV_scr_seq_D24R0205_010, 10
 
 .equ obj_D24R0205_gswoman1, 0
 .equ obj_D24R0205_gsbigman, 1
@@ -20,5 +21,6 @@
 .equ obj_D24R0205_gsassistantm_3, 5
 .equ obj_D24R0205_gsassistantm_4, 6
 .equ obj_D24R0205_suit, 7
+.equ obj_D24R0205_hack_spec_unown, 8
 
 .endif //SCR_SEQ_D24R0205_H_

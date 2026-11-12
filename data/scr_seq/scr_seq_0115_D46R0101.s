@@ -29,6 +29,13 @@
 
 scrdef scr_seq_D46R0101_000
 scrdef scr_seq_D46R0101_001
+scrdef scr_seq_D46R0101_002
+scrdef scr_seq_D46R0101_003
+scrdef scr_seq_D46R0101_004
+scrdef scr_seq_D46R0101_005
+scrdef scr_seq_D46R0101_006
+scrdef scr_seq_D46R0101_007
+scrdef scr_seq_D46R0101_008
 scrdef_end
 
 scr_seq_D46R0101_001:
@@ -100,4 +107,60 @@ _00DD:
 	goto _0065
 
 	.byte 0x02, 0x00
+// hack: RAICHU specialist (hack/scripts/gen_specialists.py)
+scr_seq_D46R0101_002:
+	setvar VAR_SPECIAL_x8004, SPECIES_RAICHU
+	setvar VAR_SPECIAL_x8005, 10
+	setvar VAR_SPECIAL_x8006, ITEM_LUM_BERRY
+	setvar VAR_SPECIAL_x8007, 2100
+	callstd 2077
+	end
+// hack: ACCELGOR specialist (hack/scripts/gen_specialists.py)
+scr_seq_D46R0101_003:
+	setvar VAR_SPECIAL_x8004, SPECIES_ACCELGOR
+	setvar VAR_SPECIAL_x8005, 10
+	setvar VAR_SPECIAL_x8006, ITEM_RARE_CANDY
+	setvar VAR_SPECIAL_x8007, 2174
+	callstd 2077
+	end
+// hack: LURANTIS specialist (hack/scripts/gen_specialists.py)
+scr_seq_D46R0101_004:
+	setvar VAR_SPECIAL_x8004, SPECIES_LURANTIS
+	setvar VAR_SPECIAL_x8005, 34
+	setvar VAR_SPECIAL_x8006, ITEM_EJECT_BUTTON
+	setvar VAR_SPECIAL_x8007, 2183
+	callstd 2077
+	end
+// hack: APPLETUN specialist (hack/scripts/gen_specialists.py)
+scr_seq_D46R0101_005:
+	setvar VAR_SPECIAL_x8004, SPECIES_APPLETUN
+	setvar VAR_SPECIAL_x8005, 10
+	setvar VAR_SPECIAL_x8006, ITEM_BOTTLE_CAP
+	setvar VAR_SPECIAL_x8007, 2187
+	callstd 2077
+	end
+// hack: SCOVILLAIN specialist (hack/scripts/gen_specialists.py)
+scr_seq_D46R0101_006:
+	setvar VAR_SPECIAL_x8004, SPECIES_SCOVILLAIN
+	setvar VAR_SPECIAL_x8005, 10
+	setvar VAR_SPECIAL_x8006, ITEM_SCOVILLAINITE
+	setvar VAR_SPECIAL_x8007, 2190
+	callstd 2077
+	end
+// hack: TSAREENA specialist (hack/scripts/gen_specialists.py)
+scr_seq_D46R0101_007:
+	setvar VAR_SPECIAL_x8004, SPECIES_TSAREENA
+	setvar VAR_SPECIAL_x8005, 18
+	setvar VAR_SPECIAL_x8006, ITEM_LIFE_ORB
+	setvar VAR_SPECIAL_x8007, 2337
+	callstd 2077
+	end
+// hack: TREVENANT specialist (hack/scripts/gen_specialists.py)
+scr_seq_D46R0101_008:
+	setvar VAR_SPECIAL_x8004, SPECIES_TREVENANT
+	setvar VAR_SPECIAL_x8005, 10
+	setvar VAR_SPECIAL_x8006, ITEM_CHOICE_SPECS
+	setvar VAR_SPECIAL_x8007, 2619
+	callstd 2077
+	end
 	.balign 4

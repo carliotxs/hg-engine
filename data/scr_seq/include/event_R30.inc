@@ -12,6 +12,11 @@
 .equ _EV_scr_seq_R30_008, 8
 .equ _EV_scr_seq_R30_009, 9
 .equ _EV_scr_seq_R30_010, 10
+.equ _EV_scr_seq_R30_011, 11
+.equ _EV_scr_seq_R30_012, 12
+.equ _EV_scr_seq_R30_013, 13
+.equ _EV_scr_seq_R30_014, 14
+.equ _EV_scr_seq_R30_015, 15
 
 .equ obj_R30_gsman1, 0
 .equ obj_R30_gsgirl2, 1
@@ -28,5 +33,10 @@
 .equ obj_R30_bonguri_2, 12
 .equ obj_R30_gsmiddleman1, 13
 .equ obj_R30_gsboy3_2, 14
+.equ obj_R30_hack_spec_stunfisk, 15
+.equ obj_R30_hack_spec_unfezant, 16
+.equ obj_R30_hack_spec_pawmot, 17
+.equ obj_R30_hack_spec_butterfree, 18
+.equ obj_R30_hack_spec_talonflame, 19
 
 .endif //SCR_SEQ_R30_H_

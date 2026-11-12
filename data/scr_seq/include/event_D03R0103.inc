@@ -3,6 +3,11 @@
 
 .equ _EV_scr_seq_D03R0103_000, 0
 .equ _EV_scr_seq_D03R0103_001, 1
+.equ _EV_scr_seq_D03R0103_002, 2
+.equ _EV_scr_seq_D03R0103_003, 3
+.equ _EV_scr_seq_D03R0103_004, 4
+.equ _EV_scr_seq_D03R0103_005, 5
+.equ _EV_scr_seq_D03R0103_006, 6
 
 .equ obj_D03R0103_monstarball, 0
 .equ obj_D03R0103_monstarball_2, 1
@@ -20,5 +25,10 @@
 .equ obj_D03R0103_breakrock_9, 13
 .equ obj_D03R0103_follower_mon_static_mewtwo, 14
 .equ obj_D03R0103_breakrock_10, 15
+.equ obj_D03R0103_hack_spec_machamp, 16
+.equ obj_D03R0103_hack_spec_minior, 17
+.equ obj_D03R0103_hack_spec_parasect, 18
+.equ obj_D03R0103_hack_spec_luxray, 19
+.equ obj_D03R0103_hack_spec_chandelure, 20
 
 .endif //SCR_SEQ_D03R0103_H_

@@ -31,6 +31,11 @@ scrdef scr_seq_R44_000
 scrdef scr_seq_R44_001
 scrdef scr_seq_R44_002
 scrdef scr_seq_R44_003
+scrdef scr_seq_R44_004
+scrdef scr_seq_R44_005
+scrdef scr_seq_R44_006
+scrdef scr_seq_R44_007
+scrdef scr_seq_R44_008
 scrdef_end
 
 scr_seq_R44_000:
@@ -72,5 +77,45 @@ scr_seq_R44_003:
 scr_seq_R44_003_lost:
 	white_out
 	releaseall
+	end
+// hack: LICKILICKY specialist (hack/scripts/gen_specialists.py)
+scr_seq_R44_004:
+	setvar VAR_SPECIAL_x8004, SPECIES_LICKILICKY
+	setvar VAR_SPECIAL_x8005, 27
+	setvar VAR_SPECIAL_x8006, ITEM_BRIGHT_POWDER
+	setvar VAR_SPECIAL_x8007, 2123
+	callstd 2077
+	end
+// hack: YANMEGA specialist (hack/scripts/gen_specialists.py)
+scr_seq_R44_005:
+	setvar VAR_SPECIAL_x8004, SPECIES_YANMEGA
+	setvar VAR_SPECIAL_x8005, 27
+	setvar VAR_SPECIAL_x8006, ITEM_HEAVY_DUTY_BOOTS
+	setvar VAR_SPECIAL_x8007, 2125
+	callstd 2077
+	end
+// hack: TANGROWTH specialist (hack/scripts/gen_specialists.py)
+scr_seq_R44_006:
+	setvar VAR_SPECIAL_x8004, SPECIES_TANGROWTH
+	setvar VAR_SPECIAL_x8005, 26
+	setvar VAR_SPECIAL_x8006, ITEM_KINGS_ROCK
+	setvar VAR_SPECIAL_x8007, 2251
+	callstd 2077
+	end
+// hack: DRIFBLIM specialist (hack/scripts/gen_specialists.py)
+scr_seq_R44_007:
+	setvar VAR_SPECIAL_x8004, SPECIES_DRIFBLIM
+	setvar VAR_SPECIAL_x8005, 28
+	setvar VAR_SPECIAL_x8006, ITEM_EXPERT_BELT
+	setvar VAR_SPECIAL_x8007, 2376
+	callstd 2077
+	end
+// hack: LIEPARD specialist (hack/scripts/gen_specialists.py)
+scr_seq_R44_008:
+	setvar VAR_SPECIAL_x8004, SPECIES_LIEPARD
+	setvar VAR_SPECIAL_x8005, 25
+	setvar VAR_SPECIAL_x8006, ITEM_LEFTOVERS
+	setvar VAR_SPECIAL_x8007, 2617
+	callstd 2077
 	end
 	.balign 4

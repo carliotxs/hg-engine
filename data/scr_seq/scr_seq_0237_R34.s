@@ -41,6 +41,13 @@ scrdef scr_seq_R34_010
 scrdef scr_seq_R34_011
 scrdef scr_seq_R34_012
 scrdef scr_seq_R34_013
+scrdef scr_seq_R34_014
+scrdef scr_seq_R34_015
+scrdef scr_seq_R34_016
+scrdef scr_seq_R34_017
+scrdef scr_seq_R34_018
+scrdef scr_seq_R34_019
+scrdef scr_seq_R34_020
 scrdef_end
 
 scr_seq_R34_000:
@@ -888,5 +895,61 @@ scr_seq_R34_013:
 scr_seq_R34_013_lost:
 	white_out
 	releaseall
+	end
+// hack: ALAKAZAM specialist (hack/scripts/gen_specialists.py)
+scr_seq_R34_014:
+	setvar VAR_SPECIAL_x8004, SPECIES_ALAKAZAM
+	setvar VAR_SPECIAL_x8005, 16
+	setvar VAR_SPECIAL_x8006, ITEM_ALAKAZITE
+	setvar VAR_SPECIAL_x8007, 2157
+	callstd 2077
+	end
+// hack: HYPNO specialist (hack/scripts/gen_specialists.py)
+scr_seq_R34_015:
+	setvar VAR_SPECIAL_x8004, SPECIES_HYPNO
+	setvar VAR_SPECIAL_x8005, 26
+	setvar VAR_SPECIAL_x8006, ITEM_WISE_GLASSES
+	setvar VAR_SPECIAL_x8007, 2159
+	callstd 2077
+	end
+// hack: DELCATTY specialist (hack/scripts/gen_specialists.py)
+scr_seq_R34_016:
+	setvar VAR_SPECIAL_x8004, SPECIES_DELCATTY
+	setvar VAR_SPECIAL_x8005, 15
+	setvar VAR_SPECIAL_x8006, ITEM_HEAVY_DUTY_BOOTS
+	setvar VAR_SPECIAL_x8007, 2206
+	callstd 2077
+	end
+// hack: PACHIRISU specialist (hack/scripts/gen_specialists.py)
+scr_seq_R34_017:
+	setvar VAR_SPECIAL_x8004, SPECIES_PACHIRISU
+	setvar VAR_SPECIAL_x8005, 15
+	setvar VAR_SPECIAL_x8006, ITEM_ABILITY_CAPSULE
+	setvar VAR_SPECIAL_x8007, 2210
+	callstd 2077
+	end
+// hack: ALOMOMOLA specialist (hack/scripts/gen_specialists.py)
+scr_seq_R34_018:
+	setvar VAR_SPECIAL_x8004, SPECIES_ALOMOMOLA
+	setvar VAR_SPECIAL_x8005, 28
+	setvar VAR_SPECIAL_x8006, ITEM_LEFTOVERS
+	setvar VAR_SPECIAL_x8007, 2259
+	callstd 2077
+	end
+// hack: MIMIKYU specialist (hack/scripts/gen_specialists.py)
+scr_seq_R34_019:
+	setvar VAR_SPECIAL_x8004, SPECIES_MIMIKYU
+	setvar VAR_SPECIAL_x8005, 13
+	setvar VAR_SPECIAL_x8006, ITEM_QUICK_CLAW
+	setvar VAR_SPECIAL_x8007, 2383
+	callstd 2077
+	end
+// hack: LEAFEON specialist (hack/scripts/gen_specialists.py)
+scr_seq_R34_020:
+	setvar VAR_SPECIAL_x8004, SPECIES_LEAFEON
+	setvar VAR_SPECIAL_x8005, 16
+	setvar VAR_SPECIAL_x8006, ITEM_PP_UP
+	setvar VAR_SPECIAL_x8007, 2604
+	callstd 2077
 	end
 	.balign 4

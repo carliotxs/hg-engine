@@ -29,6 +29,11 @@
 
 scrdef scr_seq_D41R0105_000
 scrdef scr_seq_D41R0105_001
+scrdef scr_seq_D41R0105_002
+scrdef scr_seq_D41R0105_003
+scrdef scr_seq_D41R0105_004
+scrdef scr_seq_D41R0105_005
+scrdef scr_seq_D41R0105_006
 scrdef_end
 
 scr_seq_D41R0105_001:
@@ -70,4 +75,44 @@ _0077:
 _007D:
 	setflag FLAG_CAUGHT_MOLTRES
 	return
+// hack: STEELIX specialist (hack/scripts/gen_specialists.py)
+scr_seq_D41R0105_002:
+	setvar VAR_SPECIAL_x8004, SPECIES_STEELIX
+	setvar VAR_SPECIAL_x8005, 51
+	setvar VAR_SPECIAL_x8006, ITEM_STEELIXITE
+	setvar VAR_SPECIAL_x8007, 2200
+	callstd 2077
+	end
+// hack: VOLCARONA specialist (hack/scripts/gen_specialists.py)
+scr_seq_D41R0105_003:
+	setvar VAR_SPECIAL_x8004, SPECIES_VOLCARONA
+	setvar VAR_SPECIAL_x8005, 59
+	setvar VAR_SPECIAL_x8006, ITEM_BRIGHT_POWDER
+	setvar VAR_SPECIAL_x8007, 2362
+	callstd 2077
+	end
+// hack: GOLDUCK specialist (hack/scripts/gen_specialists.py)
+scr_seq_D41R0105_004:
+	setvar VAR_SPECIAL_x8004, SPECIES_GOLDUCK
+	setvar VAR_SPECIAL_x8005, 51
+	setvar VAR_SPECIAL_x8006, ITEM_SITRUS_BERRY
+	setvar VAR_SPECIAL_x8007, 2370
+	callstd 2077
+	end
+// hack: DRAGAPULT specialist (hack/scripts/gen_specialists.py)
+scr_seq_D41R0105_005:
+	setvar VAR_SPECIAL_x8004, SPECIES_DRAGAPULT
+	setvar VAR_SPECIAL_x8005, 60
+	setvar VAR_SPECIAL_x8006, ITEM_WISE_GLASSES
+	setvar VAR_SPECIAL_x8007, 2610
+	callstd 2077
+	end
+// hack: ZOROARK specialist (hack/scripts/gen_specialists.py)
+scr_seq_D41R0105_006:
+	setvar VAR_SPECIAL_x8004, SPECIES_ZOROARK
+	setvar VAR_SPECIAL_x8005, 50
+	setvar VAR_SPECIAL_x8006, ITEM_FOCUS_SASH
+	setvar VAR_SPECIAL_x8007, 2631
+	callstd 2077
+	end
 	.balign 4

@@ -6,9 +6,11 @@
 .equ _EV_scr_seq_R24_002, 2
 .equ _EV_scr_seq_R24_003, 3
 .equ _EV_scr_seq_R24_004, 4
+.equ _EV_scr_seq_R24_005, 5
 
 .equ obj_R24_gsman1, 0
 .equ obj_R24_gswoman2, 1
 .equ obj_R24_rocketm, 2
+.equ obj_R24_hack_spec_sunflora, 3
 
 .endif //SCR_SEQ_R24_H_

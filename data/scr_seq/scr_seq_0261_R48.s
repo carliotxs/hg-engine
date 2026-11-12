@@ -30,6 +30,8 @@
 scrdef scr_seq_R48_000
 scrdef scr_seq_R48_001
 scrdef scr_seq_R48_002
+scrdef scr_seq_R48_003
+scrdef scr_seq_R48_004
 scrdef_end
 
 scr_seq_R48_001:
@@ -171,5 +173,21 @@ scr_seq_R48_002:
 	scrcmd_058
 	scrcmd_060 VAR_SPECIAL_RESULT
 	callstd std_signpost
+	end
+// hack: ARCANINE specialist (hack/scripts/gen_specialists.py)
+scr_seq_R48_003:
+	setvar VAR_SPECIAL_x8004, SPECIES_ARCANINE
+	setvar VAR_SPECIAL_x8005, 28
+	setvar VAR_SPECIAL_x8006, ITEM_CHOICE_SPECS
+	setvar VAR_SPECIAL_x8007, 2103
+	callstd 2077
+	end
+// hack: TAUROS specialist (hack/scripts/gen_specialists.py)
+scr_seq_R48_004:
+	setvar VAR_SPECIAL_x8004, SPECIES_TAUROS
+	setvar VAR_SPECIAL_x8005, 23
+	setvar VAR_SPECIAL_x8006, ITEM_QUICK_CLAW
+	setvar VAR_SPECIAL_x8007, 2106
+	callstd 2077
 	end
 	.balign 4

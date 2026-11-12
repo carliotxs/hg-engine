@@ -14,6 +14,8 @@
 .equ _EV_scr_seq_T26_010, 10
 .equ _EV_scr_seq_T26_011, 11
 .equ _EV_scr_seq_T26_012, 12
+.equ _EV_scr_seq_T26_013, 13
+.equ _EV_scr_seq_T26_014, 14
 
 .equ obj_T26_seaman_2, 0
 .equ obj_T26_gsboy1, 1
@@ -24,5 +26,7 @@
 .equ obj_T26_gswoman2, 6
 .equ obj_T26_gsmiddleman1, 7
 .equ obj_T26_gsmiddleman1_2, 5
+.equ obj_T26_hack_spec_corsola, 9
+.equ obj_T26_hack_spec_pincurchin, 10
 
 .endif //SCR_SEQ_T26_H_

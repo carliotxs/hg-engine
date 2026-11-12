@@ -46,6 +46,8 @@ scrdef scr_seq_T29_015
 scrdef scr_seq_T29_016
 scrdef scr_seq_T29_017
 scrdef scr_seq_T29_018
+scrdef scr_seq_T29_019
+scrdef scr_seq_T29_020
 scrdef_end
 
 scr_seq_T29_000:
@@ -586,5 +588,21 @@ scr_seq_T29_012:
 
 scr_seq_T29_013:
 	simple_npc_msg 27
+	end
+// hack: LUDICOLO specialist (hack/scripts/gen_specialists.py)
+scr_seq_T29_019:
+	setvar VAR_SPECIAL_x8004, SPECIES_LUDICOLO
+	setvar VAR_SPECIAL_x8005, 14
+	setvar VAR_SPECIAL_x8006, ITEM_EJECT_BUTTON
+	setvar VAR_SPECIAL_x8007, 2682
+	callstd 2077
+	end
+// hack: DREDNAW specialist (hack/scripts/gen_specialists.py)
+scr_seq_T29_020:
+	setvar VAR_SPECIAL_x8004, SPECIES_DREDNAW
+	setvar VAR_SPECIAL_x8005, 43
+	setvar VAR_SPECIAL_x8006, ITEM_QUICK_CLAW
+	setvar VAR_SPECIAL_x8007, 2688
+	callstd 2077
 	end
 	.balign 4

@@ -30,6 +30,10 @@
 scrdef scr_seq_D39R0103_000
 scrdef scr_seq_D39R0103_001
 scrdef scr_seq_D39R0103_002
+scrdef scr_seq_D39R0103_003
+scrdef scr_seq_D39R0103_004
+scrdef scr_seq_D39R0103_005
+scrdef scr_seq_D39R0103_006
 scrdef_end
 
 scr_seq_D39R0103_000:
@@ -58,5 +62,37 @@ _0050:
 	step_end
 scr_seq_D39R0103_002:
 	simple_npc_msg 0
+	end
+// hack: DELIBIRD specialist (hack/scripts/gen_specialists.py)
+scr_seq_D39R0103_003:
+	setvar VAR_SPECIAL_x8004, SPECIES_DELIBIRD
+	setvar VAR_SPECIAL_x8005, 26
+	setvar VAR_SPECIAL_x8006, ITEM_LIFE_ORB
+	setvar VAR_SPECIAL_x8007, 2286
+	callstd 2077
+	end
+// hack: VANILLUXE specialist (hack/scripts/gen_specialists.py)
+scr_seq_D39R0103_004:
+	setvar VAR_SPECIAL_x8004, SPECIES_VANILLUXE
+	setvar VAR_SPECIAL_x8005, 47
+	setvar VAR_SPECIAL_x8006, ITEM_AIR_BALLOON
+	setvar VAR_SPECIAL_x8007, 2323
+	callstd 2077
+	end
+// hack: FROSMOTH specialist (hack/scripts/gen_specialists.py)
+scr_seq_D39R0103_005:
+	setvar VAR_SPECIAL_x8004, SPECIES_FROSMOTH
+	setvar VAR_SPECIAL_x8005, 26
+	setvar VAR_SPECIAL_x8006, ITEM_SITRUS_BERRY
+	setvar VAR_SPECIAL_x8007, 2342
+	callstd 2077
+	end
+// hack: CROBAT specialist (hack/scripts/gen_specialists.py)
+scr_seq_D39R0103_006:
+	setvar VAR_SPECIAL_x8004, SPECIES_CROBAT
+	setvar VAR_SPECIAL_x8005, 26
+	setvar VAR_SPECIAL_x8006, ITEM_LIFE_ORB
+	setvar VAR_SPECIAL_x8007, 2680
+	callstd 2077
 	end
 	.balign 4

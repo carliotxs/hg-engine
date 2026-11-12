@@ -31,6 +31,13 @@ scrdef scr_seq_R37_000
 scrdef scr_seq_R37_001
 scrdef scr_seq_R37_002
 scrdef scr_seq_R37_003
+scrdef scr_seq_R37_004
+scrdef scr_seq_R37_005
+scrdef scr_seq_R37_006
+scrdef scr_seq_R37_007
+scrdef scr_seq_R37_008
+scrdef scr_seq_R37_009
+scrdef scr_seq_R37_010
 scrdef_end
 
 scr_seq_R37_000:
@@ -145,5 +152,61 @@ scr_seq_R37_003:
 	scrcmd_058
 	trainer_tips 1, VAR_SPECIAL_RESULT
 	callstd std_signpost
+	end
+// hack: WYRDEER specialist (hack/scripts/gen_specialists.py)
+scr_seq_R37_004:
+	setvar VAR_SPECIAL_x8004, SPECIES_WYRDEER
+	setvar VAR_SPECIAL_x8005, 18
+	setvar VAR_SPECIAL_x8006, ITEM_ABILITY_CAPSULE
+	setvar VAR_SPECIAL_x8007, 2146
+	callstd 2077
+	end
+// hack: SCEPTILE specialist (hack/scripts/gen_specialists.py)
+scr_seq_R37_005:
+	setvar VAR_SPECIAL_x8004, SPECIES_SCEPTILE
+	setvar VAR_SPECIAL_x8005, 36
+	setvar VAR_SPECIAL_x8006, ITEM_SCEPTILITE
+	setvar VAR_SPECIAL_x8007, 2203
+	callstd 2077
+	end
+// hack: VIVILLON specialist (hack/scripts/gen_specialists.py)
+scr_seq_R37_006:
+	setvar VAR_SPECIAL_x8004, SPECIES_VIVILLON
+	setvar VAR_SPECIAL_x8005, 18
+	setvar VAR_SPECIAL_x8006, ITEM_QUICK_CLAW
+	setvar VAR_SPECIAL_x8007, 2219
+	callstd 2077
+	end
+// hack: SPIDOPS specialist (hack/scripts/gen_specialists.py)
+scr_seq_R37_007:
+	setvar VAR_SPECIAL_x8004, SPECIES_SPIDOPS
+	setvar VAR_SPECIAL_x8005, 18
+	setvar VAR_SPECIAL_x8006, ITEM_QUICK_CLAW
+	setvar VAR_SPECIAL_x8007, 2230
+	callstd 2077
+	end
+// hack: VAPOREON specialist (hack/scripts/gen_specialists.py)
+scr_seq_R37_008:
+	setvar VAR_SPECIAL_x8004, SPECIES_VAPOREON
+	setvar VAR_SPECIAL_x8005, 18
+	setvar VAR_SPECIAL_x8006, ITEM_PP_UP
+	setvar VAR_SPECIAL_x8007, 2387
+	callstd 2077
+	end
+// hack: ESPEON specialist (hack/scripts/gen_specialists.py)
+scr_seq_R37_009:
+	setvar VAR_SPECIAL_x8004, SPECIES_ESPEON
+	setvar VAR_SPECIAL_x8005, 18
+	setvar VAR_SPECIAL_x8006, ITEM_LEFTOVERS
+	setvar VAR_SPECIAL_x8007, 2390
+	callstd 2077
+	end
+// hack: SYLVEON specialist (hack/scripts/gen_specialists.py)
+scr_seq_R37_010:
+	setvar VAR_SPECIAL_x8004, SPECIES_SYLVEON
+	setvar VAR_SPECIAL_x8005, 18
+	setvar VAR_SPECIAL_x8006, ITEM_PP_UP
+	setvar VAR_SPECIAL_x8007, 2608
+	callstd 2077
 	end
 	.balign 4

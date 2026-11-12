@@ -44,6 +44,8 @@ scrdef scr_seq_T27_013
 scrdef scr_seq_T27_014
 scrdef scr_seq_T27_015
 scrdef scr_seq_T27_016
+scrdef scr_seq_T27_017
+scrdef scr_seq_T27_018
 scrdef_end
 
 scr_seq_T27_000:
@@ -430,5 +432,21 @@ scr_seq_T27_007:
 
 scr_seq_T27_011:
 	simple_npc_msg 4
+	end
+// hack: TOXICROAK specialist (hack/scripts/gen_specialists.py)
+scr_seq_T27_017:
+	setvar VAR_SPECIAL_x8004, SPECIES_TOXICROAK
+	setvar VAR_SPECIAL_x8005, 37
+	setvar VAR_SPECIAL_x8006, ITEM_EXPERT_BELT
+	setvar VAR_SPECIAL_x8007, 2630
+	callstd 2077
+	end
+// hack: SWANNA specialist (hack/scripts/gen_specialists.py)
+scr_seq_T27_018:
+	setvar VAR_SPECIAL_x8004, SPECIES_SWANNA
+	setvar VAR_SPECIAL_x8005, 35
+	setvar VAR_SPECIAL_x8006, ITEM_BRIGHT_POWDER
+	setvar VAR_SPECIAL_x8007, 2671
+	callstd 2077
 	end
 	.balign 4

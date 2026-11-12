@@ -35,6 +35,16 @@ scrdef scr_seq_D24R0101_004
 scrdef scr_seq_D24R0101_005
 scrdef scr_seq_D24R0101_006
 scrdef scr_seq_D24R0101_007
+scrdef scr_seq_D24R0101_008
+scrdef scr_seq_D24R0101_009
+scrdef scr_seq_D24R0101_010
+scrdef scr_seq_D24R0101_011
+scrdef scr_seq_D24R0101_012
+scrdef scr_seq_D24R0101_013
+scrdef scr_seq_D24R0101_014
+scrdef scr_seq_D24R0101_015
+scrdef scr_seq_D24R0101_016
+scrdef scr_seq_D24R0101_017
 scrdef_end
 
 scr_seq_D24R0101_006:
@@ -491,5 +501,85 @@ scr_seq_D24R0101_003:
 	scrcmd_058
 	trainer_tips 8, VAR_SPECIAL_RESULT
 	callstd std_signpost
+	end
+// hack: XATU specialist (hack/scripts/gen_specialists.py)
+scr_seq_D24R0101_008:
+	setvar VAR_SPECIAL_x8004, SPECIES_XATU
+	setvar VAR_SPECIAL_x8005, 25
+	setvar VAR_SPECIAL_x8006, ITEM_EVIOLITE
+	setvar VAR_SPECIAL_x8007, 2107
+	callstd 2077
+	end
+// hack: SMEARGLE specialist (hack/scripts/gen_specialists.py)
+scr_seq_D24R0101_009:
+	setvar VAR_SPECIAL_x8004, SPECIES_SMEARGLE
+	setvar VAR_SPECIAL_x8005, 23
+	setvar VAR_SPECIAL_x8006, ITEM_SHELL_BELL
+	setvar VAR_SPECIAL_x8007, 2111
+	callstd 2077
+	end
+// hack: CRADILY specialist (hack/scripts/gen_specialists.py)
+scr_seq_D24R0101_010:
+	setvar VAR_SPECIAL_x8004, SPECIES_CRADILY
+	setvar VAR_SPECIAL_x8005, 40
+	setvar VAR_SPECIAL_x8006, ITEM_EVIOLITE
+	setvar VAR_SPECIAL_x8007, 2115
+	callstd 2077
+	end
+// hack: ARMALDO specialist (hack/scripts/gen_specialists.py)
+scr_seq_D24R0101_011:
+	setvar VAR_SPECIAL_x8004, SPECIES_ARMALDO
+	setvar VAR_SPECIAL_x8005, 40
+	setvar VAR_SPECIAL_x8006, ITEM_MUSCLE_BAND
+	setvar VAR_SPECIAL_x8007, 2116
+	callstd 2077
+	end
+// hack: RAMPARDOS specialist (hack/scripts/gen_specialists.py)
+scr_seq_D24R0101_012:
+	setvar VAR_SPECIAL_x8004, SPECIES_RAMPARDOS
+	setvar VAR_SPECIAL_x8005, 30
+	setvar VAR_SPECIAL_x8006, ITEM_KINGS_ROCK
+	setvar VAR_SPECIAL_x8007, 2117
+	callstd 2077
+	end
+// hack: BASTIODON specialist (hack/scripts/gen_specialists.py)
+scr_seq_D24R0101_013:
+	setvar VAR_SPECIAL_x8004, SPECIES_BASTIODON
+	setvar VAR_SPECIAL_x8005, 30
+	setvar VAR_SPECIAL_x8006, ITEM_RED_CARD
+	setvar VAR_SPECIAL_x8007, 2118
+	callstd 2077
+	end
+// hack: SIGILYPH specialist (hack/scripts/gen_specialists.py)
+scr_seq_D24R0101_014:
+	setvar VAR_SPECIAL_x8004, SPECIES_SIGILYPH
+	setvar VAR_SPECIAL_x8005, 27
+	setvar VAR_SPECIAL_x8006, ITEM_RARE_CANDY
+	setvar VAR_SPECIAL_x8007, 2132
+	callstd 2077
+	end
+// hack: CARRACOSTA specialist (hack/scripts/gen_specialists.py)
+scr_seq_D24R0101_015:
+	setvar VAR_SPECIAL_x8004, SPECIES_CARRACOSTA
+	setvar VAR_SPECIAL_x8005, 37
+	setvar VAR_SPECIAL_x8006, ITEM_SITRUS_BERRY
+	setvar VAR_SPECIAL_x8007, 2133
+	callstd 2077
+	end
+// hack: ARCHEOPS specialist (hack/scripts/gen_specialists.py)
+scr_seq_D24R0101_016:
+	setvar VAR_SPECIAL_x8004, SPECIES_ARCHEOPS
+	setvar VAR_SPECIAL_x8005, 37
+	setvar VAR_SPECIAL_x8006, ITEM_LIFE_ORB
+	setvar VAR_SPECIAL_x8007, 2134
+	callstd 2077
+	end
+// hack: COFAGRIGUS specialist (hack/scripts/gen_specialists.py)
+scr_seq_D24R0101_017:
+	setvar VAR_SPECIAL_x8004, SPECIES_COFAGRIGUS
+	setvar VAR_SPECIAL_x8005, 34
+	setvar VAR_SPECIAL_x8006, ITEM_ABILITY_CAPSULE
+	setvar VAR_SPECIAL_x8007, 2255
+	callstd 2077
 	end
 	.balign 4

@@ -7,6 +7,8 @@
 .equ _EV_scr_seq_R12_003, 3
 .equ _EV_scr_seq_R12_004, 4
 .equ _EV_scr_seq_R12_005, 5
+.equ _EV_scr_seq_R12_006, 6
+.equ _EV_scr_seq_R12_007, 7
 
 .equ obj_R12_fishing_2, 0
 .equ obj_R12_fishing_2_2, 1
@@ -27,5 +29,7 @@
 .equ obj_R12_gsbabyboy1, 16
 .equ obj_R12_gsbabyboy1_2, 17
 .equ obj_R12_gsbabyboy1_3, 18
+.equ obj_R12_hack_spec_pyukumuku, 19
+.equ obj_R12_hack_spec_walrein, 20
 
 .endif //SCR_SEQ_R12_H_

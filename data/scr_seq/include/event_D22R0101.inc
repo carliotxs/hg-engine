@@ -28,6 +28,13 @@
 .equ _EV_scr_seq_D22R0101_024, 24
 .equ _EV_scr_seq_D22R0101_025, 25
 .equ _EV_scr_seq_D22R0101_026, 26
+.equ _EV_scr_seq_D22R0101_027, 27
+.equ _EV_scr_seq_D22R0101_028, 28
+.equ _EV_scr_seq_D22R0101_029, 29
+.equ _EV_scr_seq_D22R0101_030, 30
+.equ _EV_scr_seq_D22R0101_031, 31
+.equ _EV_scr_seq_D22R0101_032, 32
+.equ _EV_scr_seq_D22R0101_033, 33
 
 .equ obj_D22R0101_monstarball, 0
 .equ obj_D22R0101_monstarball_2, 1
@@ -58,5 +65,12 @@
 .equ obj_D22R0101_gsmiddleman1_3, 26
 .equ obj_D22R0101_gsmiddleman1_4, 27
 .equ obj_D22R0101_gsleader2, 28
+.equ obj_D22R0101_hack_spec_torterra, 29
+.equ obj_D22R0101_hack_spec_serperior, 30
+.equ obj_D22R0101_hack_spec_decidueye, 31
+.equ obj_D22R0101_hack_spec_flapple, 32
+.equ obj_D22R0101_hack_spec_toedscruel, 33
+.equ obj_D22R0101_hack_spec_rabsca, 34
+.equ obj_D22R0101_hack_spec_illumise, 35
 
 .endif //SCR_SEQ_D22R0101_H_

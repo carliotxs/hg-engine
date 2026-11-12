@@ -59,6 +59,8 @@ SCENARIOS = {
     "capture_prompt_no": 14,
     "capture_prompt_cancel": 14,
     "capture_prompt_mail": 15,
+    "mirror": 16,
+    "mirror_no_mon": 17,
 }
 
 # base experience and growth data used by the expectations
@@ -465,6 +467,20 @@ def walk_to(game, x=None, z=None, tries=40):
     return False
 
 
+def reload_cherrygrove(game):
+    """map objects come from the save file until the map is loaded again: go in and out of the
+    Pokémon Center of Cherrygrove City, whose door is at (564, 391)"""
+    keys = game.Keys
+    walk_to(game, x=565)
+    walk_to(game, z=392)
+    walk_to(game, x=564)
+    ride(game, keys.KEY_UP, 30)
+    game.run(200)
+    game.shot("pokemon_center")
+    ride(game, keys.KEY_DOWN, 40)
+    game.run(200)
+
+
 def fastest_tile_time(positions):
     """smallest number of frames between two consecutive tile changes"""
     changes = [i for i in range(1, len(positions)) if positions[i] != positions[i - 1]]
@@ -499,12 +515,7 @@ def test_static_mon(game, c):
     keys = game.Keys
     before = game.report()
     c.check("daily flag starts clear", before["static_flag"] == 0)
-    for key, frames in ((keys.KEY_LEFT, 30), (keys.KEY_UP, 60), (keys.KEY_LEFT, 12), (keys.KEY_UP, 30)):
-        ride(game, key, frames)
-    game.run(200)
-    game.shot("pokemon_center")
-    ride(game, keys.KEY_DOWN, 40)
-    game.run(200)
+    reload_cherrygrove(game)
     # back down the same column to the row of the Pokémon, one tile to its right
     walk_to(game, x=565)
     walk_to(game, z=398)
@@ -622,6 +633,68 @@ def test_capture_prompt_no(game, c):
     c.check("the caught Pokémon stays in the PC", after["compatibility"] == RATTATA, f"{after['compatibility']}")
 
 
+MANTINE = 226
+
+
+def go_to_mantine_specialist(game):
+    """Cherrygrove City: reload the map through the Pokémon Center, then walk to the tile west of the
+    specialist at (566, 408)"""
+    keys = game.Keys
+    reload_cherrygrove(game)
+    # down the path west of the house, then east along the row of the specialist
+    steps = [walk_to(game, x=564), walk_to(game, z=408), walk_to(game, x=565)]
+    ride(game, keys.KEY_RIGHT, 6)  # face the specialist
+    report = game.report()
+    print(f"  player at ({report['x']}, {report['z']})")
+    game.shot("at_specialist")
+    return all(steps) and (report["x"], report["z"]) == (565, 408)
+
+
+def test_mirror(game, c):
+    """the Mantine specialist battles the Mantine of the party one on one and rewards the win"""
+    before = game.report()
+    c.check("reached the specialist", go_to_mantine_specialist(game))
+    game.press(game.Keys.KEY_A, wait=200)
+    game.shot("intro")
+    game.press(game.Keys.KEY_A, wait=200)
+    game.press(game.Keys.KEY_A, wait=600)
+    game.shot("battle")
+    c.check("battle finished", game.mash_until_field(game.Keys.KEY_A, shots=(300, 900)))
+    for step in range(6):
+        game.press(game.Keys.KEY_A, wait=150)
+        if step < 3:
+            game.shot(f"reward{step}")
+    c.check("back in the overworld", game.back_to_field())
+    after = game.report()
+    species = [m["species"] for m in after["mons"]]
+    print(f"  party {species}, Mantine exp {before['mons'][1]['exp']} -> {after['mons'][1]['exp']}, reward {after['mints']}, wins {after['compatibility']}")
+    c.check("the party is back, in the same order", species == [m["species"] for m in before["mons"]])
+    c.check("only the Mantine battled", after["mons"][1]["exp"] > before["mons"][1]["exp"] and after["mons"][0]["exp"] == before["mons"][0]["exp"])
+    c.check("reward received", after["mints"] == 1, f"{after['mints']}")
+    c.check("win counted", after["compatibility"] == 1, f"{after['compatibility']}")
+    game.press(game.Keys.KEY_A, wait=250)  # talk again: no second battle
+    game.shot("talk_again")
+    for _ in range(3):
+        game.press(game.Keys.KEY_A, wait=150)
+    c.check("back in the overworld", game.back_to_field())
+    again = game.report()
+    c.check("no second battle or reward", again["mints"] == 1 and again["compatibility"] == 1 and again["mons"][1]["exp"] == after["mons"][1]["exp"])
+
+
+def test_mirror_no_mon(game, c):
+    """without a Mantine the specialist only explains the rule"""
+    before = game.report()
+    c.check("reached the specialist", go_to_mantine_specialist(game))
+    game.press(game.Keys.KEY_A, wait=250)
+    game.shot("refusal")
+    for _ in range(4):
+        game.press(game.Keys.KEY_A, wait=150)
+    c.check("back in the overworld", game.back_to_field())
+    after = game.report()
+    c.check("nothing happened", after["mints"] == 0 and after["compatibility"] == 0
+            and [m["exp"] for m in after["mons"]] == [m["exp"] for m in before["mons"]])
+
+
 TESTS = {
     "exp_share_on": test_exp_share_on,
     "exp_share_off": test_exp_share_off,
@@ -639,6 +712,8 @@ TESTS = {
     "capture_prompt_no": test_capture_prompt_no,
     "capture_prompt_cancel": test_capture_prompt_cancel,
     "capture_prompt_mail": test_capture_prompt_mail,
+    "mirror": test_mirror,
+    "mirror_no_mon": test_mirror_no_mon,
 }
 
 

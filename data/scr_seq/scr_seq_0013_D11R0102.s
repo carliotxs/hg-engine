@@ -29,6 +29,10 @@
 
 scrdef scr_seq_D11R0102_000
 scrdef scr_seq_D11R0102_001
+scrdef scr_seq_D11R0102_002
+scrdef scr_seq_D11R0102_003
+scrdef scr_seq_D11R0102_004
+scrdef scr_seq_D11R0102_005
 scrdef_end
 
 scr_seq_D11R0102_001:
@@ -164,4 +168,36 @@ _01B8:
 	step 12, 1
 	step 1, 1
 	step_end
+// hack: DEWGONG specialist (hack/scripts/gen_specialists.py)
+scr_seq_D11R0102_002:
+	setvar VAR_SPECIAL_x8004, SPECIES_DEWGONG
+	setvar VAR_SPECIAL_x8005, 37
+	setvar VAR_SPECIAL_x8006, ITEM_CHOICE_SPECS
+	setvar VAR_SPECIAL_x8007, 2196
+	callstd 2077
+	end
+// hack: GLALIE specialist (hack/scripts/gen_specialists.py)
+scr_seq_D11R0102_003:
+	setvar VAR_SPECIAL_x8004, SPECIES_GLALIE
+	setvar VAR_SPECIAL_x8005, 42
+	setvar VAR_SPECIAL_x8006, ITEM_LUM_BERRY
+	setvar VAR_SPECIAL_x8007, 2303
+	callstd 2077
+	end
+// hack: BEARTIC specialist (hack/scripts/gen_specialists.py)
+scr_seq_D11R0102_004:
+	setvar VAR_SPECIAL_x8004, SPECIES_BEARTIC
+	setvar VAR_SPECIAL_x8005, 37
+	setvar VAR_SPECIAL_x8006, ITEM_EJECT_BUTTON
+	setvar VAR_SPECIAL_x8007, 2326
+	callstd 2077
+	end
+// hack: EISCUE specialist (hack/scripts/gen_specialists.py)
+scr_seq_D11R0102_005:
+	setvar VAR_SPECIAL_x8004, SPECIES_EISCUE
+	setvar VAR_SPECIAL_x8005, 35
+	setvar VAR_SPECIAL_x8006, ITEM_LIFE_ORB
+	setvar VAR_SPECIAL_x8007, 2343
+	callstd 2077
+	end
 	.balign 4

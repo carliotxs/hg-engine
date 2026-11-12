@@ -38,6 +38,11 @@ scrdef scr_seq_R30_007
 scrdef scr_seq_R30_008
 scrdef scr_seq_R30_009
 scrdef scr_seq_R30_010
+scrdef scr_seq_R30_011
+scrdef scr_seq_R30_012
+scrdef scr_seq_R30_013
+scrdef scr_seq_R30_014
+scrdef scr_seq_R30_015
 scrdef_end
 
 scr_seq_R30_001:
@@ -260,5 +265,45 @@ _02D5:
 
 scr_seq_R30_010:
 	simple_npc_msg 4
+	end
+// hack: STUNFISK specialist (hack/scripts/gen_specialists.py)
+scr_seq_R30_011:
+	setvar VAR_SPECIAL_x8004, SPECIES_STUNFISK
+	setvar VAR_SPECIAL_x8005, 43
+	setvar VAR_SPECIAL_x8006, ITEM_BOTTLE_CAP
+	setvar VAR_SPECIAL_x8007, 2218
+	callstd 2077
+	end
+// hack: UNFEZANT specialist (hack/scripts/gen_specialists.py)
+scr_seq_R30_012:
+	setvar VAR_SPECIAL_x8004, SPECIES_UNFEZANT
+	setvar VAR_SPECIAL_x8005, 32
+	setvar VAR_SPECIAL_x8006, ITEM_SHELL_BELL
+	setvar VAR_SPECIAL_x8007, 2316
+	callstd 2077
+	end
+// hack: PAWMOT specialist (hack/scripts/gen_specialists.py)
+scr_seq_R30_013:
+	setvar VAR_SPECIAL_x8004, SPECIES_PAWMOT
+	setvar VAR_SPECIAL_x8005, 18
+	setvar VAR_SPECIAL_x8006, ITEM_HEAVY_DUTY_BOOTS
+	setvar VAR_SPECIAL_x8007, 2345
+	callstd 2077
+	end
+// hack: BUTTERFREE specialist (hack/scripts/gen_specialists.py)
+scr_seq_R30_014:
+	setvar VAR_SPECIAL_x8004, SPECIES_BUTTERFREE
+	setvar VAR_SPECIAL_x8005, 10
+	setvar VAR_SPECIAL_x8006, ITEM_MUSCLE_BAND
+	setvar VAR_SPECIAL_x8007, 2369
+	callstd 2077
+	end
+// hack: TALONFLAME specialist (hack/scripts/gen_specialists.py)
+scr_seq_R30_015:
+	setvar VAR_SPECIAL_x8004, SPECIES_TALONFLAME
+	setvar VAR_SPECIAL_x8005, 35
+	setvar VAR_SPECIAL_x8006, ITEM_WISE_GLASSES
+	setvar VAR_SPECIAL_x8007, 2382
+	callstd 2077
 	end
 	.balign 4

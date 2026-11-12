@@ -34,6 +34,9 @@ scrdef scr_seq_R31_003
 scrdef scr_seq_R31_004
 scrdef scr_seq_R31_005
 scrdef scr_seq_R31_006
+scrdef scr_seq_R31_007
+scrdef scr_seq_R31_008
+scrdef scr_seq_R31_009
 scrdef_end
 
 scr_seq_R31_000:
@@ -290,5 +293,29 @@ scr_seq_R31_006:
 scr_seq_R31_006_lost:
 	white_out
 	releaseall
+	end
+// hack: ARIADOS specialist (hack/scripts/gen_specialists.py)
+scr_seq_R31_007:
+	setvar VAR_SPECIAL_x8004, SPECIES_ARIADOS
+	setvar VAR_SPECIAL_x8005, 22
+	setvar VAR_SPECIAL_x8006, ITEM_LEFTOVERS
+	setvar VAR_SPECIAL_x8007, 2285
+	callstd 2077
+	end
+// hack: MIGHTYENA specialist (hack/scripts/gen_specialists.py)
+scr_seq_R31_008:
+	setvar VAR_SPECIAL_x8004, SPECIES_MIGHTYENA
+	setvar VAR_SPECIAL_x8005, 18
+	setvar VAR_SPECIAL_x8006, ITEM_EVIOLITE
+	setvar VAR_SPECIAL_x8007, 2290
+	callstd 2077
+	end
+// hack: WATCHOG specialist (hack/scripts/gen_specialists.py)
+scr_seq_R31_009:
+	setvar VAR_SPECIAL_x8004, SPECIES_WATCHOG
+	setvar VAR_SPECIAL_x8005, 20
+	setvar VAR_SPECIAL_x8006, ITEM_RARE_CANDY
+	setvar VAR_SPECIAL_x8007, 2315
+	callstd 2077
 	end
 	.balign 4

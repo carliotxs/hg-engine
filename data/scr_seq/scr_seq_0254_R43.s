@@ -31,6 +31,11 @@ scrdef scr_seq_R43_000
 scrdef scr_seq_R43_001
 scrdef scr_seq_R43_002
 scrdef scr_seq_R43_003
+scrdef scr_seq_R43_004
+scrdef scr_seq_R43_005
+scrdef scr_seq_R43_006
+scrdef scr_seq_R43_007
+scrdef scr_seq_R43_008
 scrdef_end
 
 scr_seq_R43_000:
@@ -58,5 +63,45 @@ scr_seq_R43_003:
 	scrcmd_058
 	scrcmd_060 VAR_SPECIAL_RESULT
 	callstd std_signpost
+	end
+// hack: CARNIVINE specialist (hack/scripts/gen_specialists.py)
+scr_seq_R43_004:
+	setvar VAR_SPECIAL_x8004, SPECIES_CARNIVINE
+	setvar VAR_SPECIAL_x8005, 18
+	setvar VAR_SPECIAL_x8006, ITEM_ROCKY_HELMET
+	setvar VAR_SPECIAL_x8007, 2121
+	callstd 2077
+	end
+// hack: QUAQUAVAL specialist (hack/scripts/gen_specialists.py)
+scr_seq_R43_005:
+	setvar VAR_SPECIAL_x8004, SPECIES_QUAQUAVAL
+	setvar VAR_SPECIAL_x8005, 36
+	setvar VAR_SPECIAL_x8006, ITEM_MUSCLE_BAND
+	setvar VAR_SPECIAL_x8007, 2274
+	callstd 2077
+	end
+// hack: INTELEON specialist (hack/scripts/gen_specialists.py)
+scr_seq_R43_006:
+	setvar VAR_SPECIAL_x8004, SPECIES_INTELEON
+	setvar VAR_SPECIAL_x8005, 35
+	setvar VAR_SPECIAL_x8006, ITEM_LEFTOVERS
+	setvar VAR_SPECIAL_x8007, 2340
+	callstd 2077
+	end
+// hack: DUSKNOIR specialist (hack/scripts/gen_specialists.py)
+scr_seq_R43_007:
+	setvar VAR_SPECIAL_x8004, SPECIES_DUSKNOIR
+	setvar VAR_SPECIAL_x8005, 37
+	setvar VAR_SPECIAL_x8006, ITEM_LIFE_ORB
+	setvar VAR_SPECIAL_x8007, 2378
+	callstd 2077
+	end
+// hack: GOODRA specialist (hack/scripts/gen_specialists.py)
+scr_seq_R43_008:
+	setvar VAR_SPECIAL_x8004, SPECIES_GOODRA
+	setvar VAR_SPECIAL_x8005, 50
+	setvar VAR_SPECIAL_x8006, ITEM_LEFTOVERS
+	setvar VAR_SPECIAL_x8007, 2634
+	callstd 2077
 	end
 	.balign 4

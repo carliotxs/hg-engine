@@ -39,6 +39,10 @@ scrdef scr_seq_T21_008
 scrdef scr_seq_T21_009
 scrdef scr_seq_T21_010
 scrdef scr_seq_T21_011
+scrdef scr_seq_T21_012
+scrdef scr_seq_T21_013
+scrdef scr_seq_T21_014
+scrdef scr_seq_T21_015
 scrdef_end
 
 scr_seq_T21_010:
@@ -903,5 +907,37 @@ scr_seq_T21_011:
 scr_seq_T21_011_lost:
 	white_out
 	releaseall
+	end
+// hack: MANTINE specialist (hack/scripts/gen_specialists.py)
+scr_seq_T21_012:
+	setvar VAR_SPECIAL_x8004, SPECIES_MANTINE
+	setvar VAR_SPECIAL_x8005, 28
+	setvar VAR_SPECIAL_x8006, ITEM_CHOICE_BAND
+	setvar VAR_SPECIAL_x8007, 2287
+	callstd 2077
+	end
+// hack: GRAPPLOCT specialist (hack/scripts/gen_specialists.py)
+scr_seq_T21_013:
+	setvar VAR_SPECIAL_x8004, SPECIES_GRAPPLOCT
+	setvar VAR_SPECIAL_x8005, 23
+	setvar VAR_SPECIAL_x8006, ITEM_ROCKY_HELMET
+	setvar VAR_SPECIAL_x8007, 2657
+	callstd 2077
+	end
+// hack: CLAWITZER specialist (hack/scripts/gen_specialists.py)
+scr_seq_T21_014:
+	setvar VAR_SPECIAL_x8004, SPECIES_CLAWITZER
+	setvar VAR_SPECIAL_x8005, 37
+	setvar VAR_SPECIAL_x8006, ITEM_BRIGHT_POWDER
+	setvar VAR_SPECIAL_x8007, 2672
+	callstd 2077
+	end
+// hack: TENTACRUEL specialist (hack/scripts/gen_specialists.py)
+scr_seq_T21_015:
+	setvar VAR_SPECIAL_x8004, SPECIES_TENTACRUEL
+	setvar VAR_SPECIAL_x8005, 30
+	setvar VAR_SPECIAL_x8006, ITEM_KINGS_ROCK
+	setvar VAR_SPECIAL_x8007, 2679
+	callstd 2077
 	end
 	.balign 4

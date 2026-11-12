@@ -29,6 +29,12 @@
 
 scrdef scr_seq_R05_000
 scrdef scr_seq_R05_001
+scrdef scr_seq_R05_002
+scrdef scr_seq_R05_003
+scrdef scr_seq_R05_004
+scrdef scr_seq_R05_005
+scrdef scr_seq_R05_006
+scrdef scr_seq_R05_007
 scrdef_end
 
 scr_seq_R05_000:
@@ -41,5 +47,53 @@ scr_seq_R05_001:
 	scrcmd_058
 	trainer_tips 1, VAR_SPECIAL_RESULT
 	callstd std_signpost
+	end
+// hack: SPINDA specialist (hack/scripts/gen_specialists.py)
+scr_seq_R05_002:
+	setvar VAR_SPECIAL_x8004, SPECIES_SPINDA
+	setvar VAR_SPECIAL_x8005, 17
+	setvar VAR_SPECIAL_x8006, ITEM_RED_CARD
+	setvar VAR_SPECIAL_x8007, 2243
+	callstd 2077
+	end
+// hack: GOTHITELLE specialist (hack/scripts/gen_specialists.py)
+scr_seq_R05_003:
+	setvar VAR_SPECIAL_x8004, SPECIES_GOTHITELLE
+	setvar VAR_SPECIAL_x8005, 41
+	setvar VAR_SPECIAL_x8006, ITEM_EVIOLITE
+	setvar VAR_SPECIAL_x8007, 2257
+	callstd 2077
+	end
+// hack: HATTERENE specialist (hack/scripts/gen_specialists.py)
+scr_seq_R05_004:
+	setvar VAR_SPECIAL_x8004, SPECIES_HATTERENE
+	setvar VAR_SPECIAL_x8005, 42
+	setvar VAR_SPECIAL_x8006, ITEM_MUSCLE_BAND
+	setvar VAR_SPECIAL_x8007, 2272
+	callstd 2077
+	end
+// hack: GARBODOR specialist (hack/scripts/gen_specialists.py)
+scr_seq_R05_005:
+	setvar VAR_SPECIAL_x8004, SPECIES_GARBODOR
+	setvar VAR_SPECIAL_x8005, 36
+	setvar VAR_SPECIAL_x8006, ITEM_CHOICE_SPECS
+	setvar VAR_SPECIAL_x8007, 2322
+	callstd 2077
+	end
+// hack: BEHEEYEM specialist (hack/scripts/gen_specialists.py)
+scr_seq_R05_006:
+	setvar VAR_SPECIAL_x8004, SPECIES_BEHEEYEM
+	setvar VAR_SPECIAL_x8005, 42
+	setvar VAR_SPECIAL_x8006, ITEM_MUSCLE_BAND
+	setvar VAR_SPECIAL_x8007, 2325
+	callstd 2077
+	end
+// hack: KLEFKI specialist (hack/scripts/gen_specialists.py)
+scr_seq_R05_007:
+	setvar VAR_SPECIAL_x8004, SPECIES_KLEFKI
+	setvar VAR_SPECIAL_x8005, 15
+	setvar VAR_SPECIAL_x8006, ITEM_LIFE_ORB
+	setvar VAR_SPECIAL_x8007, 2364
+	callstd 2077
 	end
 	.balign 4

@@ -33,6 +33,8 @@ scrdef scr_seq_D02R0104_002
 scrdef scr_seq_D02R0104_003
 scrdef scr_seq_D02R0104_004
 scrdef scr_seq_D02R0104_005
+scrdef scr_seq_D02R0104_006
+scrdef scr_seq_D02R0104_007
 scrdef_end
 
 scr_seq_D02R0104_000:
@@ -695,5 +697,21 @@ scr_seq_D02R0104_004:
 	wait_button
 	closemsg
 	releaseall
+	end
+// hack: ARAQUANID specialist (hack/scripts/gen_specialists.py)
+scr_seq_D02R0104_006:
+	setvar VAR_SPECIAL_x8004, SPECIES_ARAQUANID
+	setvar VAR_SPECIAL_x8005, 38
+	setvar VAR_SPECIAL_x8006, ITEM_AIR_BALLOON
+	setvar VAR_SPECIAL_x8007, 2664
+	callstd 2077
+	end
+// hack: CRAWDAUNT specialist (hack/scripts/gen_specialists.py)
+scr_seq_D02R0104_007:
+	setvar VAR_SPECIAL_x8004, SPECIES_CRAWDAUNT
+	setvar VAR_SPECIAL_x8005, 43
+	setvar VAR_SPECIAL_x8006, ITEM_EXPERT_BELT
+	setvar VAR_SPECIAL_x8007, 2684
+	callstd 2077
 	end
 	.balign 4

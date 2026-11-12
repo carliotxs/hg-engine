@@ -30,6 +30,10 @@
 scrdef scr_seq_D26R0102_000
 scrdef scr_seq_D26R0102_001
 scrdef scr_seq_D26R0102_002
+scrdef scr_seq_D26R0102_003
+scrdef scr_seq_D26R0102_004
+scrdef scr_seq_D26R0102_005
+scrdef scr_seq_D26R0102_006
 scrdef_end
 
 scr_seq_D26R0102_000:
@@ -168,4 +172,36 @@ _01DC:
 	step 63, 5
 	step 3, 1
 	step_end
+// hack: SLOWBRO specialist (hack/scripts/gen_specialists.py)
+scr_seq_D26R0102_003:
+	setvar VAR_SPECIAL_x8004, SPECIES_SLOWBRO
+	setvar VAR_SPECIAL_x8005, 37
+	setvar VAR_SPECIAL_x8006, ITEM_SLOWBRONITE
+	setvar VAR_SPECIAL_x8007, 2194
+	callstd 2077
+	end
+// hack: GIGALITH specialist (hack/scripts/gen_specialists.py)
+scr_seq_D26R0102_004:
+	setvar VAR_SPECIAL_x8004, SPECIES_GIGALITH
+	setvar VAR_SPECIAL_x8005, 25
+	setvar VAR_SPECIAL_x8006, ITEM_QUICK_CLAW
+	setvar VAR_SPECIAL_x8007, 2253
+	callstd 2077
+	end
+// hack: CAMERUPT specialist (hack/scripts/gen_specialists.py)
+scr_seq_D26R0102_005:
+	setvar VAR_SPECIAL_x8004, SPECIES_CAMERUPT
+	setvar VAR_SPECIAL_x8005, 33
+	setvar VAR_SPECIAL_x8006, ITEM_CAMERUPTITE
+	setvar VAR_SPECIAL_x8007, 2354
+	callstd 2077
+	end
+// hack: TYPHLOSION specialist (hack/scripts/gen_specialists.py)
+scr_seq_D26R0102_006:
+	setvar VAR_SPECIAL_x8004, SPECIES_TYPHLOSION
+	setvar VAR_SPECIAL_x8005, 36
+	setvar VAR_SPECIAL_x8006, ITEM_KINGS_ROCK
+	setvar VAR_SPECIAL_x8007, 2638
+	callstd 2077
+	end
 	.balign 4

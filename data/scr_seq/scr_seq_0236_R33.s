@@ -30,6 +30,10 @@
 scrdef scr_seq_R33_000
 scrdef scr_seq_R33_001
 scrdef scr_seq_R33_002
+scrdef scr_seq_R33_003
+scrdef scr_seq_R33_004
+scrdef scr_seq_R33_005
+scrdef scr_seq_R33_006
 scrdef_end
 
 scr_seq_R33_000:
@@ -64,5 +68,37 @@ scr_seq_R33_002:
 scr_seq_R33_002_lost:
 	white_out
 	releaseall
+	end
+// hack: VENUSAUR specialist (hack/scripts/gen_specialists.py)
+scr_seq_R33_003:
+	setvar VAR_SPECIAL_x8004, SPECIES_VENUSAUR
+	setvar VAR_SPECIAL_x8005, 32
+	setvar VAR_SPECIAL_x8006, ITEM_VENUSAURITE
+	setvar VAR_SPECIAL_x8007, 2153
+	callstd 2077
+	end
+// hack: MEGANIUM specialist (hack/scripts/gen_specialists.py)
+scr_seq_R33_004:
+	setvar VAR_SPECIAL_x8004, SPECIES_MEGANIUM
+	setvar VAR_SPECIAL_x8005, 32
+	setvar VAR_SPECIAL_x8006, ITEM_MEGANIUMITE
+	setvar VAR_SPECIAL_x8007, 2161
+	callstd 2077
+	end
+// hack: LILLIGANT specialist (hack/scripts/gen_specialists.py)
+scr_seq_R33_005:
+	setvar VAR_SPECIAL_x8004, SPECIES_LILLIGANT
+	setvar VAR_SPECIAL_x8005, 9
+	setvar VAR_SPECIAL_x8006, ITEM_SHELL_BELL
+	setvar VAR_SPECIAL_x8007, 2215
+	callstd 2077
+	end
+// hack: FLORGES specialist (hack/scripts/gen_specialists.py)
+scr_seq_R33_006:
+	setvar VAR_SPECIAL_x8004, SPECIES_FLORGES
+	setvar VAR_SPECIAL_x8005, 19
+	setvar VAR_SPECIAL_x8006, ITEM_HEAVY_DUTY_BOOTS
+	setvar VAR_SPECIAL_x8007, 2220
+	callstd 2077
 	end
 	.balign 4

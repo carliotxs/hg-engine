@@ -256,6 +256,40 @@
       "x": 1348,
       "z": 387,
       "y": 0
+    },
+    {
+      "id": "obj_R13_hack_spec_exeggutor",
+      "graphics_id": "SPRITE_GSBIGMAN",
+      "movement_type": 0,
+      "trainer_type": 0,
+      "hidden_flag": "FLAG_NOTHING",
+      "script": "_EV_scr_seq_R13_003 + 1",
+      "initial_dir": 1,
+      "param0": 0,
+      "param1": 0,
+      "param2": 0,
+      "movement_range_x": 0,
+      "movement_range_z": 0,
+      "x": 1357,
+      "z": 378,
+      "y": 0
+    },
+    {
+      "id": "obj_R13_hack_spec_rhyperior",
+      "graphics_id": "SPRITE_GSGENTLEMAN",
+      "movement_type": 0,
+      "trainer_type": 0,
+      "hidden_flag": "FLAG_NOTHING",
+      "script": "_EV_scr_seq_R13_004 + 1",
+      "initial_dir": 1,
+      "param0": 0,
+      "param1": 0,
+      "param2": 0,
+      "movement_range_x": 0,
+      "movement_range_z": 0,
+      "x": 1357,
+      "z": 381,
+      "y": 0
     }
   ]
 }

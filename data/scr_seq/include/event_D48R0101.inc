@@ -8,10 +8,18 @@
 .equ _EV_scr_seq_D48R0101_004, 4
 .equ _EV_scr_seq_D48R0101_005, 5
 .equ _EV_scr_seq_D48R0101_006, 6
+.equ _EV_scr_seq_D48R0101_007, 7
+.equ _EV_scr_seq_D48R0101_008, 8
+.equ _EV_scr_seq_D48R0101_009, 9
+.equ _EV_scr_seq_D48R0101_010, 10
 
 .equ obj_D48R0101_workman, 0
 .equ obj_D48R0101_workman_2, 1
 .equ obj_D48R0101_middlewoman1_2, 2
 .equ obj_D48R0101_gsleader5, 3
+.equ obj_D48R0101_hack_spec_cramorant, 4
+.equ obj_D48R0101_hack_spec_quagsire, 5
+.equ obj_D48R0101_hack_spec_jellicent, 6
+.equ obj_D48R0101_hack_spec_wugtrio, 7
 
 .endif //SCR_SEQ_D48R0101_H_

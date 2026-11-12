@@ -7,6 +7,8 @@
 .equ _EV_scr_seq_D02R0104_003, 3
 .equ _EV_scr_seq_D02R0104_004, 4
 .equ _EV_scr_seq_D02R0104_005, 5
+.equ _EV_scr_seq_D02R0104_006, 6
+.equ _EV_scr_seq_D02R0104_007, 7
 
 .equ obj_D02R0104_follower_mon_static_clefairy, 0
 .equ obj_D02R0104_follower_mon_static_clefairy_2, 1
@@ -15,5 +17,7 @@
 .equ obj_D02R0104_follower_mon_static_clefairy_5, 4
 .equ obj_D02R0104_follower_mon_static_clefairy_6, 5
 .equ obj_D02R0104_monstarball, 6
+.equ obj_D02R0104_hack_spec_araquanid, 7
+.equ obj_D02R0104_hack_spec_crawdaunt, 8
 
 .endif //SCR_SEQ_D02R0104_H_

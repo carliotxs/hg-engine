@@ -78,6 +78,18 @@ Os scripts de campo (`data/scr_seq/scr_seq_NNNN*.s`), os eventos de cada mapa (`
 
 Os objetos de um mapa vêm do save enquanto o jogador não sai e volta a entrar nesse mapa, por isso num save antigo um estático novo só aparece depois de recarregar o mapa.
 
+## Especialistas de espécie (mirror match)
+
+`hack/scripts/gen_specialists.py` coloca um especialista por cada Pokémon de evolução final ou de fase única cuja família aparece em estado selvagem (389 de 394; os 5 que faltam só existem em zonas sem chão livre e são listados pelo script). Cada um fica numa zona onde a família aparece, com nível igual ao do slot mais forte dessa família na zona mais 3 (e nunca abaixo do nível a que a espécie evolui).
+
+- Só luta se tiveres a mesma espécie na equipa (viva e sem ser ovo). O combate é 1 contra 1: durante a batalha a tua equipa passa a ser só esse Pokémon e volta ao normal no fim, com a EXP, os PS e os PP que ele ganhou ou perdeu
+- O Pokémon do especialista é gerado na hora (espécie e nível pedidos pelo script, IVs máximos), no treinador genérico 738 "Expert" de `data/Trainers.c`
+- Vencer dá um item para a espécie (a Mega Pedra, se existir; senão um item competitivo em rotação) e soma 1 ao contador na var 0x416F. Cada especialista tem a sua flag de "vencido"
+- Lógica em `src/hack_mirror.c` e no script comum 2077; os scripts dos mapas só passam espécie, nível, item e flag. O gerador é idempotente: quem já está colocado não muda de sítio nem de flag
+- Correr depois de `gen_encounters.py`, porque as zonas vêm de `data/Encounters.c`
+
+Atenção ao escrever C para o hack: a `struct Party` (e a `DaycareMon`) dos cabeçalhos do engine são maiores do que as do save por causa do alinhamento. Nunca copiar nem indexar `party->members[]` diretamente; usar `Party_GetMonByIndex`, `PokeCopyPPtoPP` e o tamanho real (8 + 6 x 236 bytes).
+
 ## Testes em jogo
 
 `hack/scripts/test.sh` compila uma ROM de debug (`make HACK_TEST=Y`, guardada em `hack/out/test-debug.nds`) e corre `hack/scripts/ingame_tests.py` no DeSmuME sem janela. A ROM de debug continua o save automaticamente (por omissão o save de testes público do hg-engine, descarregado para `hack/out/test.sav`; `HG_TEST_SAV` aponta para outro).
@@ -95,6 +107,7 @@ Como funciona: o runner escreve o número do cenário num endereço de memória;
 | `exp_share_toggle` | usar a Exp Share na mochila liga e desliga a flag 2602 |
 | `shiny_charm` | estatístico: 3 tentativas com o charm, em selvagens e ofertas (a ROM de teste usa odds 1/32) |
 | `capture_prompt` e variantes `_no`, `_cancel`, `_mail` | apanhar com a equipa cheia: o Pokémon vai para o PC e o prompt aparece no campo. "Sim" troca com o membro escolhido (equipa, PC e Pokémon seguidor verificados); "Não" e cancelar deixam tudo igual; um Pokémon com Mail é recusado com mensagem |
+| `mirror`, `mirror_no_mon` | o especialista do Mantine em Cherrygrove: com um Mantine na equipa luta 1 contra 1, a equipa volta igual, só o Mantine ganha EXP, o item e o contador sobem e não há segunda batalha; sem Mantine só explica a regra |
 | `static_mon` | o Yamper de Cherrygrove: vê-se no mapa, bloqueia o mosaico, a batalha começa, a flag diária fica marcada e ele desaparece |
 | `bike` | usar a Bicicleta na mochila e pedalar: acelera e chega a 2 frames por mosaico |
 | `day_care` | estatístico: rotina de passos da Day Care com compatibilidade 50; Oval Charm sobe os ovos para 80% e o Shiny Charm aplica-se aos ovos |
@@ -121,9 +134,14 @@ Uma feature nova deve trazer o seu cenário: um `HACK_TEST_*` em `include/hack_t
 | Script comum | 2073 | engine: script de debug; em `HACK_TEST` lança a batalha de teste |
 | Script comum | 2074 | liga/desliga a Exp Share |
 | Script comum | 2075 | só faz algo em `HACK_TEST` (loja do 4.º andar de Goldenrod); na ROM normal é um script vazio, para a numeração ser igual |
+| Flags | 2100 a 2399, 2522 a 2599, 2603 a 2719 | reserva para os especialistas de espécie (uma por especialista, atribuídas pelo gerador) |
+| Treinador | 738 | `TRAINER_HACK_MIRROR`: especialista genérico |
+| Var | 0x416F | `HACK_VAR_MIRROR_WINS`: especialistas vencidos |
+| Script comum | 2077 | especialista de espécie (chamado com `callstd` pelos scripts dos mapas; o próximo livre é o 2078) |
 | Script comum | 2076 | prompt "adicionar à equipa" depois de apanhar com a equipa cheia (o próximo livre é o 2077) |
-| Comando de script | 690 (`day_care_sanitize_mon`) | com a var de resultado a 0x4843 à entrada, faz a troca do prompt pós-captura (`HACK_SCRCMD_CAPTURE_SWAP`) |
+| Comando de script | 690 (`day_care_sanitize_mon`) | operações do hack conforme o valor da var de resultado à entrada: 0x4843 troca do prompt pós-captura; 0x4D30 a 0x4D32 mirror match (procurar espécie, começar, terminar) |
 | Texto 040 | 121, 122 | mensagens da Exp Share |
+| Texto 040 | 126 a 130 | especialistas de espécie |
 | Texto 040 | 123 a 125 | prompt pós-captura (pergunta, troca feita, recusa por Mail) |
 | Texto 830 | 217 | descrição da Exp Share (item-chave) |
 | Texto 300 | 226 | mensagem dos Bottle Caps |

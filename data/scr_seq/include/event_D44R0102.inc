@@ -7,6 +7,9 @@
 .equ _EV_scr_seq_D44R0102_003, 3
 .equ _EV_scr_seq_D44R0102_004, 4
 .equ _EV_scr_seq_D44R0102_005, 5
+.equ _EV_scr_seq_D44R0102_006, 6
+.equ _EV_scr_seq_D44R0102_007, 7
+.equ _EV_scr_seq_D44R0102_008, 8
 
 .equ obj_D44R0102_gsleader8, 0
 .equ obj_D44R0102_gsman3, 1
@@ -21,5 +24,8 @@
 .equ obj_D44R0102_var_1, 10
 .equ obj_D44R0102_wataru, 11
 .equ obj_D44R0102_gsleader8_2, 12
+.equ obj_D44R0102_hack_spec_dragonite, 13
+.equ obj_D44R0102_hack_spec_milotic, 14
+.equ obj_D44R0102_hack_spec_gyarados, 15
 
 .endif //SCR_SEQ_D44R0102_H_

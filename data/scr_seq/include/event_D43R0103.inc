@@ -8,6 +8,11 @@
 .equ _EV_scr_seq_D43R0103_004, 4
 .equ _EV_scr_seq_D43R0103_005, 5
 .equ _EV_scr_seq_D43R0103_006, 6
+.equ _EV_scr_seq_D43R0103_007, 7
+.equ _EV_scr_seq_D43R0103_008, 8
+.equ _EV_scr_seq_D43R0103_009, 9
+.equ _EV_scr_seq_D43R0103_010, 10
+.equ _EV_scr_seq_D43R0103_011, 11
 
 .equ obj_D43R0103_gsrivel, 0
 .equ obj_D43R0103_monstarball, 1
@@ -20,5 +25,10 @@
 .equ obj_D43R0103_breakrock_5, 8
 .equ obj_D43R0103_breakrock_6, 9
 .equ obj_D43R0103_breakrock_7, 10
+.equ obj_D43R0103_hack_spec_scrafty, 11
+.equ obj_D43R0103_hack_spec_aggron, 12
+.equ obj_D43R0103_hack_spec_flygon, 13
+.equ obj_D43R0103_hack_spec_lycanroc, 14
+.equ obj_D43R0103_hack_spec_kommo_o, 15
 
 .endif //SCR_SEQ_D43R0103_H_

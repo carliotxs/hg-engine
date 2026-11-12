@@ -272,6 +272,40 @@
       "x": 482,
       "z": 241,
       "y": 0
+    },
+    {
+      "id": "obj_T22_hack_spec_politoed",
+      "graphics_id": "SPRITE_GSBOY3",
+      "movement_type": 0,
+      "trainer_type": 0,
+      "hidden_flag": "FLAG_NOTHING",
+      "script": "_EV_scr_seq_T22_015 + 1",
+      "initial_dir": 1,
+      "param0": 0,
+      "param1": 0,
+      "param2": 0,
+      "movement_range_x": 0,
+      "movement_range_z": 0,
+      "x": 474,
+      "z": 264,
+      "y": 0
+    },
+    {
+      "id": "obj_T22_hack_spec_seismitoad",
+      "graphics_id": "SPRITE_WOMAN3",
+      "movement_type": 0,
+      "trainer_type": 0,
+      "hidden_flag": "FLAG_NOTHING",
+      "script": "_EV_scr_seq_T22_016 + 1",
+      "initial_dir": 1,
+      "param0": 0,
+      "param1": 0,
+      "param2": 0,
+      "movement_range_x": 0,
+      "movement_range_z": 0,
+      "x": 469,
+      "z": 264,
+      "y": 0
     }
   ],
   "warp_events": [

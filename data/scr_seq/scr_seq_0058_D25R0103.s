@@ -30,6 +30,11 @@
 scrdef scr_seq_D25R0103_000
 scrdef scr_seq_D25R0103_001
 scrdef scr_seq_D25R0103_002
+scrdef scr_seq_D25R0103_003
+scrdef scr_seq_D25R0103_004
+scrdef scr_seq_D25R0103_005
+scrdef scr_seq_D25R0103_006
+scrdef scr_seq_D25R0103_007
 scrdef_end
 
 scr_seq_D25R0103_002:
@@ -77,5 +82,45 @@ scr_seq_D25R0103_000:
 _008F:
 	white_out
 	releaseall
+	end
+// hack: HEATMOR specialist (hack/scripts/gen_specialists.py)
+scr_seq_D25R0103_003:
+	setvar VAR_SPECIAL_x8004, SPECIES_HEATMOR
+	setvar VAR_SPECIAL_x8005, 24
+	setvar VAR_SPECIAL_x8006, ITEM_WEAKNESS_POLICY
+	setvar VAR_SPECIAL_x8007, 2177
+	callstd 2077
+	end
+// hack: ORTHWORM specialist (hack/scripts/gen_specialists.py)
+scr_seq_D25R0103_004:
+	setvar VAR_SPECIAL_x8004, SPECIES_ORTHWORM
+	setvar VAR_SPECIAL_x8005, 25
+	setvar VAR_SPECIAL_x8006, ITEM_EVIOLITE
+	setvar VAR_SPECIAL_x8007, 2192
+	callstd 2077
+	end
+// hack: KROOKODILE specialist (hack/scripts/gen_specialists.py)
+scr_seq_D25R0103_005:
+	setvar VAR_SPECIAL_x8004, SPECIES_KROOKODILE
+	setvar VAR_SPECIAL_x8005, 40
+	setvar VAR_SPECIAL_x8006, ITEM_BRIGHT_POWDER
+	setvar VAR_SPECIAL_x8007, 2321
+	callstd 2077
+	end
+// hack: MIENSHAO specialist (hack/scripts/gen_specialists.py)
+scr_seq_D25R0103_006:
+	setvar VAR_SPECIAL_x8004, SPECIES_MIENSHAO
+	setvar VAR_SPECIAL_x8005, 50
+	setvar VAR_SPECIAL_x8006, ITEM_LUM_BERRY
+	setvar VAR_SPECIAL_x8007, 2648
+	callstd 2077
+	end
+// hack: BIBAREL specialist (hack/scripts/gen_specialists.py)
+scr_seq_D25R0103_007:
+	setvar VAR_SPECIAL_x8004, SPECIES_BIBAREL
+	setvar VAR_SPECIAL_x8005, 28
+	setvar VAR_SPECIAL_x8006, ITEM_ASSAULT_VEST
+	setvar VAR_SPECIAL_x8007, 2670
+	callstd 2077
 	end
 	.balign 4

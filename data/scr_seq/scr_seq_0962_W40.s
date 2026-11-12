@@ -37,6 +37,9 @@ scrdef scr_seq_W40_006
 scrdef scr_seq_W40_007
 scrdef scr_seq_W40_008
 scrdef scr_seq_W40_009
+scrdef scr_seq_W40_010
+scrdef scr_seq_W40_011
+scrdef scr_seq_W40_012
 scrdef_end
 
 scr_seq_W40_000:
@@ -320,5 +323,29 @@ scr_seq_W40_005:
 
 scr_seq_W40_006:
 	simple_npc_msg 9
+	end
+// hack: KINGLER specialist (hack/scripts/gen_specialists.py)
+scr_seq_W40_010:
+	setvar VAR_SPECIAL_x8004, SPECIES_KINGLER
+	setvar VAR_SPECIAL_x8005, 43
+	setvar VAR_SPECIAL_x8006, ITEM_BRIGHT_POWDER
+	setvar VAR_SPECIAL_x8007, 2625
+	callstd 2077
+	end
+// hack: PALAFIN specialist (hack/scripts/gen_specialists.py)
+scr_seq_W40_011:
+	setvar VAR_SPECIAL_x8004, SPECIES_PALAFIN
+	setvar VAR_SPECIAL_x8005, 38
+	setvar VAR_SPECIAL_x8006, ITEM_EXPERT_BELT
+	setvar VAR_SPECIAL_x8007, 2659
+	callstd 2077
+	end
+// hack: WISHIWASHI specialist (hack/scripts/gen_specialists.py)
+scr_seq_W40_012:
+	setvar VAR_SPECIAL_x8004, SPECIES_WISHIWASHI
+	setvar VAR_SPECIAL_x8005, 13
+	setvar VAR_SPECIAL_x8006, ITEM_MUSCLE_BAND
+	setvar VAR_SPECIAL_x8007, 2663
+	callstd 2077
 	end
 	.balign 4

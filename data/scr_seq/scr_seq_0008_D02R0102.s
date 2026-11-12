@@ -28,6 +28,10 @@
 
 
 scrdef scr_seq_D02R0102_000
+scrdef scr_seq_D02R0102_001
+scrdef scr_seq_D02R0102_002
+scrdef scr_seq_D02R0102_003
+scrdef scr_seq_D02R0102_004
 scrdef_end
 
 scr_seq_D02R0102_000:
@@ -83,4 +87,36 @@ _00CB:
 	end
 
 	.byte 0x02, 0x00, 0x00
+// hack: MAWILE specialist (hack/scripts/gen_specialists.py)
+scr_seq_D02R0102_001:
+	setvar VAR_SPECIAL_x8004, SPECIES_MAWILE
+	setvar VAR_SPECIAL_x8005, 11
+	setvar VAR_SPECIAL_x8006, ITEM_MAWILITE
+	setvar VAR_SPECIAL_x8007, 2293
+	callstd 2077
+	end
+// hack: CONKELDURR specialist (hack/scripts/gen_specialists.py)
+scr_seq_D02R0102_002:
+	setvar VAR_SPECIAL_x8004, SPECIES_CONKELDURR
+	setvar VAR_SPECIAL_x8005, 25
+	setvar VAR_SPECIAL_x8006, ITEM_BOTTLE_CAP
+	setvar VAR_SPECIAL_x8007, 2318
+	callstd 2077
+	end
+// hack: SABLEYE specialist (hack/scripts/gen_specialists.py)
+scr_seq_D02R0102_003:
+	setvar VAR_SPECIAL_x8004, SPECIES_SABLEYE
+	setvar VAR_SPECIAL_x8005, 11
+	setvar VAR_SPECIAL_x8006, ITEM_PP_UP
+	setvar VAR_SPECIAL_x8007, 2394
+	callstd 2077
+	end
+// hack: EMBOAR specialist (hack/scripts/gen_specialists.py)
+scr_seq_D02R0102_004:
+	setvar VAR_SPECIAL_x8004, SPECIES_EMBOAR
+	setvar VAR_SPECIAL_x8005, 36
+	setvar VAR_SPECIAL_x8006, ITEM_EMBOARITE
+	setvar VAR_SPECIAL_x8007, 2646
+	callstd 2077
+	end
 	.balign 4

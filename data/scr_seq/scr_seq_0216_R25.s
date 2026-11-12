@@ -37,6 +37,12 @@ scrdef scr_seq_R25_006
 scrdef scr_seq_R25_007
 scrdef scr_seq_R25_008
 scrdef scr_seq_R25_009
+scrdef scr_seq_R25_010
+scrdef scr_seq_R25_011
+scrdef scr_seq_R25_012
+scrdef scr_seq_R25_013
+scrdef scr_seq_R25_014
+scrdef scr_seq_R25_015
 scrdef_end
 
 scr_seq_R25_003:
@@ -661,5 +667,53 @@ scr_seq_R25_002:
 	scrcmd_058
 	trainer_tips 15, VAR_SPECIAL_RESULT
 	callstd std_signpost
+	end
+// hack: VENOMOTH specialist (hack/scripts/gen_specialists.py)
+scr_seq_R25_010:
+	setvar VAR_SPECIAL_x8004, SPECIES_VENOMOTH
+	setvar VAR_SPECIAL_x8005, 31
+	setvar VAR_SPECIAL_x8006, ITEM_HEAVY_DUTY_BOOTS
+	setvar VAR_SPECIAL_x8007, 2155
+	callstd 2077
+	end
+// hack: BLASTOISE specialist (hack/scripts/gen_specialists.py)
+scr_seq_R25_011:
+	setvar VAR_SPECIAL_x8004, SPECIES_BLASTOISE
+	setvar VAR_SPECIAL_x8005, 36
+	setvar VAR_SPECIAL_x8006, ITEM_WEAKNESS_POLICY
+	setvar VAR_SPECIAL_x8007, 2279
+	callstd 2077
+	end
+// hack: SWAMPERT specialist (hack/scripts/gen_specialists.py)
+scr_seq_R25_012:
+	setvar VAR_SPECIAL_x8004, SPECIES_SWAMPERT
+	setvar VAR_SPECIAL_x8005, 36
+	setvar VAR_SPECIAL_x8006, ITEM_SWAMPERTITE
+	setvar VAR_SPECIAL_x8007, 2289
+	callstd 2077
+	end
+// hack: GRENINJA specialist (hack/scripts/gen_specialists.py)
+scr_seq_R25_013:
+	setvar VAR_SPECIAL_x8004, SPECIES_GRENINJA
+	setvar VAR_SPECIAL_x8005, 36
+	setvar VAR_SPECIAL_x8006, ITEM_GRENINJITE
+	setvar VAR_SPECIAL_x8007, 2329
+	callstd 2077
+	end
+// hack: BELLOSSOM specialist (hack/scripts/gen_specialists.py)
+scr_seq_R25_014:
+	setvar VAR_SPECIAL_x8004, SPECIES_BELLOSSOM
+	setvar VAR_SPECIAL_x8005, 21
+	setvar VAR_SPECIAL_x8006, ITEM_SCOPE_LENS
+	setvar VAR_SPECIAL_x8007, 2352
+	callstd 2077
+	end
+// hack: GOURGEIST specialist (hack/scripts/gen_specialists.py)
+scr_seq_R25_015:
+	setvar VAR_SPECIAL_x8004, SPECIES_GOURGEIST
+	setvar VAR_SPECIAL_x8005, 11
+	setvar VAR_SPECIAL_x8006, ITEM_FOCUS_SASH
+	setvar VAR_SPECIAL_x8007, 2620
+	callstd 2077
 	end
 	.balign 4
