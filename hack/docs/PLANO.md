@@ -18,7 +18,7 @@ Legenda: ✅ feito · 🔨 em curso · ⏳ por fazer · 🔬 precisa de investig
 | Shiny Charm funcional | ✅ testado | +2 tentativas em selvagens, ofertas e ovos da Day Care (acumula com o método Masuda) |
 | Oval Charm funcional | ✅ testado | Probabilidade de ovo a cada 256 passos: 20/50/70% passam a 40/80/88%, como na Gen 5+. `src/hack_daycare.c` |
 | Bicicleta mais rápida | ✅ testado | Velocidade máxima a dobrar (2 frames por mosaico em vez de 4), com a mesma aceleração inicial. A rotina está no arm9 (0205D658), não no overlay; são 2 bytes em `bytereplacement`. Falta ver em jogo real as transições entre mapas a esta velocidade |
-| Adicionar à equipa depois de apanhar | 🔬 | Prompt "adicionar à equipa / enviar para o PC" quando a equipa está cheia. Mexe na sequência pós-captura do overlay de batalha (pergunta Sim/Não e escolha do Pokémon que sai); fica para um PR próprio |
+| Adicionar à equipa depois de apanhar | ✅ testado | Com a equipa cheia, o Pokémon vai para o PC como sempre e, de volta ao campo, aparece a pergunta; com "Sim" escolhe-se o membro da equipa que troca de lugar com ele. Feito fora da batalha (`src/hack_capture.c` e script comum 2076), sem mexer na sequência de captura. Limitações: se o trocado for o primeiro da equipa, o Pokémon que segue o jogador só atualiza ao mudar de mapa; não se aplica a ofertas enviadas para o PC |
 
 ## Fase 2: Pokédex e mundo
 

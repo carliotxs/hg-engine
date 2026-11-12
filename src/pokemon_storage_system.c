@@ -1,4 +1,5 @@
 #include "../include/pokemon_storage_system.h"
+#include "../include/hack_capture.h"
 
 #include "../include/config.h"
 #include "../include/constants/species.h"
@@ -92,6 +93,9 @@ BOOL PCStorage_PlaceMonInBoxFirstEmptySlot(PCStorage *storage, u32 boxno, struct
         if (GetBoxMonData(&storage->boxes[boxno].mons[i], MON_DATA_SPECIES, NULL) == SPECIES_NONE) {
             storage->boxes[boxno].mons[i] = *boxMon;
             PCStorage_SetBoxModified(storage, boxno);
+#ifdef HACK_CAPTURE_PARTY_PROMPT
+            HackCapture_OnStored(storage, boxno, i);
+#endif
             return TRUE;
         }
     }

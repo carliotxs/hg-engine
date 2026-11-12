@@ -121,3 +121,5 @@ You used the {STRVAR_1 8, 1, 0}.
 Begin auto-battle.
 The Exp. Share was turned on.\rYour whole party will now gain\nExp. Points!
 The Exp. Share was turned off.\rOnly the Pokémon that battle\nwill gain Exp. Points.
+Your party is full, so the Pokémon\nyou caught was sent to the PC.\rDo you want it in your party\ninstead?
+The two Pokémon switched places!
