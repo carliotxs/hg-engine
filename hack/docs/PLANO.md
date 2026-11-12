@@ -40,7 +40,7 @@ Decisões de design fechadas:
 Trabalho, por ordem:
 
 1. ✅ Líderes de Johto, Elite Four e Lance: equipas novas com golpes e itens, tipos originais, ás 2 a 4 níveis acima do original (`hack/scripts/gen_trainer_teams.py`). Testado em jogo o Falkner; faltam os líderes de Kanto, o Blue, o Red e as desforras
-2. ⏳ Equipa Rocket reforçada: grunts, admins e Giovanni com equipas novas e mais confrontos (Radio Tower, Lago da Fúria, Mahogany)
+2. ✅ Equipa Rocket reforçada: executivos e Giovanni com equipas completas (+3 níveis), 38 recrutas melhorados automaticamente e 5 recrutas novos (Route 43, Lago da Fúria, Mahogany e 2 em Goldenrod durante a tomada da Radio Tower). Por testar em jogo: os recrutas novos só aparecem a meio da história. Falta um confronto novo com um executivo no Lago da Fúria, se se quiser mais do que recrutas
 3. ⏳ Korrina no Farol: personagem, combate, Key Stone e Ampharosite; ativar a Mega Evolução (flag 2518)
 4. ⏳ Rival: os 3 confrontos novos e equipas a condizer
 5. ⏳ Outras equipas na história: Equipa Galactic nas Ruínas de Alph e de Sinjoh, Equipa Plasma em Ilex

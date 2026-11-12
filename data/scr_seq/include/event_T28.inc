@@ -10,10 +10,12 @@
 .equ _EV_scr_seq_T28_006, 6
 .equ _EV_scr_seq_T28_007, 7
 .equ _EV_scr_seq_T28_008, 8
+.equ _EV_scr_seq_T28_009, 9
 
 .equ obj_T28_gsmiddleman1, 0
 .equ obj_T28_gsoldman1, 1
 .equ obj_T28_gsbigman, 2
 .equ obj_T28_gsgirl1, 3
+.equ obj_T28_hack_rocket_741, 4
 
 .endif //SCR_SEQ_T28_H_

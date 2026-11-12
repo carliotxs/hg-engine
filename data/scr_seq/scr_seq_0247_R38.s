@@ -84,7 +84,7 @@ scr_seq_R38_004:
 	setvar VAR_SPECIAL_x8004, SPECIES_MAGNEZONE
 	setvar VAR_SPECIAL_x8005, 30
 	setvar VAR_SPECIAL_x8006, ITEM_SCOPE_LENS
-	setvar VAR_SPECIAL_x8007, 2122
+	setvar VAR_SPECIAL_x8007, 2575
 	callstd 2077
 	end
 // hack: TOXTRICITY specialist (hack/scripts/gen_specialists.py)

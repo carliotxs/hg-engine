@@ -228,7 +228,7 @@ scr_seq_R03_005:
 	setvar VAR_SPECIAL_x8004, SPECIES_WIGGLYTUFF
 	setvar VAR_SPECIAL_x8005, 9
 	setvar VAR_SPECIAL_x8006, ITEM_MUSCLE_BAND
-	setvar VAR_SPECIAL_x8007, 2102
+	setvar VAR_SPECIAL_x8007, 2549
 	callstd 2077
 	end
 // hack: DARMANITAN specialist (hack/scripts/gen_specialists.py)

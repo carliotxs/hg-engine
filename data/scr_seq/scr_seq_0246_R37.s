@@ -158,7 +158,7 @@ scr_seq_R37_004:
 	setvar VAR_SPECIAL_x8004, SPECIES_WYRDEER
 	setvar VAR_SPECIAL_x8005, 18
 	setvar VAR_SPECIAL_x8006, ITEM_ABILITY_CAPSULE
-	setvar VAR_SPECIAL_x8007, 2146
+	setvar VAR_SPECIAL_x8007, 2574
 	callstd 2077
 	end
 // hack: SCEPTILE specialist (hack/scripts/gen_specialists.py)

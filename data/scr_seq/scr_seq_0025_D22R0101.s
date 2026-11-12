@@ -544,7 +544,7 @@ scr_seq_D22R0101_027:
 	setvar VAR_SPECIAL_x8004, SPECIES_TORTERRA
 	setvar VAR_SPECIAL_x8005, 32
 	setvar VAR_SPECIAL_x8006, ITEM_ABILITY_CAPSULE
-	setvar VAR_SPECIAL_x8007, 2171
+	setvar VAR_SPECIAL_x8007, 2698
 	callstd 2077
 	end
 // hack: SERPERIOR specialist (hack/scripts/gen_specialists.py)
@@ -552,7 +552,7 @@ scr_seq_D22R0101_028:
 	setvar VAR_SPECIAL_x8004, SPECIES_SERPERIOR
 	setvar VAR_SPECIAL_x8005, 36
 	setvar VAR_SPECIAL_x8006, ITEM_BRIGHT_POWDER
-	setvar VAR_SPECIAL_x8007, 2172
+	setvar VAR_SPECIAL_x8007, 2699
 	callstd 2077
 	end
 // hack: DECIDUEYE specialist (hack/scripts/gen_specialists.py)
@@ -560,7 +560,7 @@ scr_seq_D22R0101_029:
 	setvar VAR_SPECIAL_x8004, SPECIES_DECIDUEYE
 	setvar VAR_SPECIAL_x8005, 34
 	setvar VAR_SPECIAL_x8006, ITEM_AIR_BALLOON
-	setvar VAR_SPECIAL_x8007, 2181
+	setvar VAR_SPECIAL_x8007, 2700
 	callstd 2077
 	end
 // hack: FLAPPLE specialist (hack/scripts/gen_specialists.py)
@@ -568,7 +568,7 @@ scr_seq_D22R0101_030:
 	setvar VAR_SPECIAL_x8004, SPECIES_FLAPPLE
 	setvar VAR_SPECIAL_x8005, 15
 	setvar VAR_SPECIAL_x8006, ITEM_RARE_CANDY
-	setvar VAR_SPECIAL_x8007, 2186
+	setvar VAR_SPECIAL_x8007, 2701
 	callstd 2077
 	end
 // hack: TOEDSCRUEL specialist (hack/scripts/gen_specialists.py)
@@ -576,7 +576,7 @@ scr_seq_D22R0101_031:
 	setvar VAR_SPECIAL_x8004, SPECIES_TOEDSCRUEL
 	setvar VAR_SPECIAL_x8005, 30
 	setvar VAR_SPECIAL_x8006, ITEM_RED_CARD
-	setvar VAR_SPECIAL_x8007, 2189
+	setvar VAR_SPECIAL_x8007, 2702
 	callstd 2077
 	end
 // hack: RABSCA specialist (hack/scripts/gen_specialists.py)
@@ -584,7 +584,7 @@ scr_seq_D22R0101_032:
 	setvar VAR_SPECIAL_x8004, SPECIES_RABSCA
 	setvar VAR_SPECIAL_x8005, 17
 	setvar VAR_SPECIAL_x8006, ITEM_BOTTLE_CAP
-	setvar VAR_SPECIAL_x8007, 2191
+	setvar VAR_SPECIAL_x8007, 2703
 	callstd 2077
 	end
 // hack: ILLUMISE specialist (hack/scripts/gen_specialists.py)

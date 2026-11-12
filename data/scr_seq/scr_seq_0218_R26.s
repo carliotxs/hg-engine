@@ -192,7 +192,7 @@ scr_seq_R26_004:
 	setvar VAR_SPECIAL_x8004, SPECIES_STONJOURNER
 	setvar VAR_SPECIAL_x8005, 33
 	setvar VAR_SPECIAL_x8006, ITEM_LEFTOVERS
-	setvar VAR_SPECIAL_x8007, 2188
+	setvar VAR_SPECIAL_x8007, 2560
 	callstd 2077
 	end
 // hack: DODRIO specialist (hack/scripts/gen_specialists.py)
@@ -200,7 +200,7 @@ scr_seq_R26_005:
 	setvar VAR_SPECIAL_x8004, SPECIES_DODRIO
 	setvar VAR_SPECIAL_x8005, 31
 	setvar VAR_SPECIAL_x8006, ITEM_LIFE_ORB
-	setvar VAR_SPECIAL_x8007, 2195
+	setvar VAR_SPECIAL_x8007, 2561
 	callstd 2077
 	end
 // hack: ARBOLIVA specialist (hack/scripts/gen_specialists.py)

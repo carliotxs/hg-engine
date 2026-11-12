@@ -741,5 +741,10 @@
 .equ TRAINER_PARTNER_RIVAL_2, 736
 .equ TRAINER_PARTNER_RIVAL_3, 737
 .equ TRAINER_HACK_MIRROR, 738 // hack: generic species specialist
+.equ TRAINER_HACK_739, 739 // hack: Grunt
+.equ TRAINER_HACK_740, 740 // hack: Grunt
+.equ TRAINER_HACK_741, 741 // hack: Grunt
+.equ TRAINER_HACK_742, 742 // hack: Grunt
+.equ TRAINER_HACK_743, 743 // hack: Grunt
 
 .endif

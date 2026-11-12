@@ -48,6 +48,7 @@ scrdef scr_seq_T29_017
 scrdef scr_seq_T29_018
 scrdef scr_seq_T29_019
 scrdef scr_seq_T29_020
+scrdef scr_seq_T29_021
 scrdef_end
 
 scr_seq_T29_000:
@@ -604,5 +605,25 @@ scr_seq_T29_020:
 	setvar VAR_SPECIAL_x8006, ITEM_QUICK_CLAW
 	setvar VAR_SPECIAL_x8007, 2688
 	callstd 2077
+	end
+// hack: extra Team Rocket grunt, Lake of Rage, until the Mahogany hideout is cleared (hack/scripts/gen_rocket.py)
+scr_seq_T29_021:
+	setvar VAR_SPECIAL_x8007, 2596
+	callstd 2078
+	compare VAR_SPECIAL_RESULT, 0
+	goto_if_eq scr_seq_T29_021_end
+	trainer_battle TRAINER_HACK_740, 0, 0, 0
+	check_battle_won VAR_SPECIAL_RESULT
+	compare VAR_SPECIAL_RESULT, 0
+	goto_if_eq scr_seq_T29_021_lost
+	setflag 2596
+	callstd 2079
+scr_seq_T29_021_end:
+	releaseall
+	end
+
+scr_seq_T29_021_lost:
+	white_out
+	releaseall
 	end
 	.balign 4

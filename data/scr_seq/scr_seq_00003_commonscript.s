@@ -103,6 +103,8 @@ scrdef scr_seq_0003_074_expshare
 scrdef scr_seq_0003_075_hack_test_shop
 scrdef scr_seq_0003_076_capture_prompt
 scrdef scr_seq_0003_077_mirror_specialist
+scrdef scr_seq_0003_078_rocket_grunt
+scrdef scr_seq_0003_079_rocket_grunt_beaten
 scrdef_end
 
 scr_seq_0003_002:
@@ -1901,5 +1903,36 @@ scr_seq_0003_077_close:
 scr_seq_0003_077_lost:
     white_out
     releaseall
+    endstd
+    end
+
+// hack: extra Team Rocket grunts (hack/scripts/gen_rocket.py), called with callstd from the map scripts.
+// 2078: in VAR_SPECIAL_x8007 the defeated flag of the grunt; out VAR_SPECIAL_RESULT, 1 if the battle should start
+scr_seq_0003_078_rocket_grunt:
+    play_se SEQ_SE_DP_SELECT
+    lockall
+    faceplayer
+    checkflagvar VAR_SPECIAL_x8007, VAR_SPECIAL_RESULT
+    compare VAR_SPECIAL_RESULT, 1
+    goto_if_eq scr_seq_0003_078_beaten
+    npc_msg 131
+    closemsg
+    setvar VAR_SPECIAL_RESULT, 1
+    endstd
+    end
+
+scr_seq_0003_078_beaten:
+    npc_msg 133
+    wait_button_or_walk_away
+    closemsg
+    setvar VAR_SPECIAL_RESULT, 0
+    endstd
+    end
+
+// 2079: what the grunt says right after losing
+scr_seq_0003_079_rocket_grunt_beaten:
+    npc_msg 132
+    wait_button_or_walk_away
+    closemsg
     endstd
     end

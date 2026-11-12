@@ -39,7 +39,9 @@ LEVEL_BONUS = 3               # levels above the strongest wild member of the fa
 MAX_LEVEL = 80
 
 # unused script flags (hack/README.md): one per specialist, set when it is beaten
-FLAG_POOL = [*range(2100, 2400), *range(2603, 2720), *range(2522, 2600)]
+# 2098 to 2199 are kept for the defeated flags of new trainers (TRAINER_FLAG_BASE 1360 + trainer id),
+# 2595 to 2599 for story NPCs of the hack
+FLAG_POOL = [*range(2200, 2400), *range(2603, 2720), *range(2522, 2595)]
 
 # where a specialist must stand close to a known spot: Cherrygrove City, for the in-game test
 NEAR = {"T21": (566, 402)}
@@ -157,11 +159,11 @@ class MapFiles:
             self.valid = "scrdef_end" in self.script and "\t.balign 4" in self.script and "_EV_scr_seq_" in self.inc
             self.dirty = False
 
-    def add(self, obj, sprite, x, z, code_template, **values):
+    def add(self, obj, sprite, x, z, code_template, hidden_flag="FLAG_NOTHING", **values):
         number = len(re.findall(r"^scrdef scr_seq_", self.script, re.M))
         label = f"scr_seq_{self.name}_{number:03d}"
         self.events.setdefault("object_events", []).append({
-            "id": obj, "graphics_id": sprite, "movement_type": 0, "trainer_type": 0, "hidden_flag": "FLAG_NOTHING",
+            "id": obj, "graphics_id": sprite, "movement_type": 0, "trainer_type": 0, "hidden_flag": hidden_flag,
             "script": f"_EV_{label} + 1", "initial_dir": 1, "param0": 0, "param1": 0, "param2": 0,
             "movement_range_x": 0, "movement_range_z": 0, "x": x, "z": z, "y": 0,
         })
@@ -175,7 +177,7 @@ class MapFiles:
                                         last_script + f".equ _EV_{label}, {number}\n\n.equ {obj}, 0\n", 1)
         self.script = self.script.replace("scrdef_end", f"scrdef {label}\nscrdef_end", 1)
         head, separator, tail = self.script.rpartition("\t.balign 4")
-        self.script = head + code_template.format(label=label, **values).lstrip("\n") + separator + tail
+        self.script = head + code_template.format(label=label, obj=obj, **values).lstrip("\n") + separator + tail
         self.dirty = True
         return label
 
@@ -284,7 +286,7 @@ def main():
     todo = [species for species in wanted if species not in placed]
     print(f"specialists wanted: {len(wanted)}, already placed: {len(placed)}, to place: {len(todo)}, free flags: {len(free_flags)}")
     if len(todo) > len(free_flags):
-        sys.exit("not enough free flags")
+        print(f"only {len(free_flags)} free flags: {len(todo) - len(free_flags)} specialists stay out until more flags are reserved")
 
     # species with few possible zones choose first; every species goes to its least crowded map
     todo.sort(key=lambda s: (len(family_zones[root(s)]), species_ids[s]))
@@ -307,6 +309,8 @@ def main():
                 item = mega_stone(species) or ITEMS[index % len(ITEMS)]
                 if item not in item_names:
                     item = "RARE_CANDY"
+                if not free_flags:
+                    break
                 flag = free_flags.pop(0)
                 map_files.add(f"obj_{name}_hack_spec_{species.lower()}", SPRITES[index % len(SPRITES)], spot[1], spot[2],
                               SCRIPT, species=species, level=level, item=item, flag=flag)

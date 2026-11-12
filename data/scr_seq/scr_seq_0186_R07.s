@@ -59,7 +59,7 @@ scr_seq_R07_002:
 	setvar VAR_SPECIAL_x8004, SPECIES_HONCHKROW
 	setvar VAR_SPECIAL_x8005, 20
 	setvar VAR_SPECIAL_x8006, ITEM_EVIOLITE
-	setvar VAR_SPECIAL_x8007, 2119
+	setvar VAR_SPECIAL_x8007, 2551
 	callstd 2077
 	end
 // hack: SUDOWOODO specialist (hack/scripts/gen_specialists.py)

@@ -22,6 +22,7 @@
 .equ _EV_scr_seq_T29_018, 18
 .equ _EV_scr_seq_T29_019, 19
 .equ _EV_scr_seq_T29_020, 20
+.equ _EV_scr_seq_T29_021, 21
 
 .equ obj_T29_gsoldman1, 0
 .equ obj_T29_gswoman1, 1
@@ -46,5 +47,6 @@
 .equ obj_T29_gsleader7, 20
 .equ obj_T29_hack_spec_ludicolo, 21
 .equ obj_T29_hack_spec_drednaw, 22
+.equ obj_T29_hack_rocket_740, 23
 
 .endif //SCR_SEQ_T29_H_

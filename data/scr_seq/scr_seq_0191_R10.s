@@ -245,7 +245,7 @@ scr_seq_R10_007:
 	setvar VAR_SPECIAL_x8004, SPECIES_ELECTRODE
 	setvar VAR_SPECIAL_x8005, 30
 	setvar VAR_SPECIAL_x8006, ITEM_KINGS_ROCK
-	setvar VAR_SPECIAL_x8007, 2105
+	setvar VAR_SPECIAL_x8007, 2552
 	callstd 2077
 	end
 // hack: ELECTIVIRE specialist (hack/scripts/gen_specialists.py)
@@ -253,7 +253,7 @@ scr_seq_R10_008:
 	setvar VAR_SPECIAL_x8004, SPECIES_ELECTIVIRE
 	setvar VAR_SPECIAL_x8005, 30
 	setvar VAR_SPECIAL_x8006, ITEM_AIR_BALLOON
-	setvar VAR_SPECIAL_x8007, 2124
+	setvar VAR_SPECIAL_x8007, 2553
 	callstd 2077
 	end
 // hack: LOKIX specialist (hack/scripts/gen_specialists.py)

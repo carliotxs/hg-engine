@@ -265,6 +265,23 @@
       "x": 536,
       "z": 146,
       "y": 0
+    },
+    {
+      "id": "obj_R43_hack_rocket_739",
+      "graphics_id": "SPRITE_ROCKETM",
+      "movement_type": 0,
+      "trainer_type": 0,
+      "hidden_flag": "FLAG_HIDE_ROUTE_43_GATE_ROCKETS",
+      "script": "_EV_scr_seq_R43_009 + 1",
+      "initial_dir": 1,
+      "param0": 0,
+      "param1": 0,
+      "param2": 0,
+      "movement_range_x": 0,
+      "movement_range_z": 0,
+      "x": 535,
+      "z": 149,
+      "y": 0
     }
   ],
   "warp_events": [

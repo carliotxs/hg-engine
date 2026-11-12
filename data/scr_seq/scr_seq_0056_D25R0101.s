@@ -42,7 +42,7 @@ scr_seq_D25R0101_001:
 	setvar VAR_SPECIAL_x8004, SPECIES_SANDSLASH
 	setvar VAR_SPECIAL_x8005, 22
 	setvar VAR_SPECIAL_x8006, ITEM_LEFTOVERS
-	setvar VAR_SPECIAL_x8007, 2193
+	setvar VAR_SPECIAL_x8007, 2714
 	callstd 2077
 	end
 // hack: HARIYAMA specialist (hack/scripts/gen_specialists.py)

@@ -83,7 +83,7 @@ scr_seq_R44_004:
 	setvar VAR_SPECIAL_x8004, SPECIES_LICKILICKY
 	setvar VAR_SPECIAL_x8005, 27
 	setvar VAR_SPECIAL_x8006, ITEM_BRIGHT_POWDER
-	setvar VAR_SPECIAL_x8007, 2123
+	setvar VAR_SPECIAL_x8007, 2578
 	callstd 2077
 	end
 // hack: YANMEGA specialist (hack/scripts/gen_specialists.py)
@@ -91,7 +91,7 @@ scr_seq_R44_005:
 	setvar VAR_SPECIAL_x8004, SPECIES_YANMEGA
 	setvar VAR_SPECIAL_x8005, 27
 	setvar VAR_SPECIAL_x8006, ITEM_HEAVY_DUTY_BOOTS
-	setvar VAR_SPECIAL_x8007, 2125
+	setvar VAR_SPECIAL_x8007, 2579
 	callstd 2077
 	end
 // hack: TANGROWTH specialist (hack/scripts/gen_specialists.py)

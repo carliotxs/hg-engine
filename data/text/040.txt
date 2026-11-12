@@ -129,3 +129,6 @@ You understand {STRVAR_1 0, 0, 0}\nbetter than I do.\rTake this. It suits it.
 {STRVAR_1 0, 0, 0} and I are still\ntraining. You were the better pair.
 I’m the {STRVAR_1 0, 0, 0} specialist.\rI only battle Trainers who bring\na {STRVAR_1 0, 0, 0} of their own.
 You received the {STRVAR_1 8, 1, 0}!
+Hey! Team Rocket has business here.\nKids who snoop around get hurt!
+Ugh... Fine, you win.\rBut you can’t stop what’s already\nbeen set in motion!
+Don’t tell the boss I lost to a kid...

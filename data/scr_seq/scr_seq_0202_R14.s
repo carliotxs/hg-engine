@@ -540,7 +540,7 @@ scr_seq_R14_006:
 	setvar VAR_SPECIAL_x8004, SPECIES_JUMPLUFF
 	setvar VAR_SPECIAL_x8005, 29
 	setvar VAR_SPECIAL_x8006, ITEM_HEAVY_DUTY_BOOTS
-	setvar VAR_SPECIAL_x8007, 2198
+	setvar VAR_SPECIAL_x8007, 2555
 	callstd 2077
 	end
 // hack: HAWLUCHA specialist (hack/scripts/gen_specialists.py)

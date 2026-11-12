@@ -901,7 +901,7 @@ scr_seq_R34_014:
 	setvar VAR_SPECIAL_x8004, SPECIES_ALAKAZAM
 	setvar VAR_SPECIAL_x8005, 16
 	setvar VAR_SPECIAL_x8006, ITEM_ALAKAZITE
-	setvar VAR_SPECIAL_x8007, 2157
+	setvar VAR_SPECIAL_x8007, 2569
 	callstd 2077
 	end
 // hack: HYPNO specialist (hack/scripts/gen_specialists.py)
@@ -909,7 +909,7 @@ scr_seq_R34_015:
 	setvar VAR_SPECIAL_x8004, SPECIES_HYPNO
 	setvar VAR_SPECIAL_x8005, 26
 	setvar VAR_SPECIAL_x8006, ITEM_WISE_GLASSES
-	setvar VAR_SPECIAL_x8007, 2159
+	setvar VAR_SPECIAL_x8007, 2570
 	callstd 2077
 	end
 // hack: DELCATTY specialist (hack/scripts/gen_specialists.py)

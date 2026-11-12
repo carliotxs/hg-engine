@@ -34,6 +34,8 @@
 .equ _EV_scr_seq_T25_030, 30
 .equ _EV_scr_seq_T25_031, 31
 .equ _EV_scr_seq_T25_032, 32
+.equ _EV_scr_seq_T25_033, 33
+.equ _EV_scr_seq_T25_034, 34
 
 .equ obj_T25_gswoman2, 0
 .equ obj_T25_gsoldman1, 1
@@ -56,5 +58,7 @@
 .equ obj_T25_rocketm_12, 18
 .equ obj_T25_gswoman2_3, 19
 .equ obj_T25_gswoman2_4, 20
+.equ obj_T25_hack_rocket_742, 21
+.equ obj_T25_hack_rocket_743, 22
 
 .endif //SCR_SEQ_T25_H_

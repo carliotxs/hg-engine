@@ -358,7 +358,7 @@ scr_seq_R42_007:
 	setvar VAR_SPECIAL_x8004, SPECIES_AMPHAROS
 	setvar VAR_SPECIAL_x8005, 30
 	setvar VAR_SPECIAL_x8006, ITEM_AMPHAROSITE
-	setvar VAR_SPECIAL_x8007, 2163
+	setvar VAR_SPECIAL_x8007, 2576
 	callstd 2077
 	end
 // hack: FERALIGATR specialist (hack/scripts/gen_specialists.py)

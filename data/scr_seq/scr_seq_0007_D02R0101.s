@@ -113,7 +113,7 @@ scr_seq_D02R0101_001:
 	setvar VAR_SPECIAL_x8004, SPECIES_CLEFABLE
 	setvar VAR_SPECIAL_x8005, 11
 	setvar VAR_SPECIAL_x8006, ITEM_CLEFABLITE
-	setvar VAR_SPECIAL_x8007, 2101
+	setvar VAR_SPECIAL_x8007, 2693
 	callstd 2077
 	end
 // hack: EXPLOUD specialist (hack/scripts/gen_specialists.py)

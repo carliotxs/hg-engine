@@ -173,7 +173,7 @@ scr_seq_D11R0102_002:
 	setvar VAR_SPECIAL_x8004, SPECIES_DEWGONG
 	setvar VAR_SPECIAL_x8005, 37
 	setvar VAR_SPECIAL_x8006, ITEM_CHOICE_SPECS
-	setvar VAR_SPECIAL_x8007, 2196
+	setvar VAR_SPECIAL_x8007, 2697
 	callstd 2077
 	end
 // hack: GLALIE specialist (hack/scripts/gen_specialists.py)

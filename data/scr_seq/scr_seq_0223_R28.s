@@ -50,7 +50,7 @@ scr_seq_R28_002:
 	setvar VAR_SPECIAL_x8004, SPECIES_CACTURNE
 	setvar VAR_SPECIAL_x8005, 44
 	setvar VAR_SPECIAL_x8006, ITEM_BOTTLE_CAP
-	setvar VAR_SPECIAL_x8007, 2114
+	setvar VAR_SPECIAL_x8007, 2564
 	callstd 2077
 	end
 // hack: DRAPION specialist (hack/scripts/gen_specialists.py)
@@ -58,7 +58,7 @@ scr_seq_R28_003:
 	setvar VAR_SPECIAL_x8004, SPECIES_DRAPION
 	setvar VAR_SPECIAL_x8005, 45
 	setvar VAR_SPECIAL_x8006, ITEM_CHOICE_SCARF
-	setvar VAR_SPECIAL_x8007, 2120
+	setvar VAR_SPECIAL_x8007, 2565
 	callstd 2077
 	end
 // hack: MARACTUS specialist (hack/scripts/gen_specialists.py)
@@ -66,7 +66,7 @@ scr_seq_R28_004:
 	setvar VAR_SPECIAL_x8004, SPECIES_MARACTUS
 	setvar VAR_SPECIAL_x8005, 46
 	setvar VAR_SPECIAL_x8006, ITEM_AIR_BALLOON
-	setvar VAR_SPECIAL_x8007, 2131
+	setvar VAR_SPECIAL_x8007, 2566
 	callstd 2077
 	end
 	.balign 4

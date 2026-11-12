@@ -481,26 +481,27 @@ const TrainerData sTrainerData[] = {
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: grunt upgraded (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
-                .level = 7,
+                .level = 9,
                 .species = SPECIES_RATTATA,
                 .ballSeal = 0,
             },
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 9,
-                .species = SPECIES_ZUBAT,
+                .level = 11,
+                .species = SPECIES_PURRLOIN,
                 .ballSeal = 0,
             },
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 9,
-                .species = SPECIES_ZUBAT,
+                .level = 11,
+                .species = SPECIES_CROAGUNK,
                 .ballSeal = 0,
             },
         },
@@ -529,19 +530,20 @@ const TrainerData sTrainerData[] = {
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: grunt upgraded (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 9,
+                .level = 11,
                 .species = SPECIES_ZUBAT,
                 .ballSeal = 0,
             },
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 11,
-                .species = SPECIES_EKANS,
+                .level = 13,
+                .species = SPECIES_SANDILE,
                 .ballSeal = 0,
             },
         },
@@ -2736,11 +2738,12 @@ const TrainerData sTrainerData[] = {
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: grunt upgraded (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 14,
+                .level = 16,
                 .species = SPECIES_KOFFING,
                 .ballSeal = 0,
             },
@@ -4323,19 +4326,20 @@ const TrainerData sTrainerData[] = {
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: grunt upgraded (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
-                .level = 9,
+                .level = 11,
                 .species = SPECIES_RATTATA,
                 .ballSeal = 0,
             },
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
-                .level = 9,
-                .species = SPECIES_RATTATA,
+                .level = 11,
+                .species = SPECIES_CROAGUNK,
                 .ballSeal = 0,
             },
         },
@@ -7582,18 +7586,19 @@ const TrainerData sTrainerData[] = {
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: grunt upgraded (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
-                .level = 24,
+                .level = 26,
                 .species = SPECIES_RATICATE,
                 .ballSeal = 0,
             },
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
-                .level = 24,
+                .level = 26,
                 .species = SPECIES_RATICATE,
                 .ballSeal = 0,
             },
@@ -7615,18 +7620,12 @@ const TrainerData sTrainerData[] = {
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: grunt upgraded (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 23,
-                .species = SPECIES_GRIMER,
-                .ballSeal = 0,
-            },
-            {
-                .ivs = 30,
-                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 23,
+                .level = 25,
                 .species = SPECIES_GRIMER,
                 .ballSeal = 0,
             },
@@ -7634,7 +7633,14 @@ const TrainerData sTrainerData[] = {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
                 .level = 25,
-                .species = SPECIES_MUK,
+                .species = SPECIES_MURKROW,
+                .ballSeal = 0,
+            },
+            {
+                .ivs = 30,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 27,
+                .species = SPECIES_MIGHTYENA,
                 .ballSeal = 0,
             },
         },
@@ -7663,24 +7669,11 @@ const TrainerData sTrainerData[] = {
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: grunt upgraded (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
-                .level = 21,
-                .species = SPECIES_RATTATA,
-                .ballSeal = 0,
-            },
-            {
-                .ivs = 30,
-                .abilitySlot = TRAINER_POKEMON_ABILITY_2,
-                .level = 21,
-                .species = SPECIES_RATTATA,
-                .ballSeal = 0,
-            },
-            {
-                .ivs = 30,
-                .abilitySlot = TRAINER_POKEMON_ABILITY_2,
                 .level = 23,
                 .species = SPECIES_RATTATA,
                 .ballSeal = 0,
@@ -7689,14 +7682,28 @@ const TrainerData sTrainerData[] = {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
                 .level = 23,
-                .species = SPECIES_RATTATA,
+                .species = SPECIES_WHIRLIPEDE,
                 .ballSeal = 0,
             },
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
-                .level = 23,
-                .species = SPECIES_RATTATA,
+                .level = 25,
+                .species = SPECIES_SNEASEL,
+                .ballSeal = 0,
+            },
+            {
+                .ivs = 30,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                .level = 25,
+                .species = SPECIES_RATICATE,
+                .ballSeal = 0,
+            },
+            {
+                .ivs = 30,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                .level = 25,
+                .species = SPECIES_KOFFING,
                 .ballSeal = 0,
             },
         },
@@ -7725,19 +7732,20 @@ const TrainerData sTrainerData[] = {
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: grunt upgraded (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 26,
+                .level = 28,
                 .species = SPECIES_ZUBAT,
                 .ballSeal = 0,
             },
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 26,
-                .species = SPECIES_ZUBAT,
+                .level = 28,
+                .species = SPECIES_HYPNO,
                 .ballSeal = 0,
             },
         },
@@ -7766,33 +7774,34 @@ const TrainerData sTrainerData[] = {
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: grunt upgraded (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 23,
+                .level = 25,
                 .species = SPECIES_KOFFING,
                 .ballSeal = 0,
             },
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 23,
-                .species = SPECIES_GRIMER,
+                .level = 25,
+                .species = SPECIES_STUNKY,
                 .ballSeal = 0,
             },
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 23,
-                .species = SPECIES_ZUBAT,
+                .level = 25,
+                .species = SPECIES_GULPIN,
                 .ballSeal = 0,
             },
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
-                .level = 23,
-                .species = SPECIES_RATTATA,
+                .level = 25,
+                .species = SPECIES_WHIRLIPEDE,
                 .ballSeal = 0,
             },
         },
@@ -7821,11 +7830,12 @@ const TrainerData sTrainerData[] = {
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: grunt upgraded (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 26,
+                .level = 28,
                 .species = SPECIES_WEEZING,
                 .ballSeal = 0,
             },
@@ -7855,19 +7865,20 @@ const TrainerData sTrainerData[] = {
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: grunt upgraded (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
-                .level = 24,
+                .level = 26,
                 .species = SPECIES_RATICATE,
                 .ballSeal = 0,
             },
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 26,
-                .species = SPECIES_KOFFING,
+                .level = 28,
+                .species = SPECIES_GOLBAT,
                 .ballSeal = 0,
             },
         },
@@ -7896,26 +7907,27 @@ const TrainerData sTrainerData[] = {
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: grunt upgraded (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 22,
+                .level = 24,
                 .species = SPECIES_ZUBAT,
                 .ballSeal = 0,
             },
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 24,
-                .species = SPECIES_GOLBAT,
+                .level = 26,
+                .species = SPECIES_LIEPARD,
                 .ballSeal = 0,
             },
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 22,
-                .species = SPECIES_GRIMER,
+                .level = 24,
+                .species = SPECIES_CROAGUNK,
                 .ballSeal = 0,
             },
         },
@@ -7944,26 +7956,27 @@ const TrainerData sTrainerData[] = {
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: grunt upgraded (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 23,
+                .level = 25,
                 .species = SPECIES_MUK,
                 .ballSeal = 0,
             },
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 23,
-                .species = SPECIES_KOFFING,
+                .level = 25,
+                .species = SPECIES_SANDILE,
                 .ballSeal = 0,
             },
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
-                .level = 25,
-                .species = SPECIES_RATTATA,
+                .level = 27,
+                .species = SPECIES_THIEVUL,
                 .ballSeal = 0,
             },
         },
@@ -7992,11 +8005,12 @@ const TrainerData sTrainerData[] = {
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_EXPERT_ATTACKS,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: grunt upgraded (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
                 .ivs = 0,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 33,
+                .level = 35,
                 .species = SPECIES_HOUNDOUR,
                 .ballSeal = 0,
             },
@@ -8012,11 +8026,12 @@ const TrainerData sTrainerData[] = {
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: grunt upgraded (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
-                .level = 27,
+                .level = 29,
                 .species = SPECIES_RATTATA,
                 .ballSeal = 0,
             },
@@ -8046,19 +8061,20 @@ const TrainerData sTrainerData[] = {
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: grunt upgraded (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
-                .level = 24,
+                .level = 26,
                 .species = SPECIES_RATICATE,
                 .ballSeal = 0,
             },
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 24,
-                .species = SPECIES_GOLBAT,
+                .level = 26,
+                .species = SPECIES_SNEASEL,
                 .ballSeal = 0,
             },
         },
@@ -8087,19 +8103,20 @@ const TrainerData sTrainerData[] = {
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: grunt upgraded (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 26,
+                .level = 28,
                 .species = SPECIES_GRIMER,
                 .ballSeal = 0,
             },
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 23,
-                .species = SPECIES_WEEZING,
+                .level = 25,
+                .species = SPECIES_GRIMER,
                 .ballSeal = 0,
             },
         },
@@ -8128,11 +8145,12 @@ const TrainerData sTrainerData[] = {
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: grunt upgraded (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 26,
+                .level = 28,
                 .species = SPECIES_ARBOK,
                 .ballSeal = 0,
             },
@@ -8162,19 +8180,20 @@ const TrainerData sTrainerData[] = {
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: grunt upgraded (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 25,
+                .level = 27,
                 .species = SPECIES_GLOOM,
                 .ballSeal = 0,
             },
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 25,
-                .species = SPECIES_GLOOM,
+                .level = 27,
+                .species = SPECIES_SKORUPI,
                 .ballSeal = 0,
             },
         },
@@ -8203,33 +8222,34 @@ const TrainerData sTrainerData[] = {
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: grunt upgraded (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 21,
+                .level = 23,
                 .species = SPECIES_EKANS,
                 .ballSeal = 0,
             },
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 23,
-                .species = SPECIES_ODDISH,
+                .level = 25,
+                .species = SPECIES_ARBOK,
                 .ballSeal = 0,
             },
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
-                .level = 21,
-                .species = SPECIES_EKANS,
+                .level = 23,
+                .species = SPECIES_STUNKY,
                 .ballSeal = 0,
             },
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 24,
-                .species = SPECIES_GLOOM,
+                .level = 26,
+                .species = SPECIES_SWALOT,
                 .ballSeal = 0,
             },
         },
@@ -8832,33 +8852,34 @@ const TrainerData sTrainerData[] = {
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: grunt upgraded (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
-                .level = 16,
+                .level = 18,
                 .species = SPECIES_RATTATA,
                 .ballSeal = 0,
             },
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
-                .level = 16,
+                .level = 18,
+                .species = SPECIES_SNEASEL,
+                .ballSeal = 0,
+            },
+            {
+                .ivs = 30,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                .level = 18,
                 .species = SPECIES_RATTATA,
                 .ballSeal = 0,
             },
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
-                .level = 16,
-                .species = SPECIES_RATTATA,
-                .ballSeal = 0,
-            },
-            {
-                .ivs = 30,
-                .abilitySlot = TRAINER_POKEMON_ABILITY_2,
-                .level = 16,
-                .species = SPECIES_RATTATA,
+                .level = 18,
+                .species = SPECIES_KOFFING,
                 .ballSeal = 0,
             },
         },
@@ -8935,11 +8956,12 @@ const TrainerData sTrainerData[] = {
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: grunt upgraded (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 18,
+                .level = 20,
                 .species = SPECIES_GOLBAT,
                 .ballSeal = 0,
             },
@@ -8969,26 +8991,27 @@ const TrainerData sTrainerData[] = {
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: grunt upgraded (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
-                .level = 17,
+                .level = 19,
                 .species = SPECIES_RATTATA,
                 .ballSeal = 0,
             },
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 17,
-                .species = SPECIES_ZUBAT,
+                .level = 19,
+                .species = SPECIES_SKORUPI,
                 .ballSeal = 0,
             },
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
-                .level = 17,
-                .species = SPECIES_RATTATA,
+                .level = 19,
+                .species = SPECIES_DROWZEE,
                 .ballSeal = 0,
             },
         },
@@ -9017,19 +9040,20 @@ const TrainerData sTrainerData[] = {
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: grunt upgraded (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 18,
+                .level = 20,
                 .species = SPECIES_VENONAT,
                 .ballSeal = 0,
             },
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
-                .level = 18,
-                .species = SPECIES_VENONAT,
+                .level = 20,
+                .species = SPECIES_EKANS,
                 .ballSeal = 0,
             },
         },
@@ -9058,11 +9082,12 @@ const TrainerData sTrainerData[] = {
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_EXPERT_ATTACKS,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: grunt upgraded (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
                 .ivs = 100,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 22,
+                .level = 24,
                 .species = SPECIES_ZUBAT,
                 .ballSeal = 0,
             },
@@ -9078,11 +9103,12 @@ const TrainerData sTrainerData[] = {
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: grunt upgraded (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
-                .level = 19,
+                .level = 21,
                 .species = SPECIES_RATICATE,
                 .ballSeal = 0,
             },
@@ -9112,19 +9138,20 @@ const TrainerData sTrainerData[] = {
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: grunt upgraded (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 17,
+                .level = 19,
                 .species = SPECIES_DROWZEE,
                 .ballSeal = 0,
             },
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 19,
-                .species = SPECIES_ZUBAT,
+                .level = 21,
+                .species = SPECIES_HOUNDOUR,
                 .ballSeal = 0,
             },
         },
@@ -9145,26 +9172,27 @@ const TrainerData sTrainerData[] = {
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: grunt upgraded (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 16,
+                .level = 18,
                 .species = SPECIES_ZUBAT,
                 .ballSeal = 0,
             },
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 17,
-                .species = SPECIES_GRIMER,
+                .level = 19,
+                .species = SPECIES_TRUBBISH,
                 .ballSeal = 0,
             },
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
-                .level = 18,
-                .species = SPECIES_RATTATA,
+                .level = 20,
+                .species = SPECIES_SANDILE,
                 .ballSeal = 0,
             },
         },
@@ -9185,11 +9213,12 @@ const TrainerData sTrainerData[] = {
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_EXPERT_ATTACKS,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: grunt upgraded (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
                 .ivs = 10,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 36,
+                .level = 38,
                 .species = SPECIES_GOLBAT,
                 .ballSeal = 0,
             },
@@ -9205,11 +9234,12 @@ const TrainerData sTrainerData[] = {
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_EXPERT_ATTACKS,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: grunt upgraded (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
                 .ivs = 0,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 30,
+                .level = 32,
                 .species = SPECIES_KOFFING,
                 .ballSeal = 0,
             },
@@ -9225,19 +9255,20 @@ const TrainerData sTrainerData[] = {
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: grunt upgraded (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 25,
+                .level = 27,
                 .species = SPECIES_KOFFING,
                 .ballSeal = 0,
             },
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 25,
-                .species = SPECIES_KOFFING,
+                .level = 27,
+                .species = SPECIES_WHIRLIPEDE,
                 .ballSeal = 0,
             },
         },
@@ -9266,19 +9297,20 @@ const TrainerData sTrainerData[] = {
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: grunt upgraded (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 24,
+                .level = 26,
                 .species = SPECIES_KOFFING,
                 .ballSeal = 0,
             },
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 24,
-                .species = SPECIES_MUK,
+                .level = 26,
+                .species = SPECIES_HYPNO,
                 .ballSeal = 0,
             },
         },
@@ -9307,19 +9339,20 @@ const TrainerData sTrainerData[] = {
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: grunt upgraded (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
                 .ivs = 0,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 15,
+                .level = 17,
                 .species = SPECIES_RATTATA,
                 .ballSeal = 0,
             },
             {
                 .ivs = 0,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 15,
-                .species = SPECIES_RATTATA,
+                .level = 17,
+                .species = SPECIES_STUNKY,
                 .ballSeal = 0,
             },
         },
@@ -11091,26 +11124,27 @@ const TrainerData sTrainerData[] = {
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: grunt upgraded (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 25,
+                .level = 27,
                 .species = SPECIES_GOLBAT,
                 .ballSeal = 0,
             },
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 25,
-                .species = SPECIES_GOLBAT,
+                .level = 27,
+                .species = SPECIES_THIEVUL,
                 .ballSeal = 0,
             },
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 30,
-                .species = SPECIES_ARBOK,
+                .level = 32,
+                .species = SPECIES_GOLBAT,
                 .ballSeal = 0,
             },
         },
@@ -15077,11 +15111,12 @@ const TrainerData sTrainerData[] = {
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: grunt upgraded (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 39,
+                .level = 41,
                 .species = SPECIES_GOLBAT,
                 .ballSeal = 0,
             },
@@ -17172,11 +17207,12 @@ const TrainerData sTrainerData[] = {
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: grunt upgraded (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 18,
+                .level = 20,
                 .species = SPECIES_EKANS,
                 .moves = { MOVE_WRAP, MOVE_LEER, MOVE_POISON_STING, MOVE_BITE },
                 .ballSeal = 0,
@@ -17184,8 +17220,8 @@ const TrainerData sTrainerData[] = {
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 18,
-                .species = SPECIES_GLOOM,
+                .level = 20,
+                .species = SPECIES_TRUBBISH,
                 .moves = { MOVE_ABSORB, MOVE_SWEET_SCENT, MOVE_STUN_SPORE, MOVE_SLEEP_POWDER },
                 .ballSeal = 0,
             },
@@ -19961,35 +19997,48 @@ const TrainerData sTrainerData[] = {
     [478] = {
         .name = "Ariana",
         .data = {
-            .trainerType = TRAINER_DATA_TYPE_MOVES,
+            .trainerType = TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS,
             .trainerClass = TRAINERCLASS_EXECUTIVE_ARIANA,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_EXPERT_ATTACKS,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: Ariana, Radio Tower (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
-                .ivs = 100,
+                .ivs = 180,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 32,
+                .level = 35,
                 .species = SPECIES_ARBOK,
-                .moves = { MOVE_WRAP, MOVE_POISON_STING, MOVE_CRUNCH, MOVE_GLARE },
+                .item = ITEM_NONE,
+                .moves = { MOVE_GUNK_SHOT, MOVE_CRUNCH, MOVE_GLARE, MOVE_ICE_FANG },
                 .ballSeal = 0,
             },
             {
-                .ivs = 100,
+                .ivs = 180,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 32,
+                .level = 35,
                 .species = SPECIES_VILEPLUME,
-                .moves = { MOVE_MEGA_DRAIN, MOVE_SWEET_SCENT, MOVE_SLEEP_POWDER, MOVE_ACID },
+                .item = ITEM_NONE,
+                .moves = { MOVE_SLUDGE_BOMB, MOVE_GIGA_DRAIN, MOVE_SLEEP_POWDER, MOVE_MOONLIGHT },
                 .ballSeal = 0,
             },
             {
-                .ivs = 100,
-                .abilitySlot = TRAINER_POKEMON_ABILITY_2,
-                .level = 32,
-                .species = SPECIES_MURKROW,
-                .moves = { MOVE_WING_ATTACK, MOVE_PURSUIT, MOVE_ASTONISH, MOVE_NIGHT_SHADE },
+                .ivs = 180,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 36,
+                .species = SPECIES_DRAPION,
+                .item = ITEM_NONE,
+                .moves = { MOVE_NIGHT_SLASH, MOVE_CROSS_POISON, MOVE_ICE_FANG, MOVE_TOXIC_SPIKES },
+                .ballSeal = 0,
+            },
+            {
+                .ivs = 180,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 37,
+                .species = SPECIES_HONCHKROW,
+                .item = ITEM_SITRUS_BERRY,
+                .moves = { MOVE_NIGHT_SLASH, MOVE_DRILL_PECK, MOVE_SUCKER_PUNCH, MOVE_ROOST },
                 .ballSeal = 0,
             },
         },
@@ -20020,35 +20069,48 @@ const TrainerData sTrainerData[] = {
     [479] = {
         .name = "Ariana",
         .data = {
-            .trainerType = TRAINER_DATA_TYPE_MOVES,
+            .trainerType = TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS,
             .trainerClass = TRAINERCLASS_EXECUTIVE_ARIANA,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_EXPERT_ATTACKS,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: Ariana, Mahogany hideout (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
-                .ivs = 100,
+                .ivs = 150,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 25,
+                .level = 28,
                 .species = SPECIES_ARBOK,
-                .moves = { MOVE_WRAP, MOVE_POISON_STING, MOVE_CRUNCH, MOVE_GLARE },
+                .item = ITEM_NONE,
+                .moves = { MOVE_POISON_FANG, MOVE_CRUNCH, MOVE_GLARE, MOVE_SCREECH },
                 .ballSeal = 0,
             },
             {
-                .ivs = 100,
+                .ivs = 150,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 25,
+                .level = 28,
                 .species = SPECIES_GLOOM,
-                .moves = { MOVE_MEGA_DRAIN, MOVE_SWEET_SCENT, MOVE_SLEEP_POWDER, MOVE_ACID },
+                .item = ITEM_NONE,
+                .moves = { MOVE_ACID, MOVE_GIGA_DRAIN, MOVE_SLEEP_POWDER, MOVE_MOONLIGHT },
                 .ballSeal = 0,
             },
             {
-                .ivs = 100,
-                .abilitySlot = TRAINER_POKEMON_ABILITY_2,
-                .level = 27,
+                .ivs = 150,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 28,
+                .species = SPECIES_HOUNDOUR,
+                .item = ITEM_NONE,
+                .moves = { MOVE_FIRE_FANG, MOVE_BITE, MOVE_ROAR, MOVE_SMOG },
+                .ballSeal = 0,
+            },
+            {
+                .ivs = 150,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 30,
                 .species = SPECIES_MURKROW,
-                .moves = { MOVE_WING_ATTACK, MOVE_PURSUIT, MOVE_ASTONISH, MOVE_NIGHT_SHADE },
+                .item = ITEM_SITRUS_BERRY,
+                .moves = { MOVE_FEINT_ATTACK, MOVE_WING_ATTACK, MOVE_HAZE, MOVE_NIGHT_SHADE },
                 .ballSeal = 0,
             },
         },
@@ -20279,35 +20341,57 @@ const TrainerData sTrainerData[] = {
     [485] = {
         .name = "Archer",
         .data = {
-            .trainerType = TRAINER_DATA_TYPE_MOVES,
+            .trainerType = TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS,
             .trainerClass = TRAINERCLASS_EXECUTIVE_ARCHER,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_EXPERT_ATTACKS,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: Archer, Radio Tower (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
                 .ivs = 200,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 35,
-                .species = SPECIES_HOUNDOUR,
-                .moves = { MOVE_FIRE_FANG, MOVE_ROAR, MOVE_BITE, MOVE_FEINT_ATTACK },
-                .ballSeal = 0,
-            },
-            {
-                .ivs = 200,
-                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 35,
-                .species = SPECIES_KOFFING,
-                .moves = { MOVE_TACKLE, MOVE_SLUDGE, MOVE_SMOKESCREEN, MOVE_HAZE },
+                .level = 38,
+                .species = SPECIES_WEEZING,
+                .item = ITEM_NONE,
+                .moves = { MOVE_SLUDGE_BOMB, MOVE_WILL_O_WISP, MOVE_SHADOW_BALL, MOVE_EXPLOSION },
                 .ballSeal = 0,
             },
             {
                 .ivs = 200,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
                 .level = 38,
+                .species = SPECIES_CROBAT,
+                .item = ITEM_NONE,
+                .moves = { MOVE_CROSS_POISON, MOVE_AIR_SLASH, MOVE_CONFUSE_RAY, MOVE_U_TURN },
+                .ballSeal = 0,
+            },
+            {
+                .ivs = 200,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 38,
+                .species = SPECIES_PERSIAN,
+                .item = ITEM_NONE,
+                .moves = { MOVE_SLASH, MOVE_POWER_GEM, MOVE_FAKE_OUT, MOVE_NASTY_PLOT },
+                .ballSeal = 0,
+            },
+            {
+                .ivs = 200,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 39,
+                .species = SPECIES_HONCHKROW,
+                .item = ITEM_NONE,
+                .moves = { MOVE_NIGHT_SLASH, MOVE_DRILL_PECK, MOVE_SUCKER_PUNCH, MOVE_ROOST },
+                .ballSeal = 0,
+            },
+            {
+                .ivs = 200,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 41,
                 .species = SPECIES_HOUNDOOM,
-                .moves = { MOVE_FIRE_FANG, MOVE_SMOG, MOVE_BITE, MOVE_FEINT_ATTACK },
+                .item = ITEM_SITRUS_BERRY,
+                .moves = { MOVE_FLAMETHROWER, MOVE_DARK_PULSE, MOVE_NASTY_PLOT, MOVE_SLUDGE_BOMB },
                 .ballSeal = 0,
             },
         },
@@ -20330,25 +20414,39 @@ const TrainerData sTrainerData[] = {
     [486] = {
         .name = "Proton",
         .data = {
-            .trainerType = TRAINER_DATA_TYPE_NOTHING,
+            .trainerType = TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS,
             .trainerClass = TRAINERCLASS_EXECUTIVE_PROTON,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_EXPERT_ATTACKS,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: Proton, Slowpoke Well (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
-                .ivs = 100,
+                .ivs = 90,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 8,
+                .level = 11,
                 .species = SPECIES_ZUBAT,
+                .item = ITEM_NONE,
+                .moves = { MOVE_LEECH_LIFE, MOVE_SUPERSONIC, MOVE_BITE, MOVE_ASTONISH },
                 .ballSeal = 0,
             },
             {
-                .ivs = 100,
+                .ivs = 90,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
                 .level = 12,
+                .species = SPECIES_STUNKY,
+                .item = ITEM_NONE,
+                .moves = { MOVE_POISON_GAS, MOVE_SCRATCH, MOVE_FOCUS_ENERGY, MOVE_SMOKESCREEN },
+                .ballSeal = 0,
+            },
+            {
+                .ivs = 90,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 15,
                 .species = SPECIES_KOFFING,
+                .item = ITEM_ORAN_BERRY,
+                .moves = { MOVE_SMOG, MOVE_TACKLE, MOVE_POISON_GAS, MOVE_SMOKESCREEN },
                 .ballSeal = 0,
             },
         },
@@ -20371,59 +20469,66 @@ const TrainerData sTrainerData[] = {
     [487] = {
         .name = "Petrel",
         .data = {
-            .trainerType = TRAINER_DATA_TYPE_MOVES,
+            .trainerType = TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS,
             .trainerClass = TRAINERCLASS_EXECUTIVE_PETREL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_EXPERT_ATTACKS,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: Petrel, Radio Tower (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
-                .ivs = 100,
+                .ivs = 170,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 30,
+                .level = 33,
                 .species = SPECIES_KOFFING,
-                .moves = { MOVE_TACKLE, MOVE_SELF_DESTRUCT, MOVE_SLUDGE, MOVE_SMOKESCREEN },
+                .item = ITEM_NONE,
+                .moves = { MOVE_SLUDGE, MOVE_SELF_DESTRUCT, MOVE_SMOKESCREEN, MOVE_ASSURANCE },
                 .ballSeal = 0,
             },
             {
-                .ivs = 100,
+                .ivs = 170,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 30,
+                .level = 33,
                 .species = SPECIES_KOFFING,
-                .moves = { MOVE_TACKLE, MOVE_SELF_DESTRUCT, MOVE_SLUDGE, MOVE_SMOKESCREEN },
+                .item = ITEM_NONE,
+                .moves = { MOVE_SLUDGE, MOVE_SELF_DESTRUCT, MOVE_SMOKESCREEN, MOVE_ASSURANCE },
                 .ballSeal = 0,
             },
             {
-                .ivs = 100,
+                .ivs = 170,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 30,
-                .species = SPECIES_KOFFING,
-                .moves = { MOVE_TACKLE, MOVE_SELF_DESTRUCT, MOVE_SLUDGE, MOVE_SMOKESCREEN },
+                .level = 33,
+                .species = SPECIES_MUK,
+                .item = ITEM_NONE,
+                .moves = { MOVE_SLUDGE_BOMB, MOVE_MUD_BOMB, MOVE_MINIMIZE, MOVE_SCREECH },
                 .ballSeal = 0,
             },
             {
-                .ivs = 100,
+                .ivs = 170,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 32,
+                .level = 33,
+                .species = SPECIES_SWALOT,
+                .item = ITEM_NONE,
+                .moves = { MOVE_SLUDGE_BOMB, MOVE_YAWN, MOVE_STOCKPILE, MOVE_SWALLOW },
+                .ballSeal = 0,
+            },
+            {
+                .ivs = 170,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 34,
                 .species = SPECIES_WEEZING,
-                .moves = { MOVE_TACKLE, MOVE_EXPLOSION, MOVE_SLUDGE, MOVE_SMOKESCREEN },
+                .item = ITEM_NONE,
+                .moves = { MOVE_SLUDGE_BOMB, MOVE_WILL_O_WISP, MOVE_SMOKESCREEN, MOVE_EXPLOSION },
                 .ballSeal = 0,
             },
             {
-                .ivs = 100,
+                .ivs = 170,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 30,
-                .species = SPECIES_KOFFING,
-                .moves = { MOVE_TACKLE, MOVE_SELF_DESTRUCT, MOVE_SLUDGE, MOVE_SMOKESCREEN },
-                .ballSeal = 0,
-            },
-            {
-                .ivs = 100,
-                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 30,
-                .species = SPECIES_KOFFING,
-                .moves = { MOVE_TACKLE, MOVE_SMOG, MOVE_SLUDGE, MOVE_SMOKESCREEN },
+                .level = 35,
+                .species = SPECIES_WEEZING,
+                .item = ITEM_SITRUS_BERRY,
+                .moves = { MOVE_SLUDGE_BOMB, MOVE_SHADOW_BALL, MOVE_WILL_O_WISP, MOVE_EXPLOSION },
                 .ballSeal = 0,
             },
         },
@@ -20446,32 +20551,48 @@ const TrainerData sTrainerData[] = {
     [488] = {
         .name = "Petrel",
         .data = {
-            .trainerType = TRAINER_DATA_TYPE_NOTHING,
+            .trainerType = TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS,
             .trainerClass = TRAINERCLASS_EXECUTIVE_PETREL,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_EXPERT_ATTACKS,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: Petrel, Mahogany hideout (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
-                .ivs = 100,
+                .ivs = 140,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 22,
-                .species = SPECIES_ZUBAT,
+                .level = 25,
+                .species = SPECIES_GOLBAT,
+                .item = ITEM_NONE,
+                .moves = { MOVE_WING_ATTACK, MOVE_BITE, MOVE_CONFUSE_RAY, MOVE_POISON_FANG },
                 .ballSeal = 0,
             },
             {
-                .ivs = 100,
-                .abilitySlot = TRAINER_POKEMON_ABILITY_2,
-                .level = 24,
-                .species = SPECIES_RATICATE,
+                .ivs = 140,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 25,
+                .species = SPECIES_GRIMER,
+                .item = ITEM_NONE,
+                .moves = { MOVE_SLUDGE, MOVE_MUD_BOMB, MOVE_MINIMIZE, MOVE_DISABLE },
                 .ballSeal = 0,
             },
             {
-                .ivs = 100,
+                .ivs = 140,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 22,
+                .level = 25,
                 .species = SPECIES_KOFFING,
+                .item = ITEM_NONE,
+                .moves = { MOVE_SLUDGE, MOVE_SELF_DESTRUCT, MOVE_SMOKESCREEN, MOVE_ASSURANCE },
+                .ballSeal = 0,
+            },
+            {
+                .ivs = 140,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 26,
+                .species = SPECIES_RATICATE,
+                .item = ITEM_ORAN_BERRY,
+                .moves = { MOVE_HYPER_FANG, MOVE_CRUNCH, MOVE_SCARY_FACE, MOVE_QUICK_ATTACK },
                 .ballSeal = 0,
             },
         },
@@ -21036,11 +21157,12 @@ const TrainerData sTrainerData[] = {
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: grunt upgraded (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 18,
+                .level = 20,
                 .species = SPECIES_DROWZEE,
                 .moves = { MOVE_HYPNOSIS, MOVE_DISABLE, MOVE_CONFUSION, MOVE_HEADBUTT },
                 .ballSeal = 0,
@@ -21048,8 +21170,8 @@ const TrainerData sTrainerData[] = {
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 20,
-                .species = SPECIES_GRIMER,
+                .level = 22,
+                .species = SPECIES_SKORUPI,
                 .moves = { MOVE_SLUDGE, MOVE_DISABLE, MOVE_MUD_SLAP, MOVE_MINIMIZE },
                 .ballSeal = 0,
             },
@@ -25088,11 +25210,12 @@ const TrainerData sTrainerData[] = {
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: grunt upgraded (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
                 .ivs = 30,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 12,
+                .level = 14,
                 .species = SPECIES_KOFFING,
                 .ballSeal = 0,
             },
@@ -28915,41 +29038,60 @@ const TrainerData sTrainerData[] = {
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_EXPERT_ATTACKS,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: Giovanni (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
-                .ivs = 100,
+                .ivs = 250,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 42,
-                .species = SPECIES_NIDOKING,
+                .level = 45,
+                .species = SPECIES_PERSIAN,
                 .item = ITEM_NONE,
-                .moves = { MOVE_FOCUS_ENERGY, MOVE_FURY_ATTACK, MOVE_DOUBLE_KICK, MOVE_SHADOW_CLAW },
+                .moves = { MOVE_SLASH, MOVE_POWER_GEM, MOVE_FAKE_OUT, MOVE_NASTY_PLOT },
                 .ballSeal = 0,
             },
             {
-                .ivs = 100,
-                .abilitySlot = TRAINER_POKEMON_ABILITY_2,
-                .level = 40,
+                .ivs = 250,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 44,
                 .species = SPECIES_KANGASKHAN,
                 .item = ITEM_NONE,
-                .moves = { MOVE_DIZZY_PUNCH, MOVE_SUCKER_PUNCH, MOVE_LEER, MOVE_OUTRAGE },
+                .moves = { MOVE_RETURN, MOVE_EARTHQUAKE, MOVE_SUCKER_PUNCH, MOVE_FAKE_OUT },
                 .ballSeal = 0,
             },
             {
-                .ivs = 100,
+                .ivs = 250,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 43,
-                .species = SPECIES_HONCHKROW,
+                .level = 45,
+                .species = SPECIES_NIDOKING,
                 .item = ITEM_NONE,
-                .moves = { MOVE_DARK_PULSE, MOVE_NASTY_PLOT, MOVE_SWAGGER, MOVE_SHADOW_BALL },
+                .moves = { MOVE_EARTH_POWER, MOVE_SLUDGE_WAVE, MOVE_ICE_BEAM, MOVE_THUNDERBOLT },
                 .ballSeal = 0,
             },
             {
-                .ivs = 100,
+                .ivs = 250,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
                 .level = 46,
-                .species = SPECIES_NIDOQUEEN,
+                .species = SPECIES_HONCHKROW,
                 .item = ITEM_NONE,
-                .moves = { MOVE_EARTH_POWER, MOVE_SUPERPOWER, MOVE_CRUNCH, MOVE_ROAR },
+                .moves = { MOVE_NIGHT_SLASH, MOVE_DRILL_PECK, MOVE_SUCKER_PUNCH, MOVE_ROOST },
+                .ballSeal = 0,
+            },
+            {
+                .ivs = 250,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 46,
+                .species = SPECIES_RHYPERIOR,
+                .item = ITEM_NONE,
+                .moves = { MOVE_EARTHQUAKE, MOVE_STONE_EDGE, MOVE_MEGAHORN, MOVE_ROCK_POLISH },
+                .ballSeal = 0,
+            },
+            {
+                .ivs = 250,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 49,
+                .species = SPECIES_NIDOQUEEN,
+                .item = ITEM_SITRUS_BERRY,
+                .moves = { MOVE_EARTH_POWER, MOVE_SLUDGE_WAVE, MOVE_ICE_BEAM, MOVE_FLAMETHROWER },
                 .ballSeal = 0,
             },
         },
@@ -29377,27 +29519,48 @@ const TrainerData sTrainerData[] = {
     [706] = {
         .name = "Proton",
         .data = {
-            .trainerType = TRAINER_DATA_TYPE_MOVES,
+            .trainerType = TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS,
             .trainerClass = TRAINERCLASS_EXECUTIVE_PROTON,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_EXPERT_ATTACKS,
             .battleType = SINGLE_BATTLE,
         },
+        // hack: Proton, Radio Tower (hack/scripts/gen_trainer_teams.py)
         .party = {
             {
-                .ivs = 100,
+                .ivs = 170,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 28,
+                .level = 33,
                 .species = SPECIES_GOLBAT,
-                .moves = { MOVE_LEECH_LIFE, MOVE_BITE, MOVE_CONFUSE_RAY, MOVE_WING_ATTACK },
+                .item = ITEM_NONE,
+                .moves = { MOVE_AIR_CUTTER, MOVE_POISON_FANG, MOVE_CONFUSE_RAY, MOVE_BITE },
                 .ballSeal = 0,
             },
             {
-                .ivs = 100,
+                .ivs = 170,
                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                .level = 33,
+                .level = 34,
+                .species = SPECIES_SKUNTANK,
+                .item = ITEM_NONE,
+                .moves = { MOVE_NIGHT_SLASH, MOVE_POISON_JAB, MOVE_FLAMETHROWER, MOVE_SCREECH },
+                .ballSeal = 0,
+            },
+            {
+                .ivs = 170,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 34,
+                .species = SPECIES_TOXICROAK,
+                .item = ITEM_NONE,
+                .moves = { MOVE_POISON_JAB, MOVE_REVENGE, MOVE_SUCKER_PUNCH, MOVE_SWAGGER },
+                .ballSeal = 0,
+            },
+            {
+                .ivs = 170,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 36,
                 .species = SPECIES_WEEZING,
-                .moves = { MOVE_DOUBLE_HIT, MOVE_SLUDGE, MOVE_SMOKESCREEN, MOVE_SMOG },
+                .item = ITEM_SITRUS_BERRY,
+                .moves = { MOVE_SLUDGE_BOMB, MOVE_WILL_O_WISP, MOVE_SHADOW_BALL, MOVE_EXPLOSION },
                 .ballSeal = 0,
             },
         },
@@ -31303,6 +31466,222 @@ const TrainerData sTrainerData[] = {
         },
     },
 
+    // hack: new trainer (hack/scripts/gen_trainer_teams.py)
+    [739] = {
+        .name = "Grunt",
+        .data = {
+            .trainerType = TRAINER_DATA_TYPE_NOTHING,
+            .trainerClass = TRAINERCLASS_TEAM_ROCKET,
+            .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
+            .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS,
+            .battleType = SINGLE_BATTLE,
+        },
+        // hack: extra grunt, Route 43 (hack/scripts/gen_trainer_teams.py)
+        .party = {
+            {
+                .ivs = 100,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 20,
+                .species = SPECIES_HOUNDOUR,
+                .ballSeal = 0,
+            },
+            {
+                .ivs = 100,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 22,
+                .species = SPECIES_GOLBAT,
+                .ballSeal = 0,
+            },
+        },
+        .text = {
+            {
+                .type = TRMSG_LOSE,
+                .text = "Tch! Beaten by a kid on patrol...\\n",
+            },
+            {
+                .type = TRMSG_WIN,
+                .text = "Go home, kid!\\n",
+            },
+        },
+    },
+
+    // hack: new trainer (hack/scripts/gen_trainer_teams.py)
+    [740] = {
+        .name = "Grunt",
+        .data = {
+            .trainerType = TRAINER_DATA_TYPE_NOTHING,
+            .trainerClass = TRAINERCLASS_TEAM_ROCKET,
+            .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
+            .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS,
+            .battleType = SINGLE_BATTLE,
+        },
+        // hack: extra grunt, Lake of Rage (hack/scripts/gen_trainer_teams.py)
+        .party = {
+            {
+                .ivs = 100,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 21,
+                .species = SPECIES_MURKROW,
+                .ballSeal = 0,
+            },
+            {
+                .ivs = 100,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 21,
+                .species = SPECIES_KOFFING,
+                .ballSeal = 0,
+            },
+            {
+                .ivs = 100,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 22,
+                .species = SPECIES_CROAGUNK,
+                .ballSeal = 0,
+            },
+        },
+        .text = {
+            {
+                .type = TRMSG_LOSE,
+                .text = "The lake experiment wasn’t supposed\\nto have witnesses!\\n",
+            },
+            {
+                .type = TRMSG_WIN,
+                .text = "Nothing to see here!\\n",
+            },
+        },
+    },
+
+    // hack: new trainer (hack/scripts/gen_trainer_teams.py)
+    [741] = {
+        .name = "Grunt",
+        .data = {
+            .trainerType = TRAINER_DATA_TYPE_NOTHING,
+            .trainerClass = TRAINERCLASS_TEAM_ROCKET,
+            .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
+            .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS,
+            .battleType = SINGLE_BATTLE,
+        },
+        // hack: extra grunt, Mahogany Town (hack/scripts/gen_trainer_teams.py)
+        .party = {
+            {
+                .ivs = 100,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 21,
+                .species = SPECIES_STUNKY,
+                .ballSeal = 0,
+            },
+            {
+                .ivs = 100,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 22,
+                .species = SPECIES_GRIMER,
+                .ballSeal = 0,
+            },
+        },
+        .text = {
+            {
+                .type = TRMSG_LOSE,
+                .text = "I was only told to watch the shop...\\n",
+            },
+            {
+                .type = TRMSG_WIN,
+                .text = "Move along!\\n",
+            },
+        },
+    },
+
+    // hack: new trainer (hack/scripts/gen_trainer_teams.py)
+    [742] = {
+        .name = "Grunt",
+        .data = {
+            .trainerType = TRAINER_DATA_TYPE_NOTHING,
+            .trainerClass = TRAINERCLASS_TEAM_ROCKET,
+            .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
+            .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS,
+            .battleType = SINGLE_BATTLE,
+        },
+        // hack: extra grunt, Goldenrod City (hack/scripts/gen_trainer_teams.py)
+        .party = {
+            {
+                .ivs = 120,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 28,
+                .species = SPECIES_STUNKY,
+                .ballSeal = 0,
+            },
+            {
+                .ivs = 120,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 29,
+                .species = SPECIES_GOLBAT,
+                .ballSeal = 0,
+            },
+            {
+                .ivs = 120,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 30,
+                .species = SPECIES_HOUNDOOM,
+                .ballSeal = 0,
+            },
+        },
+        .text = {
+            {
+                .type = TRMSG_LOSE,
+                .text = "The Radio Tower is ours anyway!\\n",
+            },
+            {
+                .type = TRMSG_WIN,
+                .text = "Goldenrod belongs to Team Rocket!\\n",
+            },
+        },
+    },
+
+    // hack: new trainer (hack/scripts/gen_trainer_teams.py)
+    [743] = {
+        .name = "Grunt",
+        .data = {
+            .trainerType = TRAINER_DATA_TYPE_NOTHING,
+            .trainerClass = TRAINERCLASS_TEAM_ROCKET,
+            .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
+            .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS,
+            .battleType = SINGLE_BATTLE,
+        },
+        // hack: extra grunt, Goldenrod City (hack/scripts/gen_trainer_teams.py)
+        .party = {
+            {
+                .ivs = 120,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 29,
+                .species = SPECIES_KOFFING,
+                .ballSeal = 0,
+            },
+            {
+                .ivs = 120,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 29,
+                .species = SPECIES_SCRAGGY,
+                .ballSeal = 0,
+            },
+            {
+                .ivs = 120,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 30,
+                .species = SPECIES_ARBOK,
+                .ballSeal = 0,
+            },
+        },
+        .text = {
+            {
+                .type = TRMSG_LOSE,
+                .text = "You’re too late to stop the broadcast!\\n",
+            },
+            {
+                .type = TRMSG_WIN,
+                .text = "Stay off these streets!\\n",
+            },
+        },
+    },
+
 };
 
 const u16 sTrainerTextOrder[] = {
@@ -31943,6 +32322,11 @@ const u16 sTrainerTextOrder[] = {
     629,
     630,
     738,
+    739,
+    740,
+    741,
+    742,
+    743,
 };
 
 const u32 sTrainerDataCount = sizeof(sTrainerData) / sizeof(sTrainerData[0]);
