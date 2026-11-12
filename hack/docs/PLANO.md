@@ -39,7 +39,7 @@ Decisões de design fechadas:
 
 Trabalho, por ordem:
 
-1. ⏳ Líderes de Johto, Elite Four e Lance: equipas novas e níveis (`data/Trainers.c`)
+1. ✅ Líderes de Johto, Elite Four e Lance: equipas novas com golpes e itens, tipos originais, ás 2 a 4 níveis acima do original (`hack/scripts/gen_trainer_teams.py`). Testado em jogo o Falkner; faltam os líderes de Kanto, o Blue, o Red e as desforras
 2. ⏳ Equipa Rocket reforçada: grunts, admins e Giovanni com equipas novas e mais confrontos (Radio Tower, Lago da Fúria, Mahogany)
 3. ⏳ Korrina no Farol: personagem, combate, Key Stone e Ampharosite; ativar a Mega Evolução (flag 2518)
 4. ⏳ Rival: os 3 confrontos novos e equipas a condizer

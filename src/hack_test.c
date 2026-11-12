@@ -28,6 +28,7 @@
 #define HACK_TEST_HOLE ((volatile u32 *)0x02FFF81C)
 #define HACK_TEST_REQUEST_MAGIC 0xC0DE
 #define HACK_TEST_MIRROR_REWARD ITEM_CHOICE_BAND // reward of the Mantine specialist, see its script in T21
+#define HACK_TEST_LEADER_FLAG 2911 // free daily flag: common script 2073 starts the leader battle when it is set
 #define HACK_TEST_STATIC_MON_FLAG 2910 // daily flag of the static Pokémon of Cherrygrove City
 
 struct HackTestMonReport {
@@ -134,6 +135,7 @@ static void HackTest_Setup(u16 scenario)
     bag->keyItems[0].id = ITEM_EXP_SHARE;
     bag->keyItems[0].quantity = 1;
     ClearScriptFlag(FLAG_EXP_SHARE_DISABLED);
+    ClearScriptFlag(HACK_TEST_LEADER_FLAG);
     profile->johtoBadges = 0xFF;
     profile->kantoBadges = 0;
     profile->money = 500000;
@@ -212,6 +214,12 @@ static void HackTest_Setup(u16 scenario)
         }
         HackTest_AddMon(SPECIES_PIDGEY, 20);
         SetScriptVar(HACK_VAR_MIRROR_WINS, 0);
+        break;
+
+    case HACK_TEST_LEADER:
+        pp = HackTest_AddMon(SPECIES_GARCHOMP, 40);
+        HackTest_SetMove(pp, MOVE_ROCK_SLIDE, 10);
+        SetScriptFlag(HACK_TEST_LEADER_FLAG);
         break;
 
     case HACK_TEST_STATIC_MON:
