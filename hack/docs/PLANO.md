@@ -17,8 +17,8 @@ Legenda: ✅ feito · 🔨 em curso · ⏳ por fazer · 🔬 precisa de investig
 | Odds de shiny 1/4096 | ✅ | `SHINY_ODDS 16` |
 | Shiny Charm funcional | ✅ testado | +2 tentativas em selvagens, ofertas e ovos da Day Care (acumula com o método Masuda) |
 | Oval Charm funcional | ✅ testado | Probabilidade de ovo a cada 256 passos: 20/50/70% passam a 40/80/88%, como na Gen 5+. `src/hack_daycare.c` |
-| Bicicleta mais rápida | 🔬 | A rotina do jogo ainda não está descompilada; é preciso encontrar a tabela de velocidade no overlay do campo |
-| Adicionar à equipa depois de apanhar | 🔬 | Prompt "adicionar à equipa / enviar para o PC" quando a equipa está cheia. Mexe na UI pós-captura |
+| Bicicleta mais rápida | ✅ testado | Velocidade máxima a dobrar (2 frames por mosaico em vez de 4), com a mesma aceleração inicial. A rotina está no arm9 (0205D658), não no overlay; são 2 bytes em `bytereplacement`. Falta ver em jogo real as transições entre mapas a esta velocidade |
+| Adicionar à equipa depois de apanhar | 🔬 | Prompt "adicionar à equipa / enviar para o PC" quando a equipa está cheia. Mexe na sequência pós-captura do overlay de batalha (pergunta Sim/Não e escolha do Pokémon que sai); fica para um PR próprio |
 
 ## Fase 2: Pokédex e mundo
 

@@ -24,7 +24,7 @@ os.environ.setdefault("SDL_AUDIODRIVER", "dummy")
 HOLE = 0x02FFF81C
 REQUEST_MAGIC = 0xC0DE0000
 REPORT_MAGIC = 0x53544B48
-REPORT_SIZE = 28 + 6 * 16 + 24 + 24
+REPORT_SIZE = 28 + 6 * 16 + 24 + 24 + 4
 EGG_ROLLS = 1000
 SHINY_SAMPLES = 1500
 SHINY_TEST_ODDS = 2049 / 65536  # HACK_TEST builds use SHINY_ODDS 2048, see include/config.h
@@ -40,6 +40,7 @@ SCENARIOS = {
     "switch_no_share": 8,
     "shiny_charm": 9,
     "day_care": 10,
+    "bike": 11,
 }
 
 # base experience and growth data used by the expectations
@@ -111,7 +112,9 @@ class Game:
             mons.append({"species": species, "level": level, "egg": is_egg, "exp": exp, "hp": hp, "ivs": ivs})
         shiny = struct.unpack_from("<6I", raw, 28 + 6 * 16)
         eggs = struct.unpack_from("<6I", raw, 28 + 6 * 16 + 24)
+        x, z = struct.unpack_from("<hh", raw, 28 + 6 * 16 + 48)
         return {
+            "x": x, "z": z,
             "compatibility": compat, "egg_rolls": eggs[0:2], "eggs": eggs[2:4], "shiny_eggs": eggs[4:6],
             "shiny_total": shiny[:3], "shiny_hits": shiny[3:],
             "ticks": ticks, "scenario": scenario, "level_cap": level_cap, "money": money, "badges": badges,
@@ -391,6 +394,46 @@ def test_day_care(game, c):
     c.check("Shiny Charm: 3 rolls on eggs", 0.06 <= rates[1] <= 0.13, f"{rates[1]:.3f}")
 
 
+def ride(game, key, frames):
+    """hold a direction and return the player position after every frame"""
+    positions = []
+    game.emu.input.keypad_add_key(game.keymask(key))
+    for _ in range(frames):
+        game.run(1)
+        report = game.report()
+        positions.append((report["x"], report["z"]))
+    game.emu.input.keypad_rm_key(game.keymask(key))
+    game.run(40)
+    return positions
+
+
+def fastest_tile_time(positions):
+    """smallest number of frames between two consecutive tile changes"""
+    changes = [i for i in range(1, len(positions)) if positions[i] != positions[i - 1]]
+    gaps = [b - a for a, b in zip(changes, changes[1:])]
+    return (min(gaps) if gaps else None), len(changes)
+
+
+def test_bike(game, c):
+    """the test save stands in Cherrygrove City with 7 free tiles to the west (east is a story trigger)"""
+    keys = game.Keys
+    open_bag(game)
+    game.touch(240, 16, wait=60)  # key items pocket
+    game.press(keys.KEY_RIGHT, wait=30)  # Bicycle is the second key item
+    game.shot("bicycle_selected")
+    game.press(keys.KEY_A, wait=60)
+    game.press(keys.KEY_A, wait=200)  # USE
+    c.check("back in the overworld", game.back_to_field())
+    game.shot("on_bike")
+    positions = ride(game, keys.KEY_LEFT, 50)
+    changes = [i for i in range(1, len(positions)) if positions[i] != positions[i - 1]]
+    gaps = [b - a for a, b in zip(changes, changes[1:])]
+    game.shot("after_ride")
+    print(f"  bike: {len(changes)} tiles, frames between tiles while accelerating: {gaps}")
+    c.check("the bike accelerates over the first tiles", len(gaps) >= 5 and gaps[0] > gaps[-1], f"{gaps}")
+    c.check("top speed is 2 frames per tile (vanilla: 4)", gaps[-2:] == [2, 2], f"{gaps[-2:]}")
+
+
 TESTS = {
     "exp_share_on": test_exp_share_on,
     "exp_share_off": test_exp_share_off,
@@ -402,6 +445,7 @@ TESTS = {
     "switch_no_share": test_switch_no_share,
     "shiny_charm": test_shiny_charm,
     "day_care": test_day_care,
+    "bike": test_bike,
 }
 
 

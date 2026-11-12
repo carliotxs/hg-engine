@@ -60,7 +60,12 @@ struct HackTestReport {
     u32 eggRolls[2];
     u32 eggs[2];
     u32 shinyEggs[2];
+    s16 playerX;
+    s16 playerZ;
 };
+
+u32 LONG_CALL PlayerAvatar_GetXCoord(FIELD_PLAYER_AVATAR *playerAvatar);
+u32 LONG_CALL PlayerAvatar_GetZCoord(FIELD_PLAYER_AVATAR *playerAvatar);
 
 #define DAYCARE_MON_SIZE             0xEC
 #define DAYCARE_STEPS_OFFSET         0xE8
@@ -173,6 +178,12 @@ static void HackTest_Setup(u16 scenario)
         HackTest_AddMon(SPECIES_GARCHOMP, 40);
         break;
 
+    case HACK_TEST_BIKE:
+        HackTest_AddMon(SPECIES_GARCHOMP, 40);
+        bag->keyItems[1].id = ITEM_BIKE;
+        bag->keyItems[1].quantity = 1;
+        break;
+
     case HACK_TEST_BOTTLE_CAPS: {
         static const u8 mixed[6] = { 5, 10, 31, 20, 31, 31 };
         static const u8 zero[6] = { 0, 0, 0, 0, 0, 0 };
@@ -204,6 +215,8 @@ static void HackTest_UpdateReport(void)
     struct HackTestReport *report = &gHackTestReport;
 
     report->ticks++;
+    report->playerX = PlayerAvatar_GetXCoord(gFieldSysPtr->playerAvatar);
+    report->playerZ = PlayerAvatar_GetZCoord(gFieldSysPtr->playerAvatar);
     report->partyCount = party->count;
     report->levelCap = GetLevelCap();
     report->money = profile->money;
@@ -355,6 +368,7 @@ void HackTest_FieldTick(void)
         case HACK_TEST_EXP_SHARE_TOGGLE:
         case HACK_TEST_SHINY_CHARM:
         case HACK_TEST_DAY_CARE:
+        case HACK_TEST_BIKE:
             break; // driven from the menu by the python side
         default:
             EventSet_Script(gFieldSysPtr, 2073, NULL);

@@ -27,6 +27,9 @@
 // Oval Charm: better egg chance at the Day Care every 256 steps (20/50/70% become 40/80/88%).
 #define HACK_OVAL_CHARM
 
+// Bicycle with twice the vanilla top speed (2 frames per tile), see bytereplacement.
+#define HACK_FAST_BIKE
+
 // Bottle Cap / Gold Bottle Cap usable from the bag.
 // Gold Bottle Cap: all IVs to 31. Bottle Cap: the lowest IV goes to 31.
 #define HACK_BOTTLE_CAPS
