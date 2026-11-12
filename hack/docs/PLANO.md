@@ -24,7 +24,7 @@ Legenda: ✅ feito · 🔨 em curso · ⏳ por fazer · 🔬 precisa de investig
 
 - ⏳ Encontros Gen 1 a 9 em Johto e Kanto (`data/Encounters.c`), por zona e por hora do dia, com a distribuição por tipos coerente com cada rota
 - ⏳ Iniciais alternativos (`src/starters.c`)
-- ⏳ Ativar os scripts e eventos dumpados (`make dump_scripts`, depois `BUILD_DUMPED_SCR_SEQ` e `BUILD_DUMPED_EVENTDATA`) para a história ficar toda em texto no git, em vez de edições binárias no DSPRE
+- ✅ História em texto no git: scripts, eventos e textos despejados com `make dump_scripts` e compilados com `BUILD_DUMPED_SCR_SEQ` e `BUILD_DUMPED_EVENTDATA`. Verificado byte a byte contra a ROM original
 - 🔬 Encontros visíveis no overworld. Caminho realista: Pokémon estáticos visíveis em pontos fixos (eventos do mapa), com respawn diário. Spawns dinâmicos como no SwSh obrigariam a um sistema novo de overworld e são um projeto à parte
 
 ## Fase 3: história e batalhas

@@ -38,6 +38,14 @@ Define `HG_BASE_ROM` com o caminho da ROM para não o passares em cada comando. 
 
 Para partilhar o hack, usa só o `.xdelta` (aplica-se com Delta Patcher ou xdelta UI sobre a ROM original). Nunca distribuas o `.nds`. As regras do hg-engine proíbem qualquer tipo de monetização e obrigam a replicar `CREDITS.md`.
 
+## História em texto
+
+Os scripts de campo (`data/scr_seq/scr_seq_NNNN*.s`), os eventos de cada mapa (`data/eventdata/zone_event/`) e os textos (`data/text/custom/`) foram despejados da ROM original com `make dump_scripts DUMP_ROM=rom.nds` e são compilados para a ROM (`BUILD_DUMPED_SCR_SEQ` e `BUILD_DUMPED_EVENTDATA` em `include/config.h`). A história edita-se nesses ficheiros, com diffs normais no git; não se usa o DSPRE para scripts, eventos ou texto, porque o build passaria por cima.
+
+- O despejo foi verificado: compilado sem alterações, dá arquivos byte a byte iguais aos da ROM original
+- O `dump_scripts` reescreve `data/text/keys.csv` sem as chaves dos arquivos do engine (829 a 853); se o voltares a correr, repõe esse ficheiro com `git checkout data/text/keys.csv`
+- Os scripts comuns e de treinadores do engine continuam nos ficheiros de cinco dígitos (`scr_seq_00003_commonscript.s`)
+
 ## Testes em jogo
 
 `hack/scripts/test.sh` compila uma ROM de debug (`make HACK_TEST=Y`, guardada em `hack/out/test-debug.nds`) e corre `hack/scripts/ingame_tests.py` no DeSmuME sem janela. A ROM de debug continua o save automaticamente (por omissão o save de testes público do hg-engine, descarregado para `hack/out/test.sav`; `HG_TEST_SAV` aponta para outro).
