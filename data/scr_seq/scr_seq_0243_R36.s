@@ -39,6 +39,12 @@ scrdef scr_seq_R36_008
 scrdef scr_seq_R36_009
 scrdef scr_seq_R36_010
 scrdef scr_seq_R36_011
+scrdef scr_seq_R36_012
+scrdef scr_seq_R36_013
+scrdef scr_seq_R36_014
+scrdef scr_seq_R36_015
+scrdef scr_seq_R36_016
+scrdef scr_seq_R36_017
 scrdef_end
 
 scr_seq_R36_002:
@@ -495,5 +501,53 @@ scr_seq_R36_011:
 scr_seq_R36_011_lost:
 	white_out
 	releaseall
+	end
+// hack: MEOWSCARADA specialist (hack/scripts/gen_specialists.py)
+scr_seq_R36_012:
+	setvar VAR_SPECIAL_x8004, SPECIES_MEOWSCARADA
+	setvar VAR_SPECIAL_x8005, 36
+	setvar VAR_SPECIAL_x8006, ITEM_EXPERT_BELT
+	setvar VAR_SPECIAL_x8007, 2148
+	callstd 2077
+	end
+// hack: CHESNAUGHT specialist (hack/scripts/gen_specialists.py)
+scr_seq_R36_013:
+	setvar VAR_SPECIAL_x8004, SPECIES_CHESNAUGHT
+	setvar VAR_SPECIAL_x8005, 36
+	setvar VAR_SPECIAL_x8006, ITEM_CHESNAUGHTITE
+	setvar VAR_SPECIAL_x8007, 2179
+	callstd 2077
+	end
+// hack: RILLABOOM specialist (hack/scripts/gen_specialists.py)
+scr_seq_R36_014:
+	setvar VAR_SPECIAL_x8004, SPECIES_RILLABOOM
+	setvar VAR_SPECIAL_x8005, 35
+	setvar VAR_SPECIAL_x8006, ITEM_PP_UP
+	setvar VAR_SPECIAL_x8007, 2184
+	callstd 2077
+	end
+// hack: DUBWOOL specialist (hack/scripts/gen_specialists.py)
+scr_seq_R36_015:
+	setvar VAR_SPECIAL_x8004, SPECIES_DUBWOOL
+	setvar VAR_SPECIAL_x8005, 24
+	setvar VAR_SPECIAL_x8006, ITEM_SCOPE_LENS
+	setvar VAR_SPECIAL_x8007, 2268
+	callstd 2077
+	end
+// hack: WORMADAM specialist (hack/scripts/gen_specialists.py)
+scr_seq_R36_016:
+	setvar VAR_SPECIAL_x8004, SPECIES_WORMADAM
+	setvar VAR_SPECIAL_x8005, 20
+	setvar VAR_SPECIAL_x8006, ITEM_HEAVY_DUTY_BOOTS
+	setvar VAR_SPECIAL_x8007, 2304
+	callstd 2077
+	end
+// hack: MOTHIM specialist (hack/scripts/gen_specialists.py)
+scr_seq_R36_017:
+	setvar VAR_SPECIAL_x8004, SPECIES_MOTHIM
+	setvar VAR_SPECIAL_x8005, 20
+	setvar VAR_SPECIAL_x8006, ITEM_PP_UP
+	setvar VAR_SPECIAL_x8007, 2305
+	callstd 2077
 	end
 	.balign 4

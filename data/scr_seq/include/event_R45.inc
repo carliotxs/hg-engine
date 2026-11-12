@@ -7,6 +7,10 @@
 .equ _EV_scr_seq_R45_003, 3
 .equ _EV_scr_seq_R45_004, 4
 .equ _EV_scr_seq_R45_005, 5
+.equ _EV_scr_seq_R45_006, 6
+.equ _EV_scr_seq_R45_007, 7
+.equ _EV_scr_seq_R45_008, 8
+.equ _EV_scr_seq_R45_009, 9
 
 .equ obj_R45_mount_2, 0
 .equ obj_R45_gsman3, 1
@@ -24,5 +28,9 @@
 .equ obj_R45_gsman1, 13
 .equ obj_R45_gsmiddleman1, 14
 .equ obj_R45_hack_static, 15
+.equ obj_R45_hack_spec_gliscor, 16
+.equ obj_R45_hack_spec_toucannon, 17
+.equ obj_R45_hack_spec_zebstrika, 18
+.equ obj_R45_hack_spec_skeledirge, 19
 
 .endif //SCR_SEQ_R45_H_

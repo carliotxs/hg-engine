@@ -8,6 +8,9 @@
 .equ _EV_scr_seq_R31_004, 4
 .equ _EV_scr_seq_R31_005, 5
 .equ _EV_scr_seq_R31_006, 6
+.equ _EV_scr_seq_R31_007, 7
+.equ _EV_scr_seq_R31_008, 8
+.equ _EV_scr_seq_R31_009, 9
 
 .equ obj_R31_gsman1, 0
 .equ obj_R31_tree, 1
@@ -19,5 +22,8 @@
 .equ obj_R31_monstarball_2, 7
 .equ obj_R31_bonguri, 8
 .equ obj_R31_hack_static, 9
+.equ obj_R31_hack_spec_ariados, 10
+.equ obj_R31_hack_spec_mightyena, 11
+.equ obj_R31_hack_spec_watchog, 12
 
 .endif //SCR_SEQ_R31_H_

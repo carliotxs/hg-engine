@@ -29,6 +29,12 @@
 
 scrdef scr_seq_D41R0101_000
 scrdef scr_seq_D41R0101_001
+scrdef scr_seq_D41R0101_002
+scrdef scr_seq_D41R0101_003
+scrdef scr_seq_D41R0101_004
+scrdef scr_seq_D41R0101_005
+scrdef scr_seq_D41R0101_006
+scrdef scr_seq_D41R0101_007
 scrdef_end
 
 scr_seq_D41R0101_001:
@@ -177,4 +183,52 @@ _01E4:
 	step 12, 1
 	step 1, 1
 	step_end
+// hack: DONPHAN specialist (hack/scripts/gen_specialists.py)
+scr_seq_D41R0101_002:
+	setvar VAR_SPECIAL_x8004, SPECIES_DONPHAN
+	setvar VAR_SPECIAL_x8005, 47
+	setvar VAR_SPECIAL_x8006, ITEM_ASSAULT_VEST
+	setvar VAR_SPECIAL_x8007, 2110
+	callstd 2077
+	end
+// hack: SALAZZLE specialist (hack/scripts/gen_specialists.py)
+scr_seq_D41R0101_003:
+	setvar VAR_SPECIAL_x8004, SPECIES_SALAZZLE
+	setvar VAR_SPECIAL_x8005, 46
+	setvar VAR_SPECIAL_x8006, ITEM_BOTTLE_CAP
+	setvar VAR_SPECIAL_x8007, 2266
+	callstd 2077
+	end
+// hack: METAGROSS specialist (hack/scripts/gen_specialists.py)
+scr_seq_D41R0101_004:
+	setvar VAR_SPECIAL_x8004, SPECIES_METAGROSS
+	setvar VAR_SPECIAL_x8005, 48
+	setvar VAR_SPECIAL_x8006, ITEM_METAGROSSITE
+	setvar VAR_SPECIAL_x8007, 2374
+	callstd 2077
+	end
+// hack: TYRANITAR specialist (hack/scripts/gen_specialists.py)
+scr_seq_D41R0101_005:
+	setvar VAR_SPECIAL_x8004, SPECIES_TYRANITAR
+	setvar VAR_SPECIAL_x8005, 55
+	setvar VAR_SPECIAL_x8006, ITEM_TYRANITARITE
+	setvar VAR_SPECIAL_x8007, 2392
+	callstd 2077
+	end
+// hack: LUCARIO specialist (hack/scripts/gen_specialists.py)
+scr_seq_D41R0101_006:
+	setvar VAR_SPECIAL_x8004, SPECIES_LUCARIO
+	setvar VAR_SPECIAL_x8005, 46
+	setvar VAR_SPECIAL_x8006, ITEM_LUCARIONITE
+	setvar VAR_SPECIAL_x8007, 2616
+	callstd 2077
+	end
+// hack: HYDREIGON specialist (hack/scripts/gen_specialists.py)
+scr_seq_D41R0101_007:
+	setvar VAR_SPECIAL_x8004, SPECIES_HYDREIGON
+	setvar VAR_SPECIAL_x8005, 64
+	setvar VAR_SPECIAL_x8006, ITEM_WISE_GLASSES
+	setvar VAR_SPECIAL_x8007, 2633
+	callstd 2077
+	end
 	.balign 4

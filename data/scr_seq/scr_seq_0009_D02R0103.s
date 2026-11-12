@@ -30,6 +30,9 @@
 scrdef scr_seq_D02R0103_000
 scrdef scr_seq_D02R0103_001
 scrdef scr_seq_D02R0103_002
+scrdef scr_seq_D02R0103_003
+scrdef scr_seq_D02R0103_004
+scrdef scr_seq_D02R0103_005
 scrdef_end
 
 scr_seq_D02R0103_002:
@@ -59,5 +62,29 @@ scr_seq_D02R0103_000:
 
 scr_seq_D02R0103_001:
 	simple_npc_msg 1
+	end
+// hack: GASTRODON specialist (hack/scripts/gen_specialists.py)
+scr_seq_D02R0103_003:
+	setvar VAR_SPECIAL_x8004, SPECIES_GASTRODON
+	setvar VAR_SPECIAL_x8005, 38
+	setvar VAR_SPECIAL_x8006, ITEM_CHOICE_SPECS
+	setvar VAR_SPECIAL_x8007, 2644
+	callstd 2077
+	end
+// hack: WHISCASH specialist (hack/scripts/gen_specialists.py)
+scr_seq_D02R0103_004:
+	setvar VAR_SPECIAL_x8004, SPECIES_WHISCASH
+	setvar VAR_SPECIAL_x8005, 30
+	setvar VAR_SPECIAL_x8006, ITEM_CHOICE_SCARF
+	setvar VAR_SPECIAL_x8007, 2683
+	callstd 2077
+	end
+// hack: BARRASKEWDA specialist (hack/scripts/gen_specialists.py)
+scr_seq_D02R0103_005:
+	setvar VAR_SPECIAL_x8004, SPECIES_BARRASKEWDA
+	setvar VAR_SPECIAL_x8005, 26
+	setvar VAR_SPECIAL_x8006, ITEM_LIFE_ORB
+	setvar VAR_SPECIAL_x8007, 2690
+	callstd 2077
 	end
 	.balign 4

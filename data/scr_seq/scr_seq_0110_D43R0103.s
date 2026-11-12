@@ -34,6 +34,11 @@ scrdef scr_seq_D43R0103_003
 scrdef scr_seq_D43R0103_004
 scrdef scr_seq_D43R0103_005
 scrdef scr_seq_D43R0103_006
+scrdef scr_seq_D43R0103_007
+scrdef scr_seq_D43R0103_008
+scrdef scr_seq_D43R0103_009
+scrdef scr_seq_D43R0103_010
+scrdef scr_seq_D43R0103_011
 scrdef_end
 
 scr_seq_D43R0103_000:
@@ -310,4 +315,44 @@ _0390:
 	step 23, 1
 	step 69, 1
 	step_end
+// hack: SCRAFTY specialist (hack/scripts/gen_specialists.py)
+scr_seq_D43R0103_007:
+	setvar VAR_SPECIAL_x8004, SPECIES_SCRAFTY
+	setvar VAR_SPECIAL_x8005, 39
+	setvar VAR_SPECIAL_x8006, ITEM_PP_UP
+	setvar VAR_SPECIAL_x8007, 2217
+	callstd 2077
+	end
+// hack: AGGRON specialist (hack/scripts/gen_specialists.py)
+scr_seq_D43R0103_008:
+	setvar VAR_SPECIAL_x8004, SPECIES_AGGRON
+	setvar VAR_SPECIAL_x8005, 42
+	setvar VAR_SPECIAL_x8006, ITEM_AGGRONITE
+	setvar VAR_SPECIAL_x8007, 2294
+	callstd 2077
+	end
+// hack: FLYGON specialist (hack/scripts/gen_specialists.py)
+scr_seq_D43R0103_009:
+	setvar VAR_SPECIAL_x8004, SPECIES_FLYGON
+	setvar VAR_SPECIAL_x8005, 45
+	setvar VAR_SPECIAL_x8006, ITEM_PP_UP
+	setvar VAR_SPECIAL_x8007, 2356
+	callstd 2077
+	end
+// hack: LYCANROC specialist (hack/scripts/gen_specialists.py)
+scr_seq_D43R0103_010:
+	setvar VAR_SPECIAL_x8004, SPECIES_LYCANROC
+	setvar VAR_SPECIAL_x8005, 37
+	setvar VAR_SPECIAL_x8006, ITEM_SHELL_BELL
+	setvar VAR_SPECIAL_x8007, 2609
+	callstd 2077
+	end
+// hack: KOMMO_O specialist (hack/scripts/gen_specialists.py)
+scr_seq_D43R0103_011:
+	setvar VAR_SPECIAL_x8004, SPECIES_KOMMO_O
+	setvar VAR_SPECIAL_x8005, 45
+	setvar VAR_SPECIAL_x8006, ITEM_PP_UP
+	setvar VAR_SPECIAL_x8007, 2651
+	callstd 2077
+	end
 	.balign 4

@@ -10,6 +10,12 @@
 .equ _EV_scr_seq_R29_006, 6
 .equ _EV_scr_seq_R29_007, 7
 .equ _EV_scr_seq_R29_008, 8
+.equ _EV_scr_seq_R29_009, 9
+.equ _EV_scr_seq_R29_010, 10
+.equ _EV_scr_seq_R29_011, 11
+.equ _EV_scr_seq_R29_012, 12
+.equ _EV_scr_seq_R29_013, 13
+.equ _EV_scr_seq_R29_014, 14
 
 .equ obj_R29_gsboy2, 0
 .equ obj_R29_gsbigman, 1
@@ -22,5 +28,11 @@
 .equ obj_R29_monstarball, 8
 .equ obj_R29_bonguri, 9
 .equ obj_R29_gswoman2_2, 10
+.equ obj_R29_hack_spec_linoone, 11
+.equ obj_R29_hack_spec_stoutland, 12
+.equ obj_R29_hack_spec_diggersby, 13
+.equ obj_R29_hack_spec_gumshoos, 14
+.equ obj_R29_hack_spec_banette, 15
+.equ obj_R29_hack_spec_noctowl, 16
 
 .endif //SCR_SEQ_R29_H_

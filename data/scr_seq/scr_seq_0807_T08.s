@@ -37,6 +37,10 @@ scrdef scr_seq_T08_006
 scrdef scr_seq_T08_007
 scrdef scr_seq_T08_008
 scrdef scr_seq_T08_009
+scrdef scr_seq_T08_010
+scrdef scr_seq_T08_011
+scrdef scr_seq_T08_012
+scrdef scr_seq_T08_013
 scrdef_end
 
 scr_seq_T08_007:
@@ -426,5 +430,37 @@ scr_seq_T08_005:
 	scrcmd_058
 	trainer_tips 6, VAR_SPECIAL_RESULT
 	callstd std_signpost
+	end
+// hack: RELICANTH specialist (hack/scripts/gen_specialists.py)
+scr_seq_T08_010:
+	setvar VAR_SPECIAL_x8004, SPECIES_RELICANTH
+	setvar VAR_SPECIAL_x8005, 43
+	setvar VAR_SPECIAL_x8006, ITEM_FOCUS_SASH
+	setvar VAR_SPECIAL_x8007, 2614
+	callstd 2077
+	end
+// hack: GOLISOPOD specialist (hack/scripts/gen_specialists.py)
+scr_seq_T08_011:
+	setvar VAR_SPECIAL_x8004, SPECIES_GOLISOPOD
+	setvar VAR_SPECIAL_x8005, 30
+	setvar VAR_SPECIAL_x8006, ITEM_GOLISOPITE
+	setvar VAR_SPECIAL_x8007, 2656
+	callstd 2077
+	end
+// hack: BARBARACLE specialist (hack/scripts/gen_specialists.py)
+scr_seq_T08_012:
+	setvar VAR_SPECIAL_x8004, SPECIES_BARBARACLE
+	setvar VAR_SPECIAL_x8005, 39
+	setvar VAR_SPECIAL_x8006, ITEM_BARBARACITE
+	setvar VAR_SPECIAL_x8007, 2669
+	callstd 2077
+	end
+// hack: TOXAPEX specialist (hack/scripts/gen_specialists.py)
+scr_seq_T08_013:
+	setvar VAR_SPECIAL_x8004, SPECIES_TOXAPEX
+	setvar VAR_SPECIAL_x8005, 38
+	setvar VAR_SPECIAL_x8006, ITEM_SCOPE_LENS
+	setvar VAR_SPECIAL_x8007, 2675
+	callstd 2077
 	end
 	.balign 4

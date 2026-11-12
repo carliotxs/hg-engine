@@ -18,6 +18,8 @@
 .equ _EV_scr_seq_T30_014, 14
 .equ _EV_scr_seq_T30_015, 15
 .equ _EV_scr_seq_T30_016, 16
+.equ _EV_scr_seq_T30_017, 17
+.equ _EV_scr_seq_T30_018, 18
 
 .equ obj_T30_gsman1, 0
 .equ obj_T30_gsoldman1, 1
@@ -29,5 +31,7 @@
 .equ obj_T30_gsoldman1_2, 7
 .equ obj_T30_gsboy2, 8
 .equ obj_T30_gsmiddleman1, 9
+.equ obj_T30_hack_spec_floatzel, 10
+.equ obj_T30_hack_spec_masquerain, 11
 
 .endif //SCR_SEQ_T30_H_

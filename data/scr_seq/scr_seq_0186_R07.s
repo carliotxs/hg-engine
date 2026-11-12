@@ -29,6 +29,13 @@
 
 scrdef scr_seq_R07_000
 scrdef scr_seq_R07_001
+scrdef scr_seq_R07_002
+scrdef scr_seq_R07_003
+scrdef scr_seq_R07_004
+scrdef scr_seq_R07_005
+scrdef scr_seq_R07_006
+scrdef scr_seq_R07_007
+scrdef scr_seq_R07_008
 scrdef_end
 
 scr_seq_R07_000:
@@ -46,5 +53,61 @@ scr_seq_R07_001:
 	wait_button
 	closemsg
 	releaseall
+	end
+// hack: HONCHKROW specialist (hack/scripts/gen_specialists.py)
+scr_seq_R07_002:
+	setvar VAR_SPECIAL_x8004, SPECIES_HONCHKROW
+	setvar VAR_SPECIAL_x8005, 20
+	setvar VAR_SPECIAL_x8006, ITEM_EVIOLITE
+	setvar VAR_SPECIAL_x8007, 2119
+	callstd 2077
+	end
+// hack: SUDOWOODO specialist (hack/scripts/gen_specialists.py)
+scr_seq_R07_003:
+	setvar VAR_SPECIAL_x8004, SPECIES_SUDOWOODO
+	setvar VAR_SPECIAL_x8005, 22
+	setvar VAR_SPECIAL_x8006, ITEM_KINGS_ROCK
+	setvar VAR_SPECIAL_x8007, 2241
+	callstd 2077
+	end
+// hack: CHATOT specialist (hack/scripts/gen_specialists.py)
+scr_seq_R07_004:
+	setvar VAR_SPECIAL_x8004, SPECIES_CHATOT
+	setvar VAR_SPECIAL_x8005, 22
+	setvar VAR_SPECIAL_x8006, ITEM_HEAVY_DUTY_BOOTS
+	setvar VAR_SPECIAL_x8007, 2250
+	callstd 2077
+	end
+// hack: LOPUNNY specialist (hack/scripts/gen_specialists.py)
+scr_seq_R07_005:
+	setvar VAR_SPECIAL_x8004, SPECIES_LOPUNNY
+	setvar VAR_SPECIAL_x8005, 22
+	setvar VAR_SPECIAL_x8006, ITEM_LOPUNNITE
+	setvar VAR_SPECIAL_x8007, 2307
+	callstd 2077
+	end
+// hack: MR_MIME specialist (hack/scripts/gen_specialists.py)
+scr_seq_R07_006:
+	setvar VAR_SPECIAL_x8004, SPECIES_MR_MIME
+	setvar VAR_SPECIAL_x8005, 18
+	setvar VAR_SPECIAL_x8006, ITEM_EVIOLITE
+	setvar VAR_SPECIAL_x8007, 2351
+	callstd 2077
+	end
+// hack: ROTOM specialist (hack/scripts/gen_specialists.py)
+scr_seq_R07_007:
+	setvar VAR_SPECIAL_x8004, SPECIES_ROTOM
+	setvar VAR_SPECIAL_x8005, 18
+	setvar VAR_SPECIAL_x8006, ITEM_CHOICE_SPECS
+	setvar VAR_SPECIAL_x8007, 2379
+	callstd 2077
+	end
+// hack: MINUN specialist (hack/scripts/gen_specialists.py)
+scr_seq_R07_008:
+	setvar VAR_SPECIAL_x8004, SPECIES_MINUN
+	setvar VAR_SPECIAL_x8005, 22
+	setvar VAR_SPECIAL_x8006, ITEM_CHOICE_SCARF
+	setvar VAR_SPECIAL_x8007, 2396
+	callstd 2077
 	end
 	.balign 4

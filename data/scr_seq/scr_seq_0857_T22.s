@@ -42,6 +42,8 @@ scrdef scr_seq_T22_011
 scrdef scr_seq_T22_012
 scrdef scr_seq_T22_013
 scrdef scr_seq_T22_014
+scrdef scr_seq_T22_015
+scrdef scr_seq_T22_016
 scrdef_end
 
 scr_seq_T22_000:
@@ -805,5 +807,21 @@ scr_seq_T22_013:
 
 scr_seq_T22_014:
 	simple_npc_msg 8
+	end
+// hack: POLITOED specialist (hack/scripts/gen_specialists.py)
+scr_seq_T22_015:
+	setvar VAR_SPECIAL_x8004, SPECIES_POLITOED
+	setvar VAR_SPECIAL_x8005, 43
+	setvar VAR_SPECIAL_x8006, ITEM_AIR_BALLOON
+	setvar VAR_SPECIAL_x8007, 2678
+	callstd 2077
+	end
+// hack: SEISMITOAD specialist (hack/scripts/gen_specialists.py)
+scr_seq_T22_016:
+	setvar VAR_SPECIAL_x8004, SPECIES_SEISMITOAD
+	setvar VAR_SPECIAL_x8005, 36
+	setvar VAR_SPECIAL_x8006, ITEM_SITRUS_BERRY
+	setvar VAR_SPECIAL_x8007, 2687
+	callstd 2077
 	end
 	.balign 4

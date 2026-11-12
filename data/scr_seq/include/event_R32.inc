@@ -12,6 +12,10 @@
 .equ _EV_scr_seq_R32_008, 8
 .equ _EV_scr_seq_R32_009, 9
 .equ _EV_scr_seq_R32_010, 10
+.equ _EV_scr_seq_R32_011, 11
+.equ _EV_scr_seq_R32_012, 12
+.equ _EV_scr_seq_R32_013, 13
+.equ _EV_scr_seq_R32_014, 14
 
 .equ obj_R32_gsbigman, 0
 .equ obj_R32_gsmiddleman1, 1
@@ -33,5 +37,9 @@
 .equ obj_R32_monstarball_4, 17
 .equ obj_R32_gsmiddleman1_2, 18
 .equ obj_R32_hack_static, 19
+.equ obj_R32_hack_spec_manectric, 20
+.equ obj_R32_hack_spec_ribombee, 21
+.equ obj_R32_hack_spec_victreebel, 22
+.equ obj_R32_hack_spec_azumarill, 23
 
 .endif //SCR_SEQ_R32_H_

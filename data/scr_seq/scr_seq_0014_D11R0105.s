@@ -29,6 +29,10 @@
 
 scrdef scr_seq_D11R0105_000
 scrdef scr_seq_D11R0105_001
+scrdef scr_seq_D11R0105_002
+scrdef scr_seq_D11R0105_003
+scrdef scr_seq_D11R0105_004
+scrdef scr_seq_D11R0105_005
 scrdef_end
 
 scr_seq_D11R0105_001:
@@ -70,4 +74,36 @@ _0077:
 _007D:
 	setflag FLAG_CAUGHT_ARTICUNO
 	return
+// hack: KINGDRA specialist (hack/scripts/gen_specialists.py)
+scr_seq_D11R0105_002:
+	setvar VAR_SPECIAL_x8004, SPECIES_KINGDRA
+	setvar VAR_SPECIAL_x8005, 43
+	setvar VAR_SPECIAL_x8006, ITEM_EXPERT_BELT
+	setvar VAR_SPECIAL_x8007, 2202
+	callstd 2077
+	end
+// hack: ABOMASNOW specialist (hack/scripts/gen_specialists.py)
+scr_seq_D11R0105_003:
+	setvar VAR_SPECIAL_x8004, SPECIES_ABOMASNOW
+	setvar VAR_SPECIAL_x8005, 42
+	setvar VAR_SPECIAL_x8006, ITEM_MUSCLE_BAND
+	setvar VAR_SPECIAL_x8007, 2309
+	callstd 2077
+	end
+// hack: CRYOGONAL specialist (hack/scripts/gen_specialists.py)
+scr_seq_D11R0105_004:
+	setvar VAR_SPECIAL_x8004, SPECIES_CRYOGONAL
+	setvar VAR_SPECIAL_x8005, 43
+	setvar VAR_SPECIAL_x8006, ITEM_HEAVY_DUTY_BOOTS
+	setvar VAR_SPECIAL_x8007, 2327
+	callstd 2077
+	end
+// hack: CETITAN specialist (hack/scripts/gen_specialists.py)
+scr_seq_D11R0105_005:
+	setvar VAR_SPECIAL_x8004, SPECIES_CETITAN
+	setvar VAR_SPECIAL_x8005, 42
+	setvar VAR_SPECIAL_x8006, ITEM_KINGS_ROCK
+	setvar VAR_SPECIAL_x8007, 2348
+	callstd 2077
+	end
 	.balign 4

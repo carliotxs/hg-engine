@@ -16,6 +16,8 @@
 .equ _EV_scr_seq_T22_012, 12
 .equ _EV_scr_seq_T22_013, 13
 .equ _EV_scr_seq_T22_014, 14
+.equ _EV_scr_seq_T22_015, 15
+.equ _EV_scr_seq_T22_016, 16
 
 .equ obj_T22_gsgirl3, 0
 .equ obj_T22_gsman1, 1
@@ -30,5 +32,7 @@
 .equ obj_T22_juggrer, 10
 .equ obj_T22_gswoman3, 11
 .equ obj_T22_gsbabyboy1, 12
+.equ obj_T22_hack_spec_politoed, 13
+.equ obj_T22_hack_spec_seismitoad, 14
 
 .endif //SCR_SEQ_T22_H_

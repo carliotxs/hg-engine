@@ -37,6 +37,7 @@ scrdef scr_seq_D24R0205_006
 scrdef scr_seq_D24R0205_007
 scrdef scr_seq_D24R0205_008
 scrdef scr_seq_D24R0205_009
+scrdef scr_seq_D24R0205_010
 scrdef_end
 
 scr_seq_D24R0205_008:
@@ -376,5 +377,13 @@ scr_seq_D24R0205_004:
 
 scr_seq_D24R0205_005:
 	simple_npc_msg 4
+	end
+// hack: UNOWN specialist (hack/scripts/gen_specialists.py)
+scr_seq_D24R0205_010:
+	setvar VAR_SPECIAL_x8004, SPECIES_UNOWN
+	setvar VAR_SPECIAL_x8005, 8
+	setvar VAR_SPECIAL_x8006, ITEM_FOCUS_SASH
+	setvar VAR_SPECIAL_x8007, 2164
+	callstd 2077
 	end
 	.balign 4

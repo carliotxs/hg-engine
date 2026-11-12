@@ -32,6 +32,10 @@ scrdef scr_seq_D39R0101_001
 scrdef scr_seq_D39R0101_002
 scrdef scr_seq_D39R0101_003
 scrdef scr_seq_D39R0101_004
+scrdef scr_seq_D39R0101_005
+scrdef scr_seq_D39R0101_006
+scrdef scr_seq_D39R0101_007
+scrdef scr_seq_D39R0101_008
 scrdef_end
 
 scr_seq_D39R0101_001:
@@ -353,4 +357,36 @@ _0404:
 	step 12, 1
 	step 1, 1
 	step_end
+// hack: MAMOSWINE specialist (hack/scripts/gen_specialists.py)
+scr_seq_D39R0101_005:
+	setvar VAR_SPECIAL_x8004, SPECIES_MAMOSWINE
+	setvar VAR_SPECIAL_x8005, 33
+	setvar VAR_SPECIAL_x8006, ITEM_ABILITY_CAPSULE
+	setvar VAR_SPECIAL_x8007, 2212
+	callstd 2077
+	end
+// hack: WEAVILE specialist (hack/scripts/gen_specialists.py)
+scr_seq_D39R0101_006:
+	setvar VAR_SPECIAL_x8004, SPECIES_WEAVILE
+	setvar VAR_SPECIAL_x8005, 25
+	setvar VAR_SPECIAL_x8006, ITEM_WISE_GLASSES
+	setvar VAR_SPECIAL_x8007, 2310
+	callstd 2077
+	end
+// hack: AURORUS specialist (hack/scripts/gen_specialists.py)
+scr_seq_D39R0101_007:
+	setvar VAR_SPECIAL_x8004, SPECIES_AURORUS
+	setvar VAR_SPECIAL_x8005, 39
+	setvar VAR_SPECIAL_x8006, ITEM_HEAVY_DUTY_BOOTS
+	setvar VAR_SPECIAL_x8007, 2332
+	callstd 2077
+	end
+// hack: EMPOLEON specialist (hack/scripts/gen_specialists.py)
+scr_seq_D39R0101_008:
+	setvar VAR_SPECIAL_x8004, SPECIES_EMPOLEON
+	setvar VAR_SPECIAL_x8005, 36
+	setvar VAR_SPECIAL_x8006, ITEM_CHOICE_SPECS
+	setvar VAR_SPECIAL_x8007, 2629
+	callstd 2077
+	end
 	.balign 4

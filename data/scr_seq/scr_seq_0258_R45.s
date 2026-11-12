@@ -33,6 +33,10 @@ scrdef scr_seq_R45_002
 scrdef scr_seq_R45_003
 scrdef scr_seq_R45_004
 scrdef scr_seq_R45_005
+scrdef scr_seq_R45_006
+scrdef scr_seq_R45_007
+scrdef scr_seq_R45_008
+scrdef scr_seq_R45_009
 scrdef_end
 
 scr_seq_R45_002:
@@ -192,5 +196,37 @@ scr_seq_R45_005:
 scr_seq_R45_005_lost:
 	white_out
 	releaseall
+	end
+// hack: GLISCOR specialist (hack/scripts/gen_specialists.py)
+scr_seq_R45_006:
+	setvar VAR_SPECIAL_x8004, SPECIES_GLISCOR
+	setvar VAR_SPECIAL_x8005, 27
+	setvar VAR_SPECIAL_x8006, ITEM_BOTTLE_CAP
+	setvar VAR_SPECIAL_x8007, 2126
+	callstd 2077
+	end
+// hack: TOUCANNON specialist (hack/scripts/gen_specialists.py)
+scr_seq_R45_007:
+	setvar VAR_SPECIAL_x8004, SPECIES_TOUCANNON
+	setvar VAR_SPECIAL_x8005, 28
+	setvar VAR_SPECIAL_x8006, ITEM_SITRUS_BERRY
+	setvar VAR_SPECIAL_x8007, 2335
+	callstd 2077
+	end
+// hack: ZEBSTRIKA specialist (hack/scripts/gen_specialists.py)
+scr_seq_R45_008:
+	setvar VAR_SPECIAL_x8004, SPECIES_ZEBSTRIKA
+	setvar VAR_SPECIAL_x8005, 27
+	setvar VAR_SPECIAL_x8006, ITEM_WISE_GLASSES
+	setvar VAR_SPECIAL_x8007, 2606
+	callstd 2077
+	end
+// hack: SKELEDIRGE specialist (hack/scripts/gen_specialists.py)
+scr_seq_R45_009:
+	setvar VAR_SPECIAL_x8004, SPECIES_SKELEDIRGE
+	setvar VAR_SPECIAL_x8005, 36
+	setvar VAR_SPECIAL_x8006, ITEM_WEAKNESS_POLICY
+	setvar VAR_SPECIAL_x8007, 2653
+	callstd 2077
 	end
 	.balign 4

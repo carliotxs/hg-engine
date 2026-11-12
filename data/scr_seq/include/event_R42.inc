@@ -8,6 +8,10 @@
 .equ _EV_scr_seq_R42_004, 4
 .equ _EV_scr_seq_R42_005, 5
 .equ _EV_scr_seq_R42_006, 6
+.equ _EV_scr_seq_R42_007, 7
+.equ _EV_scr_seq_R42_008, 8
+.equ _EV_scr_seq_R42_009, 9
+.equ _EV_scr_seq_R42_010, 10
 
 .equ obj_R42_fishing_2, 0
 .equ obj_R42_mania, 1
@@ -23,5 +27,9 @@
 .equ obj_R42_follower_mon_static_suicune, 11
 .equ obj_R42_minaki, 12
 .equ obj_R42_hack_static, 13
+.equ obj_R42_hack_spec_ampharos, 14
+.equ obj_R42_hack_spec_feraligatr, 15
+.equ obj_R42_hack_spec_samurott, 16
+.equ obj_R42_hack_spec_oinkologne, 17
 
 .endif //SCR_SEQ_R42_H_

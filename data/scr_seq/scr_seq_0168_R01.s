@@ -30,6 +30,13 @@
 scrdef scr_seq_R01_000
 scrdef scr_seq_R01_001
 scrdef scr_seq_R01_002
+scrdef scr_seq_R01_003
+scrdef scr_seq_R01_004
+scrdef scr_seq_R01_005
+scrdef scr_seq_R01_006
+scrdef scr_seq_R01_007
+scrdef scr_seq_R01_008
+scrdef scr_seq_R01_009
 scrdef_end
 
 scr_seq_R01_001:
@@ -173,5 +180,61 @@ scr_seq_R01_002:
 	scrcmd_058
 	scrcmd_060 VAR_SPECIAL_RESULT
 	callstd std_signpost
+	end
+// hack: FURRET specialist (hack/scripts/gen_specialists.py)
+scr_seq_R01_003:
+	setvar VAR_SPECIAL_x8004, SPECIES_FURRET
+	setvar VAR_SPECIAL_x8005, 15
+	setvar VAR_SPECIAL_x8006, ITEM_PP_UP
+	setvar VAR_SPECIAL_x8007, 2162
+	callstd 2077
+	end
+// hack: ROSERADE specialist (hack/scripts/gen_specialists.py)
+scr_seq_R01_004:
+	setvar VAR_SPECIAL_x8004, SPECIES_ROSERADE
+	setvar VAR_SPECIAL_x8005, 7
+	setvar VAR_SPECIAL_x8006, ITEM_BRIGHT_POWDER
+	setvar VAR_SPECIAL_x8007, 2249
+	callstd 2077
+	end
+// hack: BOLTUND specialist (hack/scripts/gen_specialists.py)
+scr_seq_R01_005:
+	setvar VAR_SPECIAL_x8004, SPECIES_BOLTUND
+	setvar VAR_SPECIAL_x8005, 25
+	setvar VAR_SPECIAL_x8006, ITEM_AIR_BALLOON
+	setvar VAR_SPECIAL_x8007, 2269
+	callstd 2077
+	end
+// hack: HOUNDOOM specialist (hack/scripts/gen_specialists.py)
+scr_seq_R01_006:
+	setvar VAR_SPECIAL_x8004, SPECIES_HOUNDOOM
+	setvar VAR_SPECIAL_x8005, 24
+	setvar VAR_SPECIAL_x8006, ITEM_FOCUS_SASH
+	setvar VAR_SPECIAL_x8007, 2288
+	callstd 2077
+	end
+// hack: GARDEVOIR specialist (hack/scripts/gen_specialists.py)
+scr_seq_R01_007:
+	setvar VAR_SPECIAL_x8004, SPECIES_GARDEVOIR
+	setvar VAR_SPECIAL_x8005, 30
+	setvar VAR_SPECIAL_x8006, ITEM_GARDEVOIRITE
+	setvar VAR_SPECIAL_x8007, 2292
+	callstd 2077
+	end
+// hack: GALLADE specialist (hack/scripts/gen_specialists.py)
+scr_seq_R01_008:
+	setvar VAR_SPECIAL_x8004, SPECIES_GALLADE
+	setvar VAR_SPECIAL_x8005, 20
+	setvar VAR_SPECIAL_x8006, ITEM_GALLADITE
+	setvar VAR_SPECIAL_x8007, 2311
+	callstd 2077
+	end
+// hack: PLUSLE specialist (hack/scripts/gen_specialists.py)
+scr_seq_R01_009:
+	setvar VAR_SPECIAL_x8004, SPECIES_PLUSLE
+	setvar VAR_SPECIAL_x8005, 6
+	setvar VAR_SPECIAL_x8006, ITEM_CHOICE_SPECS
+	setvar VAR_SPECIAL_x8007, 2395
+	callstd 2077
 	end
 	.balign 4

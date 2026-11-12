@@ -29,6 +29,12 @@
 
 scrdef scr_seq_D43R0102_000
 scrdef scr_seq_D43R0102_001
+scrdef scr_seq_D43R0102_002
+scrdef scr_seq_D43R0102_003
+scrdef scr_seq_D43R0102_004
+scrdef scr_seq_D43R0102_005
+scrdef scr_seq_D43R0102_006
+scrdef scr_seq_D43R0102_007
 scrdef_end
 
 scr_seq_D43R0102_000:
@@ -54,4 +60,52 @@ _0048:
 
 	step 68, 1
 	step_end
+// hack: DRUDDIGON specialist (hack/scripts/gen_specialists.py)
+scr_seq_D43R0102_002:
+	setvar VAR_SPECIAL_x8004, SPECIES_DRUDDIGON
+	setvar VAR_SPECIAL_x8005, 39
+	setvar VAR_SPECIAL_x8006, ITEM_SITRUS_BERRY
+	setvar VAR_SPECIAL_x8007, 2135
+	callstd 2077
+	end
+// hack: AEGISLASH specialist (hack/scripts/gen_specialists.py)
+scr_seq_D43R0102_003:
+	setvar VAR_SPECIAL_x8004, SPECIES_AEGISLASH
+	setvar VAR_SPECIAL_x8005, 36
+	setvar VAR_SPECIAL_x8006, ITEM_CHOICE_SPECS
+	setvar VAR_SPECIAL_x8007, 2180
+	callstd 2077
+	end
+// hack: FALINKS specialist (hack/scripts/gen_specialists.py)
+scr_seq_D43R0102_004:
+	setvar VAR_SPECIAL_x8004, SPECIES_FALINKS
+	setvar VAR_SPECIAL_x8005, 36
+	setvar VAR_SPECIAL_x8006, ITEM_FALINKSITE
+	setvar VAR_SPECIAL_x8007, 2229
+	callstd 2077
+	end
+// hack: ARMAROUGE specialist (hack/scripts/gen_specialists.py)
+scr_seq_D43R0102_005:
+	setvar VAR_SPECIAL_x8004, SPECIES_ARMAROUGE
+	setvar VAR_SPECIAL_x8005, 36
+	setvar VAR_SPECIAL_x8006, ITEM_EXPERT_BELT
+	setvar VAR_SPECIAL_x8007, 2235
+	callstd 2077
+	end
+// hack: CERULEDGE specialist (hack/scripts/gen_specialists.py)
+scr_seq_D43R0102_006:
+	setvar VAR_SPECIAL_x8004, SPECIES_CERULEDGE
+	setvar VAR_SPECIAL_x8005, 36
+	setvar VAR_SPECIAL_x8006, ITEM_ROCKY_HELMET
+	setvar VAR_SPECIAL_x8007, 2236
+	callstd 2077
+	end
+// hack: GOLURK specialist (hack/scripts/gen_specialists.py)
+scr_seq_D43R0102_007:
+	setvar VAR_SPECIAL_x8004, SPECIES_GOLURK
+	setvar VAR_SPECIAL_x8005, 43
+	setvar VAR_SPECIAL_x8006, ITEM_GOLURKITE
+	setvar VAR_SPECIAL_x8007, 2328
+	callstd 2077
+	end
 	.balign 4

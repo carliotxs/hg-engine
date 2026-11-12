@@ -28,6 +28,10 @@
 
 
 scrdef scr_seq_D42R0101_000
+scrdef scr_seq_D42R0101_001
+scrdef scr_seq_D42R0101_002
+scrdef scr_seq_D42R0101_003
+scrdef scr_seq_D42R0101_004
 scrdef_end
 
 scr_seq_D42R0101_000:
@@ -51,5 +55,37 @@ _0050:
 	wait_button
 	closemsg
 	releaseall
+	end
+// hack: WOBBUFFET specialist (hack/scripts/gen_specialists.py)
+scr_seq_D42R0101_001:
+	setvar VAR_SPECIAL_x8004, SPECIES_WOBBUFFET
+	setvar VAR_SPECIAL_x8005, 23
+	setvar VAR_SPECIAL_x8006, ITEM_EXPERT_BELT
+	setvar VAR_SPECIAL_x8007, 2109
+	callstd 2077
+	end
+// hack: GLIMMORA specialist (hack/scripts/gen_specialists.py)
+scr_seq_D42R0101_002:
+	setvar VAR_SPECIAL_x8004, SPECIES_GLIMMORA
+	setvar VAR_SPECIAL_x8005, 35
+	setvar VAR_SPECIAL_x8006, ITEM_GLIMMORANITE
+	setvar VAR_SPECIAL_x8007, 2347
+	callstd 2077
+	end
+// hack: COALOSSAL specialist (hack/scripts/gen_specialists.py)
+scr_seq_D42R0101_003:
+	setvar VAR_SPECIAL_x8004, SPECIES_COALOSSAL
+	setvar VAR_SPECIAL_x8005, 34
+	setvar VAR_SPECIAL_x8006, ITEM_HEAVY_DUTY_BOOTS
+	setvar VAR_SPECIAL_x8007, 2622
+	callstd 2077
+	end
+// hack: SALAMENCE specialist (hack/scripts/gen_specialists.py)
+scr_seq_D42R0101_004:
+	setvar VAR_SPECIAL_x8004, SPECIES_SALAMENCE
+	setvar VAR_SPECIAL_x8005, 50
+	setvar VAR_SPECIAL_x8006, ITEM_SALAMENCITE
+	setvar VAR_SPECIAL_x8007, 2641
+	callstd 2077
 	end
 	.balign 4

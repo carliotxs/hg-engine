@@ -11,6 +11,9 @@
 .equ _EV_scr_seq_W40_007, 7
 .equ _EV_scr_seq_W40_008, 8
 .equ _EV_scr_seq_W40_009, 9
+.equ _EV_scr_seq_W40_010, 10
+.equ _EV_scr_seq_W40_011, 11
+.equ _EV_scr_seq_W40_012, 12
 
 .equ obj_W40_gsswimmerm, 0
 .equ obj_W40_gsswimmerw, 1
@@ -19,5 +22,8 @@
 .equ obj_W40_gswoman1, 4
 .equ obj_W40_gsmiddleman1, 5
 .equ obj_W40_monstarball, 6
+.equ obj_W40_hack_spec_kingler, 7
+.equ obj_W40_hack_spec_palafin, 8
+.equ obj_W40_hack_spec_wishiwashi, 9
 
 .endif //SCR_SEQ_W40_H_

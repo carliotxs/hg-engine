@@ -35,6 +35,12 @@ scrdef scr_seq_R39_004
 scrdef scr_seq_R39_005
 scrdef scr_seq_R39_006
 scrdef scr_seq_R39_007
+scrdef scr_seq_R39_008
+scrdef scr_seq_R39_009
+scrdef scr_seq_R39_010
+scrdef scr_seq_R39_011
+scrdef scr_seq_R39_012
+scrdef scr_seq_R39_013
 scrdef_end
 
 scr_seq_R39_001:
@@ -412,5 +418,53 @@ scr_seq_R39_005:
 	scrcmd_058
 	trainer_tips 2, VAR_SPECIAL_RESULT
 	callstd std_signpost
+	end
+// hack: SQUAWKABILLY specialist (hack/scripts/gen_specialists.py)
+scr_seq_R39_008:
+	setvar VAR_SPECIAL_x8004, SPECIES_SQUAWKABILLY
+	setvar VAR_SPECIAL_x8005, 19
+	setvar VAR_SPECIAL_x8006, ITEM_LIFE_ORB
+	setvar VAR_SPECIAL_x8007, 2234
+	callstd 2077
+	end
+// hack: KECLEON specialist (hack/scripts/gen_specialists.py)
+scr_seq_R39_009:
+	setvar VAR_SPECIAL_x8004, SPECIES_KECLEON
+	setvar VAR_SPECIAL_x8005, 19
+	setvar VAR_SPECIAL_x8006, ITEM_QUICK_CLAW
+	setvar VAR_SPECIAL_x8007, 2245
+	callstd 2077
+	end
+// hack: SLURPUFF specialist (hack/scripts/gen_specialists.py)
+scr_seq_R39_010:
+	setvar VAR_SPECIAL_x8004, SPECIES_SLURPUFF
+	setvar VAR_SPECIAL_x8005, 19
+	setvar VAR_SPECIAL_x8006, ITEM_ROCKY_HELMET
+	setvar VAR_SPECIAL_x8007, 2263
+	callstd 2077
+	end
+// hack: AMOONGUSS specialist (hack/scripts/gen_specialists.py)
+scr_seq_R39_011:
+	setvar VAR_SPECIAL_x8004, SPECIES_AMOONGUSS
+	setvar VAR_SPECIAL_x8005, 39
+	setvar VAR_SPECIAL_x8006, ITEM_ABILITY_CAPSULE
+	setvar VAR_SPECIAL_x8007, 2324
+	callstd 2077
+	end
+// hack: SPIRITOMB specialist (hack/scripts/gen_specialists.py)
+scr_seq_R39_012:
+	setvar VAR_SPECIAL_x8004, SPECIES_SPIRITOMB
+	setvar VAR_SPECIAL_x8005, 18
+	setvar VAR_SPECIAL_x8006, ITEM_PP_UP
+	setvar VAR_SPECIAL_x8007, 2377
+	callstd 2077
+	end
+// hack: UMBREON specialist (hack/scripts/gen_specialists.py)
+scr_seq_R39_013:
+	setvar VAR_SPECIAL_x8004, SPECIES_UMBREON
+	setvar VAR_SPECIAL_x8005, 18
+	setvar VAR_SPECIAL_x8006, ITEM_LIFE_ORB
+	setvar VAR_SPECIAL_x8007, 2391
+	callstd 2077
 	end
 	.balign 4

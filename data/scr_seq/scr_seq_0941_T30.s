@@ -44,6 +44,8 @@ scrdef scr_seq_T30_013
 scrdef scr_seq_T30_014
 scrdef scr_seq_T30_015
 scrdef scr_seq_T30_016
+scrdef scr_seq_T30_017
+scrdef scr_seq_T30_018
 scrdef_end
 
 scr_seq_T30_005:
@@ -389,5 +391,21 @@ scr_seq_T30_014:
 
 scr_seq_T30_015:
 	simple_npc_msg 9
+	end
+// hack: FLOATZEL specialist (hack/scripts/gen_specialists.py)
+scr_seq_T30_017:
+	setvar VAR_SPECIAL_x8004, SPECIES_FLOATZEL
+	setvar VAR_SPECIAL_x8005, 26
+	setvar VAR_SPECIAL_x8006, ITEM_SITRUS_BERRY
+	setvar VAR_SPECIAL_x8007, 2643
+	callstd 2077
+	end
+// hack: MASQUERAIN specialist (hack/scripts/gen_specialists.py)
+scr_seq_T30_018:
+	setvar VAR_SPECIAL_x8004, SPECIES_MASQUERAIN
+	setvar VAR_SPECIAL_x8005, 22
+	setvar VAR_SPECIAL_x8006, ITEM_CHOICE_SCARF
+	setvar VAR_SPECIAL_x8007, 2689
+	callstd 2077
 	end
 	.balign 4

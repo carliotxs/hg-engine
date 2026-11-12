@@ -32,6 +32,13 @@ scrdef scr_seq_R35_001
 scrdef scr_seq_R35_002
 scrdef scr_seq_R35_003
 scrdef scr_seq_R35_004
+scrdef scr_seq_R35_005
+scrdef scr_seq_R35_006
+scrdef scr_seq_R35_007
+scrdef scr_seq_R35_008
+scrdef scr_seq_R35_009
+scrdef scr_seq_R35_010
+scrdef scr_seq_R35_011
 scrdef_end
 
 scr_seq_R35_001:
@@ -199,5 +206,61 @@ scr_seq_R35_004:
 
 scr_seq_R35_002:
 	simple_npc_msg 21
+	end
+// hack: KRICKETUNE specialist (hack/scripts/gen_specialists.py)
+scr_seq_R35_005:
+	setvar VAR_SPECIAL_x8004, SPECIES_KRICKETUNE
+	setvar VAR_SPECIAL_x8005, 17
+	setvar VAR_SPECIAL_x8006, ITEM_EVIOLITE
+	setvar VAR_SPECIAL_x8007, 2209
+	callstd 2077
+	end
+// hack: REUNICLUS specialist (hack/scripts/gen_specialists.py)
+scr_seq_R35_006:
+	setvar VAR_SPECIAL_x8004, SPECIES_REUNICLUS
+	setvar VAR_SPECIAL_x8005, 41
+	setvar VAR_SPECIAL_x8006, ITEM_WISE_GLASSES
+	setvar VAR_SPECIAL_x8007, 2258
+	callstd 2077
+	end
+// hack: AROMATISSE specialist (hack/scripts/gen_specialists.py)
+scr_seq_R35_007:
+	setvar VAR_SPECIAL_x8004, SPECIES_AROMATISSE
+	setvar VAR_SPECIAL_x8005, 17
+	setvar VAR_SPECIAL_x8006, ITEM_FOCUS_SASH
+	setvar VAR_SPECIAL_x8007, 2262
+	callstd 2077
+	end
+// hack: REVAVROOM specialist (hack/scripts/gen_specialists.py)
+scr_seq_R35_008:
+	setvar VAR_SPECIAL_x8004, SPECIES_REVAVROOM
+	setvar VAR_SPECIAL_x8005, 40
+	setvar VAR_SPECIAL_x8006, ITEM_ASSAULT_VEST
+	setvar VAR_SPECIAL_x8007, 2277
+	callstd 2077
+	end
+// hack: MEOWSTIC specialist (hack/scripts/gen_specialists.py)
+scr_seq_R35_009:
+	setvar VAR_SPECIAL_x8004, SPECIES_MEOWSTIC
+	setvar VAR_SPECIAL_x8005, 25
+	setvar VAR_SPECIAL_x8006, ITEM_MEOWSTICITE
+	setvar VAR_SPECIAL_x8007, 2363
+	callstd 2077
+	end
+// hack: FLAREON specialist (hack/scripts/gen_specialists.py)
+scr_seq_R35_010:
+	setvar VAR_SPECIAL_x8004, SPECIES_FLAREON
+	setvar VAR_SPECIAL_x8005, 15
+	setvar VAR_SPECIAL_x8006, ITEM_BOTTLE_CAP
+	setvar VAR_SPECIAL_x8007, 2389
+	callstd 2077
+	end
+// hack: GLACEON specialist (hack/scripts/gen_specialists.py)
+scr_seq_R35_011:
+	setvar VAR_SPECIAL_x8004, SPECIES_GLACEON
+	setvar VAR_SPECIAL_x8005, 15
+	setvar VAR_SPECIAL_x8006, ITEM_RARE_CANDY
+	setvar VAR_SPECIAL_x8007, 2605
+	callstd 2077
 	end
 	.balign 4

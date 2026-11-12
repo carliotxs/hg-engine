@@ -33,6 +33,13 @@ scrdef scr_seq_R47_002
 scrdef scr_seq_R47_003
 scrdef scr_seq_R47_004
 scrdef scr_seq_R47_005
+scrdef scr_seq_R47_006
+scrdef scr_seq_R47_007
+scrdef scr_seq_R47_008
+scrdef scr_seq_R47_009
+scrdef scr_seq_R47_010
+scrdef scr_seq_R47_011
+scrdef scr_seq_R47_012
 scrdef_end
 
 scr_seq_R47_000:
@@ -255,5 +262,61 @@ scr_seq_R47_005:
 scr_seq_R47_005_lost:
 	white_out
 	releaseall
+	end
+// hack: MILTANK specialist (hack/scripts/gen_specialists.py)
+scr_seq_R47_006:
+	setvar VAR_SPECIAL_x8004, SPECIES_MILTANK
+	setvar VAR_SPECIAL_x8005, 38
+	setvar VAR_SPECIAL_x8006, ITEM_KINGS_ROCK
+	setvar VAR_SPECIAL_x8007, 2112
+	callstd 2077
+	end
+// hack: THROH specialist (hack/scripts/gen_specialists.py)
+scr_seq_R47_007:
+	setvar VAR_SPECIAL_x8004, SPECIES_THROH
+	setvar VAR_SPECIAL_x8005, 34
+	setvar VAR_SPECIAL_x8006, ITEM_LEFTOVERS
+	setvar VAR_SPECIAL_x8007, 2129
+	callstd 2077
+	end
+// hack: SAWK specialist (hack/scripts/gen_specialists.py)
+scr_seq_R47_008:
+	setvar VAR_SPECIAL_x8004, SPECIES_SAWK
+	setvar VAR_SPECIAL_x8005, 37
+	setvar VAR_SPECIAL_x8006, ITEM_LIFE_ORB
+	setvar VAR_SPECIAL_x8007, 2130
+	callstd 2077
+	end
+// hack: BOUFFALANT specialist (hack/scripts/gen_specialists.py)
+scr_seq_R47_009:
+	setvar VAR_SPECIAL_x8004, SPECIES_BOUFFALANT
+	setvar VAR_SPECIAL_x8005, 34
+	setvar VAR_SPECIAL_x8006, ITEM_CHOICE_SCARF
+	setvar VAR_SPECIAL_x8007, 2136
+	callstd 2077
+	end
+// hack: ORANGURU specialist (hack/scripts/gen_specialists.py)
+scr_seq_R47_010:
+	setvar VAR_SPECIAL_x8004, SPECIES_ORANGURU
+	setvar VAR_SPECIAL_x8005, 34
+	setvar VAR_SPECIAL_x8006, ITEM_CHOICE_SPECS
+	setvar VAR_SPECIAL_x8007, 2138
+	callstd 2077
+	end
+// hack: FARFETCHD specialist (hack/scripts/gen_specialists.py)
+scr_seq_R47_011:
+	setvar VAR_SPECIAL_x8004, SPECIES_FARFETCHD
+	setvar VAR_SPECIAL_x8005, 38
+	setvar VAR_SPECIAL_x8006, ITEM_SITRUS_BERRY
+	setvar VAR_SPECIAL_x8007, 2158
+	callstd 2077
+	end
+// hack: MAUSHOLD specialist (hack/scripts/gen_specialists.py)
+scr_seq_R47_012:
+	setvar VAR_SPECIAL_x8004, SPECIES_MAUSHOLD
+	setvar VAR_SPECIAL_x8005, 34
+	setvar VAR_SPECIAL_x8006, ITEM_RARE_CANDY
+	setvar VAR_SPECIAL_x8007, 2232
+	callstd 2077
 	end
 	.balign 4

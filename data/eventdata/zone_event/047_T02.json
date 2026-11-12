@@ -187,6 +187,40 @@
       "x": 1047,
       "z": 240,
       "y": 0
+    },
+    {
+      "id": "obj_T02_hack_spec_poliwrath",
+      "graphics_id": "SPRITE_WOMAN3",
+      "movement_type": 0,
+      "trainer_type": 0,
+      "hidden_flag": "FLAG_NOTHING",
+      "script": "_EV_scr_seq_T02_012 + 1",
+      "initial_dir": 1,
+      "param0": 0,
+      "param1": 0,
+      "param2": 0,
+      "movement_range_x": 0,
+      "movement_range_z": 0,
+      "x": 998,
+      "z": 258,
+      "y": 0
+    },
+    {
+      "id": "obj_T02_hack_spec_basculin",
+      "graphics_id": "SPRITE_GSMAN1",
+      "movement_type": 0,
+      "trainer_type": 0,
+      "hidden_flag": "FLAG_NOTHING",
+      "script": "_EV_scr_seq_T02_013 + 1",
+      "initial_dir": 1,
+      "param0": 0,
+      "param1": 0,
+      "param2": 0,
+      "movement_range_x": 0,
+      "movement_range_z": 0,
+      "x": 995,
+      "z": 258,
+      "y": 0
     }
   ],
   "warp_events": [

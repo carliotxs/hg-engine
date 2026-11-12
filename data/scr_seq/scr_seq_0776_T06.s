@@ -41,6 +41,10 @@ scrdef scr_seq_T06_010
 scrdef scr_seq_T06_011
 scrdef scr_seq_T06_012
 scrdef scr_seq_T06_013
+scrdef scr_seq_T06_014
+scrdef scr_seq_T06_015
+scrdef scr_seq_T06_016
+scrdef scr_seq_T06_017
 scrdef_end
 
 scr_seq_T06_009:
@@ -740,4 +744,36 @@ _08D8:
 	step 12, 1
 	step 1, 1
 	step_end
+// hack: BRUXISH specialist (hack/scripts/gen_specialists.py)
+scr_seq_T06_014:
+	setvar VAR_SPECIAL_x8004, SPECIES_BRUXISH
+	setvar VAR_SPECIAL_x8005, 38
+	setvar VAR_SPECIAL_x8006, ITEM_KINGS_ROCK
+	setvar VAR_SPECIAL_x8007, 2225
+	callstd 2077
+	end
+// hack: GARGANACL specialist (hack/scripts/gen_specialists.py)
+scr_seq_T06_015:
+	setvar VAR_SPECIAL_x8004, SPECIES_GARGANACL
+	setvar VAR_SPECIAL_x8005, 38
+	setvar VAR_SPECIAL_x8006, ITEM_CHOICE_SCARF
+	setvar VAR_SPECIAL_x8007, 2367
+	callstd 2077
+	end
+// hack: HUNTAIL specialist (hack/scripts/gen_specialists.py)
+scr_seq_T06_016:
+	setvar VAR_SPECIAL_x8004, SPECIES_HUNTAIL
+	setvar VAR_SPECIAL_x8005, 23
+	setvar VAR_SPECIAL_x8006, ITEM_CHOICE_SPECS
+	setvar VAR_SPECIAL_x8007, 2660
+	callstd 2077
+	end
+// hack: SHARPEDO specialist (hack/scripts/gen_specialists.py)
+scr_seq_T06_017:
+	setvar VAR_SPECIAL_x8004, SPECIES_SHARPEDO
+	setvar VAR_SPECIAL_x8005, 30
+	setvar VAR_SPECIAL_x8006, ITEM_SHARPEDONITE
+	setvar VAR_SPECIAL_x8007, 2666
+	callstd 2077
+	end
 	.balign 4

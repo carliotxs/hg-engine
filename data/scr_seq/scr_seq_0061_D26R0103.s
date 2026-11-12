@@ -28,6 +28,10 @@
 
 
 scrdef scr_seq_D26R0103_000
+scrdef scr_seq_D26R0103_001
+scrdef scr_seq_D26R0103_002
+scrdef scr_seq_D26R0103_003
+scrdef scr_seq_D26R0103_004
 scrdef_end
 
 scr_seq_D26R0103_000:
@@ -57,4 +61,36 @@ _005A:
 	end
 
 	.byte 0x02, 0x00, 0x00, 0x00
+// hack: SLOWKING specialist (hack/scripts/gen_specialists.py)
+scr_seq_D26R0103_001:
+	setvar VAR_SPECIAL_x8004, SPECIES_SLOWKING
+	setvar VAR_SPECIAL_x8005, 28
+	setvar VAR_SPECIAL_x8006, ITEM_CHOICE_SPECS
+	setvar VAR_SPECIAL_x8007, 2199
+	callstd 2077
+	end
+// hack: CARBINK specialist (hack/scripts/gen_specialists.py)
+scr_seq_D26R0103_002:
+	setvar VAR_SPECIAL_x8004, SPECIES_CARBINK
+	setvar VAR_SPECIAL_x8005, 22
+	setvar VAR_SPECIAL_x8006, ITEM_ABILITY_CAPSULE
+	setvar VAR_SPECIAL_x8007, 2333
+	callstd 2077
+	end
+// hack: BRONZONG specialist (hack/scripts/gen_specialists.py)
+scr_seq_D26R0103_003:
+	setvar VAR_SPECIAL_x8004, SPECIES_BRONZONG
+	setvar VAR_SPECIAL_x8005, 33
+	setvar VAR_SPECIAL_x8006, ITEM_KINGS_ROCK
+	setvar VAR_SPECIAL_x8007, 2615
+	callstd 2077
+	end
+// hack: DELPHOX specialist (hack/scripts/gen_specialists.py)
+scr_seq_D26R0103_004:
+	setvar VAR_SPECIAL_x8004, SPECIES_DELPHOX
+	setvar VAR_SPECIAL_x8005, 36
+	setvar VAR_SPECIAL_x8006, ITEM_DELPHOXITE
+	setvar VAR_SPECIAL_x8007, 2649
+	callstd 2077
+	end
 	.balign 4

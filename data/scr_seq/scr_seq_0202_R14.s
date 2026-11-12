@@ -33,6 +33,12 @@ scrdef scr_seq_R14_002
 scrdef scr_seq_R14_003
 scrdef scr_seq_R14_004
 scrdef scr_seq_R14_005
+scrdef scr_seq_R14_006
+scrdef scr_seq_R14_007
+scrdef scr_seq_R14_008
+scrdef scr_seq_R14_009
+scrdef scr_seq_R14_010
+scrdef scr_seq_R14_011
 scrdef_end
 
 scr_seq_R14_001:
@@ -529,4 +535,52 @@ _0698:
 	step 75, 1
 	step 62, 1
 	step_end
+// hack: JUMPLUFF specialist (hack/scripts/gen_specialists.py)
+scr_seq_R14_006:
+	setvar VAR_SPECIAL_x8004, SPECIES_JUMPLUFF
+	setvar VAR_SPECIAL_x8005, 29
+	setvar VAR_SPECIAL_x8006, ITEM_HEAVY_DUTY_BOOTS
+	setvar VAR_SPECIAL_x8007, 2198
+	callstd 2077
+	end
+// hack: HAWLUCHA specialist (hack/scripts/gen_specialists.py)
+scr_seq_R14_007:
+	setvar VAR_SPECIAL_x8004, SPECIES_HAWLUCHA
+	setvar VAR_SPECIAL_x8005, 29
+	setvar VAR_SPECIAL_x8006, ITEM_HAWLUCHANITE
+	setvar VAR_SPECIAL_x8007, 2222
+	callstd 2077
+	end
+// hack: DEDENNE specialist (hack/scripts/gen_specialists.py)
+scr_seq_R14_008:
+	setvar VAR_SPECIAL_x8004, SPECIES_DEDENNE
+	setvar VAR_SPECIAL_x8005, 28
+	setvar VAR_SPECIAL_x8006, ITEM_BOTTLE_CAP
+	setvar VAR_SPECIAL_x8007, 2223
+	callstd 2077
+	end
+// hack: ORICORIO specialist (hack/scripts/gen_specialists.py)
+scr_seq_R14_009:
+	setvar VAR_SPECIAL_x8004, SPECIES_ORICORIO
+	setvar VAR_SPECIAL_x8005, 27
+	setvar VAR_SPECIAL_x8006, ITEM_ROCKY_HELMET
+	setvar VAR_SPECIAL_x8007, 2224
+	callstd 2077
+	end
+// hack: CYCLIZAR specialist (hack/scripts/gen_specialists.py)
+scr_seq_R14_010:
+	setvar VAR_SPECIAL_x8004, SPECIES_CYCLIZAR
+	setvar VAR_SPECIAL_x8005, 29
+	setvar VAR_SPECIAL_x8006, ITEM_WEAKNESS_POLICY
+	setvar VAR_SPECIAL_x8007, 2278
+	callstd 2077
+	end
+// hack: PANGORO specialist (hack/scripts/gen_specialists.py)
+scr_seq_R14_011:
+	setvar VAR_SPECIAL_x8004, SPECIES_PANGORO
+	setvar VAR_SPECIAL_x8005, 27
+	setvar VAR_SPECIAL_x8006, ITEM_ABILITY_CAPSULE
+	setvar VAR_SPECIAL_x8007, 2331
+	callstd 2077
+	end
 	.balign 4

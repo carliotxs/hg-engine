@@ -32,6 +32,12 @@ scrdef scr_seq_R03_001
 scrdef scr_seq_R03_002
 scrdef scr_seq_R03_003
 scrdef scr_seq_R03_004
+scrdef scr_seq_R03_005
+scrdef scr_seq_R03_006
+scrdef scr_seq_R03_007
+scrdef scr_seq_R03_008
+scrdef scr_seq_R03_009
+scrdef scr_seq_R03_010
 scrdef_end
 
 scr_seq_R03_001:
@@ -216,5 +222,53 @@ scr_seq_R03_000:
 	scrcmd_058
 	trainer_tips 0, VAR_SPECIAL_RESULT
 	callstd std_signpost
+	end
+// hack: WIGGLYTUFF specialist (hack/scripts/gen_specialists.py)
+scr_seq_R03_005:
+	setvar VAR_SPECIAL_x8004, SPECIES_WIGGLYTUFF
+	setvar VAR_SPECIAL_x8005, 9
+	setvar VAR_SPECIAL_x8006, ITEM_MUSCLE_BAND
+	setvar VAR_SPECIAL_x8007, 2102
+	callstd 2077
+	end
+// hack: DARMANITAN specialist (hack/scripts/gen_specialists.py)
+scr_seq_R03_006:
+	setvar VAR_SPECIAL_x8004, SPECIES_DARMANITAN
+	setvar VAR_SPECIAL_x8005, 35
+	setvar VAR_SPECIAL_x8006, ITEM_KINGS_ROCK
+	setvar VAR_SPECIAL_x8007, 2216
+	callstd 2077
+	end
+// hack: GALVANTULA specialist (hack/scripts/gen_specialists.py)
+scr_seq_R03_007:
+	setvar VAR_SPECIAL_x8004, SPECIES_GALVANTULA
+	setvar VAR_SPECIAL_x8005, 36
+	setvar VAR_SPECIAL_x8006, ITEM_CHOICE_BAND
+	setvar VAR_SPECIAL_x8007, 2260
+	callstd 2077
+	end
+// hack: HELIOLISK specialist (hack/scripts/gen_specialists.py)
+scr_seq_R03_008:
+	setvar VAR_SPECIAL_x8004, SPECIES_HELIOLISK
+	setvar VAR_SPECIAL_x8005, 9
+	setvar VAR_SPECIAL_x8006, ITEM_KINGS_ROCK
+	setvar VAR_SPECIAL_x8007, 2264
+	callstd 2077
+	end
+// hack: SAWSBUCK specialist (hack/scripts/gen_specialists.py)
+scr_seq_R03_009:
+	setvar VAR_SPECIAL_x8004, SPECIES_SAWSBUCK
+	setvar VAR_SPECIAL_x8005, 34
+	setvar VAR_SPECIAL_x8006, ITEM_EJECT_BUTTON
+	setvar VAR_SPECIAL_x8007, 2380
+	callstd 2077
+	end
+// hack: FEAROW specialist (hack/scripts/gen_specialists.py)
+scr_seq_R03_010:
+	setvar VAR_SPECIAL_x8004, SPECIES_FEAROW
+	setvar VAR_SPECIAL_x8005, 20
+	setvar VAR_SPECIAL_x8006, ITEM_PP_UP
+	setvar VAR_SPECIAL_x8007, 2623
+	callstd 2077
 	end
 	.balign 4

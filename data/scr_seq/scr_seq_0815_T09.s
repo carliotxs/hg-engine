@@ -32,6 +32,10 @@ scrdef scr_seq_T09_001
 scrdef scr_seq_T09_002
 scrdef scr_seq_T09_003
 scrdef scr_seq_T09_004
+scrdef scr_seq_T09_005
+scrdef scr_seq_T09_006
+scrdef scr_seq_T09_007
+scrdef scr_seq_T09_008
 scrdef_end
 
 scr_seq_T09_003:
@@ -408,5 +412,37 @@ scr_seq_T09_002:
 	scrcmd_058
 	scrcmd_060 VAR_SPECIAL_RESULT
 	callstd std_signpost
+	end
+// hack: CLOYSTER specialist (hack/scripts/gen_specialists.py)
+scr_seq_T09_005:
+	setvar VAR_SPECIAL_x8004, SPECIES_CLOYSTER
+	setvar VAR_SPECIAL_x8005, 43
+	setvar VAR_SPECIAL_x8006, ITEM_ROCKY_HELMET
+	setvar VAR_SPECIAL_x8007, 2624
+	callstd 2077
+	end
+// hack: LANTURN specialist (hack/scripts/gen_specialists.py)
+scr_seq_T09_006:
+	setvar VAR_SPECIAL_x8004, SPECIES_LANTURN
+	setvar VAR_SPECIAL_x8005, 43
+	setvar VAR_SPECIAL_x8006, ITEM_CHOICE_SPECS
+	setvar VAR_SPECIAL_x8007, 2627
+	callstd 2077
+	end
+// hack: GOREBYSS specialist (hack/scripts/gen_specialists.py)
+scr_seq_T09_007:
+	setvar VAR_SPECIAL_x8004, SPECIES_GOREBYSS
+	setvar VAR_SPECIAL_x8005, 23
+	setvar VAR_SPECIAL_x8006, ITEM_CHOICE_SCARF
+	setvar VAR_SPECIAL_x8007, 2661
+	callstd 2077
+	end
+// hack: WAILORD specialist (hack/scripts/gen_specialists.py)
+scr_seq_T09_008:
+	setvar VAR_SPECIAL_x8004, SPECIES_WAILORD
+	setvar VAR_SPECIAL_x8005, 43
+	setvar VAR_SPECIAL_x8006, ITEM_WISE_GLASSES
+	setvar VAR_SPECIAL_x8007, 2667
+	callstd 2077
 	end
 	.balign 4

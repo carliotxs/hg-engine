@@ -30,6 +30,8 @@
 scrdef scr_seq_R13_000
 scrdef scr_seq_R13_001
 scrdef scr_seq_R13_002
+scrdef scr_seq_R13_003
+scrdef scr_seq_R13_004
 scrdef_end
 
 scr_seq_R13_000:
@@ -54,5 +56,21 @@ scr_seq_R13_002:
 	scrcmd_058
 	scrcmd_060 VAR_SPECIAL_RESULT
 	callstd std_signpost
+	end
+// hack: EXEGGUTOR specialist (hack/scripts/gen_specialists.py)
+scr_seq_R13_003:
+	setvar VAR_SPECIAL_x8004, SPECIES_EXEGGUTOR
+	setvar VAR_SPECIAL_x8005, 25
+	setvar VAR_SPECIAL_x8006, ITEM_RED_CARD
+	setvar VAR_SPECIAL_x8007, 2197
+	callstd 2077
+	end
+// hack: RHYPERIOR specialist (hack/scripts/gen_specialists.py)
+scr_seq_R13_004:
+	setvar VAR_SPECIAL_x8004, SPECIES_RHYPERIOR
+	setvar VAR_SPECIAL_x8005, 42
+	setvar VAR_SPECIAL_x8006, ITEM_QUICK_CLAW
+	setvar VAR_SPECIAL_x8007, 2211
+	callstd 2077
 	end
 	.balign 4

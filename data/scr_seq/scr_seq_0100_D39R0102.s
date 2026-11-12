@@ -31,6 +31,10 @@ scrdef scr_seq_D39R0102_000
 scrdef scr_seq_D39R0102_001
 scrdef scr_seq_D39R0102_002
 scrdef scr_seq_D39R0102_003
+scrdef scr_seq_D39R0102_004
+scrdef scr_seq_D39R0102_005
+scrdef scr_seq_D39R0102_006
+scrdef scr_seq_D39R0102_007
 scrdef_end
 
 scr_seq_D39R0102_000:
@@ -149,4 +153,36 @@ _0178:
 	step 23, 1
 	step 69, 1
 	step_end
+// hack: JYNX specialist (hack/scripts/gen_specialists.py)
+scr_seq_D39R0102_004:
+	setvar VAR_SPECIAL_x8004, SPECIES_JYNX
+	setvar VAR_SPECIAL_x8005, 30
+	setvar VAR_SPECIAL_x8006, ITEM_MUSCLE_BAND
+	setvar VAR_SPECIAL_x8007, 2283
+	callstd 2077
+	end
+// hack: FROSLASS specialist (hack/scripts/gen_specialists.py)
+scr_seq_D39R0102_005:
+	setvar VAR_SPECIAL_x8004, SPECIES_FROSLASS
+	setvar VAR_SPECIAL_x8005, 25
+	setvar VAR_SPECIAL_x8006, ITEM_FROSLASSITE
+	setvar VAR_SPECIAL_x8007, 2313
+	callstd 2077
+	end
+// hack: AVALUGG specialist (hack/scripts/gen_specialists.py)
+scr_seq_D39R0102_006:
+	setvar VAR_SPECIAL_x8004, SPECIES_AVALUGG
+	setvar VAR_SPECIAL_x8005, 37
+	setvar VAR_SPECIAL_x8006, ITEM_ROCKY_HELMET
+	setvar VAR_SPECIAL_x8007, 2334
+	callstd 2077
+	end
+// hack: PRIMARINA specialist (hack/scripts/gen_specialists.py)
+scr_seq_D39R0102_007:
+	setvar VAR_SPECIAL_x8004, SPECIES_PRIMARINA
+	setvar VAR_SPECIAL_x8005, 34
+	setvar VAR_SPECIAL_x8006, ITEM_BOTTLE_CAP
+	setvar VAR_SPECIAL_x8007, 2635
+	callstd 2077
+	end
 	.balign 4

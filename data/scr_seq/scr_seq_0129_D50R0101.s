@@ -29,6 +29,10 @@
 
 scrdef scr_seq_D50R0101_000
 scrdef scr_seq_D50R0101_001
+scrdef scr_seq_D50R0101_002
+scrdef scr_seq_D50R0101_003
+scrdef scr_seq_D50R0101_004
+scrdef scr_seq_D50R0101_005
 scrdef_end
 
 scr_seq_D50R0101_001:
@@ -46,5 +50,37 @@ _0064:
 
 scr_seq_D50R0101_000:
 	simple_npc_msg 0
+	end
+// hack: DURANT specialist (hack/scripts/gen_specialists.py)
+scr_seq_D50R0101_002:
+	setvar VAR_SPECIAL_x8004, SPECIES_DURANT
+	setvar VAR_SPECIAL_x8005, 23
+	setvar VAR_SPECIAL_x8006, ITEM_EVIOLITE
+	setvar VAR_SPECIAL_x8007, 2178
+	callstd 2077
+	end
+// hack: TINKATON specialist (hack/scripts/gen_specialists.py)
+scr_seq_D50R0101_003:
+	setvar VAR_SPECIAL_x8004, SPECIES_TINKATON
+	setvar VAR_SPECIAL_x8005, 38
+	setvar VAR_SPECIAL_x8006, ITEM_LIFE_ORB
+	setvar VAR_SPECIAL_x8007, 2276
+	callstd 2077
+	end
+// hack: COPPERAJAH specialist (hack/scripts/gen_specialists.py)
+scr_seq_D50R0101_004:
+	setvar VAR_SPECIAL_x8004, SPECIES_COPPERAJAH
+	setvar VAR_SPECIAL_x8005, 34
+	setvar VAR_SPECIAL_x8006, ITEM_FOCUS_SASH
+	setvar VAR_SPECIAL_x8007, 2386
+	callstd 2077
+	end
+// hack: CINDERACE specialist (hack/scripts/gen_specialists.py)
+scr_seq_D50R0101_005:
+	setvar VAR_SPECIAL_x8004, SPECIES_CINDERACE
+	setvar VAR_SPECIAL_x8005, 35
+	setvar VAR_SPECIAL_x8006, ITEM_ABILITY_CAPSULE
+	setvar VAR_SPECIAL_x8007, 2652
+	callstd 2077
 	end
 	.balign 4

@@ -34,6 +34,10 @@ scrdef scr_seq_D48R0101_003
 scrdef scr_seq_D48R0101_004
 scrdef scr_seq_D48R0101_005
 scrdef scr_seq_D48R0101_006
+scrdef scr_seq_D48R0101_007
+scrdef scr_seq_D48R0101_008
+scrdef scr_seq_D48R0101_009
+scrdef scr_seq_D48R0101_010
 scrdef_end
 
 scr_seq_D48R0101_005:
@@ -244,5 +248,37 @@ _027C:
 	wait_button
 	closemsg
 	releaseall
+	end
+// hack: CRAMORANT specialist (hack/scripts/gen_specialists.py)
+scr_seq_D48R0101_007:
+	setvar VAR_SPECIAL_x8004, SPECIES_CRAMORANT
+	setvar VAR_SPECIAL_x8005, 43
+	setvar VAR_SPECIAL_x8006, ITEM_SITRUS_BERRY
+	setvar VAR_SPECIAL_x8007, 2270
+	callstd 2077
+	end
+// hack: QUAGSIRE specialist (hack/scripts/gen_specialists.py)
+scr_seq_D48R0101_008:
+	setvar VAR_SPECIAL_x8004, SPECIES_QUAGSIRE
+	setvar VAR_SPECIAL_x8005, 33
+	setvar VAR_SPECIAL_x8006, ITEM_SITRUS_BERRY
+	setvar VAR_SPECIAL_x8007, 2639
+	callstd 2077
+	end
+// hack: JELLICENT specialist (hack/scripts/gen_specialists.py)
+scr_seq_D48R0101_009:
+	setvar VAR_SPECIAL_x8004, SPECIES_JELLICENT
+	setvar VAR_SPECIAL_x8005, 40
+	setvar VAR_SPECIAL_x8006, ITEM_SITRUS_BERRY
+	setvar VAR_SPECIAL_x8007, 2668
+	callstd 2077
+	end
+// hack: WUGTRIO specialist (hack/scripts/gen_specialists.py)
+scr_seq_D48R0101_010:
+	setvar VAR_SPECIAL_x8004, SPECIES_WUGTRIO
+	setvar VAR_SPECIAL_x8005, 43
+	setvar VAR_SPECIAL_x8006, ITEM_CHOICE_SPECS
+	setvar VAR_SPECIAL_x8007, 2673
+	callstd 2077
 	end
 	.balign 4

@@ -6,6 +6,12 @@
 .equ _EV_scr_seq_R03_002, 2
 .equ _EV_scr_seq_R03_003, 3
 .equ _EV_scr_seq_R03_004, 4
+.equ _EV_scr_seq_R03_005, 5
+.equ _EV_scr_seq_R03_006, 6
+.equ _EV_scr_seq_R03_007, 7
+.equ _EV_scr_seq_R03_008, 8
+.equ _EV_scr_seq_R03_009, 9
+.equ _EV_scr_seq_R03_010, 10
 
 .equ obj_R03_gsboy2, 0
 .equ obj_R03_fire, 1
@@ -26,5 +32,11 @@
 .equ obj_R03_breakrock_5, 16
 .equ obj_R03_breakrock_6, 17
 .equ obj_R03_breakrock_7, 18
+.equ obj_R03_hack_spec_wigglytuff, 19
+.equ obj_R03_hack_spec_darmanitan, 20
+.equ obj_R03_hack_spec_galvantula, 21
+.equ obj_R03_hack_spec_heliolisk, 22
+.equ obj_R03_hack_spec_sawsbuck, 23
+.equ obj_R03_hack_spec_fearow, 24
 
 .endif //SCR_SEQ_R03_H_

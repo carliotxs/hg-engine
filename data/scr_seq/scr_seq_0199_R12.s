@@ -33,6 +33,8 @@ scrdef scr_seq_R12_002
 scrdef scr_seq_R12_003
 scrdef scr_seq_R12_004
 scrdef scr_seq_R12_005
+scrdef scr_seq_R12_006
+scrdef scr_seq_R12_007
 scrdef_end
 
 scr_seq_R12_001:
@@ -254,5 +256,21 @@ scr_seq_R12_003:
 	scrcmd_058
 	trainer_tips 1, VAR_SPECIAL_RESULT
 	callstd std_signpost
+	end
+// hack: PYUKUMUKU specialist (hack/scripts/gen_specialists.py)
+scr_seq_R12_006:
+	setvar VAR_SPECIAL_x8004, SPECIES_PYUKUMUKU
+	setvar VAR_SPECIAL_x8005, 28
+	setvar VAR_SPECIAL_x8006, ITEM_WEAKNESS_POLICY
+	setvar VAR_SPECIAL_x8007, 2339
+	callstd 2077
+	end
+// hack: WALREIN specialist (hack/scripts/gen_specialists.py)
+scr_seq_R12_007:
+	setvar VAR_SPECIAL_x8004, SPECIES_WALREIN
+	setvar VAR_SPECIAL_x8005, 44
+	setvar VAR_SPECIAL_x8006, ITEM_LIFE_ORB
+	setvar VAR_SPECIAL_x8007, 2613
+	callstd 2077
 	end
 	.balign 4

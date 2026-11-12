@@ -34,6 +34,10 @@ scrdef scr_seq_R42_003
 scrdef scr_seq_R42_004
 scrdef scr_seq_R42_005
 scrdef scr_seq_R42_006
+scrdef scr_seq_R42_007
+scrdef scr_seq_R42_008
+scrdef scr_seq_R42_009
+scrdef scr_seq_R42_010
 scrdef_end
 
 scr_seq_R42_000:
@@ -348,5 +352,37 @@ scr_seq_R42_006:
 scr_seq_R42_006_lost:
 	white_out
 	releaseall
+	end
+// hack: AMPHAROS specialist (hack/scripts/gen_specialists.py)
+scr_seq_R42_007:
+	setvar VAR_SPECIAL_x8004, SPECIES_AMPHAROS
+	setvar VAR_SPECIAL_x8005, 30
+	setvar VAR_SPECIAL_x8006, ITEM_AMPHAROSITE
+	setvar VAR_SPECIAL_x8007, 2163
+	callstd 2077
+	end
+// hack: FERALIGATR specialist (hack/scripts/gen_specialists.py)
+scr_seq_R42_008:
+	setvar VAR_SPECIAL_x8004, SPECIES_FERALIGATR
+	setvar VAR_SPECIAL_x8005, 30
+	setvar VAR_SPECIAL_x8006, ITEM_EJECT_BUTTON
+	setvar VAR_SPECIAL_x8007, 2284
+	callstd 2077
+	end
+// hack: SAMUROTT specialist (hack/scripts/gen_specialists.py)
+scr_seq_R42_009:
+	setvar VAR_SPECIAL_x8004, SPECIES_SAMUROTT
+	setvar VAR_SPECIAL_x8005, 36
+	setvar VAR_SPECIAL_x8006, ITEM_HEAVY_DUTY_BOOTS
+	setvar VAR_SPECIAL_x8007, 2314
+	callstd 2077
+	end
+// hack: OINKOLOGNE specialist (hack/scripts/gen_specialists.py)
+scr_seq_R42_010:
+	setvar VAR_SPECIAL_x8004, SPECIES_OINKOLOGNE
+	setvar VAR_SPECIAL_x8005, 18
+	setvar VAR_SPECIAL_x8006, ITEM_SCOPE_LENS
+	setvar VAR_SPECIAL_x8007, 2344
+	callstd 2077
 	end
 	.balign 4

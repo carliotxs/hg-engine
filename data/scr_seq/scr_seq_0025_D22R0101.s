@@ -54,6 +54,13 @@ scrdef scr_seq_D22R0101_023
 scrdef scr_seq_D22R0101_024
 scrdef scr_seq_D22R0101_025
 scrdef scr_seq_D22R0101_026
+scrdef scr_seq_D22R0101_027
+scrdef scr_seq_D22R0101_028
+scrdef scr_seq_D22R0101_029
+scrdef scr_seq_D22R0101_030
+scrdef scr_seq_D22R0101_031
+scrdef scr_seq_D22R0101_032
+scrdef scr_seq_D22R0101_033
 scrdef_end
 
 scr_seq_D22R0101_011:
@@ -532,4 +539,60 @@ scr_seq_D22R0101_010:
 	end
 
 	.byte 0x02, 0x00, 0x00, 0x00
+// hack: TORTERRA specialist (hack/scripts/gen_specialists.py)
+scr_seq_D22R0101_027:
+	setvar VAR_SPECIAL_x8004, SPECIES_TORTERRA
+	setvar VAR_SPECIAL_x8005, 32
+	setvar VAR_SPECIAL_x8006, ITEM_ABILITY_CAPSULE
+	setvar VAR_SPECIAL_x8007, 2171
+	callstd 2077
+	end
+// hack: SERPERIOR specialist (hack/scripts/gen_specialists.py)
+scr_seq_D22R0101_028:
+	setvar VAR_SPECIAL_x8004, SPECIES_SERPERIOR
+	setvar VAR_SPECIAL_x8005, 36
+	setvar VAR_SPECIAL_x8006, ITEM_BRIGHT_POWDER
+	setvar VAR_SPECIAL_x8007, 2172
+	callstd 2077
+	end
+// hack: DECIDUEYE specialist (hack/scripts/gen_specialists.py)
+scr_seq_D22R0101_029:
+	setvar VAR_SPECIAL_x8004, SPECIES_DECIDUEYE
+	setvar VAR_SPECIAL_x8005, 34
+	setvar VAR_SPECIAL_x8006, ITEM_AIR_BALLOON
+	setvar VAR_SPECIAL_x8007, 2181
+	callstd 2077
+	end
+// hack: FLAPPLE specialist (hack/scripts/gen_specialists.py)
+scr_seq_D22R0101_030:
+	setvar VAR_SPECIAL_x8004, SPECIES_FLAPPLE
+	setvar VAR_SPECIAL_x8005, 15
+	setvar VAR_SPECIAL_x8006, ITEM_RARE_CANDY
+	setvar VAR_SPECIAL_x8007, 2186
+	callstd 2077
+	end
+// hack: TOEDSCRUEL specialist (hack/scripts/gen_specialists.py)
+scr_seq_D22R0101_031:
+	setvar VAR_SPECIAL_x8004, SPECIES_TOEDSCRUEL
+	setvar VAR_SPECIAL_x8005, 30
+	setvar VAR_SPECIAL_x8006, ITEM_RED_CARD
+	setvar VAR_SPECIAL_x8007, 2189
+	callstd 2077
+	end
+// hack: RABSCA specialist (hack/scripts/gen_specialists.py)
+scr_seq_D22R0101_032:
+	setvar VAR_SPECIAL_x8004, SPECIES_RABSCA
+	setvar VAR_SPECIAL_x8005, 17
+	setvar VAR_SPECIAL_x8006, ITEM_BOTTLE_CAP
+	setvar VAR_SPECIAL_x8007, 2191
+	callstd 2077
+	end
+// hack: ILLUMISE specialist (hack/scripts/gen_specialists.py)
+scr_seq_D22R0101_033:
+	setvar VAR_SPECIAL_x8004, SPECIES_ILLUMISE
+	setvar VAR_SPECIAL_x8005, 15
+	setvar VAR_SPECIAL_x8006, ITEM_EXPERT_BELT
+	setvar VAR_SPECIAL_x8007, 2398
+	callstd 2077
+	end
 	.balign 4

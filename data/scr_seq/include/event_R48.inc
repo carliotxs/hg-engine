@@ -4,6 +4,8 @@
 .equ _EV_scr_seq_R48_000, 0
 .equ _EV_scr_seq_R48_001, 1
 .equ _EV_scr_seq_R48_002, 2
+.equ _EV_scr_seq_R48_003, 3
+.equ _EV_scr_seq_R48_004, 4
 
 .equ obj_R48_monstarball, 0
 .equ obj_R48_gsmiddleman1, 1
@@ -11,5 +13,7 @@
 .equ obj_R48_gswoman2, 8
 .equ obj_R48_follower_mon_static_slowpoke, 10
 .equ obj_R48_gsoldman1, 6
+.equ obj_R48_hack_spec_arcanine, 6
+.equ obj_R48_hack_spec_tauros, 7
 
 .endif //SCR_SEQ_R48_H_

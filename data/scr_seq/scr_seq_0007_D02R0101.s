@@ -28,6 +28,11 @@
 
 
 scrdef scr_seq_D02R0101_000
+scrdef scr_seq_D02R0101_001
+scrdef scr_seq_D02R0101_002
+scrdef scr_seq_D02R0101_003
+scrdef scr_seq_D02R0101_004
+scrdef scr_seq_D02R0101_005
 scrdef_end
 
 scr_seq_D02R0101_000:
@@ -103,4 +108,44 @@ _00E8:
 	step 17, 9
 	step_end
 	.byte 0x02, 0x00, 0x00, 0x00
+// hack: CLEFABLE specialist (hack/scripts/gen_specialists.py)
+scr_seq_D02R0101_001:
+	setvar VAR_SPECIAL_x8004, SPECIES_CLEFABLE
+	setvar VAR_SPECIAL_x8005, 11
+	setvar VAR_SPECIAL_x8006, ITEM_CLEFABLITE
+	setvar VAR_SPECIAL_x8007, 2101
+	callstd 2077
+	end
+// hack: EXPLOUD specialist (hack/scripts/gen_specialists.py)
+scr_seq_D02R0101_002:
+	setvar VAR_SPECIAL_x8004, SPECIES_EXPLOUD
+	setvar VAR_SPECIAL_x8005, 40
+	setvar VAR_SPECIAL_x8006, ITEM_BRIGHT_POWDER
+	setvar VAR_SPECIAL_x8007, 2204
+	callstd 2077
+	end
+// hack: MEDICHAM specialist (hack/scripts/gen_specialists.py)
+scr_seq_D02R0101_003:
+	setvar VAR_SPECIAL_x8004, SPECIES_MEDICHAM
+	setvar VAR_SPECIAL_x8005, 37
+	setvar VAR_SPECIAL_x8006, ITEM_MEDICHAMITE
+	setvar VAR_SPECIAL_x8007, 2295
+	callstd 2077
+	end
+// hack: BLAZIKEN specialist (hack/scripts/gen_specialists.py)
+scr_seq_D02R0101_004:
+	setvar VAR_SPECIAL_x8004, SPECIES_BLAZIKEN
+	setvar VAR_SPECIAL_x8005, 36
+	setvar VAR_SPECIAL_x8006, ITEM_BLAZIKENITE
+	setvar VAR_SPECIAL_x8007, 2628
+	callstd 2077
+	end
+// hack: HAXORUS specialist (hack/scripts/gen_specialists.py)
+scr_seq_D02R0101_005:
+	setvar VAR_SPECIAL_x8004, SPECIES_HAXORUS
+	setvar VAR_SPECIAL_x8005, 48
+	setvar VAR_SPECIAL_x8006, ITEM_AIR_BALLOON
+	setvar VAR_SPECIAL_x8007, 2647
+	callstd 2077
+	end
 	.balign 4

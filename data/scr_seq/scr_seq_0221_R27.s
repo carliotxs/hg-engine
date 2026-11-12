@@ -32,6 +32,8 @@ scrdef scr_seq_R27_001
 scrdef scr_seq_R27_002
 scrdef scr_seq_R27_003
 scrdef scr_seq_R27_004
+scrdef scr_seq_R27_005
+scrdef scr_seq_R27_006
 scrdef_end
 
 scr_seq_R27_003:
@@ -113,5 +115,21 @@ scr_seq_R27_004:
 	scrcmd_058
 	scrcmd_060 VAR_SPECIAL_RESULT
 	callstd std_signpost
+	end
+// hack: KLAWF specialist (hack/scripts/gen_specialists.py)
+scr_seq_R27_005:
+	setvar VAR_SPECIAL_x8004, SPECIES_KLAWF
+	setvar VAR_SPECIAL_x8005, 33
+	setvar VAR_SPECIAL_x8006, ITEM_EJECT_BUTTON
+	setvar VAR_SPECIAL_x8007, 2151
+	callstd 2077
+	end
+// hack: BOMBIRDIER specialist (hack/scripts/gen_specialists.py)
+scr_seq_R27_006:
+	setvar VAR_SPECIAL_x8004, SPECIES_BOMBIRDIER
+	setvar VAR_SPECIAL_x8005, 33
+	setvar VAR_SPECIAL_x8006, ITEM_CHOICE_SCARF
+	setvar VAR_SPECIAL_x8007, 2152
+	callstd 2077
 	end
 	.balign 4

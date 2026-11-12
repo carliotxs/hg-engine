@@ -15,6 +15,13 @@
 .equ _EV_scr_seq_R34_011, 11
 .equ _EV_scr_seq_R34_012, 12
 .equ _EV_scr_seq_R34_013, 13
+.equ _EV_scr_seq_R34_014, 14
+.equ _EV_scr_seq_R34_015, 15
+.equ _EV_scr_seq_R34_016, 16
+.equ _EV_scr_seq_R34_017, 17
+.equ _EV_scr_seq_R34_018, 18
+.equ _EV_scr_seq_R34_019, 19
+.equ _EV_scr_seq_R34_020, 20
 
 .equ obj_R34_gsboy2, 0
 .equ obj_R34_picnicgirl_2, 1
@@ -33,5 +40,12 @@
 .equ obj_R34_monstarball_2, 14
 .equ obj_R34_gsmiddleman1_2, 15
 .equ obj_R34_hack_static, 16
+.equ obj_R34_hack_spec_alakazam, 17
+.equ obj_R34_hack_spec_hypno, 18
+.equ obj_R34_hack_spec_delcatty, 19
+.equ obj_R34_hack_spec_pachirisu, 20
+.equ obj_R34_hack_spec_alomomola, 21
+.equ obj_R34_hack_spec_mimikyu, 22
+.equ obj_R34_hack_spec_leafeon, 23
 
 .endif //SCR_SEQ_R34_H_

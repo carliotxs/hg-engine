@@ -31,6 +31,12 @@ scrdef scr_seq_R38_000
 scrdef scr_seq_R38_001
 scrdef scr_seq_R38_002
 scrdef scr_seq_R38_003
+scrdef scr_seq_R38_004
+scrdef scr_seq_R38_005
+scrdef scr_seq_R38_006
+scrdef scr_seq_R38_007
+scrdef scr_seq_R38_008
+scrdef scr_seq_R38_009
 scrdef_end
 
 scr_seq_R38_000:
@@ -72,5 +78,53 @@ scr_seq_R38_003:
 scr_seq_R38_003_lost:
 	white_out
 	releaseall
+	end
+// hack: MAGNEZONE specialist (hack/scripts/gen_specialists.py)
+scr_seq_R38_004:
+	setvar VAR_SPECIAL_x8004, SPECIES_MAGNEZONE
+	setvar VAR_SPECIAL_x8005, 30
+	setvar VAR_SPECIAL_x8006, ITEM_SCOPE_LENS
+	setvar VAR_SPECIAL_x8007, 2122
+	callstd 2077
+	end
+// hack: TOXTRICITY specialist (hack/scripts/gen_specialists.py)
+scr_seq_R38_005:
+	setvar VAR_SPECIAL_x8004, SPECIES_TOXTRICITY
+	setvar VAR_SPECIAL_x8005, 30
+	setvar VAR_SPECIAL_x8006, ITEM_CHOICE_SPECS
+	setvar VAR_SPECIAL_x8007, 2271
+	callstd 2077
+	end
+// hack: SCOLIPEDE specialist (hack/scripts/gen_specialists.py)
+scr_seq_R38_006:
+	setvar VAR_SPECIAL_x8004, SPECIES_SCOLIPEDE
+	setvar VAR_SPECIAL_x8005, 30
+	setvar VAR_SPECIAL_x8006, ITEM_ROCKY_HELMET
+	setvar VAR_SPECIAL_x8007, 2320
+	callstd 2077
+	end
+// hack: BLISSEY specialist (hack/scripts/gen_specialists.py)
+scr_seq_R38_007:
+	setvar VAR_SPECIAL_x8004, SPECIES_BLISSEY
+	setvar VAR_SPECIAL_x8005, 16
+	setvar VAR_SPECIAL_x8006, ITEM_AIR_BALLOON
+	setvar VAR_SPECIAL_x8007, 2353
+	callstd 2077
+	end
+// hack: PORYGON_Z specialist (hack/scripts/gen_specialists.py)
+scr_seq_R38_008:
+	setvar VAR_SPECIAL_x8004, SPECIES_PORYGON_Z
+	setvar VAR_SPECIAL_x8005, 16
+	setvar VAR_SPECIAL_x8006, ITEM_LUM_BERRY
+	setvar VAR_SPECIAL_x8007, 2359
+	callstd 2077
+	end
+// hack: GRIMMSNARL specialist (hack/scripts/gen_specialists.py)
+scr_seq_R38_009:
+	setvar VAR_SPECIAL_x8004, SPECIES_GRIMMSNARL
+	setvar VAR_SPECIAL_x8005, 42
+	setvar VAR_SPECIAL_x8006, ITEM_BRIGHT_POWDER
+	setvar VAR_SPECIAL_x8007, 2385
+	callstd 2077
 	end
 	.balign 4

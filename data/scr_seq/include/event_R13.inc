@@ -4,6 +4,8 @@
 .equ _EV_scr_seq_R13_000, 0
 .equ _EV_scr_seq_R13_001, 1
 .equ _EV_scr_seq_R13_002, 2
+.equ _EV_scr_seq_R13_003, 3
+.equ _EV_scr_seq_R13_004, 4
 
 .equ obj_R13_mount_2, 0
 .equ obj_R13_gsman2, 1
@@ -18,5 +20,7 @@
 .equ obj_R13_gsman2_3, 10
 .equ obj_R13_tree, 11
 .equ obj_R13_gswoman1, 17
+.equ obj_R13_hack_spec_exeggutor, 13
+.equ obj_R13_hack_spec_rhyperior, 14
 
 .endif //SCR_SEQ_R13_H_

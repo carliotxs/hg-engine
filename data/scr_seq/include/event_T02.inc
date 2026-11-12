@@ -13,6 +13,8 @@
 .equ _EV_scr_seq_T02_009, 9
 .equ _EV_scr_seq_T02_010, 10
 .equ _EV_scr_seq_T02_011, 11
+.equ _EV_scr_seq_T02_012, 12
+.equ _EV_scr_seq_T02_013, 13
 
 .equ obj_T02_gsoldman1, 0
 .equ obj_T02_gsoldman1_2, 1
@@ -22,5 +24,7 @@
 .equ obj_T02_tree_2, 5
 .equ obj_T02_gsmiddleman1, 6
 .equ obj_T02_gsoldman1_3, 7
+.equ obj_T02_hack_spec_poliwrath, 8
+.equ obj_T02_hack_spec_basculin, 9
 
 .endif //SCR_SEQ_T02_H_

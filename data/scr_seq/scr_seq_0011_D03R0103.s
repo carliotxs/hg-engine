@@ -29,6 +29,11 @@
 
 scrdef scr_seq_D03R0103_000
 scrdef scr_seq_D03R0103_001
+scrdef scr_seq_D03R0103_002
+scrdef scr_seq_D03R0103_003
+scrdef scr_seq_D03R0103_004
+scrdef scr_seq_D03R0103_005
+scrdef scr_seq_D03R0103_006
 scrdef_end
 
 scr_seq_D03R0103_001:
@@ -70,4 +75,44 @@ _0077:
 _007D:
 	setflag FLAG_CAUGHT_MEWTWO
 	return
+// hack: MACHAMP specialist (hack/scripts/gen_specialists.py)
+scr_seq_D03R0103_002:
+	setvar VAR_SPECIAL_x8004, SPECIES_MACHAMP
+	setvar VAR_SPECIAL_x8005, 48
+	setvar VAR_SPECIAL_x8006, ITEM_MUSCLE_BAND
+	setvar VAR_SPECIAL_x8007, 2104
+	callstd 2077
+	end
+// hack: MINIOR specialist (hack/scripts/gen_specialists.py)
+scr_seq_D03R0103_003:
+	setvar VAR_SPECIAL_x8004, SPECIES_MINIOR
+	setvar VAR_SPECIAL_x8005, 33
+	setvar VAR_SPECIAL_x8006, ITEM_MUSCLE_BAND
+	setvar VAR_SPECIAL_x8007, 2140
+	callstd 2077
+	end
+// hack: PARASECT specialist (hack/scripts/gen_specialists.py)
+scr_seq_D03R0103_004:
+	setvar VAR_SPECIAL_x8004, SPECIES_PARASECT
+	setvar VAR_SPECIAL_x8005, 48
+	setvar VAR_SPECIAL_x8006, ITEM_RED_CARD
+	setvar VAR_SPECIAL_x8007, 2154
+	callstd 2077
+	end
+// hack: LUXRAY specialist (hack/scripts/gen_specialists.py)
+scr_seq_D03R0103_005:
+	setvar VAR_SPECIAL_x8004, SPECIES_LUXRAY
+	setvar VAR_SPECIAL_x8005, 49
+	setvar VAR_SPECIAL_x8006, ITEM_WISE_GLASSES
+	setvar VAR_SPECIAL_x8007, 2375
+	callstd 2077
+	end
+// hack: CHANDELURE specialist (hack/scripts/gen_specialists.py)
+scr_seq_D03R0103_006:
+	setvar VAR_SPECIAL_x8004, SPECIES_CHANDELURE
+	setvar VAR_SPECIAL_x8005, 48
+	setvar VAR_SPECIAL_x8006, ITEM_CHANDELURITE
+	setvar VAR_SPECIAL_x8007, 2632
+	callstd 2077
+	end
 	.balign 4

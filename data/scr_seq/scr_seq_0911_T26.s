@@ -40,6 +40,8 @@ scrdef scr_seq_T26_009
 scrdef scr_seq_T26_010
 scrdef scr_seq_T26_011
 scrdef scr_seq_T26_012
+scrdef scr_seq_T26_013
+scrdef scr_seq_T26_014
 scrdef_end
 
 scr_seq_T26_002:
@@ -491,5 +493,21 @@ scr_seq_T26_009:
 
 scr_seq_T26_010:
 	simple_npc_msg 4
+	end
+// hack: CORSOLA specialist (hack/scripts/gen_specialists.py)
+scr_seq_T26_013:
+	setvar VAR_SPECIAL_x8004, SPECIES_CORSOLA
+	setvar VAR_SPECIAL_x8005, 43
+	setvar VAR_SPECIAL_x8006, ITEM_LUM_BERRY
+	setvar VAR_SPECIAL_x8007, 2612
+	callstd 2077
+	end
+// hack: PINCURCHIN specialist (hack/scripts/gen_specialists.py)
+scr_seq_T26_014:
+	setvar VAR_SPECIAL_x8004, SPECIES_PINCURCHIN
+	setvar VAR_SPECIAL_x8005, 23
+	setvar VAR_SPECIAL_x8006, ITEM_ABILITY_CAPSULE
+	setvar VAR_SPECIAL_x8007, 2658
+	callstd 2077
 	end
 	.balign 4

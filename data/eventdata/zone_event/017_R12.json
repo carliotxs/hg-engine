@@ -350,6 +350,40 @@
       "x": 1412,
       "z": 306,
       "y": 0
+    },
+    {
+      "id": "obj_R12_hack_spec_pyukumuku",
+      "graphics_id": "SPRITE_GSBOY3",
+      "movement_type": 0,
+      "trainer_type": 0,
+      "hidden_flag": "FLAG_NOTHING",
+      "script": "_EV_scr_seq_R12_006 + 1",
+      "initial_dir": 1,
+      "param0": 0,
+      "param1": 0,
+      "param2": 0,
+      "movement_range_x": 0,
+      "movement_range_z": 0,
+      "x": 1433,
+      "z": 317,
+      "y": 0
+    },
+    {
+      "id": "obj_R12_hack_spec_walrein",
+      "graphics_id": "SPRITE_GSMAN1",
+      "movement_type": 0,
+      "trainer_type": 0,
+      "hidden_flag": "FLAG_NOTHING",
+      "script": "_EV_scr_seq_R12_007 + 1",
+      "initial_dir": 1,
+      "param0": 0,
+      "param1": 0,
+      "param2": 0,
+      "movement_range_x": 0,
+      "movement_range_z": 0,
+      "x": 1423,
+      "z": 262,
+      "y": 0
     }
   ],
   "warp_events": [

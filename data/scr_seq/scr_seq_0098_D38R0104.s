@@ -28,6 +28,10 @@
 
 
 scrdef scr_seq_D38R0104_000
+scrdef scr_seq_D38R0104_001
+scrdef scr_seq_D38R0104_002
+scrdef scr_seq_D38R0104_003
+scrdef scr_seq_D38R0104_004
 scrdef_end
 
 scr_seq_D38R0104_000:
@@ -90,5 +94,37 @@ _00D2:
 	wait_button
 	closemsg
 	releaseall
+	end
+// hack: TORKOAL specialist (hack/scripts/gen_specialists.py)
+scr_seq_D38R0104_001:
+	setvar VAR_SPECIAL_x8004, SPECIES_TORKOAL
+	setvar VAR_SPECIAL_x8005, 19
+	setvar VAR_SPECIAL_x8006, ITEM_QUICK_CLAW
+	setvar VAR_SPECIAL_x8007, 2207
+	callstd 2077
+	end
+// hack: SANDACONDA specialist (hack/scripts/gen_specialists.py)
+scr_seq_D38R0104_002:
+	setvar VAR_SPECIAL_x8004, SPECIES_SANDACONDA
+	setvar VAR_SPECIAL_x8005, 36
+	setvar VAR_SPECIAL_x8006, ITEM_LUM_BERRY
+	setvar VAR_SPECIAL_x8007, 2227
+	callstd 2077
+	end
+// hack: EELEKTROSS specialist (hack/scripts/gen_specialists.py)
+scr_seq_D38R0104_003:
+	setvar VAR_SPECIAL_x8004, SPECIES_EELEKTROSS
+	setvar VAR_SPECIAL_x8005, 39
+	setvar VAR_SPECIAL_x8006, ITEM_EELEKTROSSITE
+	setvar VAR_SPECIAL_x8007, 2381
+	callstd 2077
+	end
+// hack: INCINEROAR specialist (hack/scripts/gen_specialists.py)
+scr_seq_D38R0104_004:
+	setvar VAR_SPECIAL_x8004, SPECIES_INCINEROAR
+	setvar VAR_SPECIAL_x8005, 34
+	setvar VAR_SPECIAL_x8006, ITEM_HEAVY_DUTY_BOOTS
+	setvar VAR_SPECIAL_x8007, 2650
+	callstd 2077
 	end
 	.balign 4

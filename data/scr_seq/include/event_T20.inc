@@ -19,6 +19,10 @@
 .equ _EV_scr_seq_T20_015, 15
 .equ _EV_scr_seq_T20_016, 16
 .equ _EV_scr_seq_T20_017, 17
+.equ _EV_scr_seq_T20_018, 18
+.equ _EV_scr_seq_T20_019, 19
+.equ _EV_scr_seq_T20_020, 20
+.equ _EV_scr_seq_T20_021, 21
 
 .equ obj_T20_gsrivel, 0
 .equ obj_T20_gswoman1, 1
@@ -30,5 +34,9 @@
 .equ obj_T20_gsmama, 7
 .equ obj_T20_var_1_2, 8
 .equ obj_T20_follower_mon_static_marill_2, 9
+.equ obj_T20_hack_spec_pelipper, 10
+.equ obj_T20_hack_spec_luvdisc, 11
+.equ obj_T20_hack_spec_lumineon, 12
+.equ obj_T20_hack_spec_dragalge, 13
 
 .endif //SCR_SEQ_T20_H_

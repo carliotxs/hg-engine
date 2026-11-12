@@ -31,6 +31,12 @@ scrdef scr_seq_R26_000
 scrdef scr_seq_R26_001
 scrdef scr_seq_R26_002
 scrdef scr_seq_R26_003
+scrdef scr_seq_R26_004
+scrdef scr_seq_R26_005
+scrdef scr_seq_R26_006
+scrdef scr_seq_R26_007
+scrdef scr_seq_R26_008
+scrdef scr_seq_R26_009
 scrdef_end
 
 scr_seq_R26_001:
@@ -180,5 +186,53 @@ scr_seq_R26_003:
 	scrcmd_058
 	scrcmd_060 VAR_SPECIAL_RESULT
 	callstd std_signpost
+	end
+// hack: STONJOURNER specialist (hack/scripts/gen_specialists.py)
+scr_seq_R26_004:
+	setvar VAR_SPECIAL_x8004, SPECIES_STONJOURNER
+	setvar VAR_SPECIAL_x8005, 33
+	setvar VAR_SPECIAL_x8006, ITEM_LEFTOVERS
+	setvar VAR_SPECIAL_x8007, 2188
+	callstd 2077
+	end
+// hack: DODRIO specialist (hack/scripts/gen_specialists.py)
+scr_seq_R26_005:
+	setvar VAR_SPECIAL_x8004, SPECIES_DODRIO
+	setvar VAR_SPECIAL_x8005, 31
+	setvar VAR_SPECIAL_x8006, ITEM_LIFE_ORB
+	setvar VAR_SPECIAL_x8007, 2195
+	callstd 2077
+	end
+// hack: ARBOLIVA specialist (hack/scripts/gen_specialists.py)
+scr_seq_R26_006:
+	setvar VAR_SPECIAL_x8004, SPECIES_ARBOLIVA
+	setvar VAR_SPECIAL_x8005, 35
+	setvar VAR_SPECIAL_x8006, ITEM_LEFTOVERS
+	setvar VAR_SPECIAL_x8007, 2233
+	callstd 2077
+	end
+// hack: KILOWATTREL specialist (hack/scripts/gen_specialists.py)
+scr_seq_R26_007:
+	setvar VAR_SPECIAL_x8004, SPECIES_KILOWATTREL
+	setvar VAR_SPECIAL_x8005, 35
+	setvar VAR_SPECIAL_x8006, ITEM_SHELL_BELL
+	setvar VAR_SPECIAL_x8007, 2237
+	callstd 2077
+	end
+// hack: ABSOL specialist (hack/scripts/gen_specialists.py)
+scr_seq_R26_008:
+	setvar VAR_SPECIAL_x8004, SPECIES_ABSOL
+	setvar VAR_SPECIAL_x8005, 33
+	setvar VAR_SPECIAL_x8006, ITEM_ABSOLITE
+	setvar VAR_SPECIAL_x8007, 2247
+	callstd 2077
+	end
+// hack: VOLBEAT specialist (hack/scripts/gen_specialists.py)
+scr_seq_R26_009:
+	setvar VAR_SPECIAL_x8004, SPECIES_VOLBEAT
+	setvar VAR_SPECIAL_x8005, 35
+	setvar VAR_SPECIAL_x8006, ITEM_FOCUS_SASH
+	setvar VAR_SPECIAL_x8007, 2397
+	callstd 2077
 	end
 	.balign 4

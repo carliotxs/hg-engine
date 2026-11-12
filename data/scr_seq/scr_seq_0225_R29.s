@@ -36,6 +36,12 @@ scrdef scr_seq_R29_005
 scrdef scr_seq_R29_006
 scrdef scr_seq_R29_007
 scrdef scr_seq_R29_008
+scrdef scr_seq_R29_009
+scrdef scr_seq_R29_010
+scrdef scr_seq_R29_011
+scrdef scr_seq_R29_012
+scrdef scr_seq_R29_013
+scrdef scr_seq_R29_014
 scrdef_end
 
 scr_seq_R29_000:
@@ -821,5 +827,53 @@ scr_seq_R29_007:
 
 scr_seq_R29_008:
 	simple_npc_msg 10
+	end
+// hack: LINOONE specialist (hack/scripts/gen_specialists.py)
+scr_seq_R29_009:
+	setvar VAR_SPECIAL_x8004, SPECIES_LINOONE
+	setvar VAR_SPECIAL_x8005, 20
+	setvar VAR_SPECIAL_x8006, ITEM_MUSCLE_BAND
+	setvar VAR_SPECIAL_x8007, 2242
+	callstd 2077
+	end
+// hack: STOUTLAND specialist (hack/scripts/gen_specialists.py)
+scr_seq_R29_010:
+	setvar VAR_SPECIAL_x8004, SPECIES_STOUTLAND
+	setvar VAR_SPECIAL_x8005, 32
+	setvar VAR_SPECIAL_x8006, ITEM_LUM_BERRY
+	setvar VAR_SPECIAL_x8007, 2252
+	callstd 2077
+	end
+// hack: DIGGERSBY specialist (hack/scripts/gen_specialists.py)
+scr_seq_R29_011:
+	setvar VAR_SPECIAL_x8004, SPECIES_DIGGERSBY
+	setvar VAR_SPECIAL_x8005, 20
+	setvar VAR_SPECIAL_x8006, ITEM_EVIOLITE
+	setvar VAR_SPECIAL_x8007, 2261
+	callstd 2077
+	end
+// hack: GUMSHOOS specialist (hack/scripts/gen_specialists.py)
+scr_seq_R29_012:
+	setvar VAR_SPECIAL_x8004, SPECIES_GUMSHOOS
+	setvar VAR_SPECIAL_x8005, 20
+	setvar VAR_SPECIAL_x8006, ITEM_LIFE_ORB
+	setvar VAR_SPECIAL_x8007, 2265
+	callstd 2077
+	end
+// hack: BANETTE specialist (hack/scripts/gen_specialists.py)
+scr_seq_R29_013:
+	setvar VAR_SPECIAL_x8004, SPECIES_BANETTE
+	setvar VAR_SPECIAL_x8005, 37
+	setvar VAR_SPECIAL_x8006, ITEM_BANETTITE
+	setvar VAR_SPECIAL_x8007, 2373
+	callstd 2077
+	end
+// hack: NOCTOWL specialist (hack/scripts/gen_specialists.py)
+scr_seq_R29_014:
+	setvar VAR_SPECIAL_x8004, SPECIES_NOCTOWL
+	setvar VAR_SPECIAL_x8005, 20
+	setvar VAR_SPECIAL_x8006, ITEM_BOTTLE_CAP
+	setvar VAR_SPECIAL_x8007, 2626
+	callstd 2077
 	end
 	.balign 4

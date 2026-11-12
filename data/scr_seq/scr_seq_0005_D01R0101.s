@@ -30,6 +30,10 @@
 scrdef scr_seq_D01R0101_000
 scrdef scr_seq_D01R0101_001
 scrdef scr_seq_D01R0101_002
+scrdef scr_seq_D01R0101_003
+scrdef scr_seq_D01R0101_004
+scrdef scr_seq_D01R0101_005
+scrdef scr_seq_D01R0101_006
 scrdef_end
 
 scr_seq_D01R0101_000:
@@ -285,5 +289,37 @@ _0357:
 
 scr_seq_D01R0101_002:
 	simple_npc_msg 0
+	end
+// hack: DUGTRIO specialist (hack/scripts/gen_specialists.py)
+scr_seq_D01R0101_003:
+	setvar VAR_SPECIAL_x8004, SPECIES_DUGTRIO
+	setvar VAR_SPECIAL_x8005, 26
+	setvar VAR_SPECIAL_x8006, ITEM_RARE_CANDY
+	setvar VAR_SPECIAL_x8007, 2156
+	callstd 2077
+	end
+// hack: SOLROCK specialist (hack/scripts/gen_specialists.py)
+scr_seq_D01R0101_004:
+	setvar VAR_SPECIAL_x8004, SPECIES_SOLROCK
+	setvar VAR_SPECIAL_x8005, 27
+	setvar VAR_SPECIAL_x8006, ITEM_CHOICE_BAND
+	setvar VAR_SPECIAL_x8007, 2301
+	callstd 2077
+	end
+// hack: FERROTHORN specialist (hack/scripts/gen_specialists.py)
+scr_seq_D01R0101_005:
+	setvar VAR_SPECIAL_x8004, SPECIES_FERROTHORN
+	setvar VAR_SPECIAL_x8005, 40
+	setvar VAR_SPECIAL_x8006, ITEM_CHOICE_SCARF
+	setvar VAR_SPECIAL_x8007, 2360
+	callstd 2077
+	end
+// hack: INFERNAPE specialist (hack/scripts/gen_specialists.py)
+scr_seq_D01R0101_006:
+	setvar VAR_SPECIAL_x8004, SPECIES_INFERNAPE
+	setvar VAR_SPECIAL_x8005, 36
+	setvar VAR_SPECIAL_x8006, ITEM_LEFTOVERS
+	setvar VAR_SPECIAL_x8007, 2642
+	callstd 2077
 	end
 	.balign 4

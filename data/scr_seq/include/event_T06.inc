@@ -15,6 +15,10 @@
 .equ _EV_scr_seq_T06_011, 11
 .equ _EV_scr_seq_T06_012, 12
 .equ _EV_scr_seq_T06_013, 13
+.equ _EV_scr_seq_T06_014, 14
+.equ _EV_scr_seq_T06_015, 15
+.equ _EV_scr_seq_T06_016, 16
+.equ _EV_scr_seq_T06_017, 17
 
 .equ obj_T06_gsoldman1, 0
 .equ obj_T06_gsmiddleman1, 1
@@ -35,5 +39,9 @@
 .equ obj_T06_minaki, 16
 .equ obj_T06_minaki_2, 17
 .equ obj_T06_daigo, 18
+.equ obj_T06_hack_spec_bruxish, 19
+.equ obj_T06_hack_spec_garganacl, 20
+.equ obj_T06_hack_spec_huntail, 21
+.equ obj_T06_hack_spec_sharpedo, 22
 
 .endif //SCR_SEQ_T06_H_

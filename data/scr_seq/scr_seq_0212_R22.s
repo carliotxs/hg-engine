@@ -32,6 +32,11 @@ scrdef scr_seq_R22_001
 scrdef scr_seq_R22_002
 scrdef scr_seq_R22_003
 scrdef scr_seq_R22_004
+scrdef scr_seq_R22_005
+scrdef scr_seq_R22_006
+scrdef scr_seq_R22_007
+scrdef scr_seq_R22_008
+scrdef scr_seq_R22_009
 scrdef_end
 
 scr_seq_R22_001:
@@ -507,5 +512,45 @@ scr_seq_R22_002:
 	scrcmd_058
 	trainer_tips 0, VAR_SPECIAL_RESULT
 	callstd std_signpost
+	end
+// hack: ELDEGOSS specialist (hack/scripts/gen_specialists.py)
+scr_seq_R22_005:
+	setvar VAR_SPECIAL_x8004, SPECIES_ELDEGOSS
+	setvar VAR_SPECIAL_x8005, 20
+	setvar VAR_SPECIAL_x8006, ITEM_MUSCLE_BAND
+	setvar VAR_SPECIAL_x8007, 2226
+	callstd 2077
+	end
+// hack: RAPIDASH specialist (hack/scripts/gen_specialists.py)
+scr_seq_R22_006:
+	setvar VAR_SPECIAL_x8004, SPECIES_RAPIDASH
+	setvar VAR_SPECIAL_x8005, 40
+	setvar VAR_SPECIAL_x8006, ITEM_PP_UP
+	setvar VAR_SPECIAL_x8007, 2282
+	callstd 2077
+	end
+// hack: HIPPOWDON specialist (hack/scripts/gen_specialists.py)
+scr_seq_R22_007:
+	setvar VAR_SPECIAL_x8004, SPECIES_HIPPOWDON
+	setvar VAR_SPECIAL_x8005, 34
+	setvar VAR_SPECIAL_x8006, ITEM_CHOICE_BAND
+	setvar VAR_SPECIAL_x8007, 2308
+	callstd 2077
+	end
+// hack: GREEDENT specialist (hack/scripts/gen_specialists.py)
+scr_seq_R22_008:
+	setvar VAR_SPECIAL_x8004, SPECIES_GREEDENT
+	setvar VAR_SPECIAL_x8005, 24
+	setvar VAR_SPECIAL_x8006, ITEM_CHOICE_BAND
+	setvar VAR_SPECIAL_x8007, 2341
+	callstd 2077
+	end
+// hack: SKUNTANK specialist (hack/scripts/gen_specialists.py)
+scr_seq_R22_009:
+	setvar VAR_SPECIAL_x8004, SPECIES_SKUNTANK
+	setvar VAR_SPECIAL_x8005, 34
+	setvar VAR_SPECIAL_x8006, ITEM_BRIGHT_POWDER
+	setvar VAR_SPECIAL_x8007, 2603
+	callstd 2077
 	end
 	.balign 4

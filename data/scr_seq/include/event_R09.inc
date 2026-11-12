@@ -2,6 +2,12 @@
 .definelabel SCR_SEQ_R09_H_, 0
 
 .equ _EV_scr_seq_R09_000, 0
+.equ _EV_scr_seq_R09_001, 1
+.equ _EV_scr_seq_R09_002, 2
+.equ _EV_scr_seq_R09_003, 3
+.equ _EV_scr_seq_R09_004, 4
+.equ _EV_scr_seq_R09_005, 5
+.equ _EV_scr_seq_R09_006, 6
 
 .equ obj_R09_campboy_2, 0
 .equ obj_R09_picnicgirl_2, 1
@@ -20,5 +26,11 @@
 .equ obj_R09_monstarball_2, 14
 .equ obj_R09_monstarball_3, 15
 .equ obj_R09_monstarball_4, 16
+.equ obj_R09_hack_spec_altaria, 17
+.equ obj_R09_hack_spec_zangoose, 18
+.equ obj_R09_hack_spec_grumpig, 19
+.equ obj_R09_hack_spec_vespiquen, 20
+.equ obj_R09_hack_spec_mudsdale, 21
+.equ obj_R09_hack_spec_shiinotic, 22
 
 .endif //SCR_SEQ_R09_H_

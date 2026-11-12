@@ -34,6 +34,9 @@ scrdef scr_seq_R10_003
 scrdef scr_seq_R10_004
 scrdef scr_seq_R10_005
 scrdef scr_seq_R10_006
+scrdef scr_seq_R10_007
+scrdef scr_seq_R10_008
+scrdef scr_seq_R10_009
 scrdef_end
 
 scr_seq_R10_004:
@@ -236,5 +239,29 @@ scr_seq_R10_006:
 	scrcmd_058
 	trainer_tips 9, VAR_SPECIAL_RESULT
 	callstd std_signpost
+	end
+// hack: ELECTRODE specialist (hack/scripts/gen_specialists.py)
+scr_seq_R10_007:
+	setvar VAR_SPECIAL_x8004, SPECIES_ELECTRODE
+	setvar VAR_SPECIAL_x8005, 30
+	setvar VAR_SPECIAL_x8006, ITEM_KINGS_ROCK
+	setvar VAR_SPECIAL_x8007, 2105
+	callstd 2077
+	end
+// hack: ELECTIVIRE specialist (hack/scripts/gen_specialists.py)
+scr_seq_R10_008:
+	setvar VAR_SPECIAL_x8004, SPECIES_ELECTIVIRE
+	setvar VAR_SPECIAL_x8005, 30
+	setvar VAR_SPECIAL_x8006, ITEM_AIR_BALLOON
+	setvar VAR_SPECIAL_x8007, 2124
+	callstd 2077
+	end
+// hack: LOKIX specialist (hack/scripts/gen_specialists.py)
+scr_seq_R10_009:
+	setvar VAR_SPECIAL_x8004, SPECIES_LOKIX
+	setvar VAR_SPECIAL_x8005, 24
+	setvar VAR_SPECIAL_x8006, ITEM_AIR_BALLOON
+	setvar VAR_SPECIAL_x8007, 2231
+	callstd 2077
 	end
 	.balign 4

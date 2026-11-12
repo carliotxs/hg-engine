@@ -39,6 +39,8 @@ scrdef scr_seq_T02_008
 scrdef scr_seq_T02_009
 scrdef scr_seq_T02_010
 scrdef scr_seq_T02_011
+scrdef scr_seq_T02_012
+scrdef scr_seq_T02_013
 scrdef_end
 
 scr_seq_T02_008:
@@ -290,5 +292,21 @@ scr_seq_T02_007:
 	scrcmd_058
 	trainer_tips 11, VAR_SPECIAL_RESULT
 	callstd std_signpost
+	end
+// hack: POLIWRATH specialist (hack/scripts/gen_specialists.py)
+scr_seq_T02_012:
+	setvar VAR_SPECIAL_x8004, SPECIES_POLIWRATH
+	setvar VAR_SPECIAL_x8005, 43
+	setvar VAR_SPECIAL_x8006, ITEM_EXPERT_BELT
+	setvar VAR_SPECIAL_x8007, 2677
+	callstd 2077
+	end
+// hack: BASCULIN specialist (hack/scripts/gen_specialists.py)
+scr_seq_T02_013:
+	setvar VAR_SPECIAL_x8004, SPECIES_BASCULIN
+	setvar VAR_SPECIAL_x8005, 23
+	setvar VAR_SPECIAL_x8006, ITEM_MUSCLE_BAND
+	setvar VAR_SPECIAL_x8007, 2686
+	callstd 2077
 	end
 	.balign 4
