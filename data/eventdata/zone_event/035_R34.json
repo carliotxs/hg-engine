@@ -323,6 +323,23 @@
       "x": 363,
       "z": 414,
       "y": 65536
+    },
+    {
+      "id": "obj_R34_hack_static",
+      "graphics_id": "2500 + 133",
+      "movement_type": 0,
+      "trainer_type": 0,
+      "hidden_flag": "FLAG_UNK_B57",
+      "script": "_EV_scr_seq_R34_013 + 1",
+      "initial_dir": 1,
+      "param0": 0,
+      "param1": 0,
+      "param2": 0,
+      "movement_range_x": 0,
+      "movement_range_z": 0,
+      "x": 367,
+      "z": 418,
+      "y": 0
     }
   ],
   "warp_events": [

@@ -41,6 +41,7 @@ SCENARIOS = {
     "shiny_charm": 9,
     "day_care": 10,
     "bike": 11,
+    "static_mon": 12,
 }
 
 # base experience and growth data used by the expectations
@@ -102,7 +103,7 @@ class Game:
 
     def report(self):
         raw = bytes(self.emu.memory.unsigned[self.report_addr:self.report_addr + REPORT_SIZE])
-        magic, ticks, scenario, party_count, level_cap, money, badges, owned, disabled, _, caps, gold_caps, mints, compat = struct.unpack_from(
+        magic, ticks, scenario, party_count, level_cap, money, badges, owned, disabled, static_flag, caps, gold_caps, mints, compat = struct.unpack_from(
             "<IIHBBIBBBBHHHH", raw, 0
         )
         mons = []
@@ -114,7 +115,7 @@ class Game:
         eggs = struct.unpack_from("<6I", raw, 28 + 6 * 16 + 24)
         x, z = struct.unpack_from("<hh", raw, 28 + 6 * 16 + 48)
         return {
-            "x": x, "z": z,
+            "x": x, "z": z, "static_flag": static_flag,
             "compatibility": compat, "egg_rolls": eggs[0:2], "eggs": eggs[2:4], "shiny_eggs": eggs[4:6],
             "shiny_total": shiny[:3], "shiny_hits": shiny[3:],
             "ticks": ticks, "scenario": scenario, "level_cap": level_cap, "money": money, "badges": badges,
@@ -409,6 +410,21 @@ def ride(game, key, frames):
     return positions
 
 
+def walk_to(game, x=None, z=None, tries=40):
+    """walk along one axis until the player stands on the given coordinate"""
+    keys = game.Keys
+    for _ in range(tries):
+        report = game.report()
+        if x is not None and report["x"] != x:
+            key = keys.KEY_LEFT if report["x"] > x else keys.KEY_RIGHT
+        elif z is not None and report["z"] != z:
+            key = keys.KEY_UP if report["z"] > z else keys.KEY_DOWN
+        else:
+            return True
+        ride(game, key, 8)
+    return False
+
+
 def fastest_tile_time(positions):
     """smallest number of frames between two consecutive tile changes"""
     changes = [i for i in range(1, len(positions)) if positions[i] != positions[i - 1]]
@@ -436,6 +452,40 @@ def test_bike(game, c):
     c.check("top speed is 2 frames per tile (vanilla: 4)", gaps[-2:] == [2, 2], f"{gaps[-2:]}")
 
 
+def test_static_mon(game, c):
+    """Cherrygrove City: a visible Yamper stands 5 tiles west of where the test save was made.
+    map objects come from the save file until the map is loaded again, so the test first goes in
+    and out of the Pokémon Center"""
+    keys = game.Keys
+    before = game.report()
+    c.check("daily flag starts clear", before["static_flag"] == 0)
+    for key, frames in ((keys.KEY_LEFT, 30), (keys.KEY_UP, 60), (keys.KEY_LEFT, 12), (keys.KEY_UP, 30)):
+        ride(game, key, frames)
+    game.run(200)
+    game.shot("pokemon_center")
+    ride(game, keys.KEY_DOWN, 40)
+    game.run(200)
+    # back down the same column to the row of the Pokémon, one tile to its right
+    walk_to(game, x=565)
+    walk_to(game, z=398)
+    walk_to(game, x=564)
+    positions = ride(game, keys.KEY_LEFT, 40)
+    game.shot("in_front_of_the_mon")
+    c.check("the Pokémon blocks the tile it stands on", positions[-1] == (564, 398), f"player at {positions[-1]}")
+    game.press(keys.KEY_A, wait=200)
+    game.shot("talked")
+    c.check("battle finished", game.mash_until_field(keys.KEY_A, shots=(600,)))
+    game.run(60)
+    game.shot("after_battle")
+    after = game.report()
+    c.check("daily flag set after the battle", after["static_flag"] == 1)
+    c.check("experience gained from the battle", after["mons"][0]["exp"] > before["mons"][0]["exp"],
+            f"{after['mons'][0]['exp'] - before['mons'][0]['exp']}")
+    positions = ride(game, keys.KEY_LEFT, 40)
+    c.check("the Pokémon is gone: the tile is free", positions[-1][0] < 563, f"player x {positions[-1][0]}")
+    game.shot("walked_through")
+
+
 TESTS = {
     "exp_share_on": test_exp_share_on,
     "exp_share_off": test_exp_share_off,
@@ -448,6 +498,7 @@ TESTS = {
     "shiny_charm": test_shiny_charm,
     "day_care": test_day_care,
     "bike": test_bike,
+    "static_mon": test_static_mon,
 }
 
 

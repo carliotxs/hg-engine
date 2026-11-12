@@ -290,6 +290,23 @@
       "x": 648,
       "z": 258,
       "y": 0
+    },
+    {
+      "id": "obj_R45_hack_static",
+      "graphics_id": "2500 + 443",
+      "movement_type": 0,
+      "trainer_type": 0,
+      "hidden_flag": "FLAG_UNK_B5C",
+      "script": "_EV_scr_seq_R45_005 + 1",
+      "initial_dir": 1,
+      "param0": 0,
+      "param1": 0,
+      "param2": 0,
+      "movement_range_x": 0,
+      "movement_range_z": 0,
+      "x": 661,
+      "z": 271,
+      "y": 0
     }
   ],
   "warp_events": [

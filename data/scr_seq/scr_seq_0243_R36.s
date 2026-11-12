@@ -38,6 +38,7 @@ scrdef scr_seq_R36_007
 scrdef scr_seq_R36_008
 scrdef scr_seq_R36_009
 scrdef scr_seq_R36_010
+scrdef scr_seq_R36_011
 scrdef_end
 
 scr_seq_R36_002:
@@ -472,5 +473,27 @@ scr_seq_R36_006:
 	scrcmd_058
 	trainer_tips 12, VAR_SPECIAL_RESULT
 	callstd std_signpost
+	end
+// hack: visible static Pokémon with daily respawn (hack/scripts/gen_static_mons.py)
+scr_seq_R36_011:
+	play_se SEQ_SE_DP_SELECT
+	lockall
+	faceplayer
+	play_cry SPECIES_ABSOL, 0
+	wait_cry
+	setflag FLAG_ENGAGING_STATIC_POKEMON
+	wild_battle SPECIES_ABSOL, 16, 0
+	clearflag FLAG_ENGAGING_STATIC_POKEMON
+	check_battle_won VAR_SPECIAL_RESULT
+	compare VAR_SPECIAL_RESULT, 0
+	goto_if_eq scr_seq_R36_011_lost
+	setflag FLAG_UNK_B58
+	hide_person obj_R36_hack_static
+	releaseall
+	end
+
+scr_seq_R36_011_lost:
+	white_out
+	releaseall
 	end
 	.balign 4

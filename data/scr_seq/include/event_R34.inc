@@ -14,6 +14,7 @@
 .equ _EV_scr_seq_R34_010, 10
 .equ _EV_scr_seq_R34_011, 11
 .equ _EV_scr_seq_R34_012, 12
+.equ _EV_scr_seq_R34_013, 13
 
 .equ obj_R34_gsboy2, 0
 .equ obj_R34_picnicgirl_2, 1
@@ -31,5 +32,6 @@
 .equ obj_R34_gsmiddleman1, 13
 .equ obj_R34_monstarball_2, 14
 .equ obj_R34_gsmiddleman1_2, 15
+.equ obj_R34_hack_static, 16
 
 .endif //SCR_SEQ_R34_H_

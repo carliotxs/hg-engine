@@ -38,6 +38,7 @@ scrdef scr_seq_T21_007
 scrdef scr_seq_T21_008
 scrdef scr_seq_T21_009
 scrdef scr_seq_T21_010
+scrdef scr_seq_T21_011
 scrdef_end
 
 scr_seq_T21_010:
@@ -880,5 +881,27 @@ scr_seq_T21_007:
 
 scr_seq_T21_008:
 	simple_npc_msg 17
+	end
+// hack: visible static Pokémon with daily respawn (hack/scripts/gen_static_mons.py)
+scr_seq_T21_011:
+	play_se SEQ_SE_DP_SELECT
+	lockall
+	faceplayer
+	play_cry SPECIES_YAMPER, 0
+	wait_cry
+	setflag FLAG_ENGAGING_STATIC_POKEMON
+	wild_battle SPECIES_YAMPER, 4, 0
+	clearflag FLAG_ENGAGING_STATIC_POKEMON
+	check_battle_won VAR_SPECIAL_RESULT
+	compare VAR_SPECIAL_RESULT, 0
+	goto_if_eq scr_seq_T21_011_lost
+	setflag FLAG_UNK_B5E
+	hide_person obj_T21_hack_static
+	releaseall
+	end
+
+scr_seq_T21_011_lost:
+	white_out
+	releaseall
 	end
 	.balign 4

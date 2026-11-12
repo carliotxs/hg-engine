@@ -40,6 +40,7 @@ scrdef scr_seq_R34_009
 scrdef scr_seq_R34_010
 scrdef scr_seq_R34_011
 scrdef scr_seq_R34_012
+scrdef scr_seq_R34_013
 scrdef_end
 
 scr_seq_R34_000:
@@ -865,5 +866,27 @@ scr_seq_R34_011:
 	scrcmd_058
 	scrcmd_060 VAR_SPECIAL_RESULT
 	callstd std_signpost
+	end
+// hack: visible static Pokémon with daily respawn (hack/scripts/gen_static_mons.py)
+scr_seq_R34_013:
+	play_se SEQ_SE_DP_SELECT
+	lockall
+	faceplayer
+	play_cry SPECIES_EEVEE, 0
+	wait_cry
+	setflag FLAG_ENGAGING_STATIC_POKEMON
+	wild_battle SPECIES_EEVEE, 12, 0
+	clearflag FLAG_ENGAGING_STATIC_POKEMON
+	check_battle_won VAR_SPECIAL_RESULT
+	compare VAR_SPECIAL_RESULT, 0
+	goto_if_eq scr_seq_R34_013_lost
+	setflag FLAG_UNK_B57
+	hide_person obj_R34_hack_static
+	releaseall
+	end
+
+scr_seq_R34_013_lost:
+	white_out
+	releaseall
 	end
 	.balign 4

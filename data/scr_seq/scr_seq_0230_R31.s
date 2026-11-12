@@ -33,6 +33,7 @@ scrdef scr_seq_R31_002
 scrdef scr_seq_R31_003
 scrdef scr_seq_R31_004
 scrdef scr_seq_R31_005
+scrdef scr_seq_R31_006
 scrdef_end
 
 scr_seq_R31_000:
@@ -267,5 +268,27 @@ scr_seq_R31_004:
 	.byte 0x00, 0x68, 0x00, 0x2d, 0x00, 0x01, 0x32, 0x00, 0x35, 0x00, 0x61, 0x00, 0x02, 0x00
 scr_seq_R31_005:
 	simple_npc_msg 11
+	end
+// hack: visible static Pokémon with daily respawn (hack/scripts/gen_static_mons.py)
+scr_seq_R31_006:
+	play_se SEQ_SE_DP_SELECT
+	lockall
+	faceplayer
+	play_cry SPECIES_ROCKRUFF, 0
+	wait_cry
+	setflag FLAG_ENGAGING_STATIC_POKEMON
+	wild_battle SPECIES_ROCKRUFF, 6, 0
+	clearflag FLAG_ENGAGING_STATIC_POKEMON
+	check_battle_won VAR_SPECIAL_RESULT
+	compare VAR_SPECIAL_RESULT, 0
+	goto_if_eq scr_seq_R31_006_lost
+	setflag FLAG_UNK_B54
+	hide_person obj_R31_hack_static
+	releaseall
+	end
+
+scr_seq_R31_006_lost:
+	white_out
+	releaseall
 	end
 	.balign 4

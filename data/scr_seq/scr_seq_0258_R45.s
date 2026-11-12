@@ -32,6 +32,7 @@ scrdef scr_seq_R45_001
 scrdef scr_seq_R45_002
 scrdef scr_seq_R45_003
 scrdef scr_seq_R45_004
+scrdef scr_seq_R45_005
 scrdef_end
 
 scr_seq_R45_002:
@@ -169,5 +170,27 @@ scr_seq_R45_004:
 	scrcmd_058
 	trainer_tips 2, VAR_SPECIAL_RESULT
 	callstd std_signpost
+	end
+// hack: visible static Pokémon with daily respawn (hack/scripts/gen_static_mons.py)
+scr_seq_R45_005:
+	play_se SEQ_SE_DP_SELECT
+	lockall
+	faceplayer
+	play_cry SPECIES_GIBLE, 0
+	wait_cry
+	setflag FLAG_ENGAGING_STATIC_POKEMON
+	wild_battle SPECIES_GIBLE, 27, 0
+	clearflag FLAG_ENGAGING_STATIC_POKEMON
+	check_battle_won VAR_SPECIAL_RESULT
+	compare VAR_SPECIAL_RESULT, 0
+	goto_if_eq scr_seq_R45_005_lost
+	setflag FLAG_UNK_B5C
+	hide_person obj_R45_hack_static
+	releaseall
+	end
+
+scr_seq_R45_005_lost:
+	white_out
+	releaseall
 	end
 	.balign 4

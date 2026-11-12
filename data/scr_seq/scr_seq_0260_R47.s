@@ -32,6 +32,7 @@ scrdef scr_seq_R47_001
 scrdef scr_seq_R47_002
 scrdef scr_seq_R47_003
 scrdef scr_seq_R47_004
+scrdef scr_seq_R47_005
 scrdef_end
 
 scr_seq_R47_000:
@@ -231,6 +232,28 @@ _02C0:
 	npc_msg 9
 	wait_button
 	closemsg
+	releaseall
+	end
+// hack: visible static Pokémon with daily respawn (hack/scripts/gen_static_mons.py)
+scr_seq_R47_005:
+	play_se SEQ_SE_DP_SELECT
+	lockall
+	faceplayer
+	play_cry SPECIES_DRAMPA, 0
+	wait_cry
+	setflag FLAG_ENGAGING_STATIC_POKEMON
+	wild_battle SPECIES_DRAMPA, 32, 0
+	clearflag FLAG_ENGAGING_STATIC_POKEMON
+	check_battle_won VAR_SPECIAL_RESULT
+	compare VAR_SPECIAL_RESULT, 0
+	goto_if_eq scr_seq_R47_005_lost
+	setflag FLAG_UNK_B5D
+	hide_person obj_R47_hack_static
+	releaseall
+	end
+
+scr_seq_R47_005_lost:
+	white_out
 	releaseall
 	end
 	.balign 4
