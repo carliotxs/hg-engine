@@ -76,6 +76,7 @@ u32 LONG_CALL PlayerAvatar_GetZCoord(FIELD_PLAYER_AVATAR *playerAvatar);
 #define HACK_TEST_EGG_ROLLS_PER_TICK 25
 
 u32 LONG_CALL Daycare_CalcCompatibilityInternal(struct BoxPokemon **parents);
+u16 LONG_CALL HackCapture_TestStoredSpecies(void);
 BOOL LONG_CALL HandleDaycareStep(Daycare *daycare, struct Party *party, FieldSystem *fieldSystem);
 
 // creating a mon is slow (it reads the learnsets), so HACK_TEST builds raise SHINY_ODDS in config.h
@@ -178,6 +179,24 @@ static void HackTest_Setup(u16 scenario)
         HackTest_AddMon(SPECIES_GARCHOMP, 40);
         break;
 
+    case HACK_TEST_CAPTURE_PROMPT:
+    case HACK_TEST_CAPTURE_PROMPT_NO:
+        // full party: the caught Rattata goes to the PC and the prompt offers to swap it in
+        pp = HackTest_AddMon(SPECIES_GARCHOMP, 40);
+        HackTest_SetMove(pp, MOVE_EARTHQUAKE, 10);
+        HackTest_AddMon(SPECIES_PIDGEY, 20);
+        HackTest_AddMon(SPECIES_MAGIKARP, 10);
+        HackTest_AddMon(SPECIES_ZUBAT, 15);
+        HackTest_AddMon(SPECIES_GEODUDE, 12);
+        HackTest_AddMon(SPECIES_ODDISH, 11);
+        for (u32 i = 0; i < NUM_BAG_BALLS; i++) {
+            bag->balls[i].id = 0;
+            bag->balls[i].quantity = 0;
+        }
+        bag->balls[0].id = ITEM_MASTER_BALL;
+        bag->balls[0].quantity = 5;
+        break;
+
     case HACK_TEST_STATIC_MON:
         pp = HackTest_AddMon(SPECIES_GARCHOMP, 40);
         HackTest_SetMove(pp, MOVE_EARTHQUAKE, 10);
@@ -235,6 +254,9 @@ static void HackTest_UpdateReport(void)
     report->expShareOwned = PlayerHasKeyItem(ITEM_EXP_SHARE);
     report->expShareDisabledFlag = CheckScriptFlag(FLAG_EXP_SHARE_DISABLED);
     report->padding = CheckScriptFlag(HACK_TEST_STATIC_MON_FLAG);
+    if (report->scenario == HACK_TEST_CAPTURE_PROMPT || report->scenario == HACK_TEST_CAPTURE_PROMPT_NO) {
+        report->padding2 = HackCapture_TestStoredSpecies(); // reuses the debug field of the day care scenario
+    }
     report->bottleCaps = Bag_GetQuantity(bag, ITEM_BOTTLE_CAP, HEAPID_WORLD);
     report->goldBottleCaps = Bag_GetQuantity(bag, ITEM_GOLD_BOTTLE_CAP, HEAPID_WORLD);
     report->mints = Bag_GetQuantity(bag, ITEM_ADAMANT_MINT, HEAPID_WORLD);

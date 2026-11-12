@@ -100,9 +100,8 @@ scrdef scr_seq_0003_071
 scrdef scr_seq_0003_072_repels
 scrdef scr_seq_0003_073_autobattle_testing
 scrdef scr_seq_0003_074_expshare
-#ifdef HACK_TEST
 scrdef scr_seq_0003_075_hack_test_shop
-#endif
+scrdef scr_seq_0003_076_capture_prompt
 scrdef_end
 
 scr_seq_0003_002:
@@ -1790,5 +1789,40 @@ scr_seq_0003_074_turn_on:
 scr_seq_0003_074_end:
     wait_button_or_walk_away
     closemsg
+    releaseall
+    end
+
+#ifndef HACK_TEST
+// 2075 only does something in the test ROM, but it keeps its number so that 2076 is the same in both
+scr_seq_0003_075_hack_test_shop:
+    end
+#endif
+
+// hack: "add to party?" after a capture with a full party (SCRIPT_CAPTURE_PROMPT = 2076).
+// queued by src/hack_capture.c, which also does the swap once var 0x416F holds the party slot + 1
+scr_seq_0003_076_capture_prompt:
+    lockall
+    npc_msg 123
+    yesno VAR_SPECIAL_RESULT
+    closemsg
+    compare VAR_SPECIAL_RESULT, 0
+    goto_if_ne scr_seq_0003_076_end
+    fade_screen 6, 1, 0, RGB_BLACK
+    wait_fade
+    party_select_ui
+    get_party_selection VAR_SPECIAL_RESULT
+    restore_overworld
+    fade_screen 6, 1, 1, RGB_BLACK
+    wait_fade
+    compare VAR_SPECIAL_RESULT, 255
+    goto_if_eq scr_seq_0003_076_end
+    addvar VAR_SPECIAL_RESULT, 1
+    setorcopyvar 0x416F, VAR_SPECIAL_RESULT
+    wait 4, VAR_SPECIAL_RESULT
+    npc_msg 124
+    wait_button_or_walk_away
+    closemsg
+
+scr_seq_0003_076_end:
     releaseall
     end

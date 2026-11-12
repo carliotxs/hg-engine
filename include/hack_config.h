@@ -27,6 +27,12 @@
 // The rival's parties in data/Trainers.c and the texts are edited directly, not behind this define.
 #define HACK_ALT_STARTERS
 
+// "Add to party?" prompt after catching a Pokémon with a full party (src/hack_capture.c).
+// The var holds the party slot (plus 1) chosen in the script until the swap is done.
+#define HACK_CAPTURE_PARTY_PROMPT
+#define SCRIPT_CAPTURE_PROMPT 2076 // common script scr_seq_0003_076_capture_prompt
+#define HACK_VAR_PARTY_SWAP 0x416F
+
 // Bicycle with twice the vanilla top speed (2 frames per tile), see bytereplacement.
 #define HACK_FAST_BIKE
 

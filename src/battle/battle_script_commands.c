@@ -1,4 +1,5 @@
 #include "config.h"
+#include "../../include/hack_capture.h"
 #include "debug.h"
 #include "types.h"
 
@@ -1629,6 +1630,10 @@ BOOL Task_DistributeExp_capture_experience(void *arg0, void *work, u32 get_clien
     BOOL ret = FALSE;
     u32 original_work_params[NELEMS(store_work_params)];
     struct EXP_CALCULATOR *expcalc = work;
+
+#ifdef HACK_CAPTURE_PARTY_PROMPT
+    HackCapture_MarkCaught(); // a wild Pokémon is being caught: if it ends up in the PC, ask about it afterwards
+#endif
 
     if (BattleTypeGet(expcalc->bw) & BATTLE_TYPE_NO_EXPERIENCE) {
         return TRUE;

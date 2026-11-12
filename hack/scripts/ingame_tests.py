@@ -42,6 +42,8 @@ SCENARIOS = {
     "day_care": 10,
     "bike": 11,
     "static_mon": 12,
+    "capture_prompt": 13,
+    "capture_prompt_no": 14,
 }
 
 # base experience and growth data used by the expectations
@@ -486,6 +488,71 @@ def test_static_mon(game, c):
     game.shot("walked_through")
 
 
+def catch_with_full_party(game, c):
+    """catch the wild Rattata with a Master Ball and get back to the overworld, where the prompt starts"""
+    before = game.report()
+    c.check("party is full", len(before["mons"]) == 6)
+    game.run(900)
+    game.touch(40, 170, wait=100)   # BAG
+    game.touch(192, 35, wait=100)   # POKé BALLS
+    game.touch(64, 28, wait=100)    # Master Ball
+    game.touch(104, 170, wait=300)  # USE
+    game.shot("ball_thrown")
+    # B skips the texts and the Pokédex page; the nickname question only takes a touch on "No"
+    finished = False
+    for _ in range(150):
+        ticks = game.report()["ticks"]
+        game.press(game.Keys.KEY_B, wait=26)
+        game.touch(128, 138, wait=26)
+        if game.report()["ticks"] - ticks > 10:
+            finished = True
+            break
+    c.check("capture sequence finished", finished)
+    game.run(120)
+    game.press(game.Keys.KEY_A, wait=120)  # first page of the question
+    game.run(120)
+    game.shot("prompt")
+    return before
+
+
+RATTATA, GARCHOMP = 19, 445
+
+
+def test_capture_prompt(game, c):
+    """full party: the caught Rattata goes to the PC, the prompt swaps it with the chosen party member"""
+    before = catch_with_full_party(game, c)
+    c.check("the caught Pokémon went to the PC", game.report()["compatibility"] == RATTATA, f"{game.report()['compatibility']}")
+    # A: rest of the question, YES, first party member, final message
+    for step in range(12):
+        game.press(game.Keys.KEY_A, wait=150)
+        if step in (1, 2, 3, 4):
+            game.shot(f"answer{step}")
+        if game.report()["mons"][0]["species"] == RATTATA:
+            break
+    game.shot("switched")
+    game.press(game.Keys.KEY_A, wait=150)
+    c.check("back in the overworld", game.back_to_field())
+    after = game.report()
+    species = [m["species"] for m in after["mons"]]
+    print(f"  party before {[m['species'] for m in before['mons']]}, after {species}, in the PC slot: {after['compatibility']}")
+    c.check("the caught Rattata is in the chosen party slot", species[0] == RATTATA and len(species) == 6)
+    c.check("it has its level and HP", after["mons"][0]["level"] == 20 and after["mons"][0]["hp"] > 0,
+            f"level {after['mons'][0]['level']}, hp {after['mons'][0]['hp']}")
+    c.check("the rest of the party is unchanged", species[1:] == [m["species"] for m in before["mons"]][1:])
+    c.check("the party member is in the PC slot now", after["compatibility"] == GARCHOMP, f"{after['compatibility']}")
+
+
+def test_capture_prompt_no(game, c):
+    """answering no leaves the party alone and the caught Pokémon in the PC"""
+    before = catch_with_full_party(game, c)
+    game.press(game.Keys.KEY_B, wait=200)  # NO
+    game.shot("answered_no")
+    c.check("back in the overworld", game.back_to_field())
+    after = game.report()
+    c.check("party unchanged", [m["species"] for m in after["mons"]] == [m["species"] for m in before["mons"]])
+    c.check("the caught Pokémon stays in the PC", after["compatibility"] == RATTATA, f"{after['compatibility']}")
+
+
 TESTS = {
     "exp_share_on": test_exp_share_on,
     "exp_share_off": test_exp_share_off,
@@ -499,6 +566,8 @@ TESTS = {
     "day_care": test_day_care,
     "bike": test_bike,
     "static_mon": test_static_mon,
+    "capture_prompt": test_capture_prompt,
+    "capture_prompt_no": test_capture_prompt_no,
 }
 
 
