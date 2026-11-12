@@ -7,7 +7,7 @@
       "graphics_id": "SPRITE_STOP",
       "movement_type": 0,
       "trainer_type": 0,
-      "hidden_flag": "FLAG_NOTHING",
+      "hidden_flag": "1340",
       "script": 0,
       "initial_dir": 0,
       "param0": 0,

@@ -14,6 +14,7 @@
 #include "../include/test_battle.h"
 #endif // DEBUG_BATTLE_SCENARIOS
 #include "../include/hack_capture.h"
+#include "../include/hack_story.h"
 #ifdef HACK_TEST
 #include "../include/hack_test.h"
 #endif // HACK_TEST
@@ -615,6 +616,9 @@ BOOL IsPlayerOnLadder(void)
     }
     u32 collision = GetMetatileBehaviorAt(gFieldSysPtr, gFieldSysPtr->location->x, gFieldSysPtr->location->z);
     u32 mapId = gFieldSysPtr->location->mapId;
+#ifdef HACK_STORY_RULES
+    HackStory_FieldTick();
+#endif // HACK_STORY_RULES
 #ifdef HACK_CAPTURE_PARTY_PROMPT
     HackCapture_FieldTick();
 #endif // HACK_CAPTURE_PARTY_PROMPT

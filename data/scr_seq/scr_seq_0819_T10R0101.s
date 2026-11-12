@@ -118,13 +118,13 @@ scr_seq_T10R0101_006:
 	npc_msg 3
 	closemsg
 	get_starter_choice VAR_SPECIAL_RESULT
-	compare VAR_SPECIAL_RESULT, 147 // hack: starter in slot 0 (Dratini, was Chikorita 152)
+	compare VAR_SPECIAL_RESULT, 152
 	goto_if_ne _016E
 	trainer_battle TRAINER_RIVAL_SILVER_20, 0, 0, 0
 	goto _0191
 
 _016E:
-	compare VAR_SPECIAL_RESULT, 374 // hack: starter in slot 1 (Beldum, was Cyndaquil 155)
+	compare VAR_SPECIAL_RESULT, 155
 	goto_if_ne _0189
 	trainer_battle TRAINER_RIVAL_SILVER_21, 0, 0, 0
 	goto _0191

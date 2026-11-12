@@ -44,7 +44,7 @@ for index, argument in enumerate(sys.argv):
 HOLE = 0x02FFF81C
 REQUEST_MAGIC = 0xC0DE0000
 REPORT_MAGIC = 0x53544B48
-REPORT_SIZE = 28 + 6 * 16 + 24 + 24 + 4 + 8
+REPORT_SIZE = 28 + 6 * 16 + 24 + 24 + 4 + 8 + 8
 EGG_ROLLS = 1000
 SHINY_SAMPLES = 1500
 SHINY_TEST_ODDS = 2049 / 65536  # HACK_TEST builds use SHINY_ODDS 2048, see include/config.h
@@ -164,7 +164,9 @@ class Game:
         shiny = struct.unpack_from("<6I", raw, 28 + 6 * 16)
         eggs = struct.unpack_from("<6I", raw, 28 + 6 * 16 + 24)
         x, z, key_stone, ampharosite, mega_enabled = struct.unpack_from("<hhHHH", raw, 28 + 6 * 16 + 48)
+        elixirs, kangaskhanite, giovanni_done = struct.unpack_from("<HHH", raw, 28 + 6 * 16 + 60)
         return {
+            "elixirs": elixirs, "kangaskhanite": kangaskhanite, "giovanni_done": giovanni_done,
             "x": x, "z": z, "key_stone": key_stone, "ampharosite": ampharosite, "mega_enabled": mega_enabled, "static_flag": static_flag,
             "compatibility": compat, "egg_rolls": eggs[0:2], "eggs": eggs[2:4], "shiny_eggs": eggs[4:6],
             "shiny_total": shiny[:3], "shiny_hits": shiny[3:],
@@ -785,13 +787,94 @@ def test_rocket_grunt(game, c):
     c.check("no second battle", again is not None and again["mons"][0]["exp"] == after["mons"][0]["exp"])
 
 
+def test_giovanni(game, c):
+    """hidden cave of Tohjo Falls after the Radio Tower: Giovanni battles, leaves the Kangaskhanite and goes"""
+    before = game.report()
+    place = (before["x"], before["z"])
+    game.shot("giovanni")
+    for step in range(9):
+        game.press(game.Keys.KEY_A, wait=150)
+        if step in (0, 3):
+            game.shot(f"giovanni_intro{step}")
+    game.run(400)
+    c.check("battle finished", game.mash_until_field(game.Keys.KEY_A, timeout=20000, shots=(300, 2400, 6000)))
+    for step in range(12):
+        game.press(game.Keys.KEY_A, wait=150)
+        if step in (0, 3, 6):
+            game.shot(f"giovanni_after{step}")
+    game.run(300)
+    c.check("back in the overworld", game.back_to_field())
+    after = game.report()
+    game.shot("giovanni_gone")
+    print(f"  experience gained {after['mons'][0]['exp'] - before['mons'][0]['exp']}, Kangaskhanite {after['kangaskhanite']}, done {after['giovanni_done']}")
+    c.check("the battle was won (still in the cave)", (after["x"], after["z"]) == place)
+    c.check("Kangaskhanite received", after["kangaskhanite"] == 1)
+    c.check("Giovanni is done", after["giovanni_done"] == 1)
+    game.press(game.Keys.KEY_A, wait=200)
+    game.shot("giovanni_talk_again")
+    c.check("he is gone: nothing to talk to", game.field_is_running() and game.report()["mons"][0]["exp"] == after["mons"][0]["exp"])
+
+
+def test_mart_robber(game, c):
+    """random event: on its day a grunt robs the Poké Mart; beating him gets an Elixir, once a day"""
+    before = game.report()
+    game.shot("robber")
+    for step in range(5):
+        game.press(game.Keys.KEY_A, wait=150)
+        if step == 1:
+            game.shot("robber_intro")
+    game.run(400)
+    c.check("battle finished", game.mash_until_field(game.Keys.KEY_A, timeout=12000, shots=(300,)))
+    for step in range(8):
+        game.press(game.Keys.KEY_A, wait=150)
+        if step in (0, 2, 4):
+            game.shot(f"robber_after{step}")
+    c.check("back in the overworld", game.back_to_field())
+    after = game.report()
+    print(f"  experience gained {after['mons'][0]['exp'] - before['mons'][0]['exp']}, Elixirs {before['elixirs']} -> {after['elixirs']}")
+    c.check("the battle was won", after["mons"][0]["exp"] > before["mons"][0]["exp"])
+    c.check("Elixir received", after["elixirs"] == before["elixirs"] + 1)
+    game.press(game.Keys.KEY_A, wait=200)
+    game.shot("robber_talk_again")
+    c.check("he is gone: nothing to talk to", game.field_is_running() and game.report()["elixirs"] == after["elixirs"])
+
+
+def test_visitor(game, c):
+    """a famous visitor on its day: battles once, gives its reward and leaves until the next time"""
+    before = game.report()
+    place = (before["x"], before["z"])
+    game.shot("visitor")
+    for step in range(8):
+        game.press(game.Keys.KEY_A, wait=150)
+        if step == 0:
+            game.shot("visitor_intro")
+    game.run(400)
+    c.check("battle finished", game.mash_until_field(game.Keys.KEY_A, timeout=20000, shots=(300, 3000)))
+    for step in range(10):
+        game.press(game.Keys.KEY_A, wait=150)
+        if step in (0, 2, 4):
+            game.shot(f"visitor_after{step}")
+    game.run(300)
+    c.check("back in the overworld", game.back_to_field())
+    after = game.report()
+    game.shot("visitor_gone")
+    gain = after["mons"][0]["exp"] - before["mons"][0]["exp"]
+    print(f"  experience gained {gain}, money {after['money'] - before['money']}")
+    c.check("the battle was won", gain > 0 and (after["x"], after["z"]) == place and after["money"] > before["money"])
+    game.press(game.Keys.KEY_A, wait=200)
+    c.check("the visitor left: nothing to talk to", game.field_is_running() and game.report()["mons"][0]["exp"] == after["mons"][0]["exp"])
+
+
 # tests that start in a chapter: name -> (chapter, function)
 CHAPTER_TESTS = {
     # one "view" test per chapter: opens it and takes a screenshot
     **{f"view_{name}": (name, test_chapter_view) for name in (
         "lighthouse_korrina", "mahogany_rocket", "lake_rocket", "route43_rocket", "goldenrod_takeover",
-        "union_cave_specialist", "route31_static")},
+        "union_cave_specialist", "route31_static", "tohjo_giovanni", "mart_robber", "lake_wake")},
     "korrina": ("lighthouse_korrina", test_korrina),
+    "giovanni": ("tohjo_giovanni", test_giovanni),
+    "mart_robber": ("mart_robber", test_mart_robber),
+    "visitor_wake": ("lake_wake", test_visitor),
     "rocket_mahogany": ("mahogany_rocket", test_rocket_grunt),
     "rocket_lake": ("lake_rocket", test_rocket_grunt),
     "rocket_route43": ("route43_rocket", test_rocket_grunt),

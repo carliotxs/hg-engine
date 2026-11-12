@@ -21,12 +21,24 @@ _hack_chapter_skip_3:
     goto_if_ne _hack_chapter_skip_4
     warp MAP_T25, 0, 368, 353, DIR_WEST
 _hack_chapter_skip_4:
-    compare VAR_SPECIAL_RESULT, 5 // union_cave_specialist
+    compare VAR_SPECIAL_RESULT, 5 // tohjo_giovanni
     goto_if_ne _hack_chapter_skip_5
-    warp MAP_D25R0101, 0, 18, 67, DIR_WEST
+    warp MAP_D45R0102, 0, 8, 6, DIR_WEST
 _hack_chapter_skip_5:
-    compare VAR_SPECIAL_RESULT, 6 // route31_static
+    compare VAR_SPECIAL_RESULT, 6 // mart_robber
     goto_if_ne _hack_chapter_skip_6
-    warp MAP_R31, 0, 536, 271, DIR_WEST
+    warp MAP_T21FS0101, 0, 6, 9, DIR_WEST
 _hack_chapter_skip_6:
+    compare VAR_SPECIAL_RESULT, 7 // lake_wake
+    goto_if_ne _hack_chapter_skip_7
+    warp MAP_T29, 0, 532, 80, DIR_WEST
+_hack_chapter_skip_7:
+    compare VAR_SPECIAL_RESULT, 8 // union_cave_specialist
+    goto_if_ne _hack_chapter_skip_8
+    warp MAP_D25R0101, 0, 18, 67, DIR_WEST
+_hack_chapter_skip_8:
+    compare VAR_SPECIAL_RESULT, 9 // route31_static
+    goto_if_ne _hack_chapter_skip_9
+    warp MAP_R31, 0, 536, 271, DIR_WEST
+_hack_chapter_skip_9:
 .endm

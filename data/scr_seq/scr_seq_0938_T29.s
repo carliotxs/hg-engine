@@ -49,6 +49,7 @@ scrdef scr_seq_T29_018
 scrdef scr_seq_T29_019
 scrdef scr_seq_T29_020
 scrdef scr_seq_T29_021
+scrdef scr_seq_T29_022
 scrdef_end
 
 scr_seq_T29_000:
@@ -623,6 +624,38 @@ scr_seq_T29_021_end:
 	end
 
 scr_seq_T29_021_lost:
+	white_out
+	releaseall
+	end
+// hack: famous visitor, wake (hack/scripts/gen_story.py)
+scr_seq_T29_022:
+	play_se SEQ_SE_DP_SELECT
+	lockall
+	faceplayer
+	npc_msg 36
+	closemsg
+	trainer_battle TRAINER_HACK_748, 0, 0, 0
+	check_battle_won VAR_SPECIAL_RESULT
+	compare VAR_SPECIAL_RESULT, 0
+	goto_if_eq scr_seq_T29_022_lost
+	npc_msg 37
+	giveitem ITEM_MYSTIC_WATER, 1, VAR_SPECIAL_RESULT
+	play_fanfare SEQ_ME_ITEM
+	npc_msg 38
+	wait_fanfare
+	npc_msg 39
+	closemsg
+	fade_screen 6, 1, 0, RGB_BLACK
+	wait_fade
+	setflag 2881 // battled today
+	setflag 1346
+	hide_person obj_T29_hack_visitor_wake
+	fade_screen 6, 1, 1, RGB_BLACK
+	wait_fade
+	releaseall
+	end
+
+scr_seq_T29_022_lost:
 	white_out
 	releaseall
 	end

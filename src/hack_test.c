@@ -24,6 +24,7 @@
 #include "../include/constants/species.h"
 #define HACK_CHAPTER_TABLE
 #include "../include/hack_chapters.h"
+#include "../include/hack_story.h"
 #include "../include/hack_test.h"
 #include "../include/pokemon.h"
 #include "../include/save.h"
@@ -73,6 +74,10 @@ struct HackTestReport {
     u16 ampharosite;
     u16 megaEnabled;
     u16 padding3;
+    u16 elixirs;        // reward of the mart robber event
+    u16 kangaskhanite;  // what Giovanni leaves behind
+    u16 giovanniDone;
+    u16 padding4;
 };
 
 u32 LONG_CALL PlayerAvatar_GetXCoord(FIELD_PLAYER_AVATAR *playerAvatar);
@@ -167,6 +172,11 @@ static void HackTest_Setup(u16 scenario)
             pp = HackTest_AddMon(chapter->party[i].species, chapter->party[i].level);
             HackTest_SetMove(pp, chapter->party[i].move, 10);
         }
+#ifdef HACK_STORY_RULES
+        gHackStoryTestDay = chapter->weekday;
+        gHackStoryTestHour = chapter->hour;
+        HackStory_Update(); // the hide flags of story objects follow the flags that were just set
+#endif
         return;
     }
 
@@ -348,6 +358,9 @@ static void HackTest_UpdateReport(void)
     report->keyStone = HackTest_CountItem(bag, ITEM_KEY_STONE);
     report->ampharosite = HackTest_CountItem(bag, ITEM_AMPHAROSITE);
     report->megaEnabled = CheckScriptFlag(FLAG_MEGA_EVOLUTION_ENABLED);
+    report->elixirs = HackTest_CountItem(bag, ITEM_ELIXIR);
+    report->kangaskhanite = HackTest_CountItem(bag, ITEM_KANGASKHANITE);
+    report->giovanniDone = CheckScriptFlag(HACK_FLAG_GIOVANNI_DONE);
     if (report->scenario == HACK_TEST_MIRROR || report->scenario == HACK_TEST_MIRROR_NO_MON) {
         // reuses two fields: reward of the Mantine specialist and number of specialists beaten
         report->mints = HackTest_CountItem(bag, HACK_TEST_MIRROR_REWARD);

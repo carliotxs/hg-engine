@@ -32,6 +32,7 @@ scrdef scr_seq_T22FS0101_001
 scrdef scr_seq_T22FS0101_002
 scrdef scr_seq_T22FS0101_003
 scrdef scr_seq_T22FS0101_004
+scrdef scr_seq_T22FS0101_005
 scrdef_end
 
 scr_seq_T22FS0101_000:
@@ -148,5 +149,24 @@ scr_seq_T22FS0101_003:
 
 scr_seq_T22FS0101_004:
 	simple_npc_msg 1
+	end
+// hack: random event, a grunt robbing this Poké Mart (hack/scripts/gen_story.py)
+scr_seq_T22FS0101_005:
+	callstd 2080
+	trainer_battle TRAINER_HACK_746, 0, 0, 0
+	check_battle_won VAR_SPECIAL_RESULT
+	compare VAR_SPECIAL_RESULT, 0
+	goto_if_eq scr_seq_T22FS0101_005_lost
+	setflag 2880 // HACK_DAILY_FLAG_MART_ROBBER: no more robberies today
+	setflag 1344
+	setvar VAR_SPECIAL_x8006, ITEM_ELIXIR
+	callstd 2081
+	hide_person obj_T22FS0101_hack_robber
+	releaseall
+	end
+
+scr_seq_T22FS0101_005_lost:
+	white_out
+	releaseall
 	end
 	.balign 4

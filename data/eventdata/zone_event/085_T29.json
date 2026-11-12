@@ -451,6 +451,23 @@
       "x": 546,
       "z": 76,
       "y": 0
+    },
+    {
+      "id": "obj_T29_hack_visitor_wake",
+      "graphics_id": "SPRITE_LEADER3",
+      "movement_type": 0,
+      "trainer_type": 0,
+      "hidden_flag": "1346",
+      "script": "_EV_scr_seq_T29_022 + 1",
+      "initial_dir": 1,
+      "param0": 0,
+      "param1": 0,
+      "param2": 0,
+      "movement_range_x": 0,
+      "movement_range_z": 0,
+      "x": 531,
+      "z": 80,
+      "y": 0
     }
   ],
   "warp_events": [

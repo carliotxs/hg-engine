@@ -26,3 +26,7 @@ Ethan used Max Revive on CELEBI!\r
 Lyra used Max Revive on CELEBI!\r
 {COLOR 1}Time Travel{COLOR 0}......!\rThis is it! Please take us to our time!\r
 {COLOR 1}Time Travel{COLOR 0}......!\rThis is it! Please take us to our time!\r
+...\r...I heard it on the radio.\nMy men called for me, and I did not come.\rI was on my way. Then I heard how\nit ended. A child, again.\rThree years of training, alone,\nto become strong enough to return...\rLet me see what stopped them.
+...I see.\nSo this is how it ends, a second time.\rTeam Rocket is finished. This time\nI will not ask them to wait for me.
+You received the Kangaskhanite!
+It reacts to the bond between\na parent and a child.\rI have no use for it anymore.

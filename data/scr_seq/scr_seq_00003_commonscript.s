@@ -105,6 +105,8 @@ scrdef scr_seq_0003_076_capture_prompt
 scrdef scr_seq_0003_077_mirror_specialist
 scrdef scr_seq_0003_078_rocket_grunt
 scrdef scr_seq_0003_079_rocket_grunt_beaten
+scrdef scr_seq_0003_080_mart_robber
+scrdef scr_seq_0003_081_mart_robber_beaten
 scrdef_end
 
 scr_seq_0003_002:
@@ -1951,6 +1953,30 @@ scr_seq_0003_078_beaten:
 scr_seq_0003_079_rocket_grunt_beaten:
     npc_msg 132
     wait_button_or_walk_away
+    closemsg
+    endstd
+    end
+
+// hack: random event, a grunt robbing a Poké Mart (hack/scripts/gen_story.py), called with callstd.
+// 2080: what he says before the battle
+scr_seq_0003_080_mart_robber:
+    play_se SEQ_SE_DP_SELECT
+    lockall
+    faceplayer
+    npc_msg 134
+    closemsg
+    endstd
+    end
+
+// 2081: he gives up and the clerk rewards the player.  in VAR_SPECIAL_x8006 the item
+scr_seq_0003_081_mart_robber_beaten:
+    npc_msg 135
+    npc_msg 136
+    giveitem VAR_SPECIAL_x8006, 1, VAR_SPECIAL_RESULT
+    buffer_item_name 1, VAR_SPECIAL_x8006
+    play_fanfare SEQ_ME_ITEM
+    npc_msg 130
+    wait_fanfare
     closemsg
     endstd
     end

@@ -114,6 +114,23 @@ TEAMS = {
         KOFFING 29
         SCRAGGY 29
         ARBOK 30"""),
+    # random events: grunts robbing Poké Marts (hack/scripts/gen_story.py), levels of their towns
+    745: ("mart robber, Cherrygrove City", 60, """
+        POOCHYENA 6
+        ZUBAT 7"""),
+    746: ("mart robber, Violet City", 70, """
+        PURRLOIN 10
+        KOFFING 11"""),
+    747: ("mart robber, Azalea Town", 80, """
+        STUNKY 15
+        GRIMER 15
+        HOUNDOUR 16"""),
+    # famous visitors (hack/scripts/gen_story.py): Crasher Wake at the Lake of Rage on Saturdays
+    748: ("Crasher Wake, weekly visitor at the Lake of Rage", 180, """
+        QUAGSIRE 38: EARTHQUAKE, WATERFALL, YAWN, RECOVER
+        LUDICOLO 38: GIGA_DRAIN, SURF, FAKE_OUT, RAIN_DANCE
+        GYARADOS 39: WATERFALL, ICE_FANG, DRAGON_DANCE, BITE
+        FLOATZEL 41 @SITRUS_BERRY: WATERFALL, ICE_PUNCH, AQUA_JET, BULK_UP"""),
     # Korrina, top of the Olivine Lighthouse after Amphy is cured (hack/scripts/gen_korrina.py).
     # her Lucario holds its Mega Stone: the battle is where the player first sees a Mega Evolution
     744: ("Korrina, Olivine Lighthouse: Kalos arc", 200, """
@@ -175,6 +192,10 @@ NEW_TRAINERS = {
     741: ("Grunt", "TEAM_ROCKET", "I was only told to watch the shop...", "Move along!"),
     742: ("Grunt", "TEAM_ROCKET", "The Radio Tower is ours anyway!", "Goldenrod belongs to Team Rocket!"),
     743: ("Grunt", "TEAM_ROCKET", "You’re too late to stop the broadcast!", "Stay off these streets!"),
+    745: ("Grunt", "TEAM_ROCKET", "All this for a few Potions...", "Hands off the merchandise!"),
+    746: ("Grunt", "TEAM_ROCKET", "The boss said this job was easy!", "This shop is closed, kid!"),
+    747: ("Grunt", "TEAM_ROCKET", "I should’ve robbed the Berry shop...", "Keep walking!"),
+    748: ("Wake", "LEADER_CRASHER_WAKE", "Hahaha! What a splash!\\\\nYou made a wave bigger than mine!", "Train harder and come back\\\\nnext week!"),
     744: ("Korrina", "BATTLE_GIRL", "That bond... You two are ready\\\\nfor Mega Evolution!", "Come back when you and your\\\\nPokémon are closer!"),
 }
 
