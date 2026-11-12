@@ -22,8 +22,12 @@
 #define HACK_TEST_LEADER           18 // trainer battle against Falkner
 #define HACK_TEST_STATIC_MON       12 // no script, the visible static Pokémon of Cherrygrove City
 
+#define HACK_TEST_CHAPTER_BASE    100 // scenario 100 + n starts chapter n of include/hack_chapters.h
+#define HACK_TEST_OP_CHAPTER   0x4D40 // day_care_sanitize_mon operation: number of the requested chapter, 0xFFFF if none
+
 #ifndef __ASSEMBLER__
 void HackTest_FieldTick(void);
+u32 LONG_CALL HackTest_ChapterId(void);
 #endif
 
 #endif // HACK_TEST_H

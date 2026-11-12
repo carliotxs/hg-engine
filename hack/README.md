@@ -103,6 +103,27 @@ Os geradores (`gen_specialists.py`, `gen_rocket.py`, `gen_korrina.py`) partilham
 
 `hack/scripts/gen_rocket.py` coloca nos mapas os recrutas Rocket extra (treinadores 739 a 743): Route 43, Lago da Fúria e Mahogany até o esconderijo ser limpo, e dois em Goldenrod durante a tomada da Radio Tower. Lutam quando se fala com eles e desaparecem com as mesmas flags de história dos Rocket originais dessas zonas.
 
+## Testar por partes: capítulos
+
+A ROM de debug sabe arrancar em pontos da história, os capítulos: cada um é uma posição num mapa mais o estado que torna essa parte testável (insígnias, flags, variáveis de história e equipa). Assim não é preciso jogar do início para chegar ao Farol ou a Mahogany.
+
+```bash
+hack/scripts/play.sh --list                 # capítulos disponíveis
+hack/scripts/play.sh lighthouse_korrina     # abre a janela nesse ponto, para jogares com o teclado
+hack/scripts/test.sh korrina rocket_mahogany   # testes automáticos que arrancam num capítulo
+```
+
+No modo de jogo: setas para andar, X é o A, Z é o B, S é o X, Enter é o START; o rato toca no ecrã de baixo. O `play.sh` usa a ROM de debug da última corrida do `test.sh`.
+
+Os capítulos estão na tabela `CHAPTERS` de `hack/scripts/gen_chapters.py`, que gera `include/hack_chapters.h` (estado) e `data/scr_seq/include/hack_chapters.inc` (teleportes). Um capítulo novo é uma linha na tabela: mapa, objeto ao lado do qual o jogador fica (`next_to`) ou coordenadas, flags a ligar e desligar, variáveis de história e equipa. Depois de mexer na tabela ou de mover objetos, volta-se a correr o script.
+
+Coisas que aprendi a fazer isto e que convém saber:
+- Muitos mapas decidem quem lá está a partir de variáveis de história quando carregam (Goldenrod lê `VAR_SCENE_ROCKET_TAKEOVER`), por isso mexer só nas flags não chega
+- Um teleporte por script logo a seguir a carregar o save rebenta o jogo enquanto a faixa com o nome da cidade está no ecrã; a ROM de debug espera 300 frames antes de teleportar
+- O relatório de testes é atualizado todos os frames e não pode alocar memória (por exemplo `Bag_GetQuantity`)
+- Funções de `src/` chamadas a partir de `src/field/` ou `src/battle/` precisam de `LONG_CALL`
+- Visto de sul, o sprite do jogador tapa o NPC do mosaico de cima; os capítulos põem o jogador ao lado
+
 ## Testes em jogo
 
 `hack/scripts/test.sh` compila uma ROM de debug (`make HACK_TEST=Y`, guardada em `hack/out/test-debug.nds`) e corre `hack/scripts/ingame_tests.py` no DeSmuME, com a janela aberta a 6x para se ver o tester a jogar (`--headless` desliga a janela). A ROM de debug continua o save automaticamente (por omissão o save de testes público do hg-engine, descarregado para `hack/out/test.sav`; `HG_TEST_SAV` aponta para outro).
@@ -122,6 +143,9 @@ Como funciona: o runner escreve o número do cenário num endereço de memória;
 | `capture_prompt` e variantes `_no`, `_cancel`, `_mail` | apanhar com a equipa cheia: o Pokémon vai para o PC e o prompt aparece no campo. "Sim" troca com o membro escolhido (equipa, PC e Pokémon seguidor verificados); "Não" e cancelar deixam tudo igual; um Pokémon com Mail é recusado com mensagem |
 | `mirror`, `mirror_no_mon` | o especialista do Mantine em Cherrygrove: com um Mantine na equipa luta 1 contra 1, a equipa volta igual, só o Mantine ganha EXP, o item e o contador sobem e não há segunda batalha; sem Mantine só explica a regra |
 | `leader` | combate de treinador contra o Falkner com a equipa nova: três Pokémon vencidos (pela EXP) e dinheiro recebido |
+| `korrina` | capítulo do Farol: batalha com a Korrina ganha, Key Stone e Ampharosite recebidas, Mega Evolução ligada, sem segunda batalha (nas capturas vê-se o Lucario dela mega evoluir) |
+| `rocket_mahogany`, `rocket_lake`, `rocket_route43`, `rocket_goldenrod` | capítulos com a Rocket ativa: cada recruta novo luta quando se fala com ele, uma só vez |
+| `view_<capítulo>` | abre o capítulo e tira uma captura |
 | `static_mon` | o Yamper de Cherrygrove: vê-se no mapa, bloqueia o mosaico, a batalha começa, a flag diária fica marcada e ele desaparece |
 | `bike` | usar a Bicicleta na mochila e pedalar: acelera e chega a 2 frames por mosaico |
 | `day_care` | estatístico: rotina de passos da Day Care com compatibilidade 50; Oval Charm sobe os ovos para 80% e o Shiny Charm aplica-se aos ovos |

@@ -1750,11 +1750,29 @@ scr_seq_0003_064:
     end
 
 #ifdef HACK_TEST
+.include "data/scr_seq/include/hack_chapters.inc"
+
 // hack: automated in-game tests (make HACK_TEST=Y), queued by src/hack_test.c
 scr_seq_0003_073_autobattle_testing:
     lockall
+    setvar VAR_SPECIAL_RESULT, 0x4D40 // HACK_TEST_OP_CHAPTER: which chapter was asked for, 0xFFFF if none
+    day_care_sanitize_mon VAR_SPECIAL_x8004, VAR_SPECIAL_RESULT
+    compare VAR_SPECIAL_RESULT, 0xFFFF
+    goto_if_ne scr_seq_0003_073_hack_chapter
     goto_if_set 2911, scr_seq_0003_073_hack_test_leader // HACK_TEST_LEADER_FLAG
     wild_battle SPECIES_RATTATA, 20, 0
+    releaseall
+    end
+
+// chapters of the debug ROM: the state was set by src/hack_test.c, here the player is warped
+scr_seq_0003_073_hack_chapter:
+    touchscreen_menu_hide
+    fade_screen 6, 1, 0, RGB_BLACK
+    wait_fade
+    hack_chapter_warps
+    fade_screen 6, 1, 1, RGB_BLACK
+    wait_fade
+    touchscreen_menu_show
     releaseall
     end
 

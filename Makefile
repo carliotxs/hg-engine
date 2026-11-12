@@ -130,7 +130,7 @@ endif
 
 # hack: automated in-game tests of the hack features, see src/hack_test.c and hack/scripts/ingame_tests.py
 ifeq ($(HACK_TEST),Y)
-    CFLAGS += -DHACK_TEST -DDEBUG_AUTO_CONTINUE_GAME
+    CFLAGS += -DHACK_TEST -DDEBUG_AUTO_CONTINUE_GAME -DDEBUG_PRINT_HEAP_OVERFLOW_MESSAGES
     ASFLAGS += -DHACK_TEST
 endif
 
