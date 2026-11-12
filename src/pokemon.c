@@ -1294,6 +1294,28 @@ void LONG_CALL CreateBoxMonData(struct BoxPokemon *boxmon, int species, int leve
         id = 0;
     }
 
+#ifdef HACK_SHINY_CHARM
+    // extra shiny rolls only for mons that belong to the player (wild, gifts, eggs)
+    if (idflag == ID_SET && !SHINY_CHECK(id, rnd)
+        && (id & 0xFFFF) == PlayerProfile_GetTrainerID_VisibleHalf(Sav2_PlayerData_GetProfileAddr(SaveBlock2_get()))
+        && PlayerHasKeyItem(ITEM_SHINY_CHARM)) {
+        for (u32 roll = 0; roll < SHINY_CHARM_EXTRA_ROLLS; roll++) {
+            u32 newPid = (gf_rand() | (gf_rand() << 16));
+            if (SHINY_CHECK(id, newPid)) {
+                if (rndflag) {
+                    // personality was chosen by the caller (synchronize, cute charm...): keep its low half
+                    // (gender and ability) and only make the high half shiny
+                    u32 high = ((id >> 16) ^ (id & 0xFFFF) ^ (rnd & 0xFFFF) ^ (gf_rand() % SHINY_ODDS)) & 0xFFFF;
+                    newPid = (high << 16) | (rnd & 0xFFFF);
+                }
+                rnd = newPid;
+                SetBoxMonData(boxmon, MON_DATA_PERSONALITY, (u8 *)&rnd);
+                break;
+            }
+        }
+    }
+#endif // HACK_SHINY_CHARM
+
     // this function or AddWildPartyPokemon could both get here first
     // and since both functions will initialize the moveset,
     // we need the form to be set correctly in either case
@@ -1718,6 +1740,64 @@ u32 CheckCanUseBallOnDoublesFromBag(struct BattleStruct *sp)
 }
 
 /**
+ *  @brief check the key items pocket directly, without allocating item data on a heap
+ *
+ *  @param itemId key item to look for
+ *  @return TRUE if the player owns at least one
+ */
+BOOL LONG_CALL PlayerHasKeyItem(u16 itemId)
+{
+    BAG_DATA *bag = Sav2_Bag_get(SaveBlock2_get());
+    for (u32 i = 0; i < NUM_BAG_KEY_ITEMS; i++) {
+        if (bag->keyItems[i].id == itemId && bag->keyItems[i].quantity != 0) {
+            return TRUE;
+        }
+    }
+    return FALSE;
+}
+
+#ifdef HACK_BADGE_LEVEL_CAPS
+/**
+ *  @brief level cap indexed by the number of badges the player owns.
+ *         value = level of the ace of the next big fight. tune together with trainer data.
+ */
+static const u8 sBadgeLevelCaps[17] = {
+    13, // 0 badges: Falkner
+    17, // 1: Bugsy
+    19, // 2: Whitney
+    25, // 3: Morty
+    31, // 4: Chuck
+    35, // 5: Jasmine
+    35, // 6: Pryce
+    41, // 7: Clair
+    50, // 8: Elite Four and Lance
+    55, // 9: Kanto leaders
+    56, // 10
+    57, // 11
+    58, // 12
+    59, // 13
+    60, // 14
+    60, // 15: Blue
+    88, // 16: Red
+};
+
+/**
+ *  @brief count the player's badges and return the matching level cap
+ */
+u32 LONG_CALL GetBadgeLevelCap(void)
+{
+    struct PlayerProfile *profile = Sav2_PlayerData_GetProfileAddr(SaveBlock2_get());
+    u32 badges = 0;
+    for (s32 i = 0; i < 16; i++) {
+        if (PlayerProfile_TestBadgeFlag(profile, i) == TRUE) {
+            badges++;
+        }
+    }
+    return sBadgeLevelCaps[badges];
+}
+#endif // HACK_BADGE_LEVEL_CAPS
+
+/**
  *  @brief get level cap from the script variable defined by LEVEL_CAP_VARIABLE
  *
  *  @return level cap from LEVEL_CAP_VARIABLE script variable or 100 if it's not set at all
@@ -1729,6 +1809,11 @@ u32 LONG_CALL GetLevelCap(void)
 #else
 #ifdef IMPLEMENT_LEVEL_CAP
     u32 levelCap = GetScriptVar(LEVEL_CAP_VARIABLE);
+#ifdef HACK_BADGE_LEVEL_CAPS
+    if (levelCap == 0) {
+        levelCap = GetBadgeLevelCap();
+    }
+#endif // HACK_BADGE_LEVEL_CAPS
     if (levelCap > 100 || levelCap == 0) {
         levelCap = 100;
     }

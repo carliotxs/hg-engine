@@ -119,3 +119,5 @@ NOT TELLING
 The repellent’s effect wore off!\nWould you like to use another one?
 You used the {STRVAR_1 8, 1, 0}.
 Begin auto-battle.
+The Exp. Share was turned on.\nYour whole party will now gain Exp. Points!
+The Exp. Share was turned off.\nOnly the Pokémon that battle will gain Exp. Points.

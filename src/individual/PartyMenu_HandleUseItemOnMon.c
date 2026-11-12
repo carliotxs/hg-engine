@@ -251,6 +251,36 @@ u32 UseItemMonAttrChangeCheck(struct PartyMenu *wk, void *dat)
         return TRUE;
     }
 
+#ifdef HACK_BOTTLE_CAPS
+    // handle bottle caps: Gold Bottle Cap maxes every IV, Bottle Cap maxes the lowest IV
+    if (wk->args->itemId == ITEM_GOLD_BOTTLE_CAP || wk->args->itemId == ITEM_BOTTLE_CAP) {
+        u32 lowest = 0, lowestValue = 31, max = 31;
+        for (u32 stat = 0; stat < 6; stat++) {
+            u32 iv = GetMonData(pp, MON_DATA_HP_IV + stat, NULL);
+            if (iv < lowestValue) {
+                lowestValue = iv;
+                lowest = stat;
+            }
+        }
+        if (lowestValue >= 31 || GetMonData(pp, MON_DATA_LEVEL, NULL) < 50) {
+            return FALSE; // all IVs already perfect, or below level 50 like hyper training: "It won't have any effect."
+        }
+        void *bag = Sav2_Bag_get(SaveBlock2_get());
+        for (u32 stat = 0; stat < 6; stat++) {
+            if (wk->args->itemId == ITEM_GOLD_BOTTLE_CAP || stat == lowest) {
+                SetMonData(pp, MON_DATA_HP_IV + stat, &max);
+            }
+        }
+        RecalcPartyPokemonStats(pp);
+        partyMenuSignal = MSG_PARTY_MENU_BOTTLE_CAP;
+        wk->args->species = GetMonData(pp, MON_DATA_FORM, NULL); // no form change
+        Bag_TakeItem(bag, wk->args->itemId, 1, 11);
+        sys_FreeMemoryEz(dat);
+        PokeList_FormDemoOverlayLoad(wk);
+        return TRUE;
+    }
+#endif // HACK_BOTTLE_CAPS
+
     // handle nature mints
 
     if (IS_ITEM_NATURE_MINT(wk->args->itemId)) {

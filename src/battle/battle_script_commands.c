@@ -1249,6 +1249,33 @@ BOOL BtlCmd_GoToMoveScript(struct BattleSystem *bsys, struct BattleStruct *ctx)
     return FALSE;
 }
 
+#ifdef HACK_KALOS_EXP_SHARE
+u8 ALIGN4 sKalosShareFirstMonPending = FALSE;
+
+/**
+ *  @brief Kalos Exp. Share is on when the player owns the key item and has not switched it off
+ */
+BOOL IsKalosExpShareOn(void)
+{
+    return PlayerHasKeyItem(ITEM_EXP_SHARE) && !CheckScriptFlag(FLAG_EXP_SHARE_DISABLED);
+}
+
+/**
+ *  @brief bitmask of party slots that can receive Kalos Exp. Share experience (alive, not eggs)
+ */
+u32 GetKalosExpShareMask(void *bw)
+{
+    u32 mask = 0;
+    for (int i = 0; i < BattleWorkPokeCountGet(bw, 0); i++) {
+        struct PartyPokemon *pp = BattleWorkPokemonParamGet(bw, 0, i);
+        if (pp != NULL && GetMonData(pp, MON_DATA_SPECIES, NULL) && GetMonData(pp, MON_DATA_HP, NULL) && !GetMonData(pp, MON_DATA_IS_EGG, NULL)) {
+            mask |= No2Bit(i);
+        }
+    }
+    return mask;
+}
+#endif // HACK_KALOS_EXP_SHARE
+
 /**
  *  @brief script command to start the experience loop
  *
@@ -1267,6 +1294,9 @@ BOOL btl_scr_cmd_27_shouldgetexp(void *bw, struct BattleStruct *sp)
     adrs = read_battle_script_param(sp);
 
     if ((/*cp->client_type*/ sp->fainting_client & 1) && ((fight_type & BATTLE_TYPE_NO_EXPERIENCE) == 0)) {
+#ifdef HACK_KALOS_EXP_SHARE
+        sKalosShareFirstMonPending = TRUE;
+#endif
 
         // exp. calculation has been entirely moved to Task_DistributeExp_Extend as of the implementation of capture experience.
 
@@ -1359,6 +1389,30 @@ void Task_DistributeExp_Extend(void *arg0, void *work)
 
     client_no = (sp->fainting_client >> 1) & 1;
 
+#ifdef HACK_KALOS_EXP_SHARE
+    // the participation mask is widened only for the duration of this call and restored at the end,
+    // so the vanilla bookkeeping of who fought is never permanently changed
+    u32 kalosOrigMask = sp->obtained_exp_right_flag[client_no];
+    BOOL kalosShare = (expcalc->seq_no < 37) && IsKalosExpShareOn();
+    BOOL kalosFirstMon = sKalosShareFirstMonPending && expcalc->seq_no == 0;
+    if (expcalc->seq_no == 0) {
+        sKalosShareFirstMonPending = FALSE;
+    }
+    if (kalosShare) {
+        u32 shareMask = GetKalosExpShareMask(expcalc->bw);
+        if (kalosFirstMon) {
+            // vanilla picked the first participant; start from the first party member instead
+            for (int i = 0; i < BattleWorkPokeCountGet(expcalc->bw, 0); i++) {
+                if ((shareMask | kalosOrigMask) & No2Bit(i)) {
+                    expcalc->work[6] = i;
+                    break;
+                }
+            }
+        }
+        sp->obtained_exp_right_flag[client_no] |= shareMask;
+    }
+#endif // HACK_KALOS_EXP_SHARE
+
     if (expcalc->seq_no < 37) {
         // grab the pokémon that is actually gaining the experience
         for (sel_mons_no = expcalc->work[6]; sel_mons_no < BattleWorkPokeCountGet(expcalc->bw, exp_client_no); sel_mons_no++) {
@@ -1388,7 +1442,11 @@ void Task_DistributeExp_Extend(void *arg0, void *work)
         for (int i = 0; i < party->count; i++) {
             struct PartyPokemon *pploop = BattleWorkPokemonParamGet(expcalc->bw, exp_client_no, i);
             if ((GetMonData(pploop, MON_DATA_SPECIES, NULL)) && (GetMonData(pploop, MON_DATA_HP, NULL))) {
+#ifdef HACK_KALOS_EXP_SHARE
+                if (kalosOrigMask & No2Bit(i)) {
+#else
                 if (sp->obtained_exp_right_flag[client_no /*(sp->fainting_client >> 1) & 1*/] & No2Bit(i)) {
+#endif
                     monCount++;
                 }
 
@@ -1433,6 +1491,20 @@ void Task_DistributeExp_Extend(void *arg0, void *work)
 
             // debug_printf("[Task_DistributeExp_Extend] L = %d, Lp = %d, b = %d, top = %d, bottom = %d, exp = %d\n", level, Lp, base, top, bottom, totalexp);
 
+#ifdef HACK_KALOS_EXP_SHARE
+            if (kalosShare) {
+                // fighters split the experience as in gen 5, everyone else gets half of it
+                if (kalosOrigMask & No2Bit(sel_mons_no)) {
+                    sp->obtained_exp = totalexp / (monCount ? monCount : 1);
+                } else {
+                    sp->obtained_exp = totalexp / 2;
+                }
+                if (sp->obtained_exp == 0) {
+                    sp->obtained_exp = 1;
+                }
+                sp->exp_share_obtained_exp = 0;
+            } else
+#endif // HACK_KALOS_EXP_SHARE
             if (monCountFromItem) {
                 sp->obtained_exp = (totalexp / 2) / monCount;
                 if (sp->obtained_exp == 0) {
@@ -1527,6 +1599,11 @@ void Task_DistributeExp_Extend(void *arg0, void *work)
 
 _skipAllThis:
     Task_DistributeExp(arg0, work);
+#ifdef HACK_KALOS_EXP_SHARE
+    if (kalosShare) {
+        sp->obtained_exp_right_flag[client_no] = kalosOrigMask;
+    }
+#endif // HACK_KALOS_EXP_SHARE
 }
 
 #ifdef IMPLEMENT_CAPTURE_EXPERIENCE
@@ -1589,7 +1666,11 @@ BOOL Task_DistributeExp_capture_experience(void *arg0, void *work, u32 get_clien
                 item = GetMonData(pp, MON_DATA_HELD_ITEM, NULL);
                 eqp = GetItemData(item, ITEM_PARAM_HOLD_EFFECT, 5);
 
-                if ((eqp == HOLD_EFFECT_EXP_SHARE) || (expcalc->sp->obtained_exp_right_flag[(expcalc->sp->fainting_client >> 1) & 1] & No2Bit(sel_mons_no))) {
+                if ((eqp == HOLD_EFFECT_EXP_SHARE) || (expcalc->sp->obtained_exp_right_flag[(expcalc->sp->fainting_client >> 1) & 1] & No2Bit(sel_mons_no))
+#ifdef HACK_KALOS_EXP_SHARE
+                    || (IsKalosExpShareOn() && (GetKalosExpShareMask(expcalc->bw) & No2Bit(sel_mons_no)))
+#endif
+                ) {
                     expcalc->work[6] = sel_mons_no;
                     trackPartyExperience |= No2Bit(sel_mons_no);
                     break;

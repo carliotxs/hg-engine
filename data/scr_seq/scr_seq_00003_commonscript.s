@@ -99,6 +99,7 @@ scrdef scr_seq_0003_070
 scrdef scr_seq_0003_071
 scrdef scr_seq_0003_072_repels
 scrdef scr_seq_0003_073_autobattle_testing
+scrdef scr_seq_0003_074_expshare
 scrdef_end
 
 scr_seq_0003_002:
@@ -1751,5 +1752,25 @@ scr_seq_0003_073_autobattle_testing:
     trainer_battle 5, 0, 0, 0
     //setvar 0x800B, 1
     //WildBattleSp 785 | (1 << 11), 50, 0
+    releaseall
+    end
+
+// hack: Kalos Exp. Share toggle, run from the bag (SCRIPT_EXP_SHARE_TOGGLE = 2074)
+// flag 2602 (FLAG_EXP_SHARE_DISABLED) stores the OFF state, so the Exp. Share starts on
+scr_seq_0003_074_expshare:
+    play_se SEQ_SE_DP_SELECT
+    lockall
+    goto_if_set 2602, scr_seq_0003_074_turn_on
+    setflag 2602
+    npc_msg 122
+    goto scr_seq_0003_074_end
+
+scr_seq_0003_074_turn_on:
+    clearflag 2602
+    npc_msg 121
+
+scr_seq_0003_074_end:
+    wait_button_or_walk_away
+    closemsg
     releaseall
     end

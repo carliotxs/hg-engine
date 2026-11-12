@@ -225,3 +225,4 @@ Lawn Mower
 Light Bulb
 Microwave Oven
 Washing Machine
+{STRVAR_1 0, 0, 0}’s potential was unlocked\nby hyper training!\r

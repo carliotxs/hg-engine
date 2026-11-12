@@ -14053,19 +14053,19 @@ const ITEMDATA __data[] =
 
 [ITEM_EXP_SHARE] =
 {
-    ITEM_PRICE(3000),
-    .holdEffect = HOLD_EFFECT_EXP_SHARE,
+    ITEM_PRICE(0),
+    .holdEffect = 0,
     .holdEffectParam = 0,
     .pluckEffect = 0,
     .flingEffect = 0,
     .flingPower = 30,
     .naturalGiftPower = 0,
     .naturalGiftType = 31,
-    .prevent_toss = FALSE,
+    .prevent_toss = TRUE,
     .selectable = FALSE,
-    .fieldPocket = POCKET_ITEMS,
+    .fieldPocket = POCKET_KEY_ITEMS,
     .battlePocket = BATTLE_POCKET_NONE,
-    .fieldUseFunc = 0,
+    .fieldUseFunc = 36, // hack: ItemMenuUseFunc_ExpShare (ITEM_FIELD_USE_EXP_SHARE)
     .battleUseFunc = 0,
     .partyUse = 0,
     .partyUseParam = {
@@ -51700,7 +51700,7 @@ const ITEMDATA __data[] =
     .selectable = FALSE,
     .fieldPocket = POCKET_ITEMS,
     .battlePocket = BATTLE_POCKET_NONE,
-    .fieldUseFunc = 0,
+    .fieldUseFunc = 33,
     .battleUseFunc = 0,
     .partyUse = 1,
     .partyUseParam = {
@@ -51765,7 +51765,7 @@ const ITEMDATA __data[] =
     .selectable = FALSE,
     .fieldPocket = POCKET_ITEMS,
     .battlePocket = BATTLE_POCKET_NONE,
-    .fieldUseFunc = 0,
+    .fieldUseFunc = 33,
     .battleUseFunc = 0,
     .partyUse = 1,
     .partyUseParam = {
