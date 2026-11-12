@@ -179,7 +179,7 @@ scr_seq_R48_003:
 	setvar VAR_SPECIAL_x8004, SPECIES_ARCANINE
 	setvar VAR_SPECIAL_x8005, 28
 	setvar VAR_SPECIAL_x8006, ITEM_CHOICE_SPECS
-	setvar VAR_SPECIAL_x8007, 2103
+	setvar VAR_SPECIAL_x8007, 2589
 	callstd 2077
 	end
 // hack: TAUROS specialist (hack/scripts/gen_specialists.py)
@@ -187,7 +187,7 @@ scr_seq_R48_004:
 	setvar VAR_SPECIAL_x8004, SPECIES_TAUROS
 	setvar VAR_SPECIAL_x8005, 23
 	setvar VAR_SPECIAL_x8006, ITEM_QUICK_CLAW
-	setvar VAR_SPECIAL_x8007, 2106
+	setvar VAR_SPECIAL_x8007, 2590
 	callstd 2077
 	end
 	.balign 4

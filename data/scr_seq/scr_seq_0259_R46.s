@@ -75,7 +75,7 @@ scr_seq_R46_003:
 	setvar VAR_SPECIAL_x8004, SPECIES_BRAVIARY
 	setvar VAR_SPECIAL_x8005, 54
 	setvar VAR_SPECIAL_x8006, ITEM_EXPERT_BELT
-	setvar VAR_SPECIAL_x8007, 2175
+	setvar VAR_SPECIAL_x8007, 2581
 	callstd 2077
 	end
 // hack: MANDIBUZZ specialist (hack/scripts/gen_specialists.py)
@@ -83,7 +83,7 @@ scr_seq_R46_004:
 	setvar VAR_SPECIAL_x8004, SPECIES_MANDIBUZZ
 	setvar VAR_SPECIAL_x8005, 54
 	setvar VAR_SPECIAL_x8006, ITEM_ASSAULT_VEST
-	setvar VAR_SPECIAL_x8007, 2176
+	setvar VAR_SPECIAL_x8007, 2582
 	callstd 2077
 	end
 // hack: GOGOAT specialist (hack/scripts/gen_specialists.py)

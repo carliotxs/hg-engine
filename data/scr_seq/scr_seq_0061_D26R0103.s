@@ -66,7 +66,7 @@ scr_seq_D26R0103_001:
 	setvar VAR_SPECIAL_x8004, SPECIES_SLOWKING
 	setvar VAR_SPECIAL_x8005, 28
 	setvar VAR_SPECIAL_x8006, ITEM_CHOICE_SPECS
-	setvar VAR_SPECIAL_x8007, 2199
+	setvar VAR_SPECIAL_x8007, 2718
 	callstd 2077
 	end
 // hack: CARBINK specialist (hack/scripts/gen_specialists.py)

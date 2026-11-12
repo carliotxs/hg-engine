@@ -177,7 +177,7 @@ scr_seq_D26R0102_003:
 	setvar VAR_SPECIAL_x8004, SPECIES_SLOWBRO
 	setvar VAR_SPECIAL_x8005, 37
 	setvar VAR_SPECIAL_x8006, ITEM_SLOWBRONITE
-	setvar VAR_SPECIAL_x8007, 2194
+	setvar VAR_SPECIAL_x8007, 2717
 	callstd 2077
 	end
 // hack: GIGALITH specialist (hack/scripts/gen_specialists.py)

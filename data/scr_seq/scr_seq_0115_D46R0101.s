@@ -112,7 +112,7 @@ scr_seq_D46R0101_002:
 	setvar VAR_SPECIAL_x8004, SPECIES_RAICHU
 	setvar VAR_SPECIAL_x8005, 10
 	setvar VAR_SPECIAL_x8006, ITEM_LUM_BERRY
-	setvar VAR_SPECIAL_x8007, 2100
+	setvar VAR_SPECIAL_x8007, 2527
 	callstd 2077
 	end
 // hack: ACCELGOR specialist (hack/scripts/gen_specialists.py)
@@ -120,7 +120,7 @@ scr_seq_D46R0101_003:
 	setvar VAR_SPECIAL_x8004, SPECIES_ACCELGOR
 	setvar VAR_SPECIAL_x8005, 10
 	setvar VAR_SPECIAL_x8006, ITEM_RARE_CANDY
-	setvar VAR_SPECIAL_x8007, 2174
+	setvar VAR_SPECIAL_x8007, 2528
 	callstd 2077
 	end
 // hack: LURANTIS specialist (hack/scripts/gen_specialists.py)
@@ -128,7 +128,7 @@ scr_seq_D46R0101_004:
 	setvar VAR_SPECIAL_x8004, SPECIES_LURANTIS
 	setvar VAR_SPECIAL_x8005, 34
 	setvar VAR_SPECIAL_x8006, ITEM_EJECT_BUTTON
-	setvar VAR_SPECIAL_x8007, 2183
+	setvar VAR_SPECIAL_x8007, 2529
 	callstd 2077
 	end
 // hack: APPLETUN specialist (hack/scripts/gen_specialists.py)
@@ -136,7 +136,7 @@ scr_seq_D46R0101_005:
 	setvar VAR_SPECIAL_x8004, SPECIES_APPLETUN
 	setvar VAR_SPECIAL_x8005, 10
 	setvar VAR_SPECIAL_x8006, ITEM_BOTTLE_CAP
-	setvar VAR_SPECIAL_x8007, 2187
+	setvar VAR_SPECIAL_x8007, 2530
 	callstd 2077
 	end
 // hack: SCOVILLAIN specialist (hack/scripts/gen_specialists.py)
@@ -144,7 +144,7 @@ scr_seq_D46R0101_006:
 	setvar VAR_SPECIAL_x8004, SPECIES_SCOVILLAIN
 	setvar VAR_SPECIAL_x8005, 10
 	setvar VAR_SPECIAL_x8006, ITEM_SCOVILLAINITE
-	setvar VAR_SPECIAL_x8007, 2190
+	setvar VAR_SPECIAL_x8007, 2531
 	callstd 2077
 	end
 // hack: TSAREENA specialist (hack/scripts/gen_specialists.py)

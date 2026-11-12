@@ -74,7 +74,7 @@ scr_seq_R33_003:
 	setvar VAR_SPECIAL_x8004, SPECIES_VENUSAUR
 	setvar VAR_SPECIAL_x8005, 32
 	setvar VAR_SPECIAL_x8006, ITEM_VENUSAURITE
-	setvar VAR_SPECIAL_x8007, 2153
+	setvar VAR_SPECIAL_x8007, 2567
 	callstd 2077
 	end
 // hack: MEGANIUM specialist (hack/scripts/gen_specialists.py)
@@ -82,7 +82,7 @@ scr_seq_R33_004:
 	setvar VAR_SPECIAL_x8004, SPECIES_MEGANIUM
 	setvar VAR_SPECIAL_x8005, 32
 	setvar VAR_SPECIAL_x8006, ITEM_MEGANIUMITE
-	setvar VAR_SPECIAL_x8007, 2161
+	setvar VAR_SPECIAL_x8007, 2568
 	callstd 2077
 	end
 // hack: LILLIGANT specialist (hack/scripts/gen_specialists.py)

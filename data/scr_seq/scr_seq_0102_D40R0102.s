@@ -41,7 +41,7 @@ scr_seq_D40R0102_001:
 	setvar VAR_SPECIAL_x8004, SPECIES_DHELMISE
 	setvar VAR_SPECIAL_x8005, 27
 	setvar VAR_SPECIAL_x8006, ITEM_RED_CARD
-	setvar VAR_SPECIAL_x8007, 2143
+	setvar VAR_SPECIAL_x8007, 2719
 	callstd 2077
 	end
 // hack: STARMIE specialist (hack/scripts/gen_specialists.py)
@@ -49,7 +49,7 @@ scr_seq_D40R0102_002:
 	setvar VAR_SPECIAL_x8004, SPECIES_STARMIE
 	setvar VAR_SPECIAL_x8005, 27
 	setvar VAR_SPECIAL_x8006, ITEM_WEAKNESS_POLICY
-	setvar VAR_SPECIAL_x8007, 2160
+	setvar VAR_SPECIAL_x8007, 2522
 	callstd 2077
 	end
 // hack: CRUSTLE specialist (hack/scripts/gen_specialists.py)

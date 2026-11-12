@@ -186,7 +186,7 @@ scr_seq_R01_003:
 	setvar VAR_SPECIAL_x8004, SPECIES_FURRET
 	setvar VAR_SPECIAL_x8005, 15
 	setvar VAR_SPECIAL_x8006, ITEM_PP_UP
-	setvar VAR_SPECIAL_x8007, 2162
+	setvar VAR_SPECIAL_x8007, 2533
 	callstd 2077
 	end
 // hack: ROSERADE specialist (hack/scripts/gen_specialists.py)

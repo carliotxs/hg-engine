@@ -6,7 +6,7 @@ Usage: python3 hack/scripts/gen_trainer_teams.py [--check]
 TEAMS below is the source of truth for the trainers it lists: the script replaces their `.party`
 block (and makes sure the trainer uses moves and items) every time it runs, so edit the table and
 run it again instead of editing those parties by hand.  Trainers that are not in the table are left
-alone.  Every species, move and item name is checked against the engine constants.
+alone, except the Team Rocket grunts, which get a one-time automatic upgrade (see GRUNT_POOL).  Every species, move and item name is checked against the engine constants.
 
 Design rules of Phase 3 (hack/docs/PLANO.md): gym leaders keep their original type, teams are
 complete and coherent, and levels are 2 to 4 above the original game.
@@ -95,7 +95,136 @@ TEAMS = {
         SALAMENCE 52: DRAGON_CLAW, EARTHQUAKE, FIRE_FANG, DRAGON_DANCE
         GARCHOMP 52: EARTHQUAKE, DRAGON_CLAW, STONE_EDGE, SWORDS_DANCE
         DRAGONITE 54 @SITRUS_BERRY: OUTRAGE, EXTREME_SPEED, FIRE_PUNCH, DRAGON_DANCE"""),
+    # extra Team Rocket grunts (hack/scripts/gen_rocket.py places them).  no moves: default movesets
+    739: ("extra grunt, Route 43", 100, """
+        HOUNDOUR 20
+        GOLBAT 22"""),
+    740: ("extra grunt, Lake of Rage", 100, """
+        MURKROW 21
+        KOFFING 21
+        CROAGUNK 22"""),
+    741: ("extra grunt, Mahogany Town", 100, """
+        STUNKY 21
+        GRIMER 22"""),
+    742: ("extra grunt, Goldenrod City", 120, """
+        STUNKY 28
+        GOLBAT 29
+        HOUNDOOM 30"""),
+    743: ("extra grunt, Goldenrod City", 120, """
+        KOFFING 29
+        SCRAGGY 29
+        ARBOK 30"""),
+    # Team Rocket executives and Giovanni: Poison and Dark teams, 3 levels above the original
+    486: ("Proton, Slowpoke Well", 90, """
+        ZUBAT 11: LEECH_LIFE, SUPERSONIC, BITE, ASTONISH
+        STUNKY 12: POISON_GAS, SCRATCH, FOCUS_ENERGY, SMOKESCREEN
+        KOFFING 15 @ORAN_BERRY: SMOG, TACKLE, POISON_GAS, SMOKESCREEN"""),
+    488: ("Petrel, Mahogany hideout", 140, """
+        GOLBAT 25: WING_ATTACK, BITE, CONFUSE_RAY, POISON_FANG
+        GRIMER 25: SLUDGE, MUD_BOMB, MINIMIZE, DISABLE
+        KOFFING 25: SLUDGE, SELF_DESTRUCT, SMOKESCREEN, ASSURANCE
+        RATICATE 26 @ORAN_BERRY: HYPER_FANG, CRUNCH, SCARY_FACE, QUICK_ATTACK"""),
+    479: ("Ariana, Mahogany hideout", 150, """
+        ARBOK 28: POISON_FANG, CRUNCH, GLARE, SCREECH
+        GLOOM 28: ACID, GIGA_DRAIN, SLEEP_POWDER, MOONLIGHT
+        HOUNDOUR 28: FIRE_FANG, BITE, ROAR, SMOG
+        MURKROW 30 @SITRUS_BERRY: FEINT_ATTACK, WING_ATTACK, HAZE, NIGHT_SHADE"""),
+    706: ("Proton, Radio Tower", 170, """
+        GOLBAT 33: AIR_CUTTER, POISON_FANG, CONFUSE_RAY, BITE
+        SKUNTANK 34: NIGHT_SLASH, POISON_JAB, FLAMETHROWER, SCREECH
+        TOXICROAK 34: POISON_JAB, REVENGE, SUCKER_PUNCH, SWAGGER
+        WEEZING 36 @SITRUS_BERRY: SLUDGE_BOMB, WILL_O_WISP, SHADOW_BALL, EXPLOSION"""),
+    487: ("Petrel, Radio Tower", 170, """
+        KOFFING 33: SLUDGE, SELF_DESTRUCT, SMOKESCREEN, ASSURANCE
+        KOFFING 33: SLUDGE, SELF_DESTRUCT, SMOKESCREEN, ASSURANCE
+        MUK 33: SLUDGE_BOMB, MUD_BOMB, MINIMIZE, SCREECH
+        SWALOT 33: SLUDGE_BOMB, YAWN, STOCKPILE, SWALLOW
+        WEEZING 34: SLUDGE_BOMB, WILL_O_WISP, SMOKESCREEN, EXPLOSION
+        WEEZING 35 @SITRUS_BERRY: SLUDGE_BOMB, SHADOW_BALL, WILL_O_WISP, EXPLOSION"""),
+    478: ("Ariana, Radio Tower", 180, """
+        ARBOK 35: GUNK_SHOT, CRUNCH, GLARE, ICE_FANG
+        VILEPLUME 35: SLUDGE_BOMB, GIGA_DRAIN, SLEEP_POWDER, MOONLIGHT
+        DRAPION 36: NIGHT_SLASH, CROSS_POISON, ICE_FANG, TOXIC_SPIKES
+        HONCHKROW 37 @SITRUS_BERRY: NIGHT_SLASH, DRILL_PECK, SUCKER_PUNCH, ROOST"""),
+    485: ("Archer, Radio Tower", 200, """
+        WEEZING 38: SLUDGE_BOMB, WILL_O_WISP, SHADOW_BALL, EXPLOSION
+        CROBAT 38: CROSS_POISON, AIR_SLASH, CONFUSE_RAY, U_TURN
+        PERSIAN 38: SLASH, POWER_GEM, FAKE_OUT, NASTY_PLOT
+        HONCHKROW 39: NIGHT_SLASH, DRILL_PECK, SUCKER_PUNCH, ROOST
+        HOUNDOOM 41 @SITRUS_BERRY: FLAMETHROWER, DARK_PULSE, NASTY_PLOT, SLUDGE_BOMB"""),
+    700: ("Giovanni", 250, """
+        PERSIAN 45: SLASH, POWER_GEM, FAKE_OUT, NASTY_PLOT
+        KANGASKHAN 44: RETURN, EARTHQUAKE, SUCKER_PUNCH, FAKE_OUT
+        NIDOKING 45: EARTH_POWER, SLUDGE_WAVE, ICE_BEAM, THUNDERBOLT
+        HONCHKROW 46: NIGHT_SLASH, DRILL_PECK, SUCKER_PUNCH, ROOST
+        RHYPERIOR 46: EARTHQUAKE, STONE_EDGE, MEGAHORN, ROCK_POLISH
+        NIDOQUEEN 49 @SITRUS_BERRY: EARTH_POWER, SLUDGE_WAVE, ICE_BEAM, FLAMETHROWER"""),
 }
+
+# trainers that do not exist in the original game: id -> (name, class, text when beaten, text when winning).
+# they are appended to data/Trainers.c (and to asm/include/trainers.inc as TRAINER_HACK_<id>) once
+NEW_TRAINERS = {
+    739: ("Grunt", "TEAM_ROCKET", "Tch! Beaten by a kid on patrol...", "Go home, kid!"),
+    740: ("Grunt", "TEAM_ROCKET", "The lake experiment wasn’t supposed\\\\nto have witnesses!", "Nothing to see here!"),
+    741: ("Grunt", "TEAM_ROCKET", "I was only told to watch the shop...", "Move along!"),
+    742: ("Grunt", "TEAM_ROCKET", "The Radio Tower is ours anyway!", "Goldenrod belongs to Team Rocket!"),
+    743: ("Grunt", "TEAM_ROCKET", "You’re too late to stop the broadcast!", "Stay off these streets!"),
+}
+
+# Team Rocket grunts: every Pokémon gains GRUNT_LEVELS levels and, from the second one on, the
+# endless Rattata and Zubat give way to this pool (evolved according to the level).  the first
+# Pokémon of each grunt stays what it was.  a marker comment makes the pass run only once per grunt
+GRUNT_LEVELS = 2
+GRUNT_POOL = """ZUBAT KOFFING GRIMER EKANS HOUNDOUR MURKROW STUNKY PURRLOIN POOCHYENA GULPIN CROAGUNK
+    TRUBBISH VENIPEDE SCRAGGY SANDILE SNEASEL SKORUPI NICKIT RATTATA DROWZEE""".split()
+GRUNT_MARKER = "        // hack: grunt upgraded (hack/scripts/gen_trainer_teams.py)\n"
+
+
+def load_evolutions():
+    evolutions = {}
+    for block in re.split(r"\n(?=    \[SPECIES_)", (ROOT / "data/Evolutions.c").read_text())[1:]:
+        base = re.match(r"    \[SPECIES_(\w+)\]", block).group(1)
+        found = re.findall(r"\{ EVO_LEVEL(?:_MALE|_FEMALE|_DAY|_NIGHT)?, (\d+), SPECIES_(\w+) \}", block)
+        if found:
+            evolutions[base] = [(int(level), target) for level, target in found]
+    return evolutions
+
+
+def evolve(species, level, evolutions):
+    for _ in range(3):
+        options = [target for needed, target in evolutions.get(species, []) if needed <= level]
+        if not options:
+            break
+        species = options[0]
+    return species
+
+
+def upgrade_grunts(text, species):
+    evolutions = load_evolutions()
+    pool = [name for name in GRUNT_POOL if name in species]
+    count = 0
+    blocks = re.split(r"\n(?=    \[\d+\] = \{)", text)
+    for index, block in enumerate(blocks):
+        header = re.match(r"    \[(\d+)\]", block)
+        if not header or int(header.group(1)) in TEAMS or GRUNT_MARKER in block:
+            continue
+        if not re.search(r"trainerClass = TRAINERCLASS_TEAM_ROCKET(_F)?,", block):
+            continue
+        trainer = int(header.group(1))
+        position = [0]
+
+        def mon(match):
+            level = int(match.group(1)) + GRUNT_LEVELS
+            name = match.group(3)
+            if position[0] > 0:
+                name = evolve(pool[(trainer * 7 + position[0] * 3) % len(pool)], level, evolutions)
+            position[0] += 1
+            return f".level = {level},{match.group(2)}.species = SPECIES_{name}"
+
+        block = re.sub(r"\.level = (\d+),(\s*)\.species = SPECIES_(\w+)", mon, block)
+        blocks[index] = block.replace("        .party = {", GRUNT_MARKER + "        .party = {", 1)
+        count += 1
+    return "\n".join(blocks), count
 
 
 def constants(path, prefix):
@@ -107,6 +236,43 @@ def main():
                              constants("include/constants/item.h", "ITEM"))
     text = TRAINERS.read_text()
     errors = []
+    inc_path = ROOT / "asm/include/trainers.inc"
+    inc = inc_path.read_text()
+    for trainer, (name, trainer_class, lose, win) in NEW_TRAINERS.items():
+        if f"\n    [{trainer}] = {{" in text:
+            continue
+        entry = f"""
+    // hack: new trainer (hack/scripts/gen_trainer_teams.py)
+    [{trainer}] = {{
+        .name = "{name}",
+        .data = {{
+            .trainerType = TRAINER_DATA_TYPE_NOTHING,
+            .trainerClass = TRAINERCLASS_{trainer_class},
+            .items = {{ ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE }},
+            .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS,
+            .battleType = SINGLE_BATTLE,
+        }},
+        .party = {{
+        }},
+        .text = {{
+            {{
+                .type = TRMSG_LOSE,
+                .text = "{lose}\\\\n",
+            }},
+            {{
+                .type = TRMSG_WIN,
+                .text = "{win}\\\\n",
+            }},
+        }},
+    }},
+"""
+        end_of_array = text.index("\n};\n\nconst u16 sTrainerTextOrder")
+        text = text[:end_of_array] + entry.rstrip("\n") + "\n" + text[end_of_array:]
+        end_of_order = text.rindex("};\n\nconst u32 sTrainerDataCount")
+        text = text[:end_of_order] + f"    {trainer},\n" + text[end_of_order:]
+        if f"TRAINER_HACK_{trainer}," not in inc:
+            last = re.findall(r"^\.equ TRAINER_\w+, \d+[^\n]*\n", inc, re.M)[-1]
+            inc = inc.replace(last, last + f".equ TRAINER_HACK_{trainer}, {trainer} // hack: {name}\n", 1)
     for trainer, (comment, ivs, team) in TEAMS.items():
         start = text.index(f"\n    [{trainer}] = {{")
         end = text.index("\n    },\n", start)
@@ -114,6 +280,17 @@ def main():
         mons = []
         for line in filter(None, (line.strip() for line in team.splitlines())):
             match = re.fullmatch(r"(\w+) (\d+)(?: @(\w+))?: (\w+), (\w+), (\w+), (\w+)", line)
+            plain = re.fullmatch(r"(\w+) (\d+)", line)
+            if plain:  # no moves and no item: the Pokémon uses its default moveset
+                errors += [f"trainer {trainer}: unknown species {plain.group(1)}"] * (plain.group(1) not in species)
+                mons.append(f"""            {{
+                .ivs = {ivs},
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = {plain.group(2)},
+                .species = SPECIES_{plain.group(1)},
+                .ballSeal = 0,
+            }},""")
+                continue
             if not match:
                 errors.append(f"trainer {trainer}: cannot read '{line}'")
                 continue
@@ -137,14 +314,17 @@ def main():
         if previous_comment:
             party_start = previous_comment.start()
         block = block[:party_start] + party + block[party_end:]
-        block = re.sub(r"\.trainerType = [^,]+,", ".trainerType = TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS,", block, count=1)
+        trainer_type = "TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS" if ".moves = " in party else "TRAINER_DATA_TYPE_NOTHING"
+        block = re.sub(r"\.trainerType = [^,]+,", f".trainerType = {trainer_type},", block, count=1)
         text = text[:start] + block + text[end:]
     if errors:
         print("\n".join(sorted(set(errors))))
         sys.exit(1)
-    print(f"{len(TEAMS)} trainers written")
+    text, grunts = upgrade_grunts(text, species)
+    print(f"{len(TEAMS)} trainers written, {grunts} grunts upgraded")
     if "--check" not in sys.argv:
         TRAINERS.write_text(text)
+        inc_path.write_text(inc)
 
 
 if __name__ == "__main__":

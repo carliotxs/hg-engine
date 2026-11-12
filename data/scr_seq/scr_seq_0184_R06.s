@@ -53,7 +53,7 @@ scr_seq_R06_002:
 	setvar VAR_SPECIAL_x8004, SPECIES_BELLIBOLT
 	setvar VAR_SPECIAL_x8005, 18
 	setvar VAR_SPECIAL_x8006, ITEM_WEAKNESS_POLICY
-	setvar VAR_SPECIAL_x8007, 2149
+	setvar VAR_SPECIAL_x8007, 2550
 	callstd 2077
 	end
 // hack: STARAPTOR specialist (hack/scripts/gen_specialists.py)

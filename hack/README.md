@@ -92,7 +92,9 @@ Atenção ao escrever C para o hack: a `struct Party` (e a `DaycareMon`) dos cab
 
 ## Equipas dos bosses
 
-`python3 hack/scripts/gen_trainer_teams.py` escreve em `data/Trainers.c` as equipas dos treinadores listados na tabela `TEAMS` do script (líderes de Johto, Elite Four e Lance, por agora). A tabela é a fonte de verdade desses treinadores: edita-se lá e volta-se a correr; os nomes de espécies, golpes e itens são validados contra as constantes do engine. Os treinadores que não estão na tabela não são tocados.
+`python3 hack/scripts/gen_trainer_teams.py` escreve em `data/Trainers.c` as equipas dos treinadores listados na tabela `TEAMS` do script (líderes de Johto, Elite Four e Lance, por agora). A tabela é a fonte de verdade desses treinadores: edita-se lá e volta-se a correr; os nomes de espécies, golpes e itens são validados contra as constantes do engine. Os treinadores que não estão na tabela não são tocados, com uma exceção: os recrutas da Equipa Rocket recebem uma melhoria automática única (+2 níveis e, a partir do segundo Pokémon, espécies de uma lista Veneno/Sombrio em vez de Rattata e Zubat repetidos). A tabela `NEW_TRAINERS` cria treinadores que não existem no jogo original.
+
+`hack/scripts/gen_rocket.py` coloca nos mapas os recrutas Rocket extra (treinadores 739 a 743): Route 43, Lago da Fúria e Mahogany até o esconderijo ser limpo, e dois em Goldenrod durante a tomada da Radio Tower. Lutam quando se fala com eles e desaparecem com as mesmas flags de história dos Rocket originais dessas zonas.
 
 ## Testes em jogo
 
@@ -140,13 +142,18 @@ Uma feature nova deve trazer o seu cenário: um `HACK_TEST_*` em `include/hack_t
 | Script comum | 2073 | engine: script de debug; em `HACK_TEST` lança a batalha de teste |
 | Script comum | 2074 | liga/desliga a Exp Share |
 | Script comum | 2075 | só faz algo em `HACK_TEST` (loja do 4.º andar de Goldenrod); na ROM normal é um script vazio, para a numeração ser igual |
-| Flags | 2100 a 2399, 2522 a 2599, 2603 a 2719 | reserva para os especialistas de espécie (uma por especialista, atribuídas pelo gerador) |
+| Flags | 2200 a 2399, 2522 a 2594, 2603 a 2719 | reserva para os especialistas de espécie (uma por especialista, atribuídas pelo gerador) |
+| Flags | 2098 a 2199 | flags de "treinador vencido" dos treinadores novos (1360 + número do treinador): não usar para mais nada |
+| Flags | 2595 a 2599 | recrutas Rocket extra (vencido) |
+| Treinadores | 739 a 743 | recrutas Rocket extra (`hack/scripts/gen_trainer_teams.py`) |
 | Treinador | 738 | `TRAINER_HACK_MIRROR`: especialista genérico |
 | Var | 0x416F | `HACK_VAR_MIRROR_WINS`: especialistas vencidos |
-| Script comum | 2077 | especialista de espécie (chamado com `callstd` pelos scripts dos mapas; o próximo livre é o 2078) |
+| Script comum | 2077 | especialista de espécie (chamado com `callstd` pelos scripts dos mapas) |
+| Script comum | 2078, 2079 | falas dos recrutas Rocket extra, antes e depois da batalha (o próximo livre é o 2080) |
 | Script comum | 2076 | prompt "adicionar à equipa" depois de apanhar com a equipa cheia (o próximo livre é o 2077) |
 | Comando de script | 690 (`day_care_sanitize_mon`) | operações do hack conforme o valor da var de resultado à entrada: 0x4843 troca do prompt pós-captura; 0x4D30 a 0x4D32 mirror match (procurar espécie, começar, terminar) |
 | Texto 040 | 121, 122 | mensagens da Exp Share |
+| Texto 040 | 131 a 133 | recrutas Rocket extra |
 | Texto 040 | 126 a 130 | especialistas de espécie |
 | Texto 040 | 123 a 125 | prompt pós-captura (pergunta, troca feita, recusa por Mail) |
 | Texto 830 | 217 | descrição da Exp Share (item-chave) |

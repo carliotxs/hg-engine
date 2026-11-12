@@ -88,7 +88,7 @@ scr_seq_D25R0103_003:
 	setvar VAR_SPECIAL_x8004, SPECIES_HEATMOR
 	setvar VAR_SPECIAL_x8005, 24
 	setvar VAR_SPECIAL_x8006, ITEM_WEAKNESS_POLICY
-	setvar VAR_SPECIAL_x8007, 2177
+	setvar VAR_SPECIAL_x8007, 2715
 	callstd 2077
 	end
 // hack: ORTHWORM specialist (hack/scripts/gen_specialists.py)
@@ -96,7 +96,7 @@ scr_seq_D25R0103_004:
 	setvar VAR_SPECIAL_x8004, SPECIES_ORTHWORM
 	setvar VAR_SPECIAL_x8005, 25
 	setvar VAR_SPECIAL_x8006, ITEM_EVIOLITE
-	setvar VAR_SPECIAL_x8007, 2192
+	setvar VAR_SPECIAL_x8007, 2716
 	callstd 2077
 	end
 // hack: KROOKODILE specialist (hack/scripts/gen_specialists.py)

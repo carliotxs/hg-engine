@@ -198,7 +198,7 @@ scr_seq_T31_003:
 	setvar VAR_SPECIAL_x8004, SPECIES_PASSIMIAN
 	setvar VAR_SPECIAL_x8005, 47
 	setvar VAR_SPECIAL_x8006, ITEM_CHOICE_SCARF
-	setvar VAR_SPECIAL_x8007, 2139
+	setvar VAR_SPECIAL_x8007, 2591
 	callstd 2077
 	end
 // hack: KOMALA specialist (hack/scripts/gen_specialists.py)
@@ -206,7 +206,7 @@ scr_seq_T31_004:
 	setvar VAR_SPECIAL_x8004, SPECIES_KOMALA
 	setvar VAR_SPECIAL_x8005, 44
 	setvar VAR_SPECIAL_x8006, ITEM_WISE_GLASSES
-	setvar VAR_SPECIAL_x8007, 2141
+	setvar VAR_SPECIAL_x8007, 2592
 	callstd 2077
 	end
 // hack: DRAMPA specialist (hack/scripts/gen_specialists.py)
@@ -214,7 +214,7 @@ scr_seq_T31_005:
 	setvar VAR_SPECIAL_x8004, SPECIES_DRAMPA
 	setvar VAR_SPECIAL_x8005, 47
 	setvar VAR_SPECIAL_x8006, ITEM_DRAMPANITE
-	setvar VAR_SPECIAL_x8007, 2142
+	setvar VAR_SPECIAL_x8007, 2593
 	callstd 2077
 	end
 // hack: FLAMIGO specialist (hack/scripts/gen_specialists.py)

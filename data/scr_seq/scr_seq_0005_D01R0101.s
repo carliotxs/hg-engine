@@ -295,7 +295,7 @@ scr_seq_D01R0101_003:
 	setvar VAR_SPECIAL_x8004, SPECIES_DUGTRIO
 	setvar VAR_SPECIAL_x8005, 26
 	setvar VAR_SPECIAL_x8006, ITEM_RARE_CANDY
-	setvar VAR_SPECIAL_x8007, 2156
+	setvar VAR_SPECIAL_x8007, 2692
 	callstd 2077
 	end
 // hack: SOLROCK specialist (hack/scripts/gen_specialists.py)

@@ -673,7 +673,7 @@ scr_seq_R25_010:
 	setvar VAR_SPECIAL_x8004, SPECIES_VENOMOTH
 	setvar VAR_SPECIAL_x8005, 31
 	setvar VAR_SPECIAL_x8006, ITEM_HEAVY_DUTY_BOOTS
-	setvar VAR_SPECIAL_x8007, 2155
+	setvar VAR_SPECIAL_x8007, 2559
 	callstd 2077
 	end
 // hack: BLASTOISE specialist (hack/scripts/gen_specialists.py)

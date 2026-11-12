@@ -65,7 +65,7 @@ scr_seq_D43R0102_002:
 	setvar VAR_SPECIAL_x8004, SPECIES_DRUDDIGON
 	setvar VAR_SPECIAL_x8005, 39
 	setvar VAR_SPECIAL_x8006, ITEM_SITRUS_BERRY
-	setvar VAR_SPECIAL_x8007, 2135
+	setvar VAR_SPECIAL_x8007, 2525
 	callstd 2077
 	end
 // hack: AEGISLASH specialist (hack/scripts/gen_specialists.py)
@@ -73,7 +73,7 @@ scr_seq_D43R0102_003:
 	setvar VAR_SPECIAL_x8004, SPECIES_AEGISLASH
 	setvar VAR_SPECIAL_x8005, 36
 	setvar VAR_SPECIAL_x8006, ITEM_CHOICE_SPECS
-	setvar VAR_SPECIAL_x8007, 2180
+	setvar VAR_SPECIAL_x8007, 2526
 	callstd 2077
 	end
 // hack: FALINKS specialist (hack/scripts/gen_specialists.py)

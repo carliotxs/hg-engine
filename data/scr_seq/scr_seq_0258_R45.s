@@ -202,7 +202,7 @@ scr_seq_R45_006:
 	setvar VAR_SPECIAL_x8004, SPECIES_GLISCOR
 	setvar VAR_SPECIAL_x8005, 27
 	setvar VAR_SPECIAL_x8006, ITEM_BOTTLE_CAP
-	setvar VAR_SPECIAL_x8007, 2126
+	setvar VAR_SPECIAL_x8007, 2580
 	callstd 2077
 	end
 // hack: TOUCANNON specialist (hack/scripts/gen_specialists.py)

@@ -56,7 +56,7 @@ scr_seq_D50R0101_002:
 	setvar VAR_SPECIAL_x8004, SPECIES_DURANT
 	setvar VAR_SPECIAL_x8005, 23
 	setvar VAR_SPECIAL_x8006, ITEM_EVIOLITE
-	setvar VAR_SPECIAL_x8007, 2178
+	setvar VAR_SPECIAL_x8007, 2532
 	callstd 2077
 	end
 // hack: TINKATON specialist (hack/scripts/gen_specialists.py)

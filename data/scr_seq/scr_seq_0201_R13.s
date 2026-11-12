@@ -62,7 +62,7 @@ scr_seq_R13_003:
 	setvar VAR_SPECIAL_x8004, SPECIES_EXEGGUTOR
 	setvar VAR_SPECIAL_x8005, 25
 	setvar VAR_SPECIAL_x8006, ITEM_RED_CARD
-	setvar VAR_SPECIAL_x8007, 2197
+	setvar VAR_SPECIAL_x8007, 2554
 	callstd 2077
 	end
 // hack: RHYPERIOR specialist (hack/scripts/gen_specialists.py)

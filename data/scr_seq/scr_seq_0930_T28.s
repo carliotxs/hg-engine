@@ -36,6 +36,7 @@ scrdef scr_seq_T28_005
 scrdef scr_seq_T28_006
 scrdef scr_seq_T28_007
 scrdef scr_seq_T28_008
+scrdef scr_seq_T28_009
 scrdef_end
 
 scr_seq_T28_005:
@@ -280,5 +281,25 @@ scr_seq_T28_008:
 	scrcmd_058
 	trainer_tips 19, VAR_SPECIAL_RESULT
 	callstd std_signpost
+	end
+// hack: extra Team Rocket grunt, Mahogany Town, until the Mahogany hideout is cleared (hack/scripts/gen_rocket.py)
+scr_seq_T28_009:
+	setvar VAR_SPECIAL_x8007, 2597
+	callstd 2078
+	compare VAR_SPECIAL_RESULT, 0
+	goto_if_eq scr_seq_T28_009_end
+	trainer_battle TRAINER_HACK_741, 0, 0, 0
+	check_battle_won VAR_SPECIAL_RESULT
+	compare VAR_SPECIAL_RESULT, 0
+	goto_if_eq scr_seq_T28_009_lost
+	setflag 2597
+	callstd 2079
+scr_seq_T28_009_end:
+	releaseall
+	end
+
+scr_seq_T28_009_lost:
+	white_out
+	releaseall
 	end
 	.balign 4

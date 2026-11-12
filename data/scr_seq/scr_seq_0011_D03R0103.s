@@ -80,7 +80,7 @@ scr_seq_D03R0103_002:
 	setvar VAR_SPECIAL_x8004, SPECIES_MACHAMP
 	setvar VAR_SPECIAL_x8005, 48
 	setvar VAR_SPECIAL_x8006, ITEM_MUSCLE_BAND
-	setvar VAR_SPECIAL_x8007, 2104
+	setvar VAR_SPECIAL_x8007, 2694
 	callstd 2077
 	end
 // hack: MINIOR specialist (hack/scripts/gen_specialists.py)
@@ -88,7 +88,7 @@ scr_seq_D03R0103_003:
 	setvar VAR_SPECIAL_x8004, SPECIES_MINIOR
 	setvar VAR_SPECIAL_x8005, 33
 	setvar VAR_SPECIAL_x8006, ITEM_MUSCLE_BAND
-	setvar VAR_SPECIAL_x8007, 2140
+	setvar VAR_SPECIAL_x8007, 2695
 	callstd 2077
 	end
 // hack: PARASECT specialist (hack/scripts/gen_specialists.py)
@@ -96,7 +96,7 @@ scr_seq_D03R0103_004:
 	setvar VAR_SPECIAL_x8004, SPECIES_PARASECT
 	setvar VAR_SPECIAL_x8005, 48
 	setvar VAR_SPECIAL_x8006, ITEM_RED_CARD
-	setvar VAR_SPECIAL_x8007, 2154
+	setvar VAR_SPECIAL_x8007, 2696
 	callstd 2077
 	end
 // hack: LUXRAY specialist (hack/scripts/gen_specialists.py)

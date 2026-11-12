@@ -507,7 +507,7 @@ scr_seq_R36_012:
 	setvar VAR_SPECIAL_x8004, SPECIES_MEOWSCARADA
 	setvar VAR_SPECIAL_x8005, 36
 	setvar VAR_SPECIAL_x8006, ITEM_EXPERT_BELT
-	setvar VAR_SPECIAL_x8007, 2148
+	setvar VAR_SPECIAL_x8007, 2571
 	callstd 2077
 	end
 // hack: CHESNAUGHT specialist (hack/scripts/gen_specialists.py)
@@ -515,7 +515,7 @@ scr_seq_R36_013:
 	setvar VAR_SPECIAL_x8004, SPECIES_CHESNAUGHT
 	setvar VAR_SPECIAL_x8005, 36
 	setvar VAR_SPECIAL_x8006, ITEM_CHESNAUGHTITE
-	setvar VAR_SPECIAL_x8007, 2179
+	setvar VAR_SPECIAL_x8007, 2572
 	callstd 2077
 	end
 // hack: RILLABOOM specialist (hack/scripts/gen_specialists.py)
@@ -523,7 +523,7 @@ scr_seq_R36_014:
 	setvar VAR_SPECIAL_x8004, SPECIES_RILLABOOM
 	setvar VAR_SPECIAL_x8005, 35
 	setvar VAR_SPECIAL_x8006, ITEM_PP_UP
-	setvar VAR_SPECIAL_x8007, 2184
+	setvar VAR_SPECIAL_x8007, 2573
 	callstd 2077
 	end
 // hack: DUBWOOL specialist (hack/scripts/gen_specialists.py)

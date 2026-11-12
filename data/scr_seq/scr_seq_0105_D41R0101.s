@@ -188,7 +188,7 @@ scr_seq_D41R0101_002:
 	setvar VAR_SPECIAL_x8004, SPECIES_DONPHAN
 	setvar VAR_SPECIAL_x8005, 47
 	setvar VAR_SPECIAL_x8006, ITEM_ASSAULT_VEST
-	setvar VAR_SPECIAL_x8007, 2110
+	setvar VAR_SPECIAL_x8007, 2523
 	callstd 2077
 	end
 // hack: SALAZZLE specialist (hack/scripts/gen_specialists.py)

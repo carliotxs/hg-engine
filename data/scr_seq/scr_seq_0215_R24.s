@@ -226,7 +226,7 @@ scr_seq_R24_005:
 	setvar VAR_SPECIAL_x8004, SPECIES_SUNFLORA
 	setvar VAR_SPECIAL_x8005, 13
 	setvar VAR_SPECIAL_x8006, ITEM_BOTTLE_CAP
-	setvar VAR_SPECIAL_x8007, 2108
+	setvar VAR_SPECIAL_x8007, 2558
 	callstd 2077
 	end
 	.balign 4

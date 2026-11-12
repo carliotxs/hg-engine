@@ -383,7 +383,7 @@ scr_seq_D24R0205_010:
 	setvar VAR_SPECIAL_x8004, SPECIES_UNOWN
 	setvar VAR_SPECIAL_x8005, 8
 	setvar VAR_SPECIAL_x8006, ITEM_FOCUS_SASH
-	setvar VAR_SPECIAL_x8007, 2164
+	setvar VAR_SPECIAL_x8007, 2713
 	callstd 2077
 	end
 	.balign 4

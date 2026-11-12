@@ -268,7 +268,7 @@ scr_seq_R47_006:
 	setvar VAR_SPECIAL_x8004, SPECIES_MILTANK
 	setvar VAR_SPECIAL_x8005, 38
 	setvar VAR_SPECIAL_x8006, ITEM_KINGS_ROCK
-	setvar VAR_SPECIAL_x8007, 2112
+	setvar VAR_SPECIAL_x8007, 2583
 	callstd 2077
 	end
 // hack: THROH specialist (hack/scripts/gen_specialists.py)
@@ -276,7 +276,7 @@ scr_seq_R47_007:
 	setvar VAR_SPECIAL_x8004, SPECIES_THROH
 	setvar VAR_SPECIAL_x8005, 34
 	setvar VAR_SPECIAL_x8006, ITEM_LEFTOVERS
-	setvar VAR_SPECIAL_x8007, 2129
+	setvar VAR_SPECIAL_x8007, 2584
 	callstd 2077
 	end
 // hack: SAWK specialist (hack/scripts/gen_specialists.py)
@@ -284,7 +284,7 @@ scr_seq_R47_008:
 	setvar VAR_SPECIAL_x8004, SPECIES_SAWK
 	setvar VAR_SPECIAL_x8005, 37
 	setvar VAR_SPECIAL_x8006, ITEM_LIFE_ORB
-	setvar VAR_SPECIAL_x8007, 2130
+	setvar VAR_SPECIAL_x8007, 2585
 	callstd 2077
 	end
 // hack: BOUFFALANT specialist (hack/scripts/gen_specialists.py)
@@ -292,7 +292,7 @@ scr_seq_R47_009:
 	setvar VAR_SPECIAL_x8004, SPECIES_BOUFFALANT
 	setvar VAR_SPECIAL_x8005, 34
 	setvar VAR_SPECIAL_x8006, ITEM_CHOICE_SCARF
-	setvar VAR_SPECIAL_x8007, 2136
+	setvar VAR_SPECIAL_x8007, 2586
 	callstd 2077
 	end
 // hack: ORANGURU specialist (hack/scripts/gen_specialists.py)
@@ -300,7 +300,7 @@ scr_seq_R47_010:
 	setvar VAR_SPECIAL_x8004, SPECIES_ORANGURU
 	setvar VAR_SPECIAL_x8005, 34
 	setvar VAR_SPECIAL_x8006, ITEM_CHOICE_SPECS
-	setvar VAR_SPECIAL_x8007, 2138
+	setvar VAR_SPECIAL_x8007, 2587
 	callstd 2077
 	end
 // hack: FARFETCHD specialist (hack/scripts/gen_specialists.py)
@@ -308,7 +308,7 @@ scr_seq_R47_011:
 	setvar VAR_SPECIAL_x8004, SPECIES_FARFETCHD
 	setvar VAR_SPECIAL_x8005, 38
 	setvar VAR_SPECIAL_x8006, ITEM_SITRUS_BERRY
-	setvar VAR_SPECIAL_x8007, 2158
+	setvar VAR_SPECIAL_x8007, 2588
 	callstd 2077
 	end
 // hack: MAUSHOLD specialist (hack/scripts/gen_specialists.py)

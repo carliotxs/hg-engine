@@ -46,7 +46,7 @@ scr_seq_R17_002:
 	setvar VAR_SPECIAL_x8004, SPECIES_INDEEDEE
 	setvar VAR_SPECIAL_x8005, 33
 	setvar VAR_SPECIAL_x8006, ITEM_CHOICE_BAND
-	setvar VAR_SPECIAL_x8007, 2144
+	setvar VAR_SPECIAL_x8007, 2556
 	callstd 2077
 	end
 // hack: MORPEKO specialist (hack/scripts/gen_specialists.py)
@@ -54,7 +54,7 @@ scr_seq_R17_003:
 	setvar VAR_SPECIAL_x8004, SPECIES_MORPEKO
 	setvar VAR_SPECIAL_x8005, 33
 	setvar VAR_SPECIAL_x8006, ITEM_CHOICE_SPECS
-	setvar VAR_SPECIAL_x8007, 2145
+	setvar VAR_SPECIAL_x8007, 2557
 	callstd 2077
 	end
 // hack: MAGCARGO specialist (hack/scripts/gen_specialists.py)

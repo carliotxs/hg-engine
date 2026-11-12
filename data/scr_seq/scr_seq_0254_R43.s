@@ -36,6 +36,7 @@ scrdef scr_seq_R43_005
 scrdef scr_seq_R43_006
 scrdef scr_seq_R43_007
 scrdef scr_seq_R43_008
+scrdef scr_seq_R43_009
 scrdef_end
 
 scr_seq_R43_000:
@@ -69,7 +70,7 @@ scr_seq_R43_004:
 	setvar VAR_SPECIAL_x8004, SPECIES_CARNIVINE
 	setvar VAR_SPECIAL_x8005, 18
 	setvar VAR_SPECIAL_x8006, ITEM_ROCKY_HELMET
-	setvar VAR_SPECIAL_x8007, 2121
+	setvar VAR_SPECIAL_x8007, 2577
 	callstd 2077
 	end
 // hack: QUAQUAVAL specialist (hack/scripts/gen_specialists.py)
@@ -103,5 +104,25 @@ scr_seq_R43_008:
 	setvar VAR_SPECIAL_x8006, ITEM_LEFTOVERS
 	setvar VAR_SPECIAL_x8007, 2634
 	callstd 2077
+	end
+// hack: extra Team Rocket grunt, Route 43, until the Mahogany hideout is cleared (hack/scripts/gen_rocket.py)
+scr_seq_R43_009:
+	setvar VAR_SPECIAL_x8007, 2595
+	callstd 2078
+	compare VAR_SPECIAL_RESULT, 0
+	goto_if_eq scr_seq_R43_009_end
+	trainer_battle TRAINER_HACK_739, 0, 0, 0
+	check_battle_won VAR_SPECIAL_RESULT
+	compare VAR_SPECIAL_RESULT, 0
+	goto_if_eq scr_seq_R43_009_lost
+	setflag 2595
+	callstd 2079
+scr_seq_R43_009_end:
+	releaseall
+	end
+
+scr_seq_R43_009_lost:
+	white_out
+	releaseall
 	end
 	.balign 4

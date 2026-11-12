@@ -60,6 +60,8 @@ scrdef scr_seq_T25_029
 scrdef scr_seq_T25_030
 scrdef scr_seq_T25_031
 scrdef scr_seq_T25_032
+scrdef scr_seq_T25_033
+scrdef scr_seq_T25_034
 scrdef_end
 
 scr_seq_T25_018:
@@ -802,5 +804,45 @@ scr_seq_T25_029:
 	scrcmd_058
 	trainer_tips 46, VAR_SPECIAL_RESULT
 	callstd std_signpost
+	end
+// hack: extra Team Rocket grunt, Goldenrod City, during the Radio Tower takeover (hack/scripts/gen_rocket.py)
+scr_seq_T25_033:
+	setvar VAR_SPECIAL_x8007, 2598
+	callstd 2078
+	compare VAR_SPECIAL_RESULT, 0
+	goto_if_eq scr_seq_T25_033_end
+	trainer_battle TRAINER_HACK_742, 0, 0, 0
+	check_battle_won VAR_SPECIAL_RESULT
+	compare VAR_SPECIAL_RESULT, 0
+	goto_if_eq scr_seq_T25_033_lost
+	setflag 2598
+	callstd 2079
+scr_seq_T25_033_end:
+	releaseall
+	end
+
+scr_seq_T25_033_lost:
+	white_out
+	releaseall
+	end
+// hack: extra Team Rocket grunt, Goldenrod City, during the Radio Tower takeover (hack/scripts/gen_rocket.py)
+scr_seq_T25_034:
+	setvar VAR_SPECIAL_x8007, 2599
+	callstd 2078
+	compare VAR_SPECIAL_RESULT, 0
+	goto_if_eq scr_seq_T25_034_end
+	trainer_battle TRAINER_HACK_743, 0, 0, 0
+	check_battle_won VAR_SPECIAL_RESULT
+	compare VAR_SPECIAL_RESULT, 0
+	goto_if_eq scr_seq_T25_034_lost
+	setflag 2599
+	callstd 2079
+scr_seq_T25_034_end:
+	releaseall
+	end
+
+scr_seq_T25_034_lost:
+	white_out
+	releaseall
 	end
 	.balign 4
