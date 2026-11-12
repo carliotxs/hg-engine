@@ -283,7 +283,9 @@
 // Dumped scripts are not built into the rom unless the matching define below is uncommented, so that a rom.nds edited with
 // DSPRE, PokeText, or any other external tool keeps its own version of everything hg-engine does not itself change.
 // hg-engine's own text archives and its common and trainer scripts are always built.
-#define BUILD_DUMPED_EVENTDATA // hack: story events live in data/eventdata/zone_event
-#define BUILD_DUMPED_SCR_SEQ // hack: story scripts live in data/scr_seq
+// hack: both are on, the story lives in data/scr_seq and data/eventdata/zone_event.
+// keep these two lines free of trailing comments: the Makefile only recognises a bare #define
+#define BUILD_DUMPED_EVENTDATA
+#define BUILD_DUMPED_SCR_SEQ
 
 #endif
