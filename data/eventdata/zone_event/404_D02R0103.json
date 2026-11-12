@@ -50,8 +50,8 @@
       "param2": 0,
       "movement_range_x": 0,
       "movement_range_z": 0,
-      "x": 26,
-      "z": 4,
+      "x": 25,
+      "z": 12,
       "y": 0
     },
     {
@@ -67,8 +67,8 @@
       "param2": 0,
       "movement_range_x": 0,
       "movement_range_z": 0,
-      "x": 26,
-      "z": 1,
+      "x": 31,
+      "z": 10,
       "y": 0
     },
     {
@@ -84,8 +84,8 @@
       "param2": 0,
       "movement_range_x": 0,
       "movement_range_z": 0,
-      "x": 29,
-      "z": 4,
+      "x": 34,
+      "z": 10,
       "y": 0
     }
   ],

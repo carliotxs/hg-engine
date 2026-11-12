@@ -31682,6 +31682,58 @@ const TrainerData sTrainerData[] = {
         },
     },
 
+    // hack: new trainer (hack/scripts/gen_trainer_teams.py)
+    [744] = {
+        .name = "Korrina",
+        .data = {
+            .trainerType = TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS,
+            .trainerClass = TRAINERCLASS_BATTLE_GIRL,
+            .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
+            .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS,
+            .battleType = SINGLE_BATTLE,
+        },
+        // hack: Korrina, Olivine Lighthouse: Kalos arc (hack/scripts/gen_trainer_teams.py)
+        .party = {
+            {
+                .ivs = 200,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 36,
+                .species = SPECIES_MIENFOO,
+                .item = ITEM_NONE,
+                .moves = { MOVE_DRAIN_PUNCH, MOVE_U_TURN, MOVE_FAKE_OUT, MOVE_CALM_MIND },
+                .ballSeal = 0,
+            },
+            {
+                .ivs = 200,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 37,
+                .species = SPECIES_HAWLUCHA,
+                .item = ITEM_NONE,
+                .moves = { MOVE_FLYING_PRESS, MOVE_ACROBATICS, MOVE_HONE_CLAWS, MOVE_ROOST },
+                .ballSeal = 0,
+            },
+            {
+                .ivs = 200,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 39,
+                .species = SPECIES_LUCARIO,
+                .item = ITEM_LUCARIONITE,
+                .moves = { MOVE_AURA_SPHERE, MOVE_FLASH_CANNON, MOVE_BONE_RUSH, MOVE_SWORDS_DANCE },
+                .ballSeal = 0,
+            },
+        },
+        .text = {
+            {
+                .type = TRMSG_LOSE,
+                .text = "That bond... You two are ready\\nfor Mega Evolution!\\n",
+            },
+            {
+                .type = TRMSG_WIN,
+                .text = "Come back when you and your\\nPokémon are closer!\\n",
+            },
+        },
+    },
+
 };
 
 const u16 sTrainerTextOrder[] = {
@@ -32327,6 +32379,7 @@ const u16 sTrainerTextOrder[] = {
     741,
     742,
     743,
+    744,
 };
 
 const u32 sTrainerDataCount = sizeof(sTrainerData) / sizeof(sTrainerData[0]);

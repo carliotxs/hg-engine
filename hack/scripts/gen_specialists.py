@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """Place the species specialists ("mirror match") on the dumped maps.
 
-Usage: .venv/bin/python hack/scripts/gen_specialists.py [--dry-run]
+Usage: .venv/bin/python hack/scripts/gen_specialists.py [--dry-run] [--fix-positions]
+
+--fix-positions checks every object the hack added to the maps (specialists, static Pokémon, grunts...)
+and moves the ones that do not stand on a valid spot; nothing else changes.
 
 There is one specialist for every fully evolved or single stage Pokémon whose family is found in the
 wild (data/Encounters.c, so run gen_encounters.py first).  Each one stands in a zone where the family
@@ -15,7 +18,8 @@ For every specialist the script adds to the dumped files of the map:
 
 It is idempotent: specialists that are already on a map are kept where they are, with their flag.
 Positions come from the collision data of rom.nds: the centre of a 3x3 block of plain walkable
-ground, at least 3 tiles away from every other event of the map (2 tiles, and tall grass too, when a zone has no room otherwise).
+ground that is connected to a warp or to an original event of the map (so never in the empty
+space around indoor rooms nor behind a fence), at least 3 tiles away from every other event of the map (2 tiles, and tall grass too, when a zone has no room otherwise).
 """
 import collections
 import glob
@@ -86,6 +90,7 @@ class Maps:
             self.headers[name] = {"id": header, "wild": wild, "matrix": matrix}
         self.matrix_cache = {}
         self.permission_cache = {}
+        self.reach_cache = {}
 
     def matrix(self, index):
         if index not in self.matrix_cache:
@@ -119,26 +124,64 @@ class Maps:
         width, height, headers, _ = self.matrix(header["matrix"])
         return [(i % width, i // width) for i in range(width * height) if headers is None or headers[i] == header["id"]]
 
-    def find_spot(self, map_name, events, near=None, spacing=3, grass=False):
+    # behaviours (low byte of a tile) the player can simply walk on: plain ground, tall grass, cave
+    # floor and the two Cycling Road surfaces.  everything else is water, ice, ledges, doors, stairs...
+    WALKABLE = (0x00, 0x02, 0x08, 0x70, 0x71)
+    STANDABLE = (0x00, 0x08, 0x71)  # where an NPC may stand; tall grass only as a last resort
+
+    @classmethod
+    def passable(cls, tile):
+        """a tile the player can walk on: no collision flag (high bit) and a walkable behaviour"""
+        return tile != 0xFFFF and not tile & 0x8000 and tile & 0xFF in cls.WALKABLE
+
+    def reachable(self, map_name, events):
+        """tiles of the map connected by passable ground to a warp or to an existing event.
+        this is what tells real floor from the empty space around indoor rooms (which is also 0)
+        and from pockets behind fences"""
+        key = (map_name, len(events.get("object_events", [])))
+        if key in self.reach_cache:
+            return self.reach_cache[key]
         matrix = self.headers[map_name]["matrix"]
-        occupied = [(e["x"], e["z"]) for kind in ("object_events", "bg_events", "warp_events") for e in events.get(kind, [])]
+        cells = set(self.cells(map_name))
+        seeds = [(e["x"], e["z"]) for kind in ("warp_events", "object_events", "bg_events") for e in events.get(kind, [])
+                 if not str(e.get("id", "")).count("_hack_")]
+        seen, stack = set(), []
+        for x, z in seeds:
+            for dx, dz in ((0, 0), (1, 0), (-1, 0), (0, 1), (0, -1)):
+                stack.append((x + dx, z + dz))
+        while stack:
+            x, z = stack.pop()
+            if (x, z) in seen or (x // 32, z // 32) not in cells or not self.passable(self.tile(matrix, x, z)):
+                continue
+            seen.add((x, z))
+            stack += [(x + 1, z), (x - 1, z), (x, z + 1), (x, z - 1)]
+        self.reach_cache[key] = seen
+        return seen
+
+    def spot_ok(self, map_name, events, x, z, spacing=3, grass=False, ignore=None):
+        """the centre of a 3x3 block of reachable ground, away from the other events"""
+        matrix = self.headers[map_name]["matrix"]
+        reached = self.reachable(map_name, events)
+        allowed = self.STANDABLE + ((0x02,) if grass else ())
+        for dx in (-1, 0, 1):
+            for dz in (-1, 0, 1):
+                if (x + dx, z + dz) not in reached or self.tile(matrix, x + dx, z + dz) & 0xFF not in allowed:
+                    return False
+        occupied = [(e["x"], e["z"]) for kind in ("object_events", "bg_events", "warp_events") for e in events.get(kind, [])
+                    if e is not ignore]
         for e in events.get("coord_events", []):
-            occupied += [(e["x"] + dx, e["z"] + dz) for dx in range(e.get("width", 1)) for dz in range(e.get("length", 1))]
-        anchors = [(e["x"], e["z"]) for e in events.get("object_events", [])] or occupied or [(16, 16)]
+            occupied += [(e["x"] + i, e["z"] + j) for i in range(e.get("width", 1)) for j in range(e.get("length", 1))]
+        return not any(abs(x - ox) < spacing and abs(z - oz) < spacing for ox, oz in occupied)
+
+    def find_spot(self, map_name, events, near=None, spacing=3, grass=False, ignore=None):
+        anchors = [(e["x"], e["z"]) for e in events.get("object_events", []) if e is not ignore]
+        anchors = anchors or [(e["x"], e["z"]) for e in events.get("warp_events", [])] or [(16, 16)]
         centre = near or (sorted(x for x, _ in anchors)[len(anchors) // 2], sorted(z for _, z in anchors)[len(anchors) // 2])
         best = None
-        for cell_x, cell_z in self.cells(map_name):
-            for x in range(cell_x * 32 + 1, cell_x * 32 + 31):
-                for z in range(cell_z * 32 + 1, cell_z * 32 + 31):
-                    if any(abs(x - ox) < spacing and abs(z - oz) < spacing for ox, oz in occupied):
-                        continue
-                    # 0 is plain walkable ground, 2 is walkable tall grass
-                    allowed = (0, 2) if grass else (0,)
-                    if any(self.tile(matrix, x + dx, z + dz) not in allowed for dx in (-1, 0, 1) for dz in (-1, 0, 1)):
-                        continue
-                    distance = abs(x - centre[0]) + abs(z - centre[1])
-                    if best is None or distance < best[0]:
-                        best = (distance, x, z)
+        for x, z in self.reachable(map_name, events):
+            distance = abs(x - centre[0]) + abs(z - centre[1])
+            if (best is None or distance < best[0]) and self.spot_ok(map_name, events, x, z, spacing, grass, ignore):
+                best = (distance, x, z)
         return best
 
 
@@ -200,8 +243,44 @@ def load_evolutions():
     return evolutions, level_needed
 
 
+def fix_positions(dry_run):
+    """move every object of the hack (specialists, static Pokémon, grunts...) that does not stand on a
+    valid spot to the nearest valid one of its map.  only the coordinates change"""
+    maps = Maps()
+    moved, stuck = 0, []
+    for path in sorted(glob.glob(str(ROOT / "data/eventdata/zone_event/*.json"))):
+        events = json.loads(Path(path).read_text())
+        hack_objects = [e for e in events.get("object_events", []) if "_hack_" in str(e.get("id", ""))]
+        if not hack_objects:
+            continue
+        name = Path(path).stem.split("_", 1)[1]
+        changed = False
+        for obj in hack_objects:
+            if maps.spot_ok(name, events, obj["x"], obj["z"], spacing=2, grass=True, ignore=obj):
+                continue
+            spot = None
+            for spacing, grass in ((3, False), (2, False), (2, True)):
+                spot = maps.find_spot(name, events, near=(obj["x"], obj["z"]), spacing=spacing, grass=grass, ignore=obj)
+                if spot:
+                    break
+            if spot is None:
+                stuck.append(f"{obj['id']} ({obj['x']}, {obj['z']})")
+                continue
+            print(f"{obj['id']}: ({obj['x']}, {obj['z']}) -> ({spot[1]}, {spot[2]})")
+            obj["x"], obj["z"] = spot[1], spot[2]
+            maps.reach_cache.clear()
+            moved += 1
+            changed = True
+        if changed and not dry_run:
+            Path(path).write_text(json.dumps(events, indent=2))
+    print(f"moved: {moved}; no valid spot in their map ({len(stuck)}): {' '.join(stuck)}")
+
+
 def main():
     dry_run = "--dry-run" in sys.argv
+    if "--fix-positions" in sys.argv:
+        fix_positions(dry_run)
+        return
     species_ids = {name: int(value) for name, value in
                    re.findall(r"#define SPECIES_(\w+)\s+(\d+)\b", (ROOT / "include/constants/species.h").read_text())}
     item_names = set(re.findall(r"#define ITEM_(\w+)\s+\d+", (ROOT / "include/constants/item.h").read_text()))

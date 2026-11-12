@@ -33,7 +33,8 @@ hack/scripts/build.sh                                   # só compilar (usa o ro
 hack/scripts/package.sh fase1                           # só empacotar
 hack/scripts/test.sh                                    # testes em jogo (ROM de debug, ver abaixo)
 hack/scripts/test.sh exp_share_on shop                  # só alguns cenários
-hack/scripts/test.sh --window capture_prompt            # ver o tester a jogar numa janela (--speed 1 = tempo real)
+hack/scripts/test.sh --speed 1 capture_prompt           # mais devagar: tempo real (por omissão a janela corre a 6x)
+hack/scripts/test.sh --headless                         # sem janela
 ```
 
 Define `HG_BASE_ROM` com o caminho da ROM para não o passares em cada comando. O `build.sh` acrescenta ao `PATH` o toolchain ARM em `~/.local/opt/arm-gnu-toolchain` e o rustup do Homebrew, para quem instalou sem sudo (o cask `gcc-arm-embedded` pede palavra-passe; em alternativa extrai-se o `.pkg` com `pkgutil --expand-full` para essa pasta).
@@ -90,6 +91,12 @@ Os objetos de um mapa vêm do save enquanto o jogador não sai e volta a entrar 
 
 Atenção ao escrever C para o hack: a `struct Party` (e a `DaycareMon`) dos cabeçalhos do engine são maiores do que as do save por causa do alinhamento. Nunca copiar nem indexar `party->members[]` diretamente; usar `Party_GetMonByIndex`, `PokeCopyPPtoPP` e o tamanho real (8 + 6 x 236 bytes).
 
+## Colocação de NPCs do hack nos mapas
+
+Os geradores (`gen_specialists.py`, `gen_rocket.py`, `gen_korrina.py`) partilham a mesma regra, que está em `gen_specialists.py`: o centro de um bloco 3x3 de chão onde se pode estar (chão normal, chão de gruta ou Cycling Road; erva alta só em último caso), ligado por chão caminhável a uma porta ou a um evento original do mapa, e afastado dos outros eventos. A ligação é essencial: nos mapas interiores e nas grutas o valor 0 dos dados de colisão é o vazio à volta da sala, não chão.
+
+`gen_specialists.py --fix-positions` verifica todos os objetos que o hack acrescentou (ids com `_hack_`) e move os que não cumprem a regra para o sítio válido mais próximo do mesmo mapa; só mudam coordenadas. Corre-se depois de qualquer mudança à regra. Ficam 6 especialistas sem sítio válido no mapa deles (Tohjo Falls e Ice Path B1F); estão no vazio, inalcançáveis, até serem mudados de mapa.
+
 ## Equipas dos bosses
 
 `python3 hack/scripts/gen_trainer_teams.py` escreve em `data/Trainers.c` as equipas dos treinadores listados na tabela `TEAMS` do script (líderes de Johto, Elite Four e Lance, por agora). A tabela é a fonte de verdade desses treinadores: edita-se lá e volta-se a correr; os nomes de espécies, golpes e itens são validados contra as constantes do engine. Os treinadores que não estão na tabela não são tocados, com uma exceção: os recrutas da Equipa Rocket recebem uma melhoria automática única (+2 níveis e, a partir do segundo Pokémon, espécies de uma lista Veneno/Sombrio em vez de Rattata e Zubat repetidos). A tabela `NEW_TRAINERS` cria treinadores que não existem no jogo original.
@@ -98,7 +105,7 @@ Atenção ao escrever C para o hack: a `struct Party` (e a `DaycareMon`) dos cab
 
 ## Testes em jogo
 
-`hack/scripts/test.sh` compila uma ROM de debug (`make HACK_TEST=Y`, guardada em `hack/out/test-debug.nds`) e corre `hack/scripts/ingame_tests.py` no DeSmuME sem janela. A ROM de debug continua o save automaticamente (por omissão o save de testes público do hg-engine, descarregado para `hack/out/test.sav`; `HG_TEST_SAV` aponta para outro).
+`hack/scripts/test.sh` compila uma ROM de debug (`make HACK_TEST=Y`, guardada em `hack/out/test-debug.nds`) e corre `hack/scripts/ingame_tests.py` no DeSmuME, com a janela aberta a 6x para se ver o tester a jogar (`--headless` desliga a janela). A ROM de debug continua o save automaticamente (por omissão o save de testes público do hg-engine, descarregado para `hack/out/test.sav`; `HG_TEST_SAV` aponta para outro).
 
 Como funciona: o runner escreve o número do cenário num endereço de memória; `src/hack_test.c` monta a equipa, a mochila e as insígnias desse cenário, lança o script comum 2073 (batalha) ou 2075 (loja) e mantém um relatório em memória que o runner lê no fim. Os menus são conduzidos por botões e toque, e cada passo fica em capturas em `hack/out/tests/<cenário>/`.
 
@@ -145,6 +152,9 @@ Uma feature nova deve trazer o seu cenário: um `HACK_TEST_*` em `include/hack_t
 | Flags | 2200 a 2399, 2522 a 2594, 2603 a 2719 | reserva para os especialistas de espécie (uma por especialista, atribuídas pelo gerador) |
 | Flags | 2098 a 2199 | flags de "treinador vencido" dos treinadores novos (1360 + número do treinador): não usar para mais nada |
 | Flags | 2595 a 2599 | recrutas Rocket extra (vencido) |
+| Flag | 2594 | Korrina: Key Stone entregue |
+| Treinador | 744 | Korrina |
+| Texto 094 | 13 a 19 | Korrina no topo do Farol de Olivine |
 | Treinadores | 739 a 743 | recrutas Rocket extra (`hack/scripts/gen_trainer_teams.py`) |
 | Treinador | 738 | `TRAINER_HACK_MIRROR`: especialista genérico |
 | Var | 0x416F | `HACK_VAR_MIRROR_WINS`: especialistas vencidos |

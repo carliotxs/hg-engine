@@ -746,5 +746,6 @@
 .equ TRAINER_HACK_741, 741 // hack: Grunt
 .equ TRAINER_HACK_742, 742 // hack: Grunt
 .equ TRAINER_HACK_743, 743 // hack: Grunt
+.equ TRAINER_HACK_744, 744 // hack: Korrina
 
 .endif

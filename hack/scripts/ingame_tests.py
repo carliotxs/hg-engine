@@ -5,10 +5,11 @@ Needs a ROM built with `make HACK_TEST=Y` (hack/scripts/test.sh does everything)
 that continues in the overworld (the hg-engine test save works).
 
 Usage: .venv/bin/python hack/scripts/ingame_tests.py [--rom test.nds] [--sav test.sav]
-                                                     [--out hack/out/tests] [--window [--speed 2]]
+                                                     [--out hack/out/tests] [--speed 6] [--headless]
                                                      [scenario ...]
 
---window opens the DeSmuME window so that the run can be watched (--speed 1 is real time).
+The DeSmuME window is open by default so that the run can be watched, at 6 times real speed
+(--speed 1 is real time, --speed 0 unlimited).  --headless runs without a window.
 
 Every scenario runs in its own process: src/hack_test.c builds a known party/bag state, common
 script 2073 starts a battle or a shop, this script presses the buttons and then checks the report
@@ -23,13 +24,13 @@ import subprocess
 import sys
 import time
 
-# headless unless --window is given: then DeSmuME opens a window and the run can be watched
-WINDOW = "--window" in sys.argv
+# the DeSmuME window is on by default so that the run can be watched; --headless switches it off
+WINDOW = "--headless" not in sys.argv
 if not WINDOW:
     os.environ.setdefault("SDL_VIDEODRIVER", "dummy")
 os.environ.setdefault("SDL_AUDIODRIVER", "dummy")
 
-SPEED = 2.0  # --speed: emulation speed of the window mode, 0 = as fast as possible
+SPEED = 6.0  # --speed: emulation speed of the window mode, 0 = as fast as possible
 for index, argument in enumerate(sys.argv):
     if argument == "--speed" and index + 1 < len(sys.argv):
         SPEED = float(sys.argv[index + 1])
@@ -751,8 +752,9 @@ def main():
     parser.add_argument("--sav", default="test.sav")
     parser.add_argument("--out", default="hack/out/tests")
     parser.add_argument("--single", action="store_true", help="internal: run one scenario in this process")
-    parser.add_argument("--window", action="store_true", help="open the emulator window to watch the run")
-    parser.add_argument("--speed", type=float, default=2.0, help="speed of the window mode (1 = real time, 0 = unlimited)")
+    parser.add_argument("--headless", action="store_true", help="do not open the emulator window")
+    parser.add_argument("--window", action="store_true", help="kept for compatibility: the window is the default")
+    parser.add_argument("--speed", type=float, default=6.0, help="speed of the window mode (1 = real time, 0 = unlimited)")
     parser.add_argument("scenarios", nargs="*", default=[])
     args = parser.parse_args()
     names = args.scenarios or list(TESTS)
@@ -763,8 +765,7 @@ def main():
     failed = []
     for name in names:
         command = [sys.executable, __file__, "--rom", args.rom, "--sav", args.sav, "--out", args.out, "--single", name]
-        if args.window:
-            command += ["--window", "--speed", str(args.speed)]
+        command += ["--headless"] if args.headless else ["--speed", str(args.speed)]
         result = subprocess.run(command)
         if result.returncode != 0:
             failed.append(name)

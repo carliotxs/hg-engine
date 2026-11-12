@@ -114,6 +114,12 @@ TEAMS = {
         KOFFING 29
         SCRAGGY 29
         ARBOK 30"""),
+    # Korrina, top of the Olivine Lighthouse after Amphy is cured (hack/scripts/gen_korrina.py).
+    # her Lucario holds its Mega Stone: the battle is where the player first sees a Mega Evolution
+    744: ("Korrina, Olivine Lighthouse: Kalos arc", 200, """
+        MIENFOO 36: DRAIN_PUNCH, U_TURN, FAKE_OUT, CALM_MIND
+        HAWLUCHA 37: FLYING_PRESS, ACROBATICS, HONE_CLAWS, ROOST
+        LUCARIO 39 @LUCARIONITE: AURA_SPHERE, FLASH_CANNON, BONE_RUSH, SWORDS_DANCE"""),
     # Team Rocket executives and Giovanni: Poison and Dark teams, 3 levels above the original
     486: ("Proton, Slowpoke Well", 90, """
         ZUBAT 11: LEECH_LIFE, SUPERSONIC, BITE, ASTONISH
@@ -169,6 +175,7 @@ NEW_TRAINERS = {
     741: ("Grunt", "TEAM_ROCKET", "I was only told to watch the shop...", "Move along!"),
     742: ("Grunt", "TEAM_ROCKET", "The Radio Tower is ours anyway!", "Goldenrod belongs to Team Rocket!"),
     743: ("Grunt", "TEAM_ROCKET", "You’re too late to stop the broadcast!", "Stay off these streets!"),
+    744: ("Korrina", "BATTLE_GIRL", "That bond... You two are ready\\\\nfor Mega Evolution!", "Come back when you and your\\\\nPokémon are closer!"),
 }
 
 # Team Rocket grunts: every Pokémon gains GRUNT_LEVELS levels and, from the second one on, the

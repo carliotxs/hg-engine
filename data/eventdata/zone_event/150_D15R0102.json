@@ -66,7 +66,7 @@
       "param2": 0,
       "movement_range_x": 0,
       "movement_range_z": 0,
-      "x": 11,
+      "x": 6,
       "z": 22,
       "y": 0
     },
@@ -83,8 +83,8 @@
       "param2": 0,
       "movement_range_x": 0,
       "movement_range_z": 0,
-      "x": 19,
-      "z": 22,
+      "x": 21,
+      "z": 17,
       "y": 0
     }
   ],

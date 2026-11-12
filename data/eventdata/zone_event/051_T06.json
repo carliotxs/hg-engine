@@ -429,7 +429,7 @@
       "param2": 0,
       "movement_range_x": 0,
       "movement_range_z": 0,
-      "x": 1310,
+      "x": 1306,
       "z": 290,
       "y": 0
     },
@@ -447,7 +447,7 @@
       "movement_range_x": 0,
       "movement_range_z": 0,
       "x": 1302,
-      "z": 290,
+      "z": 296,
       "y": 0
     },
     {
@@ -464,7 +464,7 @@
       "movement_range_x": 0,
       "movement_range_z": 0,
       "x": 1293,
-      "z": 290,
+      "z": 297,
       "y": 0
     }
   ],
