@@ -43,7 +43,8 @@ Para partilhar o hack, usa só o `.xdelta` (aplica-se com Delta Patcher ou xdelt
 
 Os scripts de campo (`data/scr_seq/scr_seq_NNNN*.s`), os eventos de cada mapa (`data/eventdata/zone_event/`) e os textos (`data/text/custom/`) foram despejados da ROM original com `make dump_scripts DUMP_ROM=rom.nds` e são compilados para a ROM (`BUILD_DUMPED_SCR_SEQ` e `BUILD_DUMPED_EVENTDATA` em `include/config.h`). A história edita-se nesses ficheiros, com diffs normais no git; não se usa o DSPRE para scripts, eventos ou texto, porque o build passaria por cima.
 
-- O despejo foi verificado: compilado sem alterações, dá arquivos byte a byte iguais aos da ROM original
+- O despejo foi verificado: na ROM compilada, os únicos arquivos de scripts e eventos diferentes dos originais são os que o hack editou
+- As duas linhas `#define BUILD_DUMPED_*` não podem ter comentários à frente: o Makefile só reconhece o `#define` sozinho na linha (com comentário, a história volta a vir da ROM original sem qualquer aviso)
 - O `dump_scripts` reescreve `data/text/keys.csv` sem as chaves dos arquivos do engine (829 a 853); se o voltares a correr, repõe esse ficheiro com `git checkout data/text/keys.csv`
 - Os scripts comuns e de treinadores do engine continuam nos ficheiros de cinco dígitos (`scr_seq_00003_commonscript.s`)
 
