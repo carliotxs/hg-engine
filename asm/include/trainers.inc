@@ -747,5 +747,9 @@
 .equ TRAINER_HACK_742, 742 // hack: Grunt
 .equ TRAINER_HACK_743, 743 // hack: Grunt
 .equ TRAINER_HACK_744, 744 // hack: Korrina
+.equ TRAINER_HACK_745, 745 // hack: Grunt
+.equ TRAINER_HACK_746, 746 // hack: Grunt
+.equ TRAINER_HACK_747, 747 // hack: Grunt
+.equ TRAINER_HACK_748, 748 // hack: Wake
 
 .endif

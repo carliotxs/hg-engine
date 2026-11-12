@@ -23,9 +23,10 @@
 // Oval Charm: better egg chance at the Day Care every 256 steps (20/50/70% become 40/80/88%).
 #define HACK_OVAL_CHARM
 
-// Starters: Dratini, Beldum and Larvitar instead of the Johto trio (src/starters.c).
-// The rival's parties in data/Trainers.c and the texts are edited directly, not behind this define.
-#define HACK_ALT_STARTERS
+// Starters: the hack uses the starters of the region where the game begins (Johto for now), so the
+// alternative trio is off.  With it on, src/starters.c offers Dratini, Beldum and Larvitar, but the
+// rival's parties (data/Trainers.c), eight story scripts and text 190 would have to follow again.
+// #define HACK_ALT_STARTERS
 
 // "Add to party?" prompt after catching a Pokémon with a full party (src/hack_capture.c).
 #define HACK_CAPTURE_PARTY_PROMPT
@@ -37,6 +38,9 @@
 #define SCRIPT_MIRROR_SPECIALIST 2077 // common script scr_seq_0003_077_mirror_specialist
 #define HACK_TRAINER_MIRROR 738       // the generic specialist in data/Trainers.c
 #define HACK_VAR_MIRROR_WINS 0x416F   // number of specialists beaten
+
+// Story objects that appear and disappear by rule (story flags, day of the week), see src/hack_story.c.
+#define HACK_STORY_RULES
 
 // Bicycle with twice the vanilla top speed (2 frames per tile), see bytereplacement.
 #define HACK_FAST_BIKE

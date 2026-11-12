@@ -34,3 +34,7 @@ Fishing Guru’s House\rCurrent Record\n{STRVAR_1 52, 0, 0}.{STRVAR_1 50, 1, 0} 
 {STRVAR_1 3, 0, 0} found\n{STRVAR_1 8, 1, 0}!
 {STRVAR_1 3, 0, 0} put the {STRVAR_1 8, 1, 0}\nin the {COLOR 2}{STRVAR_1 31, 2, 0}{COLOR 0} Pocket.
 Obtained the {STRVAR_1 8, 0, 0}!\rToo bad!\nThe Bag is full...
+Hahaha! A challenger at the lake!\rI’m Crasher Wake, from Pastoria City\nin Sinnoh! Every Saturday I train\fagainst the waves of this lake.\rYou look strong. Come at me!
+Hahaha! You washed me away!\nTake this, you earned it!
+You received the Mystic Water!
+I’m here every Saturday while the\nsun is up. Come back for a rematch!

@@ -31,6 +31,7 @@ scrdef scr_seq_D45R0102_000
 scrdef scr_seq_D45R0102_001
 scrdef scr_seq_D45R0102_002
 scrdef scr_seq_D45R0102_003
+scrdef scr_seq_D45R0102_004
 scrdef_end
 
 scr_seq_D45R0102_002:
@@ -338,6 +339,38 @@ _0404:
 	npc_msg 21
 	wait_button
 	closemsg
+	releaseall
+	end
+// hack: Giovanni after the Radio Tower (hack/scripts/gen_story.py)
+scr_seq_D45R0102_004:
+	play_se SEQ_SE_DP_SELECT
+	lockall
+	faceplayer
+	npc_msg 28
+	closemsg
+	trainer_battle TRAINER_ROCKET_BOSS_GIOVANNI, 0, 0, 0
+	check_battle_won VAR_SPECIAL_RESULT
+	compare VAR_SPECIAL_RESULT, 0
+	goto_if_eq scr_seq_D45R0102_004_lost
+	npc_msg 29
+	giveitem ITEM_KANGASKHANITE, 1, VAR_SPECIAL_RESULT
+	play_fanfare SEQ_ME_ITEM
+	npc_msg 30
+	wait_fanfare
+	npc_msg 31
+	closemsg
+	fade_screen 6, 1, 0, RGB_BLACK
+	wait_fade
+	setflag 1342 // HACK_FLAG_GIOVANNI_DONE
+	setflag 1341 // HACK_FLAG_HIDE_GIOVANNI
+	hide_person obj_D45R0102_hack_giovanni
+	fade_screen 6, 1, 1, RGB_BLACK
+	wait_fade
+	releaseall
+	end
+
+scr_seq_D45R0102_004_lost:
+	white_out
 	releaseall
 	end
 	.balign 4

@@ -5,6 +5,7 @@
 .equ _EV_scr_seq_D45R0102_001, 1
 .equ _EV_scr_seq_D45R0102_002, 2
 .equ _EV_scr_seq_D45R0102_003, 3
+.equ _EV_scr_seq_D45R0102_004, 4
 
 .equ obj_D45R0102_breakrock, 0
 .equ obj_D45R0102_breakrock_2, 1
@@ -12,5 +13,6 @@
 .equ obj_D45R0102_breakrock_4, 3
 .equ obj_D45R0102_sakaki, 4
 .equ obj_D45R0102_var_1, 5
+.equ obj_D45R0102_hack_giovanni, 6
 
 .endif //SCR_SEQ_D45R0102_H_

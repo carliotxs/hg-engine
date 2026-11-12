@@ -97,6 +97,19 @@ Os geradores (`gen_specialists.py`, `gen_rocket.py`, `gen_korrina.py`) partilham
 
 `gen_specialists.py --fix-positions` verifica todos os objetos que o hack acrescentou (ids com `_hack_`) e move os que não cumprem a regra para o sítio válido mais próximo do mesmo mapa; só mudam coordenadas. Corre-se depois de qualquer mudança à regra. Ficam 6 especialistas sem sítio válido no mapa deles (Tohjo Falls e Ice Path B1F); estão no vazio, inalcançáveis, até serem mudados de mapa.
 
+## Objetos da história que aparecem por regra
+
+`src/hack_story.c` tem uma tabela de regras que liga e desliga as flags de esconder dos objetos que o hack acrescenta à história: uma flag de história que tem de estar ligada, uma flag de "já feito", dias da semana e horas. As regras são reavaliadas duas vezes por segundo no campo, e as flags de esconder são lidas quando um mapa carrega; por isso não é preciso editar o script de carga de cada mapa. `hack/scripts/gen_story.py` coloca os objetos e os scripts:
+
+| Objeto | Onde | Aparece quando |
+|---|---|---|
+| Giovanni | gruta escondida de Tohjo Falls | depois de libertar a Radio Tower, até ser vencido (dá a Kangaskhanite) |
+| Obstáculo da gruta | Tohjo Falls | desaparece depois de libertar a Radio Tower |
+| Recruta a assaltar o Poké Mart | Cherrygrove (seg, qui), Violet (ter, sex), Azalea (qua, sáb) | nesses dias, até ser vencido nesse dia (dá um Elixir) |
+| Crasher Wake | Lago da Fúria | aos sábados das 10h às 20h, uma batalha por dia (dá uma Mystic Water) |
+
+Um evento novo é uma regra na tabela em C, uma entrada em `gen_story.py` e, para o testar, um capítulo (os capítulos podem fingir um dia da semana e uma hora).
+
 ## Equipas dos bosses
 
 `python3 hack/scripts/gen_trainer_teams.py` escreve em `data/Trainers.c` as equipas dos treinadores listados na tabela `TEAMS` do script (líderes de Johto, Elite Four e Lance, por agora). A tabela é a fonte de verdade desses treinadores: edita-se lá e volta-se a correr; os nomes de espécies, golpes e itens são validados contra as constantes do engine. Os treinadores que não estão na tabela não são tocados, com uma exceção: os recrutas da Equipa Rocket recebem uma melhoria automática única (+2 níveis e, a partir do segundo Pokémon, espécies de uma lista Veneno/Sombrio em vez de Rattata e Zubat repetidos). A tabela `NEW_TRAINERS` cria treinadores que não existem no jogo original.
@@ -145,6 +158,9 @@ Como funciona: o runner escreve o número do cenário num endereço de memória;
 | `leader` | combate de treinador contra o Falkner com a equipa nova: três Pokémon vencidos (pela EXP) e dinheiro recebido |
 | `korrina` | capítulo do Farol: batalha com a Korrina ganha, Key Stone e Ampharosite recebidas, Mega Evolução ligada, sem segunda batalha (nas capturas vê-se o Lucario dela mega evoluir) |
 | `rocket_mahogany`, `rocket_lake`, `rocket_route43`, `rocket_goldenrod` | capítulos com a Rocket ativa: cada recruta novo luta quando se fala com ele, uma só vez |
+| `giovanni` | capítulo da gruta de Tohjo Falls: batalha ganha, Kangaskhanite recebida, o Giovanni desaparece |
+| `mart_robber` | capítulo do Poké Mart de Cherrygrove numa segunda-feira: batalha, Elixir, o assaltante desaparece |
+| `visitor_wake` | capítulo do Lago da Fúria num sábado ao meio-dia: batalha com o Crasher Wake, que depois se vai embora |
 | `view_<capítulo>` | abre o capítulo e tira uma captura |
 | `static_mon` | o Yamper de Cherrygrove: vê-se no mapa, bloqueia o mosaico, a batalha começa, a flag diária fica marcada e ele desaparece |
 | `bike` | usar a Bicicleta na mochila e pedalar: acelera e chega a 2 frames por mosaico |
@@ -176,6 +192,13 @@ Uma feature nova deve trazer o seu cenário: um `HACK_TEST_*` em `include/hack_t
 | Flags | 2200 a 2399, 2522 a 2594, 2603 a 2719 | reserva para os especialistas de espécie (uma por especialista, atribuídas pelo gerador) |
 | Flags | 2098 a 2199 | flags de "treinador vencido" dos treinadores novos (1360 + número do treinador): não usar para mais nada |
 | Flags | 2595 a 2599 | recrutas Rocket extra (vencido) |
+| Flags | 1340 a 1346 | objetos da história por regra (`include/hack_story.h`); 1347 a 1359 livres, 1311 a 1339 também sem uso no jogo original |
+| Flags diárias | 2880, 2881 | assalto ao Poké Mart e Crasher Wake já feitos hoje |
+| Treinadores | 745 a 748 | assaltantes dos Poké Marts e Crasher Wake |
+| Scripts comuns | 2080, 2081 | assalto ao Poké Mart: antes e depois da batalha (o próximo livre é o 2082) |
+| Texto 040 | 134 a 136 | assalto ao Poké Mart |
+| Texto 131 | 28 a 31 | Giovanni em Tohjo Falls |
+| Texto 626 | 36 a 39 | Crasher Wake no Lago da Fúria |
 | Flag | 2594 | Korrina: Key Stone entregue |
 | Treinador | 744 | Korrina |
 | Texto 094 | 13 a 19 | Korrina no topo do Farol de Olivine |
@@ -183,7 +206,7 @@ Uma feature nova deve trazer o seu cenário: um `HACK_TEST_*` em `include/hack_t
 | Treinador | 738 | `TRAINER_HACK_MIRROR`: especialista genérico |
 | Var | 0x416F | `HACK_VAR_MIRROR_WINS`: especialistas vencidos |
 | Script comum | 2077 | especialista de espécie (chamado com `callstd` pelos scripts dos mapas) |
-| Script comum | 2078, 2079 | falas dos recrutas Rocket extra, antes e depois da batalha (o próximo livre é o 2080) |
+| Script comum | 2078, 2079 | falas dos recrutas Rocket extra, antes e depois da batalha |
 | Script comum | 2076 | prompt "adicionar à equipa" depois de apanhar com a equipa cheia (o próximo livre é o 2077) |
 | Comando de script | 690 (`day_care_sanitize_mon`) | operações do hack conforme o valor da var de resultado à entrada: 0x4843 troca do prompt pós-captura; 0x4D30 a 0x4D32 mirror match (procurar espécie, começar, terminar) |
 | Texto 040 | 121, 122 | mensagens da Exp Share |

@@ -132,3 +132,6 @@ You received the {STRVAR_1 8, 1, 0}!
 Hey! Team Rocket has business here.\nKids who snoop around get hurt!
 Ugh... Fine, you win.\rBut you can’t stop what’s already\nbeen set in motion!
 Don’t tell the boss I lost to a kid...
+Everybody stay where you are!\nThis Poké Mart belongs to Team Rocket\ffor the next five minutes!\rWhat are you looking at, kid?
+Tch! Nobody said there’d be Trainers\nin here. I’m gone!
+Clerk: You saved the shop!\nPlease, take this as thanks.
