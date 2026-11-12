@@ -90,6 +90,10 @@ Os objetos de um mapa vêm do save enquanto o jogador não sai e volta a entrar 
 
 Atenção ao escrever C para o hack: a `struct Party` (e a `DaycareMon`) dos cabeçalhos do engine são maiores do que as do save por causa do alinhamento. Nunca copiar nem indexar `party->members[]` diretamente; usar `Party_GetMonByIndex`, `PokeCopyPPtoPP` e o tamanho real (8 + 6 x 236 bytes).
 
+## Equipas dos bosses
+
+`python3 hack/scripts/gen_trainer_teams.py` escreve em `data/Trainers.c` as equipas dos treinadores listados na tabela `TEAMS` do script (líderes de Johto, Elite Four e Lance, por agora). A tabela é a fonte de verdade desses treinadores: edita-se lá e volta-se a correr; os nomes de espécies, golpes e itens são validados contra as constantes do engine. Os treinadores que não estão na tabela não são tocados.
+
 ## Testes em jogo
 
 `hack/scripts/test.sh` compila uma ROM de debug (`make HACK_TEST=Y`, guardada em `hack/out/test-debug.nds`) e corre `hack/scripts/ingame_tests.py` no DeSmuME sem janela. A ROM de debug continua o save automaticamente (por omissão o save de testes público do hg-engine, descarregado para `hack/out/test.sav`; `HG_TEST_SAV` aponta para outro).
@@ -108,6 +112,7 @@ Como funciona: o runner escreve o número do cenário num endereço de memória;
 | `shiny_charm` | estatístico: 3 tentativas com o charm, em selvagens e ofertas (a ROM de teste usa odds 1/32) |
 | `capture_prompt` e variantes `_no`, `_cancel`, `_mail` | apanhar com a equipa cheia: o Pokémon vai para o PC e o prompt aparece no campo. "Sim" troca com o membro escolhido (equipa, PC e Pokémon seguidor verificados); "Não" e cancelar deixam tudo igual; um Pokémon com Mail é recusado com mensagem |
 | `mirror`, `mirror_no_mon` | o especialista do Mantine em Cherrygrove: com um Mantine na equipa luta 1 contra 1, a equipa volta igual, só o Mantine ganha EXP, o item e o contador sobem e não há segunda batalha; sem Mantine só explica a regra |
+| `leader` | combate de treinador contra o Falkner com a equipa nova: três Pokémon vencidos (pela EXP) e dinheiro recebido |
 | `static_mon` | o Yamper de Cherrygrove: vê-se no mapa, bloqueia o mosaico, a batalha começa, a flag diária fica marcada e ele desaparece |
 | `bike` | usar a Bicicleta na mochila e pedalar: acelera e chega a 2 frames por mosaico |
 | `day_care` | estatístico: rotina de passos da Day Care com compatibilidade 50; Oval Charm sobe os ovos para 80% e o Shiny Charm aplica-se aos ovos |
@@ -130,7 +135,8 @@ Uma feature nova deve trazer o seu cenário: um `HACK_TEST_*` em `include/hack_t
 |---|---|---|
 | Flag | 2600, 2601 | engine: hidden abilities |
 | Flag | 2602 | `FLAG_EXP_SHARE_DISABLED` (Exp Share de Kalos desligada) |
-| Flag diária | 2900 a 2910 | Pokémon estáticos visíveis (2911 livre); são repostas à meia-noite com as outras flags diárias |
+| Flag diária | 2900 a 2910 | Pokémon estáticos visíveis; são repostas à meia-noite com as outras flags diárias |
+| Flag diária | 2911 | só nos testes: escolhe o combate de líder no script comum 2073 |
 | Script comum | 2073 | engine: script de debug; em `HACK_TEST` lança a batalha de teste |
 | Script comum | 2074 | liga/desliga a Exp Share |
 | Script comum | 2075 | só faz algo em `HACK_TEST` (loja do 4.º andar de Goldenrod); na ROM normal é um script vazio, para a numeração ser igual |

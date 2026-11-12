@@ -1751,7 +1751,13 @@ scr_seq_0003_064:
 // hack: automated in-game tests (make HACK_TEST=Y), queued by src/hack_test.c
 scr_seq_0003_073_autobattle_testing:
     lockall
+    goto_if_set 2911, scr_seq_0003_073_hack_test_leader // HACK_TEST_LEADER_FLAG
     wild_battle SPECIES_RATTATA, 20, 0
+    releaseall
+    end
+
+scr_seq_0003_073_hack_test_leader:
+    trainer_battle TRAINER_LEADER_FALKNER_FALKNER, 0, 0, 0
     releaseall
     end
 

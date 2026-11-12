@@ -61,6 +61,7 @@ SCENARIOS = {
     "capture_prompt_mail": 15,
     "mirror": 16,
     "mirror_no_mon": 17,
+    "leader": 18,
 }
 
 # base experience and growth data used by the expectations
@@ -695,6 +696,22 @@ def test_mirror_no_mon(game, c):
             and [m["exp"] for m in after["mons"]] == [m["exp"] for m in before["mons"]])
 
 
+def test_leader(game, c):
+    """trainer battle against Falkner: the screenshots show his new team (Rookidee, Fletchling, Pidgeotto)"""
+    before = game.report()
+    game.run(700)
+    game.shot("leader_intro")
+    shots = tuple(range(300, 6000, 300))
+    c.check("battle finished", game.mash_until_field(game.Keys.KEY_A, timeout=9000, shots=shots))
+    game.shot("battle_end")
+    after = game.report()
+    gain = after["mons"][0]["exp"] - before["mons"][0]["exp"]
+    expected = sum(scaled_exp(base, level, 40) * 3 // 2 for base, level in ((53, 11), (56, 12), (122, 15)))
+    print(f"  experience gained {gain}; three Pokémon of levels 11, 12 and 15 give about {expected} (trainer bonus included)")
+    c.check("three Pokémon were beaten", 0.6 * expected <= gain <= 1.5 * expected, f"{gain} vs {expected}")
+    c.check("money received", after["money"] > before["money"], f"{after['money'] - before['money']}")
+
+
 TESTS = {
     "exp_share_on": test_exp_share_on,
     "exp_share_off": test_exp_share_off,
@@ -714,6 +731,7 @@ TESTS = {
     "capture_prompt_mail": test_capture_prompt_mail,
     "mirror": test_mirror,
     "mirror_no_mon": test_mirror_no_mon,
+    "leader": test_leader,
 }
 
 
