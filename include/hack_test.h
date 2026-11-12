@@ -17,6 +17,8 @@
 #define HACK_TEST_CAPTURE_PROMPT   13 // wild battle with a full party and Master Balls
 #define HACK_TEST_CAPTURE_PROMPT_NO 14 // same, answering no to the prompt
 #define HACK_TEST_CAPTURE_PROMPT_MAIL 15 // same, the first party member holds Mail
+#define HACK_TEST_MIRROR           16 // the Mantine specialist of Cherrygrove City, with a Mantine in the party
+#define HACK_TEST_MIRROR_NO_MON    17 // the same specialist without a Mantine
 #define HACK_TEST_STATIC_MON       12 // no script, the visible static Pokémon of Cherrygrove City
 
 #ifndef __ASSEMBLER__

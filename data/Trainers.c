@@ -31160,6 +31160,37 @@ const TrainerData sTrainerData[] = {
         },
     },
 
+    // hack: generic species specialist.  species and level are replaced at run time, see src/hack_mirror.c
+    [738] = {
+        .name = "Expert",
+        .data = {
+            .trainerType = TRAINER_DATA_TYPE_NOTHING,
+            .trainerClass = TRAINERCLASS_ACE_TRAINER_M,
+            .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
+            .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_EXPERT_ATTACKS,
+            .battleType = SINGLE_BATTLE,
+        },
+        .party = {
+            {
+                .ivs = 255,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                .level = 5,
+                .species = SPECIES_RATTATA,
+                .ballSeal = 0,
+            },
+        },
+        .text = {
+            {
+                .type = TRMSG_LOSE,
+                .text = "You really know your Pokémon!\\n",
+            },
+            {
+                .type = TRMSG_WIN,
+                .text = "Train together some more!\\n",
+            },
+        },
+    },
+
 };
 
 const u16 sTrainerTextOrder[] = {
@@ -31799,6 +31830,7 @@ const u16 sTrainerTextOrder[] = {
     628,
     629,
     630,
+    738,
 };
 
 const u32 sTrainerDataCount = sizeof(sTrainerData) / sizeof(sTrainerData[0]);

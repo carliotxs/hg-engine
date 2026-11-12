@@ -56,14 +56,12 @@ Trabalho, por ordem:
 
 ### Especialistas de espécie ("mirror match")
 
-Pedido de design: existe um especialista para cada Pokémon de evolução final e para cada Pokémon de fase única, espalhados pelo mapa. Só se consegue desafiar um especialista levando o mesmo Pokémon que ele, e o combate é um mirror match de 1 contra 1.
+Um especialista por cada Pokémon de evolução final ou de fase única, só desafiável com a mesma espécie, em 1 contra 1.
 
-Decisões fechadas:
-
-- **Colocação**: um NPC físico por espécie, gerado por script e colocado em mosaicos livres (como os estáticos), só em zonas onde a família dessa espécie aparece em estado selvagem. Espécies sem zona (lendários e afins) não têm especialista por agora
-- **Nível**: relativo à zona onde o especialista está
-- **Regra**: só luta se tiveres a mesma espécie na equipa; o combate é 1 contra 1, só com esse Pokémon
-- **Recompensa**: um item útil para a espécie (a Mega Pedra, se existir; senão um item competitivo) e um contador com prémios por marcos
+- ✅ Sistema e geração: 389 especialistas colocados por `hack/scripts/gen_specialists.py`, em zonas onde a família aparece, com nível relativo à zona, item da espécie como recompensa e contador de vitórias. Testado em jogo o do Mantine em Cherrygrove (com e sem Mantine na equipa)
+- ⏳ Prémios por marcos do contador (por exemplo 50, 150 e todos) e um NPC que diga quantos faltam
+- ⏳ Os 5 sem zona com chão livre (Shuckle, Magmortar, Ninetales, Weezing, Centiskorch) e as espécies que só vierem a existir por estáticos, ofertas ou side quests (lendários incluídos)
+- ⏳ Afinações: sprites e falas variados por tipo, ver os 388 restantes no sítio (posições calculadas, não vistas); depois da batalha o Pokémon seguidor fica a ser o que lutou até mudar de mapa
 
 ## Outras sugestões
 

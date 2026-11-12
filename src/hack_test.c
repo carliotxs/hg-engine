@@ -27,6 +27,7 @@
 
 #define HACK_TEST_HOLE ((volatile u32 *)0x02FFF81C)
 #define HACK_TEST_REQUEST_MAGIC 0xC0DE
+#define HACK_TEST_MIRROR_REWARD ITEM_CHOICE_BAND // reward of the Mantine specialist, see its script in T21
 #define HACK_TEST_STATIC_MON_FLAG 2910 // daily flag of the static Pokémon of Cherrygrove City
 
 struct HackTestMonReport {
@@ -202,6 +203,17 @@ static void HackTest_Setup(u16 scenario)
         bag->balls[0].quantity = 5;
         break;
 
+    case HACK_TEST_MIRROR:
+    case HACK_TEST_MIRROR_NO_MON:
+        HackTest_AddMon(SPECIES_GARCHOMP, 40);
+        if (scenario == HACK_TEST_MIRROR) {
+            pp = HackTest_AddMon(SPECIES_MANTINE, 35);
+            HackTest_SetMove(pp, MOVE_THUNDERBOLT, 15);
+        }
+        HackTest_AddMon(SPECIES_PIDGEY, 20);
+        SetScriptVar(HACK_VAR_MIRROR_WINS, 0);
+        break;
+
     case HACK_TEST_STATIC_MON:
         pp = HackTest_AddMon(SPECIES_GARCHOMP, 40);
         HackTest_SetMove(pp, MOVE_EARTHQUAKE, 10);
@@ -265,6 +277,11 @@ static void HackTest_UpdateReport(void)
     report->bottleCaps = Bag_GetQuantity(bag, ITEM_BOTTLE_CAP, HEAPID_WORLD);
     report->goldBottleCaps = Bag_GetQuantity(bag, ITEM_GOLD_BOTTLE_CAP, HEAPID_WORLD);
     report->mints = Bag_GetQuantity(bag, ITEM_ADAMANT_MINT, HEAPID_WORLD);
+    if (report->scenario == HACK_TEST_MIRROR || report->scenario == HACK_TEST_MIRROR_NO_MON) {
+        // reuses two fields: reward of the Mantine specialist and number of specialists beaten
+        report->mints = Bag_GetQuantity(bag, HACK_TEST_MIRROR_REWARD, HEAPID_WORLD);
+        report->padding2 = GetScriptVar(HACK_VAR_MIRROR_WINS);
+    }
     for (s32 i = 0; i < 6; i++) {
         struct HackTestMonReport *mon = &report->mons[i];
         if (i >= party->count) {
@@ -404,6 +421,8 @@ void HackTest_FieldTick(void)
         case HACK_TEST_DAY_CARE:
         case HACK_TEST_BIKE:
         case HACK_TEST_STATIC_MON:
+        case HACK_TEST_MIRROR:
+        case HACK_TEST_MIRROR_NO_MON:
             break; // driven from the menu by the python side
         default:
             EventSet_Script(gFieldSysPtr, 2073, NULL);

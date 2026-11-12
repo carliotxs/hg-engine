@@ -32,6 +32,12 @@
 #define SCRIPT_CAPTURE_PROMPT 2076 // common script scr_seq_0003_076_capture_prompt
 #define HACK_SCRCMD_CAPTURE_SWAP 0x4843 // value of the result var that turns day_care_sanitize_mon into the swap
 
+// Species specialists ("mirror match"), see src/hack_mirror.c and hack/scripts/gen_specialists.py.
+#define HACK_MIRROR_SPECIALISTS
+#define SCRIPT_MIRROR_SPECIALIST 2077 // common script scr_seq_0003_077_mirror_specialist
+#define HACK_TRAINER_MIRROR 738       // the generic specialist in data/Trainers.c
+#define HACK_VAR_MIRROR_WINS 0x416F   // number of specialists beaten
+
 // Bicycle with twice the vanilla top speed (2 frames per tile), see bytereplacement.
 #define HACK_FAST_BIKE
 

@@ -124,3 +124,8 @@ The Exp. Share was turned off.\rOnly the Pokémon that battle\nwill gain Exp. Po
 Your party is full, so the Pokémon\nyou caught was sent to the PC.\rDo you want it in your party\ninstead?
 The two Pokémon switched places!
 A Pokémon holding Mail can’t be\nsent to the PC. Nothing was changed.
+I’m the {STRVAR_1 0, 0, 0} specialist!\rYou brought one too? Then it’s\njust the two of them, one on one!
+You understand {STRVAR_1 0, 0, 0}\nbetter than I do.\rTake this. It suits it.
+{STRVAR_1 0, 0, 0} and I are still\ntraining. You were the better pair.
+I’m the {STRVAR_1 0, 0, 0} specialist.\rI only battle Trainers who bring\na {STRVAR_1 0, 0, 0} of their own.
+You received the {STRVAR_1 8, 1, 0}!

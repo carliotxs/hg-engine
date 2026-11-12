@@ -102,6 +102,7 @@ scrdef scr_seq_0003_073_autobattle_testing
 scrdef scr_seq_0003_074_expshare
 scrdef scr_seq_0003_075_hack_test_shop
 scrdef scr_seq_0003_076_capture_prompt
+scrdef scr_seq_0003_077_mirror_specialist
 scrdef_end
 
 scr_seq_0003_002:
@@ -1838,4 +1839,61 @@ scr_seq_0003_076_refused:
 
 scr_seq_0003_076_end:
     releaseall
+    end
+
+// hack: species specialist, called with callstd from the map scripts (SCRIPT_MIRROR_SPECIALIST = 2077).
+// in: VAR_SPECIAL_x8004 species, x8005 level, x8006 reward item, x8007 flag of this specialist.
+// the day_care_sanitize_mon calls are operations of src/hack_mirror.c (HACK_MIRROR_OP_*)
+scr_seq_0003_077_mirror_specialist:
+    play_se SEQ_SE_DP_SELECT
+    lockall
+    faceplayer
+    buffer_species_name 0, VAR_SPECIAL_x8004, 0, 0
+    checkflagvar VAR_SPECIAL_x8007, VAR_SPECIAL_RESULT
+    compare VAR_SPECIAL_RESULT, 1
+    goto_if_eq scr_seq_0003_077_beaten
+    setvar VAR_SPECIAL_RESULT, 0x4D30 // find the species in the party
+    day_care_sanitize_mon VAR_SPECIAL_x8004, VAR_SPECIAL_RESULT
+    compare VAR_SPECIAL_RESULT, 255
+    goto_if_eq scr_seq_0003_077_no_mon
+    setorcopyvar VAR_SPECIAL_x8008, VAR_SPECIAL_RESULT
+    npc_msg 126
+    closemsg
+    setvar VAR_SPECIAL_RESULT, 0x4D31 // the party becomes that Pokémon alone
+    day_care_sanitize_mon VAR_SPECIAL_x8008, VAR_SPECIAL_RESULT
+    trainer_battle TRAINER_HACK_MIRROR, 0, 0, 0
+    setvar VAR_SPECIAL_x8008, 0x4D32 // the party is put back
+    day_care_sanitize_mon VAR_SPECIAL_x8008, VAR_SPECIAL_x8008
+    check_battle_won VAR_SPECIAL_RESULT
+    compare VAR_SPECIAL_RESULT, 0
+    goto_if_eq scr_seq_0003_077_lost
+    setflagvar VAR_SPECIAL_x8007
+    addvar 0x416F, 1
+    buffer_species_name 0, VAR_SPECIAL_x8004, 0, 0
+    npc_msg 127
+    giveitem VAR_SPECIAL_x8006, 1, VAR_SPECIAL_RESULT
+    buffer_item_name 1, VAR_SPECIAL_x8006
+    play_fanfare SEQ_ME_ITEM
+    npc_msg 130
+    wait_fanfare
+    goto scr_seq_0003_077_close
+
+scr_seq_0003_077_beaten:
+    npc_msg 128
+    goto scr_seq_0003_077_close
+
+scr_seq_0003_077_no_mon:
+    npc_msg 129
+
+scr_seq_0003_077_close:
+    wait_button_or_walk_away
+    closemsg
+    releaseall
+    endstd
+    end
+
+scr_seq_0003_077_lost:
+    white_out
+    releaseall
+    endstd
     end

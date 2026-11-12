@@ -14,6 +14,7 @@
 
 #include "bag.h"
 #include "hack_capture.h"
+#include "hack_mirror.h"
 #include "battle.h"
 #include "message.h"
 #include "pokemon.h"
@@ -142,16 +143,23 @@ BOOL ScrCmd_DaycareSanitizeMon(SCRIPTCONTEXT *ctx)
     u16 party_slot = ScriptGetVar(ctx);
     u16 *ret_ptr = ScriptGetVarPointer(ctx);
     void *party = SaveData_GetPlayerPartyPtr(fieldSystem->savedata);
-    partyMon = Party_GetMonByIndex(party, party_slot);
 
+    // hack: scripts of the hack reuse this command for their own operations.  the result var holds a
+    // magic value on entry, and the first argument is not always a party slot
 #ifdef HACK_CAPTURE_PARTY_PROMPT
-    // hack: the capture prompt script reuses this command (the result var holds a magic value on entry)
-    // to swap a party member with the Pokémon that was just caught, see src/hack_capture.c
-    if (*ret_ptr == HACK_SCRCMD_CAPTURE_SWAP) {
+    if (*ret_ptr == HACK_SCRCMD_CAPTURE_SWAP) { // see src/hack_capture.c
         *ret_ptr = HackCapture_Swap(party_slot) ? 0 : 0xFF;
         return FALSE;
     }
 #endif // HACK_CAPTURE_PARTY_PROMPT
+#ifdef HACK_MIRROR_SPECIALISTS
+    if ((*ret_ptr & HACK_MIRROR_OP_MASK) == HACK_MIRROR_OP_BASE) { // see src/hack_mirror.c
+        *ret_ptr = HackMirror_ScriptOp(*ret_ptr, party_slot);
+        return FALSE;
+    }
+#endif // HACK_MIRROR_SPECIALISTS
+
+    partyMon = Party_GetMonByIndex(party, party_slot);
 
     *ret_ptr = 0;
 

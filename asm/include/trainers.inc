@@ -740,5 +740,6 @@
 .equ TRAINER_PARTNER_RIVAL_1, 735
 .equ TRAINER_PARTNER_RIVAL_2, 736
 .equ TRAINER_PARTNER_RIVAL_3, 737
+.equ TRAINER_HACK_MIRROR, 738 // hack: generic species specialist
 
 .endif
