@@ -161,6 +161,7 @@ Como funciona: o runner escreve o número do cenário num endereço de memória;
 | `giovanni` | capítulo da gruta de Tohjo Falls: batalha ganha, Kangaskhanite recebida, o Giovanni desaparece |
 | `mart_robber` | capítulo do Poké Mart de Cherrygrove numa segunda-feira: batalha, Elixir, o assaltante desaparece |
 | `visitor_wake` | capítulo do Lago da Fúria num sábado ao meio-dia: batalha com o Crasher Wake, que depois se vai embora |
+| `boss_<nome>` (ou `bosses` para todos) | combate de treinador contra cada boss com equipa nova (13 líderes, Elite Four e Lance, 7 executivos, Giovanni, Korrina, Wake) com um Arceus de nível 100: a equipa carrega, luta e o combate termina com prémio. Bruno e Lance vencem o Pokémon de teste, por isso esses dois cenários falham por agora |
 | `view_<capítulo>` | abre o capítulo e tira uma captura |
 | `static_mon` | o Yamper de Cherrygrove: vê-se no mapa, bloqueia o mosaico, a batalha começa, a flag diária fica marcada e ele desaparece |
 | `bike` | usar a Bicicleta na mochila e pedalar: acelera e chega a 2 frames por mosaico |

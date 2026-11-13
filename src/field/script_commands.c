@@ -158,6 +158,10 @@ BOOL ScrCmd_DaycareSanitizeMon(SCRIPTCONTEXT *ctx)
         *ret_ptr = HackTest_ChapterId();
         return FALSE;
     }
+    if (*ret_ptr == HACK_TEST_OP_BOSS) {
+        *ret_ptr = HackTest_BossId();
+        return FALSE;
+    }
 #endif // HACK_TEST
 #ifdef HACK_MIRROR_SPECIALISTS
     if ((*ret_ptr & HACK_MIRROR_OP_MASK) == HACK_MIRROR_OP_BASE) { // see src/hack_mirror.c

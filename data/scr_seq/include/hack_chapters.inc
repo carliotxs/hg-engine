@@ -42,3 +42,99 @@ _hack_chapter_skip_8:
     warp MAP_R31, 0, 536, 271, DIR_WEST
 _hack_chapter_skip_9:
 .endm
+
+// boss battles of the debug ROM.  VAR_SPECIAL_RESULT holds the index in BOSSES
+.macro hack_boss_battles
+    compare VAR_SPECIAL_RESULT, 0 // falkner
+    goto_if_ne _hack_boss_skip_0
+    trainer_battle 20, 0, 0, 0
+_hack_boss_skip_0:
+    compare VAR_SPECIAL_RESULT, 1 // bugsy
+    goto_if_ne _hack_boss_skip_1
+    trainer_battle 21, 0, 0, 0
+_hack_boss_skip_1:
+    compare VAR_SPECIAL_RESULT, 2 // whitney
+    goto_if_ne _hack_boss_skip_2
+    trainer_battle 30, 0, 0, 0
+_hack_boss_skip_2:
+    compare VAR_SPECIAL_RESULT, 3 // morty
+    goto_if_ne _hack_boss_skip_3
+    trainer_battle 31, 0, 0, 0
+_hack_boss_skip_3:
+    compare VAR_SPECIAL_RESULT, 4 // chuck
+    goto_if_ne _hack_boss_skip_4
+    trainer_battle 34, 0, 0, 0
+_hack_boss_skip_4:
+    compare VAR_SPECIAL_RESULT, 5 // jasmine
+    goto_if_ne _hack_boss_skip_5
+    trainer_battle 33, 0, 0, 0
+_hack_boss_skip_5:
+    compare VAR_SPECIAL_RESULT, 6 // pryce
+    goto_if_ne _hack_boss_skip_6
+    trainer_battle 32, 0, 0, 0
+_hack_boss_skip_6:
+    compare VAR_SPECIAL_RESULT, 7 // clair
+    goto_if_ne _hack_boss_skip_7
+    trainer_battle 35, 0, 0, 0
+_hack_boss_skip_7:
+    compare VAR_SPECIAL_RESULT, 8 // will
+    goto_if_ne _hack_boss_skip_8
+    trainer_battle 245, 0, 0, 0
+_hack_boss_skip_8:
+    compare VAR_SPECIAL_RESULT, 9 // koga
+    goto_if_ne _hack_boss_skip_9
+    trainer_battle 247, 0, 0, 0
+_hack_boss_skip_9:
+    compare VAR_SPECIAL_RESULT, 10 // bruno
+    goto_if_ne _hack_boss_skip_10
+    trainer_battle 418, 0, 0, 0
+_hack_boss_skip_10:
+    compare VAR_SPECIAL_RESULT, 11 // karen
+    goto_if_ne _hack_boss_skip_11
+    trainer_battle 246, 0, 0, 0
+_hack_boss_skip_11:
+    compare VAR_SPECIAL_RESULT, 12 // lance
+    goto_if_ne _hack_boss_skip_12
+    trainer_battle 244, 0, 0, 0
+_hack_boss_skip_12:
+    compare VAR_SPECIAL_RESULT, 13 // proton_well
+    goto_if_ne _hack_boss_skip_13
+    trainer_battle 486, 0, 0, 0
+_hack_boss_skip_13:
+    compare VAR_SPECIAL_RESULT, 14 // petrel_hideout
+    goto_if_ne _hack_boss_skip_14
+    trainer_battle 488, 0, 0, 0
+_hack_boss_skip_14:
+    compare VAR_SPECIAL_RESULT, 15 // ariana_hideout
+    goto_if_ne _hack_boss_skip_15
+    trainer_battle 479, 0, 0, 0
+_hack_boss_skip_15:
+    compare VAR_SPECIAL_RESULT, 16 // proton_tower
+    goto_if_ne _hack_boss_skip_16
+    trainer_battle 706, 0, 0, 0
+_hack_boss_skip_16:
+    compare VAR_SPECIAL_RESULT, 17 // petrel_tower
+    goto_if_ne _hack_boss_skip_17
+    trainer_battle 487, 0, 0, 0
+_hack_boss_skip_17:
+    compare VAR_SPECIAL_RESULT, 18 // ariana_tower
+    goto_if_ne _hack_boss_skip_18
+    trainer_battle 478, 0, 0, 0
+_hack_boss_skip_18:
+    compare VAR_SPECIAL_RESULT, 19 // archer
+    goto_if_ne _hack_boss_skip_19
+    trainer_battle 485, 0, 0, 0
+_hack_boss_skip_19:
+    compare VAR_SPECIAL_RESULT, 20 // giovanni
+    goto_if_ne _hack_boss_skip_20
+    trainer_battle 700, 0, 0, 0
+_hack_boss_skip_20:
+    compare VAR_SPECIAL_RESULT, 21 // korrina
+    goto_if_ne _hack_boss_skip_21
+    trainer_battle 744, 0, 0, 0
+_hack_boss_skip_21:
+    compare VAR_SPECIAL_RESULT, 22 // wake
+    goto_if_ne _hack_boss_skip_22
+    trainer_battle 748, 0, 0, 0
+_hack_boss_skip_22:
+.endm

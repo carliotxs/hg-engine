@@ -1761,8 +1761,18 @@ scr_seq_0003_073_autobattle_testing:
     day_care_sanitize_mon VAR_SPECIAL_x8004, VAR_SPECIAL_RESULT
     compare VAR_SPECIAL_RESULT, 0xFFFF
     goto_if_ne scr_seq_0003_073_hack_chapter
+    setvar VAR_SPECIAL_RESULT, 0x4D41 // HACK_TEST_OP_BOSS: which boss battle was asked for, 0xFFFF if none
+    day_care_sanitize_mon VAR_SPECIAL_x8004, VAR_SPECIAL_RESULT
+    compare VAR_SPECIAL_RESULT, 0xFFFF
+    goto_if_ne scr_seq_0003_073_hack_boss
     goto_if_set 2911, scr_seq_0003_073_hack_test_leader // HACK_TEST_LEADER_FLAG
     wild_battle SPECIES_RATTATA, 20, 0
+    releaseall
+    end
+
+// boss battles of the debug ROM
+scr_seq_0003_073_hack_boss:
+    hack_boss_battles
     releaseall
     end
 
