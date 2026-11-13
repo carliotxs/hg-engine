@@ -180,6 +180,15 @@ static void HackTest_Setup(u16 scenario)
         return;
     }
 
+    if (scenario >= HACK_TEST_BOSS_BASE && scenario < HACK_TEST_BOSS_BASE + HACK_BOSS_COUNT) {
+        // a boss battle: one test Pokémon far above every boss (Arceus: no double weakness, so a boss
+        // team cannot simply knock it out), with a move no type is immune to
+        pp = HackTest_AddMon(SPECIES_ARCEUS, 100);
+        HackTest_SetMove(pp, MOVE_ROCK_SLIDE, 40);
+        ClearScriptFlag(HACK_TEST_LEADER_FLAG);
+        return;
+    }
+
     switch (scenario) {
     case HACK_TEST_EXP_SHARE_OFF:
         SetScriptFlag(FLAG_EXP_SHARE_DISABLED);
@@ -495,6 +504,18 @@ u32 LONG_CALL HackTest_ChapterId(void)
 }
 
 /**
+ *  @brief index of the boss battle that was requested, 0xFFFF if this run is not one
+ */
+u32 LONG_CALL HackTest_BossId(void)
+{
+    u32 scenario = gHackTestReport.scenario;
+    if (scenario >= HACK_TEST_BOSS_BASE && scenario < HACK_TEST_BOSS_BASE + HACK_BOSS_COUNT) {
+        return scenario - HACK_TEST_BOSS_BASE;
+    }
+    return 0xFFFF;
+}
+
+/**
  *  @brief called once per frame while the player can move in the overworld
  */
 void HackTest_FieldTick(void)
@@ -503,7 +524,7 @@ void HackTest_FieldTick(void)
         u32 request = *HACK_TEST_HOLE;
         // chapters warp the player: wait until the map name banner of the loaded save is gone,
         // a warp while it is still on screen runs out of memory for the backgrounds
-        u32 wait = ((request & 0xFFFF) >= HACK_TEST_CHAPTER_BASE) ? 300 : 30;
+        u32 wait = ((request & 0xFFFF) >= HACK_TEST_CHAPTER_BASE && (request & 0xFFFF) < HACK_TEST_BOSS_BASE) ? 300 : 30;
         if ((request >> 16) != HACK_TEST_REQUEST_MAGIC || ++sHackTestWait < wait) {
             return;
         }

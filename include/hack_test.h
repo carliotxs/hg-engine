@@ -23,11 +23,14 @@
 #define HACK_TEST_STATIC_MON       12 // no script, the visible static Pokémon of Cherrygrove City
 
 #define HACK_TEST_CHAPTER_BASE    100 // scenario 100 + n starts chapter n of include/hack_chapters.h
+#define HACK_TEST_BOSS_BASE       200 // scenario 200 + n is a trainer battle against boss n of hack/scripts/gen_chapters.py
+#define HACK_TEST_OP_BOSS      0x4D41 // day_care_sanitize_mon operation: index of the requested boss, 0xFFFF if none
 #define HACK_TEST_OP_CHAPTER   0x4D40 // day_care_sanitize_mon operation: number of the requested chapter, 0xFFFF if none
 
 #ifndef __ASSEMBLER__
 void HackTest_FieldTick(void);
 u32 LONG_CALL HackTest_ChapterId(void);
+u32 LONG_CALL HackTest_BossId(void);
 #endif
 
 #endif // HACK_TEST_H

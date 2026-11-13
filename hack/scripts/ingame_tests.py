@@ -983,10 +983,40 @@ def play(args):
             game.next_frame = time.monotonic()
 
 
+BOSS_BASE = 200  # scenario number of boss 0, see hack/scripts/gen_chapters.py
+
+
+def boss_names():
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from gen_chapters import BOSSES
+    return [f"boss_{name}" for _, name in BOSSES]
+
+
+def test_boss(game, c):
+    """trainer battle against a boss with a level 100 test Pokémon: the team loads, every Pokémon can
+    be beaten and the battle ends with prize money.  the screenshots show the team"""
+    before = game.report()
+    game.run(600)
+    game.shot("boss_intro")
+    shots = tuple(range(600, 30000, 1500))
+    c.check("battle finished", game.mash_until_field(game.Keys.KEY_A, timeout=30000, shots=shots))
+    for _ in range(4):
+        game.press(game.Keys.KEY_A, wait=120)
+    after = game.report()
+    gain = after["mons"][0]["exp"] - before["mons"][0]["exp"]
+    print(f"  money won {after['money'] - before['money']}, lead HP {after['mons'][0]['hp']}")
+    c.check("the battle was won", after["money"] > before["money"] and after["mons"][0]["hp"] > 0, f"exp {gain}")
+
+
 def run_one(args, name):
     game = Game(args.rom, args.sav, os.path.join(args.out, name))
     checker = Checker()
     print(f"{name}:")
+    if name.startswith("boss_"):
+        game.start_scenario(BOSS_BASE + boss_names().index(name))
+        game.run(30)
+        test_boss(game, checker)
+        return checker.failures
     if name in CHAPTER_TESTS:
         start_chapter(game, CHAPTER_TESTS[name][0])
         CHAPTER_TESTS[name][1](game, checker)
@@ -1013,7 +1043,7 @@ def main():
     if args.list:
         sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
         from gen_chapters import CHAPTERS
-        print("scenarios:", " ".join(list(TESTS) + list(CHAPTER_TESTS)))
+        print("scenarios:", " ".join(list(TESTS) + list(CHAPTER_TESTS) + boss_names()))
         print("chapters (for --play):")
         for chapter in CHAPTERS:
             print(f"  {chapter['name']}: {chapter['about']}")
@@ -1021,7 +1051,9 @@ def main():
     if args.play:
         play(args)
         return
-    names = args.scenarios or list(TESTS) + list(CHAPTER_TESTS)
+    names = args.scenarios or list(TESTS) + list(CHAPTER_TESTS) + boss_names()
+    if names == ["bosses"]:
+        names = boss_names()
 
     if args.single:
         sys.exit(1 if run_one(args, names[0]) else 0)
